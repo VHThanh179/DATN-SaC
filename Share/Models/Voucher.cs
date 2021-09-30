@@ -21,8 +21,8 @@ namespace Share.Models
         [Display(Name = "Ghi chú")]
         public string Notes { get; set; }
 
-        public Order OrderId{ get; set; }
+        //public Order OrderId { get; set; }
 
-        public Product ProductId { get; set; }
+        //public Product ProductId { get; set; }
     }
 }
