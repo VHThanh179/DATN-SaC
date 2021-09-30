@@ -1,6 +1,5 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "YxaFXQ//kb3kwvwoXezsv8yChkDEyfJefqQ2s4jardpluxELxREaRTg42JdI5OjOS5q9f0K10ibLbyTMsRVJMA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj",
@@ -9,11 +8,12 @@
     "C:\\Users\\Navteiv\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
     "C:\\Users\\Navteiv\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
   ],
-=======
-  "dgSpecHash": "0nQ44p2W0HVHbJh7B7vAWUkavKbxdLiFWV4gB73FUTZQEvA7VhEfQdCiQUpQK5JoLYBoCMuAmak0TGHA++9kOw==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj",
-  "expectedPackageFiles": [],
->>>>>>> Model
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
