@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/YGgdrwIS5wQIgbmGyTYRmhoC+OX0kNzdlVHkh2QVFB51CBIwBvYpK7QKeE9k+rQooBk08xYRPY3W3oFtY0AoQ==",
+  "dgSpecHash": "p44FtgM8wlCgP+2P/lN6ci6Jbr8pQZsuQ2AfB+ISxtWkdpnOshc5B3gbOvmeTaUQGAsUZ5ec5YuqiRKAIMuvzw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj",
+  "projectFilePath": "D:\\DATN\\Project\\SaCBackpack\\Server\\Server.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
