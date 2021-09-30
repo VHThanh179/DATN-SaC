@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p44FtgM8wlCgP+2P/lN6ci6Jbr8pQZsuQ2AfB+ISxtWkdpnOshc5B3gbOvmeTaUQGAsUZ5ec5YuqiRKAIMuvzw==",
+  "dgSpecHash": "1BslLfu3QDWLIkWpzU9nOOwvfktcFUILm3yammS7QyhuSAYOqerYpr6KeThuC4ZJqdHvbwcrC+ob2b8gvpzLNA==",
   "success": true,
-  "projectFilePath": "D:\\DATN\\Project\\SaCBackpack\\Server\\Server.csproj",
+  "projectFilePath": "D:\\DATN-SaC\\Server\\Server.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
