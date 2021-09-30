@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "hO4ea/cNTz08IVja5dkVvL3zNruG7qJ+hjK5SRJIJiFiJIMOsYevqVvEUnytPYFeoOmNXtDKYBYoB1s3vRrRsw==",
+  "dgSpecHash": "cSQWcUdVxWNOPZ4MmTEfJfRCWcODipXngR0TpNqHoHG/oglTLoeI+iudMuEyEt2w3/k21ZRzy6bFEnNhIwYjpw==",
   "success": true,
   "projectFilePath": "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Admins\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.10\\microsoft.aspnetcore.http.features.5.0.10.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
