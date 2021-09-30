@@ -34,7 +34,7 @@ namespace Share.Models
         public string Email { get; set; }
 
         [Display(Name = "Ngày sinh")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}"), DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}"), DataType(DataType.Date)]
         public DateTime DoB { get; set; }
 
         [Display(Name = "Vai trò")]
