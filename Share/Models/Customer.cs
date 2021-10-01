@@ -22,8 +22,10 @@ namespace Share.Models
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; }
 
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         [Display(Name = "Ngày sinh")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}"), DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DoB { get; set; }
 
         [Display(Name = "Địa chỉ")]

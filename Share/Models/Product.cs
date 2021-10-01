@@ -53,6 +53,5 @@ namespace Share.Models
         [Display(Name = "Đang phục vụ")]
         public bool Status { get; set; }
 
-        // public IList<OrderDetail> OrderDetails { get; set; }
     }
 }
