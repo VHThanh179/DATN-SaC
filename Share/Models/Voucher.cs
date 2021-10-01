@@ -24,15 +24,17 @@ namespace Share.Models
         [Display(Name = "Mã voucher")]
         public int VoucherCode { get; set; }
 
-        [Required, Range(0, int.MaxValue, ErrorMessage = "Bạn cần chọn ngày bắt đầu!")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Column(TypeName = "date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required, Range(0, int.MaxValue, ErrorMessage = "Bạn cần chọn ngày bắt đầu!")]
         [Display(Name = "Ngày bắt đầu")]
         public DateTime StartDate { get; set; }
 
-        [Required, Range(0, double.MaxValue, ErrorMessage = "Bạn cần chọn ngày bắt đầu!")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Column(TypeName = "date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required, Range(0, int.MaxValue, ErrorMessage = "Bạn cần chọn ngày bắt đầu!")]
         [Display(Name = "Ngày kết thúc")]
         public DateTime EndDate { get; set; }
 
