@@ -16,6 +16,9 @@ namespace Share.Models
         [Key]
         public int VoucherId { get; set; }
 
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
+
         [Column(TypeName = "varchar(200)"), MaxLength(200)]
         [Required(ErrorMessage = "Bạn cần nhập mã voucher!")]
         [Display(Name = "Mã voucher")]
@@ -47,6 +50,6 @@ namespace Share.Models
         [Display(Name = "Giá trị")]
         public double Value { get; set; }
 
-        public Customer CustomerId { get; set; }        
+        public Customer Customer { get; set; }        
     }
 }

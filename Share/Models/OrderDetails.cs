@@ -9,6 +9,12 @@ namespace Share.Models
         [Key]
         public int DetailId { get; set; }
 
+        [ForeignKey("Order")]
+        public int OrderId { get; set; }
+
+        [ForeignKey("Product")]
+        public int ProductId { get; set; }
+
         [Required, Range(0, int.MaxValue, ErrorMessage = "Bạn cần nhập số lượng.")]
         [Display(Name = "Số lượng")]
         public int Quantity { get; set; }
@@ -21,8 +27,8 @@ namespace Share.Models
         [Display(Name = "Ghi chú")]
         public string Notes { get; set; }
 
-        //public Order OrderId { get; set; }
+        public Order Order { get; set; }
 
-        //public Product ProductId { get; set; }
+        public Product Product { get; set; }
     }
 }

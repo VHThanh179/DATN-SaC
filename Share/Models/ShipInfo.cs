@@ -13,6 +13,9 @@ namespace Share.Models
         [Key]
         public int ShipId { get; set; }
 
+        [ForeignKey("Order")]
+        public int OrderId { get; set; }
+
         [Display(Name = "Tên khách hàng")]
         [Required(ErrorMessage ="Nhập tên khách hàng")]
         [Column(TypeName = "nvarchar(100)")]
@@ -36,7 +39,7 @@ namespace Share.Models
 
         [Display(Name = "Giá"),Required(ErrorMessage ="Vui lòng nhập giá")]
         public double Price { get; set; }
-        //public int OrderId { get; set; }
 
+        public Order Order { get; set; }
     }
 }

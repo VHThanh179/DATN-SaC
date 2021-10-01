@@ -22,6 +22,9 @@ namespace Share.Models
         [Key]
         public int OrderId { get; set; }
 
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
+
         [Column(TypeName = "date")]
         [Display(Name = "Ngày đặt")]
         [DataType(DataType.Date)]
@@ -41,9 +44,7 @@ namespace Share.Models
         [Column(TypeName = "nvarchar(250)")]
         public string Notes { get; set; }
 
-        public string CustomerId { get; set; }
-
-        //public Customer Customer { get; set; }
-        //public IList<OrderDetail> OrderDetails { get; set; }
+        public Customer Customer { get; set; }
+        public List<OrderDetails> OrderDetails { get; set; }
     }
 }
