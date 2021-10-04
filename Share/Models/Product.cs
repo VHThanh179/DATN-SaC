@@ -33,7 +33,7 @@ namespace Share.Models
         [Column(TypeName = "money")]
         public float Price { get; set; }
 
-        [Range(0, double.MaxValue, ErrorMessage = "Vui lòng chọn phân loại")]
+        [Required(ErrorMessage = "Mời chọn loại"), Range(1, int.MaxValue, ErrorMessage = "Vui lòng chọn phân loại")]
         [Display(Name = "Phân loại")]
         public Category Category { get; set; }
 

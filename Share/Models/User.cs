@@ -11,9 +11,9 @@ namespace Share.Models
     public enum Role
     {
         [Display(Name = "Quản lý")]
-        Manager,
+        Manager = 1,
         [Display(Name = "Nhân viên")]
-        Staff
+        Staff = 2
     }
     public class User
     {
@@ -40,6 +40,7 @@ namespace Share.Models
         public DateTime DoB { get; set; }
 
         [Display(Name = "Vai trò")]
+        [Required(ErrorMessage = "Mời chọn chức vụ"), Range(1, int.MaxValue, ErrorMessage = "Vui lòng chọn chức vụ")]
         public Role Roles { get; set; }
 
         [Display(Name = "Trạng thái hoạt động")]

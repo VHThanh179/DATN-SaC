@@ -45,5 +45,11 @@ namespace Share.Models
 
         [Display(Name = "Trạng thái hoạt động")]
         public bool Status { get; set; }
+
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [Display(Name = "Ngày tạo")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime CreatedDate { get; set; }
     }
 }
