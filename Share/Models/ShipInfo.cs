@@ -8,6 +8,15 @@ using System.Threading.Tasks;
 
 namespace Share.Models
 {
+    public enum Partner
+    {
+        [Display(Name = "Grab")]
+        Grab = 1,
+        [Display(Name = "Now")]
+        Now = 2,
+        [Display(Name = "Gojek")]
+        Gojek = 3
+    }
    public class ShipInfo
     {
         [Key]
@@ -39,6 +48,10 @@ namespace Share.Models
 
         [Display(Name = "Giá"),Required(ErrorMessage ="Vui lòng nhập giá")]
         public double Price { get; set; }
+
+        [Display(Name = "Dịch vụ vận chuyển")]
+        [Required(ErrorMessage = "Mời chọn dịch vụ vận chuyển"), Range(1, int.MaxValue, ErrorMessage = "Vui lòng chọn dịch vụ")]
+        public Partner Partner { get; set; }
 
         public Order Order { get; set; }
     }

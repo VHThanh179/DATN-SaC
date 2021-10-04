@@ -47,6 +47,7 @@ namespace Share.Models
         public bool VoucherQuantity { get; set; }
 
         [Display(Name = "Loại giảm giá")]
+        [Required(ErrorMessage = "Hãy chọn loại giảm giá"), Range(1, int.MaxValue, ErrorMessage = "Vui lòng chọn loại giảm giá")]
         public CategoryDiscount CategoryDiscount { get; set; }
 
         [Display(Name = "Giá trị")]
