@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Share.Interfaces
 {
-    class Class1
+    public interface IUserSvc
     {
     }
 }
