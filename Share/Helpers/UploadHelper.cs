@@ -7,14 +7,14 @@ namespace Share.Helpers
 {
     public class UploadHelper : IUploadHelper
     {
-        public void UploadImage(IFormFile file, string rootPath, string phanloai)
+        public void UploadImage(IFormFile file, string rootPath, string classify)
         {
             //string path = Path.Combine(_hostingEnvironment.WebRootPath, "images", file.FileName);
             if (!Directory.Exists(rootPath))
             {
                 Directory.CreateDirectory(rootPath);
             }
-            string dirPath = rootPath + @"\" + phanloai;
+            string dirPath = rootPath + @"\" + classify;
             if (!Directory.Exists(dirPath))
             {
                 Directory.CreateDirectory(dirPath);
