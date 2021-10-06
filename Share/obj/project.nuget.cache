@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "hO4ea/cNTz08IVja5dkVvL3zNruG7qJ+hjK5SRJIJiFiJIMOsYevqVvEUnytPYFeoOmNXtDKYBYoB1s3vRrRsw==",
+  "dgSpecHash": "0nQ44p2W0HVHbJh7B7vAWUkavKbxdLiFWV4gB73FUTZQEvA7VhEfQdCiQUpQK5JoLYBoCMuAmak0TGHA++9kOw==",
   "success": true,
-  "projectFilePath": "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj",
+  "projectFilePath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
