@@ -1,7 +1,3 @@
 ﻿<StaticWebAssets Version="1.0">
-<<<<<<< HEAD
   <ContentRoot BasePath="/" Path="C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\scopedcss\bundle\" />
-=======
-  <ContentRoot BasePath="/" Path="C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\bundle\" />
->>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
 </StaticWebAssets>

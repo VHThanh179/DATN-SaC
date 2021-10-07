@@ -21,7 +21,7 @@ namespace Share.Services
             try
             {
                 _context.Add(product);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 ret = product.ProductId;
             }
             catch
@@ -46,7 +46,7 @@ namespace Share.Services
                 _product.Status = _product.Status;
 
                 _context.Update(_product);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 ret = product.ProductId;
             }
             catch
@@ -65,7 +65,7 @@ namespace Share.Services
         public async Task<Product> GetProductAsync(int id)
         {
             Product product = null;
-            product = _context.Products.Find(id);
+            product = await _context.Products.FindAsync(id);
             return product;
         }
     }

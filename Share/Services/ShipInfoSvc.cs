@@ -22,7 +22,7 @@ namespace Share.Services
             try
             {
                 _context.Add(shipInfo);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 ret = shipInfo.ShipId;
             }
             catch
@@ -34,7 +34,7 @@ namespace Share.Services
 
         public async Task<int> EditShipInfoAsync(int id, ShipInfo shipInfo)
         {
-
+            await _context.SaveChangesAsync();
             return 0;
         }
 
@@ -47,7 +47,7 @@ namespace Share.Services
         public async Task<ShipInfo> GetShipInfo(int id)
         {
             ShipInfo shipInfo = null;
-            shipInfo= _context.ShipInfos.Find(id);
+            shipInfo = await _context.ShipInfos.FindAsync(id);
             return shipInfo;
         }
     }

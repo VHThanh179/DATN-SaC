@@ -94,7 +94,6 @@ D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Share.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Share.pdb
 <<<<<<< HEAD
-<<<<<<< HEAD
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.csproj.AssemblyReference.cache
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.AssemblyInfoInputs.cache
@@ -346,7 +345,6 @@ D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalys
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 >>>>>>> 5aac7382360c391a36fcea37b7b9ed30867543c3
-=======
 C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\appsettings.json
 C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.StaticWebAssets.xml
