@@ -6,7 +6,7 @@ namespace Share.Interfaces
 {
     public interface IOrderSvc
     {
-        Task<List<Order>> GetOrderAllAsync();
+        Task<List<Order>> GetAllOrderAsync();
         Task<List<Order>> GetOrderByCustomerAsync(int CustomerId);
         Task<Order> GetOrderAsync(int id);
         Task<int> AddOrderAsync(Order order);
