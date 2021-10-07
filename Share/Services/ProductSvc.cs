@@ -1,4 +1,5 @@
-﻿using Share.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Share.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +10,63 @@ namespace Share.Services
 {
     public class ProductSvc : IProductSvc
     {
-        public Task<int> AddProductAsync(Product product)
+        protected DataContext _context;
+        public ProductSvc (DataContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task<int> AddProductAsync(Product product)
+        {
+            int ret = 0;
+            try
+            {
+                _context.Add(product);
+                _context.SaveChangesAsync();
+                ret = product.ProductId;
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
         }
 
-        public Task<int> EditProductAsync(Product product)
+        public async Task<int> EditProductAsync(int id, Product product)
         {
-            throw new NotImplementedException();
+            int ret = 0;
+            try
+            {
+                Product _product = null;
+                _product = _context.Products.Find(id);
+                _product.ProductName = product.ProductName;
+                _product.Price = product.Price;
+                _product.Category = product.Category;
+                _product.Image = product.Image;
+                _product.Description = product.Description;
+                _product.Status = _product.Status;
+
+                _context.Update(_product);
+                _context.SaveChangesAsync();
+                ret = product.ProductId;
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
         }
 
-        public Task<List<Product>> GetAllProductAsync()
+        public async Task<List<Product>> GetAllProductAsync()
         {
-            throw new NotImplementedException();
+            List<Product> list = await _context.Products.ToListAsync();
+            return list;
         }
 
-        public Task<Product> GetProductAsync(int id)
+        public async Task<Product> GetProductAsync(int id)
         {
-            throw new NotImplementedException();
+            Product product = null;
+            product = _context.Products.Find(id);
+            return product;
         }
     }
 }

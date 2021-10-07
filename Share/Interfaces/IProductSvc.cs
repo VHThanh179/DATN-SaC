@@ -12,7 +12,7 @@ namespace Share.Services
         Task<List<Product>> GetAllProductAsync();
         Task<Product> GetProductAsync(int id);
         Task<int> AddProductAsync(Product product);
-        Task<int> EditProductAsync(Product product);
+        Task<int> EditProductAsync(int id, Product product);
 
     }
 }
