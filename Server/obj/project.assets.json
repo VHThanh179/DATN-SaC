@@ -4501,24 +4501,37 @@
     "System.Collections.NonGeneric/4.3.0": {
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+      "sha512": "LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
+=======
+<<<<<<< HEAD
       "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
 =======
       "sha512": "LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
 >>>>>>> Service-Van
+<<<<<<< HEAD
 =======
       "sha512": "LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
 >>>>>>> Stashed changes
+=======
+>>>>>>> Service-Van
+>>>>>>> Service-Van
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
         ".nupkg.metadata",
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
         ".signature.p7s",
 =======
 >>>>>>> Service-Van
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Service-Van
+>>>>>>> Service-Van
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6823,24 +6836,37 @@
     "System.Runtime.Serialization.Primitives/4.3.0": {
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+      "sha512": "2Z5t70a2SwMsfQDp9KOclaZNyQhfIga2gppq9lIUDM1A4ohTshn4JqT7ir8bvIhXgorWKYDAr6rPzEbi/nTGKg==",
+=======
+<<<<<<< HEAD
       "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
 =======
       "sha512": "2Z5t70a2SwMsfQDp9KOclaZNyQhfIga2gppq9lIUDM1A4ohTshn4JqT7ir8bvIhXgorWKYDAr6rPzEbi/nTGKg==",
 >>>>>>> Service-Van
+<<<<<<< HEAD
 =======
       "sha512": "2Z5t70a2SwMsfQDp9KOclaZNyQhfIga2gppq9lIUDM1A4ohTshn4JqT7ir8bvIhXgorWKYDAr6rPzEbi/nTGKg==",
 >>>>>>> Stashed changes
+=======
+>>>>>>> Service-Van
+>>>>>>> Service-Van
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
         ".signature.p7s",
 =======
 >>>>>>> Service-Van
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Service-Van
+>>>>>>> Service-Van
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7938,24 +7964,37 @@
     "System.Xml.XmlSerializer/4.3.0": {
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+      "sha512": "VShQJhOxgD/5M2Z1IWm1vMaSqlbjo1zdFf8H7Ahte6bTvSUhUko/gDpAVVhGgGgTDeue4QyNg1fu1Zz2GKSEuQ==",
+=======
+<<<<<<< HEAD
       "sha512": "MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
 =======
       "sha512": "VShQJhOxgD/5M2Z1IWm1vMaSqlbjo1zdFf8H7Ahte6bTvSUhUko/gDpAVVhGgGgTDeue4QyNg1fu1Zz2GKSEuQ==",
 >>>>>>> Service-Van
+<<<<<<< HEAD
 =======
       "sha512": "VShQJhOxgD/5M2Z1IWm1vMaSqlbjo1zdFf8H7Ahte6bTvSUhUko/gDpAVVhGgGgTDeue4QyNg1fu1Zz2GKSEuQ==",
 >>>>>>> Stashed changes
+=======
+>>>>>>> Service-Van
+>>>>>>> Service-Van
       "type": "package",
       "path": "system.xml.xmlserializer/4.3.0",
       "files": [
         ".nupkg.metadata",
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
         ".signature.p7s",
 =======
 >>>>>>> Service-Van
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Service-Van
+>>>>>>> Service-Van
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -8040,25 +8079,41 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
+=======
     "C:\\Users\\Navteiv\\.nuget\\packages\\": {},
+>>>>>>> Service-Van
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "D:\\DATN-SaC\\Server\\Server.csproj",
+      "projectName": "Server",
+      "projectPath": "D:\\DATN-SaC\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "D:\\DATN-SaC\\Server\\obj\\",
+=======
       "projectUniqueName": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\Server.csproj",
       "projectName": "Server",
       "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\Server.csproj",
       "packagesPath": "C:\\Users\\Navteiv\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\obj\\",
+>>>>>>> Service-Van
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
         "C:\\Users\\Navteiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> Service-Van
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8075,16 +8130,24 @@
           "projectReferences": {
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+            "D:\\DATN-SaC\\Share\\Share.csproj": {
+              "projectPath": "D:\\DATN-SaC\\Share\\Share.csproj"
+=======
+<<<<<<< HEAD
             "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj": {
               "projectPath": "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj"
 =======
             "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj": {
               "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj"
 >>>>>>> Service-Van
+<<<<<<< HEAD
 =======
             "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj": {
               "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj"
 >>>>>>> Stashed changes
+=======
+>>>>>>> Service-Van
+>>>>>>> Service-Van
             }
           }
         }
@@ -8152,7 +8215,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+=======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+>>>>>>> Service-Van
       }
     }
   },
