@@ -8,5 +8,6 @@ namespace Share.Services
 {
     class ShipInfoSvc
     {
+
     }
 }
