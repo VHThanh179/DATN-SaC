@@ -1,6 +1,19 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "D:\\DATN-SaC\\Server\\Server.csproj": {}
+  },
+  "projects": {
+    "D:\\DATN-SaC\\Server\\Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\DATN-SaC\\Server\\Server.csproj",
+        "projectName": "Server",
+        "projectPath": "D:\\DATN-SaC\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\DATN-SaC\\Server\\obj\\",
+=======
     "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\Server.csproj": {}
   },
   "projects": {
@@ -12,13 +25,18 @@
         "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\Navteiv\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\obj\\",
+>>>>>>> Service-Van
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\Navteiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> Service-Van
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -34,11 +52,16 @@
             "targetAlias": "net5.0",
             "projectReferences": {
 <<<<<<< HEAD
+              "D:\\DATN-SaC\\Share\\Share.csproj": {
+                "projectPath": "D:\\DATN-SaC\\Share\\Share.csproj"
+=======
+<<<<<<< HEAD
               "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj": {
                 "projectPath": "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj"
 =======
               "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj": {
                 "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj"
+>>>>>>> Service-Van
 >>>>>>> Service-Van
               }
             }
@@ -107,6 +130,9 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
@@ -187,28 +213,27 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+>>>>>>> Service-Van
         }
       }
     },
-    "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj": {
+    "D:\\DATN-SaC\\Share\\Share.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj",
+        "projectUniqueName": "D:\\DATN-SaC\\Share\\Share.csproj",
         "projectName": "Share",
-        "projectPath": "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj",
-        "packagesPath": "C:\\Users\\Admins\\.nuget\\packages\\",
-        "outputPath": "D:\\DATN\\Project\\SaCBackpack\\Share\\obj\\",
+        "projectPath": "D:\\DATN-SaC\\Share\\Share.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\DATN-SaC\\Share\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admins\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -267,7 +292,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
