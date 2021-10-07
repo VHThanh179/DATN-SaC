@@ -2,6 +2,25 @@
   "format": 1,
   "restore": {
 <<<<<<< HEAD
+    "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj",
+        "projectName": "Server",
+        "projectPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+<<<<<<< HEAD
     "D:\\DATN-SaC\\Server\\Server.csproj": {}
   },
   "projects": {
@@ -38,6 +57,7 @@
           "C:\\Users\\Navteiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> Service-Van
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> origin/Service-Van
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -52,6 +72,10 @@
             "targetAlias": "net5.0",
             "projectReferences": {
 <<<<<<< Updated upstream
+<<<<<<< HEAD
+              "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj": {
+                "projectPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj"
+=======
 <<<<<<< HEAD
               "D:\\DATN-SaC\\Share\\Share.csproj": {
                 "projectPath": "D:\\DATN-SaC\\Share\\Share.csproj"
@@ -71,6 +95,7 @@
 =======
 >>>>>>> Service-Van
 >>>>>>> Service-Van
+>>>>>>> origin/Service-Van
               }
             }
           }
@@ -138,6 +163,26 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj",
+        "projectName": "Share",
+        "projectPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj",
+        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
 <<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
 =======
@@ -245,6 +290,7 @@
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> origin/Service-Van
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -305,12 +351,19 @@
             }
           },
 <<<<<<< HEAD
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
 =======
 >>>>>>> Stashed changes
 =======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
 >>>>>>> Service-Van
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         }
       }
     }

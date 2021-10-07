@@ -2,6 +2,25 @@
   "format": 1,
   "restore": {
 <<<<<<< HEAD
+    "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj",
+        "projectName": "Share",
+        "projectPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj",
+        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+<<<<<<< HEAD
     "D:\\DATN-SaC\\Share\\Share.csproj": {}
   },
   "projects": {
@@ -38,6 +57,7 @@
           "C:\\Users\\Navteiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> Service-Van
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> origin/Service-Van
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -98,10 +118,14 @@
             }
           },
 <<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+=======
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
 =======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
 >>>>>>> Service-Van
+>>>>>>> origin/Service-Van
         }
       }
     }

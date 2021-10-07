@@ -4344,6 +4344,16 @@
       "path": "system.collections/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4411,6 +4421,16 @@
       "path": "system.collections.concurrent/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4608,6 +4628,16 @@
       "path": "system.componentmodel/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4756,6 +4786,16 @@
       "path": "system.componentmodel.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4951,6 +4991,16 @@
       "path": "system.diagnostics.debug/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5046,6 +5096,16 @@
       "path": "system.diagnostics.tools/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5102,6 +5162,16 @@
       "path": "system.diagnostics.tracing/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5230,6 +5300,16 @@
       "path": "system.globalization/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5359,6 +5439,16 @@
       "path": "system.io/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5439,6 +5529,16 @@
       "path": "system.io.filesystem/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5476,6 +5576,16 @@
       "path": "system.io.filesystem.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5540,6 +5650,16 @@
       "path": "system.linq/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5611,6 +5731,16 @@
       "path": "system.linq.expressions/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5758,6 +5888,16 @@
       "path": "system.net.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5836,6 +5976,16 @@
       "path": "system.objectmodel/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5905,6 +6055,16 @@
       "path": "system.private.datacontractserialization/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.3/System.Private.DataContractSerialization.dll",
@@ -5934,6 +6094,16 @@
       "path": "system.reflection/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6140,6 +6310,16 @@
       "path": "system.reflection.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6220,6 +6400,16 @@
       "path": "system.reflection.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6330,6 +6520,16 @@
       "path": "system.resources.resourcemanager/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6386,6 +6586,16 @@
       "path": "system.runtime/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6543,6 +6753,16 @@
       "path": "system.runtime.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6623,6 +6843,16 @@
       "path": "system.runtime.handles/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6660,6 +6890,16 @@
       "path": "system.runtime.interopservices/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6781,6 +7021,16 @@
       "path": "system.runtime.serialization.json/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7081,6 +7331,16 @@
       "path": "system.security.cryptography.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7297,6 +7557,16 @@
       "path": "system.text.encoding/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7404,6 +7674,16 @@
       "path": "system.text.encoding.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7511,6 +7791,16 @@
       "path": "system.text.regularexpressions/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7594,6 +7884,16 @@
       "path": "system.threading/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7664,6 +7964,16 @@
       "path": "system.threading.tasks/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7789,6 +8099,16 @@
       "path": "system.xml.readerwriter/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7860,6 +8180,16 @@
       "path": "system.xml.xdocument/4.3.0",
       "files": [
         ".nupkg.metadata",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        ".signature.p7s",
+=======
+>>>>>>> Service-Van
+>>>>>>> origin/Service-Van
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7986,6 +8316,8 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
         ".signature.p7s",
 =======
 >>>>>>> Service-Van
@@ -7995,6 +8327,7 @@
 =======
 >>>>>>> Service-Van
 >>>>>>> Service-Van
+>>>>>>> origin/Service-Van
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -8080,16 +8413,33 @@
   },
   "packageFolders": {
 <<<<<<< HEAD
+    "C:\\Users\\asus\\.nuget\\packages\\": {},
+=======
+<<<<<<< HEAD
     "C:\\Users\\ASUS\\.nuget\\packages\\": {},
 =======
     "C:\\Users\\Navteiv\\.nuget\\packages\\": {},
 >>>>>>> Service-Van
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+>>>>>>> origin/Service-Van
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj",
+      "projectName": "Server",
+      "projectPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
 <<<<<<< HEAD
       "projectUniqueName": "D:\\DATN-SaC\\Server\\Server.csproj",
       "projectName": "Server",
@@ -8115,6 +8465,7 @@
         "C:\\Users\\Navteiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> Service-Van
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> origin/Service-Van
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8129,6 +8480,10 @@
           "targetAlias": "net5.0",
           "projectReferences": {
 <<<<<<< Updated upstream
+<<<<<<< HEAD
+            "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj": {
+              "projectPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj"
+=======
 <<<<<<< HEAD
             "D:\\DATN-SaC\\Share\\Share.csproj": {
               "projectPath": "D:\\DATN-SaC\\Share\\Share.csproj"
@@ -8148,6 +8503,7 @@
 =======
 >>>>>>> Service-Van
 >>>>>>> Service-Van
+>>>>>>> origin/Service-Van
             }
           }
         }
@@ -8216,10 +8572,14 @@
           }
         },
 <<<<<<< HEAD
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+=======
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
 =======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
 >>>>>>> Service-Van
+>>>>>>> origin/Service-Van
       }
     }
   },
@@ -8228,7 +8588,11 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
+<<<<<<< HEAD
       "message": "Problem reading the cache file C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+      "message": "Problem reading the cache file C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+>>>>>>> a1efbefae9fc6db3419cca0597b95bf394f03ca0
     }
   ]
 }
