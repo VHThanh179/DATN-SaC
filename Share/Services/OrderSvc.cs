@@ -14,7 +14,7 @@ namespace Share.Services
         {
             _context = context;
         }
-        public async Task<List<Order>> GetOrderAllAsync() 
+        public async Task<List<Order>> GetAllOrderAsync() 
         {
             List<Order> orders = new List<Order>();
             return orders = await _context.Orders.OrderByDescending(o => o.OrderDate)
