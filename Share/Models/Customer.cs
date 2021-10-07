@@ -43,6 +43,12 @@ namespace Share.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Column(TypeName = "varchar(50)"), MaxLength(50)]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Mật khẩu xác nhận không khớp.")]
+        [NotMapped]
+        public string ConfirmPassword { get; set; }
+
         [Display(Name = "Trạng thái hoạt động")]
         public bool Status { get; set; }
 

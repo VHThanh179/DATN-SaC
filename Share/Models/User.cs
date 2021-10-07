@@ -50,5 +50,12 @@ namespace Share.Models
         [Column(TypeName = "varchar(50)"), MaxLength(50)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Display(Name = "Nhập lại mật khẩu")]
+        [Column(TypeName = "varchar(50)"), MaxLength(50)]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Mật khẩu không khớp")]
+        [NotMapped]
+        public string ConfirmPass { get; set; }
     }
 }
