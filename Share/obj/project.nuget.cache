@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   "dgSpecHash": "WG5cjCGX2kP2Ij//gapjNTbOPxDUYJxp9b37i8c+jqzZaLtSyvXkFeyOY349VJwnK+F5ZiGDx4SwNEjiDIhwOQ==",
 =======
@@ -111,6 +112,8 @@
   ],
   "logs": []
 =======
+=======
+>>>>>>> Stashed changes
   "dgSpecHash": "k9mk1lDsvP++TBdYh6TNh+xO9DxciuLiCW4JsYVMU36XF+zjTKJ+zfRVetR45G0/3XdhKYjFGDcvvNCXFEEbsw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj",
@@ -223,5 +226,4 @@
       "message": "Problem reading the cache file C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
     }
   ]
->>>>>>> Service-Van
 }

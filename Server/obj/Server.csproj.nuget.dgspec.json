@@ -51,6 +51,7 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
               "D:\\DATN-SaC\\Share\\Share.csproj": {
                 "projectPath": "D:\\DATN-SaC\\Share\\Share.csproj"
@@ -61,6 +62,13 @@
 =======
               "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj": {
                 "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj"
+>>>>>>> Service-Van
+<<<<<<< HEAD
+=======
+              "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj": {
+                "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj"
+>>>>>>> Stashed changes
+=======
 >>>>>>> Service-Van
 >>>>>>> Service-Van
               }
@@ -213,6 +221,10 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+>>>>>>> Service-Van
 >>>>>>> Service-Van
         }
       }
@@ -292,7 +304,13 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+=======
+>>>>>>> Stashed changes
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+>>>>>>> Service-Van
         }
       }
     }

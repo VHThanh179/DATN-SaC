@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   "dgSpecHash": "U6q72BoCxR5sybMr51woCuZcwwOO/pt2sAW8eCUMJL1GADKsRJ+4269oSNYb26ygIw46yR3l+IcmoRY0ozYNjw==",
 =======
@@ -167,6 +168,8 @@
     "C:\\Users\\Admins\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
 =======
+=======
+>>>>>>> Stashed changes
   "dgSpecHash": "81wsj/OfmPe2nnG6RZxGyTHefaLyOpgpHsL5kyTUEUJrk+i7udQnt3rbmiFa/oIEvNZ6GZ6hUshe8t/P7ARsHA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\Server.csproj",
@@ -462,9 +465,22 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
 <<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
 =======
 >>>>>>> Service-Van
 >>>>>>> Service-Van
+>>>>>>> Service-Van
+=======
+>>>>>>> Stashed changes
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
