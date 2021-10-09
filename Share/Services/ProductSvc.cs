@@ -36,16 +36,16 @@ namespace Share.Services
             int ret = 0;
             try
             {
-                Product _product = null;
-                _product = _context.Products.Find(id);
-                _product.ProductName = product.ProductName;
-                _product.Price = product.Price;
-                _product.Category = product.Category;
-                _product.Image = product.Image;
-                _product.Description = product.Description;
-                _product.Status = _product.Status;
+                //Product _product = null;
+                //_product = _context.Products.Find(id);
+                //_product.ProductName = product.ProductName;
+                //_product.Price = product.Price;
+                //_product.Category = product.Category;
+                //_product.Image = product.Image;
+                //_product.Description = product.Description;
+                //_product.Status = _product.Status;
 
-                _context.Update(_product);
+                _context.Update(product);
                 await _context.SaveChangesAsync();
                 ret = product.ProductId;
             }

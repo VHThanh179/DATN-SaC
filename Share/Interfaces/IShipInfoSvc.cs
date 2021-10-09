@@ -9,9 +9,10 @@ namespace Share.Interfaces
 {
     public interface IShipInfoSvc
     {
-        Task<List<ShipInfo>> GetAllShipInfo();
-        Task<ShipInfo> GetShipInfo(int id);
+        Task<List<ShipInfo>> GetAllShipInfoAsync();
+        Task<ShipInfo> GetShipInfoAsync(int id);
         Task<int> AddShipInfoAsync(ShipInfo shipInfo);
         Task<int> EditShipInfoAsync(int id, ShipInfo shipInfo);
+        Task<ShipInfo> GetShipInfoByOrderAsync(int orderId);
     }
 }
