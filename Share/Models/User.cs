@@ -46,6 +46,13 @@ namespace Share.Models
         [Display(Name = "Trạng thái hoạt động")]
         public bool Status { get; set; }
 
+        [Display(Name = "Nhập lại mật khẩu")]
+        [Column(TypeName = "varchar(50)"), MaxLength(50)]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Mật khẩu không khớp")]
+        [NotMapped]
+        public string ConfirmPass { get; set; }
+
         [Display(Name = "Mật khẩu")]
         [Column(TypeName = "varchar(50)"), MaxLength(50)]
         [DataType(DataType.Password)]

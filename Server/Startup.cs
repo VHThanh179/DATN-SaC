@@ -7,7 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Server.Data;
+using Share.Helpers;
+using Share.Interfaces;
 using Share.Models;
+using Share.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +36,14 @@ namespace Server
             services.AddSingleton<WeatherForecastService>();
             services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 , b => b.MigrationsAssembly("Server")));
+            services.AddTransient<IProductSvc, ProductSvc>();
+            services.AddTransient<IEncodeHelper, EncodeHelper>();
+            services.AddTransient<IUserSvc, UserSvc>();
+            services.AddTransient<IOrderSvc, OrderSvc>();
+            services.AddTransient<IVoucherSvc, VoucherSvc>();
+            services.AddTransient<IShipInfoSvc, ShipInfoSvc>();
+            services.AddTransient<IOrderDetailsSvc, OrderDetailsSvc>();
+            services.AddTransient<ICustomerSvc, CustomerSvc>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
