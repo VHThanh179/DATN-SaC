@@ -438,3 +438,11 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\ref\Server.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.pdb
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Forms.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.JSInterop.dll

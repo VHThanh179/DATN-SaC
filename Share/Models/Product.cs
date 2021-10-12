@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,7 @@ namespace Share.Models
         [Display(Name = "Phụ kiện")]
         Accessories = 2
     }
-    public class Product
+    public class Product 
     {
         [Key]
         public int ProductId { get; set; }
@@ -43,11 +44,12 @@ namespace Share.Models
 
         [NotMapped]
         [Display(Name = "Chọn hình")]
-        public IFormFile ImageFile { get; set; }
+        public IBrowserFile ImageFile { get; set; }
 
-        [StringLength(250)]
+        [Required(ErrorMessage = "Mời nhập thông tin mô tả sản phẩm")]
+        [StringLength(500)]
         [Display(Name = "Mô tả")]
-        [Column(TypeName = "nvarchar(250)")]
+        [Column(TypeName = "nvarchar(500)")]
         public string Description { get; set; }
 
         [Display(Name = "Đang phục vụ")]
