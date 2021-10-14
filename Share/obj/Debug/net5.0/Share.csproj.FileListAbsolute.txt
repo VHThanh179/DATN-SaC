@@ -13,6 +13,7 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Share\obj\Debug\net5.0\ref\Share.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Share\obj\Debug\net5.0\Share.pdb
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Share\obj\Debug\net5.0\Share.genruntimeconfig.cache
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Share\obj\Debug\net5.0\Share.csproj.AssemblyReference.cache
+<<<<<<< HEAD
 D:\DATN\Project\SaCBackpack\Share\bin\Debug\net5.0\Share.deps.json
 D:\DATN\Project\SaCBackpack\Share\bin\Debug\net5.0\Share.runtimeconfig.json
 D:\DATN\Project\SaCBackpack\Share\bin\Debug\net5.0\Share.runtimeconfig.dev.json
@@ -28,3 +29,20 @@ D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\ref\Share.dll
 D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\Share.pdb
 D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\Share.genruntimeconfig.cache
 D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\Share.csproj.AssemblyReference.cache
+=======
+D:\DATN-SaC\Share\bin\Debug\net5.0\Share.deps.json
+D:\DATN-SaC\Share\bin\Debug\net5.0\Share.runtimeconfig.json
+D:\DATN-SaC\Share\bin\Debug\net5.0\Share.runtimeconfig.dev.json
+D:\DATN-SaC\Share\bin\Debug\net5.0\Share.dll
+D:\DATN-SaC\Share\bin\Debug\net5.0\ref\Share.dll
+D:\DATN-SaC\Share\bin\Debug\net5.0\Share.pdb
+D:\DATN-SaC\Share\obj\Debug\net5.0\Share.csproj.AssemblyReference.cache
+D:\DATN-SaC\Share\obj\Debug\net5.0\Share.GeneratedMSBuildEditorConfig.editorconfig
+D:\DATN-SaC\Share\obj\Debug\net5.0\Share.AssemblyInfoInputs.cache
+D:\DATN-SaC\Share\obj\Debug\net5.0\Share.AssemblyInfo.cs
+D:\DATN-SaC\Share\obj\Debug\net5.0\Share.csproj.CoreCompileInputs.cache
+D:\DATN-SaC\Share\obj\Debug\net5.0\Share.dll
+D:\DATN-SaC\Share\obj\Debug\net5.0\ref\Share.dll
+D:\DATN-SaC\Share\obj\Debug\net5.0\Share.pdb
+D:\DATN-SaC\Share\obj\Debug\net5.0\Share.genruntimeconfig.cache
+>>>>>>> Hung-Layout-Server
