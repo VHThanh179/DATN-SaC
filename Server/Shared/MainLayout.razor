@@ -1,10 +1,9 @@
 ﻿@inherits LayoutComponentBase
-
+@inject NavigationManager NavigationManager
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
-
     <div>
         <div id="wrapper">
             <div id="content-wrapper" class="d-flex flex-column">
@@ -105,6 +104,20 @@
         </div>                
         <div>
             @Body
+>>>>>>> Hung-Layout-Server
         </div>
     </div>
 </div>
+
+@code{
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        var user = (await AuthStat).User;
+        if (!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"Login?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}");
+        }
+    }
+}
