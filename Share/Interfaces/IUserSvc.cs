@@ -15,5 +15,6 @@ namespace Share.Interfaces
         Task<int> AddUserAsync(User user);
         Task<int> EditUserAsync(int id, User user);
         Task<User> LoginAsync(ViewLogin login);
+        public User Login(ViewLogin viewLogin);
     }
 }

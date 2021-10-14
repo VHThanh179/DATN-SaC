@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Server.Shared
+namespace Server.Pages
 {
     #line hidden
     using System;
@@ -82,7 +82,30 @@ using Server.Shared;
 #line default
 #line hidden
 #nullable disable
-    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
+using System.Web;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
+           [AllowAnonymous]
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(LoginLayout))]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
+    public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -90,20 +113,50 @@ using Server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\NavMenu.razor"
-       
-    private bool collapseNavMenu = true;
+#line 53 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
+      
+    private bool loading;
+    private string error;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    string username = "";
+    string password = "";
 
-    private void ToggleNavMenu()
+    private string Encode(string param)
     {
-        collapseNavMenu = !collapseNavMenu;
+        return HttpUtility.UrlEncode(param);
+    }
+    public void Enter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            if (password != "")
+            {
+                CheckLogin();
+            }
+        }
+    }
+    private void CheckLogin()
+    {
+        error = "";
+        if (username == "")
+        {
+            error = "- Vui lòng nhập Username";
+        }
+        if (password == "")
+        {
+            error += (error == "" ? "" : "<br/>" + "- Vui lòng nhập Password");
+        }
+        if (error == "")
+        {
+            NavigationManager.NavigateTo("CheckLogin?paramUsername=" + @Encode(@username)
+                + "&paramPassword=" + @Encode(@password), true);
+        }
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591
