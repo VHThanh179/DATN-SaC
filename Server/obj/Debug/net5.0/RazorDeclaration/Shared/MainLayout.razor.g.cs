@@ -90,7 +90,7 @@ using Server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
+#line 113 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     protected async override Task OnInitializedAsync()

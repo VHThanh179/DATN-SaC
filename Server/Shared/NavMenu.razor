@@ -1,39 +1,63 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">ASM.Server</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
+@*<div id="wrapper" class="@NavMenuCssClass" @onclick="ToggleNavMenu">*@
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">SaC Admin</div>
+        </a>
+        <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <a class="nav-link" href="" Match="NavLinkMatch.All">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="MonanList">
-                <span class="oi oi-plus" aria-hidden="true"></span> Sản phẩm
-            </NavLink>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Product</span>
+            </a>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="donhanglist">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Đơn hàng
-            </NavLink>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Order</span>
+            </a>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="khachhanglist">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Khách hàng
-            </NavLink>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Customer</span>
+            </a>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="nguoidunglist">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Người dùng
-            </NavLink>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>User</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Voucher</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Statistical</span>
+            </a>
         </li>
     </ul>
-</div>
+@*</div>*@
 
 @code {
     private bool collapseNavMenu = true;
