@@ -98,5 +98,14 @@ namespace Share.Services
                 ).FirstOrDefaultAsync();
             return acc;
         }
+
+        public User Login(ViewLogin login)
+        {
+            var acc = _context.Users.Where(
+               u => u.UserName.Equals(login.UserName)
+               && u.Password.Equals(_encodeHelper.Encode(login.Password))
+               ).FirstOrDefault();
+            return acc;
+        }
     }
 }

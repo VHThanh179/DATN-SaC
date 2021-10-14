@@ -93,7 +93,6 @@ D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Share.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Share.pdb
-=======
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Blazor.HttpClient.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
@@ -438,6 +437,14 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\ref\Server.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.pdb
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Shared\LoginControl.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Shared\LoginLayout.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Shared\LoginControl.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Shared\LoginLayout.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\CheckLogin.cshtml.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Logout.cshtml.g.cs
 D:\DATN-SaC\Server\bin\Debug\net5.0\appsettings.Development.json
 D:\DATN-SaC\Server\bin\Debug\net5.0\appsettings.json
 D:\DATN-SaC\Server\bin\Debug\net5.0\Server.StaticWebAssets.xml
