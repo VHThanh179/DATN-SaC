@@ -10,11 +10,18 @@ namespace Share.Interfaces
 {
     public interface IUserSvc
     {
+        //async
         Task<List<User>> GetAllUserAsync();
         Task<User> GetUserAsync(int id);
         Task<int> AddUserAsync(User user);
         Task<int> EditUserAsync(int id, User user);
         Task<User> LoginAsync(ViewLogin login);
-        public User Login(ViewLogin viewLogin);
+
+        //sync
+        List<User> GetAllUser();
+        User GetUser(int id);
+        int AddUser(User user);
+        int EditUser(int id, User user);
+        User Login(ViewLogin viewLogin);
     }
 }
