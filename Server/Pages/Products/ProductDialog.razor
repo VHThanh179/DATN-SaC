@@ -1,0 +1,135 @@
+﻿@page "/productdialog/{id}"
+@using Share.Models
+@using System.IO;
+@using Microsoft.AspNetCore.Hosting
+@layout MainLayout
+@inject Share.Interfaces.IProductSvc _productSvc
+@inject NavigationManager navigation
+@inject IWebHostEnvironment env
+
+<div class="row">
+    <div class="col-md-4">
+        <EditForm Model="@product" OnValidSubmit="@SubmitForm">
+            <DataAnnotationsValidator />
+            <input type="hidden" @bind="product.ProductId" />
+            <div class="form-group">
+                <label class="control-label">Tên sản phẩm</label>
+                <input @bind="product.ProductName" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductName)" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Giá</label>
+                <input @bind="product.Price" class="form-control" />
+                <ValidationMessage For="@(() => product.Price)" />
+            </div>
+
+            @*Phần hình ảnh*@
+            <div class="form-group">
+                <label class="control-label">Phân loại</label>
+                <InputSelect @bind-Value="@product.Category" class="form-control">
+                    <option value="@Category.Backpack">Ba lô</option>
+                    <option value="@Category.Accessories">Phụ kiện</option>
+                </InputSelect>
+            </div>
+
+            @if (product.Image != null)
+            {
+                <div class="form-group">
+                    <img src="images/Product/@product.Image" style="height:100px" />
+                </div>
+            }
+
+            <div class="form-group">
+                <label class="control-label">Chọn hình</label>
+                <InputFile class="form-control" OnChange="OnInputFileChange" />
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" @bind="product.Status" /> Trạng thái
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Thông tin mô tả</label>
+                <textarea class="form-control" @bind="product.Description" cols="30" rows="15" maxlength="500"></textarea>
+                @*<input @bind="product.Description" class="form-control"/>*@
+                <ValidationMessage For="@(() => product.Description)" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-info">Lưu</button>
+                <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    private Product product { get; set; }
+    IReadOnlyList<IBrowserFile> selectedFiles;
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            product = new Product();
+            product.Status = true;
+        }
+        else
+        {
+            product = _productSvc.GetProduct(int.Parse(id));
+        }
+    }
+
+    private async void SubmitForm()
+    {
+        if (selectedFiles != null && selectedFiles.Count > 0)
+        {
+            var roothPath = $"{env.WebRootPath}\\images";
+            if (!Directory.Exists(roothPath))
+            {
+                Directory.CreateDirectory(roothPath);
+            }
+
+            string dirPath = roothPath + @"\" + "Product";
+            if (!Directory.Exists(dirPath))
+            {
+                Directory.CreateDirectory(dirPath);
+            }
+
+            var file = selectedFiles[0];
+            string filePath = dirPath + @"\" + file.Name;
+            {
+                Stream stream = file.OpenReadStream();
+                FileStream fs = File.Create(filePath);
+                await stream.CopyToAsync(fs);
+                stream.Close();
+                fs.Close();
+            }
+            product.Image = file.Name;
+        }
+        if (product.ProductId == 0)
+        {
+            _productSvc.AddProduct(product);
+        }
+        else
+        {
+            _productSvc.EditProduct(product.ProductId, product);
+        }
+        navigation.NavigateTo("productlist");
+    }
+    private void Cancel()
+    {
+        navigation.NavigateTo("productlist", true);
+    }
+
+    private void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        selectedFiles = e.GetMultipleFiles();
+        this.StateHasChanged();
+    }
+}

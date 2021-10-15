@@ -90,7 +90,11 @@ using Server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
+<<<<<<< HEAD
 #line 28 "D:\DATN-SaC\Server\Shared\NavMenu.razor"
+=======
+#line 62 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\NavMenu.razor"
+>>>>>>> d6b5676474bb8844f959f7246e468448d4085971
        
     private bool collapseNavMenu = true;
 
