@@ -138,29 +138,7 @@ namespace Share.Services
             int ret = 0;
             try
             {
-                 User _user = null;
-                _user = _context.Users.Find(id);
-                _user.UserName = user.UserName;
-                _user.FullName = user.FullName;
-                _user.Email = user.Email;
-                _user.DoB = user.DoB;
-                _user.Roles = user.Roles;
-                _user.Status = user.Status;
-                if (user.Password != null && user.Password != string.Empty)
-                {
-                    if (_user.Password == user.Password)
-                    {
-                        _user.Password = user.Password;
-                        _user.ConfirmPass = user.Password;
-                    }
-                    else
-                    {
-                        user.Password = _encodeHelper.Encode(user.Password);
-                        _user.Password = user.Password;
-                        _user.ConfirmPass = user.Password;
-                    }
-                }
-                _context.Update(_user);
+                _context.Update(user);
                 _context.SaveChanges();
                 ret = user.UserId;
 
