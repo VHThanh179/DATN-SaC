@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace ASM.Server.Pages
+namespace Server.Pages
 {
     [AllowAnonymous]
     public class CheckLoginModel : PageModel

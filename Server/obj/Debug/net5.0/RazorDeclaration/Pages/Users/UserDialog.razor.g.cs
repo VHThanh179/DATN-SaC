@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Server
+namespace Server.Pages.Users
 {
     #line hidden
     using System;
@@ -82,13 +82,65 @@ using Server.Shared;
 #line default
 #line hidden
 #nullable disable
-    public partial class App : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/userdialog/{id}")]
+    public partial class UserDialog : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 85 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+       
+    [Parameter]
+    public string id { get; set; }
+    private Share.Models.User user { get; set; }
+    private string Tilte = "";
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            Tilte = "Thêm người dùng";
+            user = new Share.Models.User();
+        }
+        else
+        {
+            Tilte = "Sửa người dùng";
+            user = _userService.GetUser(int.Parse(id));
+        }
+    }
+    private void SubmitForm()
+    {
+        if (user.UserId == 0)
+        {
+            _userService.AddUser(user);
+        }
+        else
+        {
+            _userService.EditUser(user.UserId, user);
+        }
+        navigation.NavigateTo("UserList");
+    }
+    private void Cancel()
+    {
+        navigation.NavigateTo("UserList", true);
+
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }
     }
 }
 #pragma warning restore 1591

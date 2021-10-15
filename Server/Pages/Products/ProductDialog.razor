@@ -2,7 +2,7 @@
 @using Share.Models
 @using System.IO;
 @using Microsoft.AspNetCore.Hosting
-@using System.ComponentModel
+@layout MainLayout
 @inject Share.Interfaces.IProductSvc _productSvc
 @inject NavigationManager navigation
 @inject IWebHostEnvironment env
@@ -28,10 +28,8 @@
             <div class="form-group">
                 <label class="control-label">Phân loại</label>
                 <InputSelect @bind-Value="@product.Category" class="form-control">
-                    @foreach (var phanloai in Enum.GetValues(typeof(Category)))
-                    {
-                        <option value="@phanloai">@phanloai</option>
-                    }
+                    <option value="@Category.Backpack">Ba lô</option>
+                    <option value="@Category.Accessories">Phụ kiện</option>
                 </InputSelect>
             </div>
 

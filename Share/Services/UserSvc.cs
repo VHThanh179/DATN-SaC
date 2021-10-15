@@ -99,6 +99,79 @@ namespace Share.Services
             return acc;
         }
 
+        //sync 
+
+        public List<User> GetAllUser()
+        {
+            List<User> list = _context.Users.ToList();
+            return list;
+        }
+
+        public User GetUser(int id)
+        {
+            User user = null;
+            user = _context.Users.Find(id);
+            user.ConfirmPass = user.Password;
+            return user;
+        }
+
+        public int AddUser(User user)
+        {
+            int ret = 0;
+            try
+            {
+                user.Status = true;
+                user.Password = _encodeHelper.Encode(user.Password);
+                _context.Add(user);
+                _context.SaveChanges();
+                ret = user.UserId;
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
+        }
+
+        public int EditUser(int id, User user)
+        {
+            int ret = 0;
+            try
+            {
+                 User _user = null;
+                _user = _context.Users.Find(id);
+                _user.UserName = user.UserName;
+                _user.FullName = user.FullName;
+                _user.Email = user.Email;
+                _user.DoB = user.DoB;
+                _user.Roles = user.Roles;
+                _user.Status = user.Status;
+                if (user.Password != null && user.Password != string.Empty)
+                {
+                    if (_user.Password == user.Password)
+                    {
+                        _user.Password = user.Password;
+                        _user.ConfirmPass = user.Password;
+                    }
+                    else
+                    {
+                        user.Password = _encodeHelper.Encode(user.Password);
+                        _user.Password = user.Password;
+                        _user.ConfirmPass = user.Password;
+                    }
+                }
+                _context.Update(_user);
+                _context.SaveChanges();
+                ret = user.UserId;
+
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
+        }
+
         public User Login(ViewLogin login)
         {
             var acc = _context.Users.Where(
