@@ -1,0 +1,64 @@
+﻿@page "/voucherlist"
+@using Share.Models
+@using Share.Helpers
+@inject Share.Interfaces.IVoucherSvc _voucherSvc
+<h3>Danh sách voucher</h3>
+@if (vouchers == null)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+    <a class="btn btn-success p-10" href="/voucherdialog/0">Thêm</a>
+    <table class="table table-bordered table-hover table-warning table-striped mt-3 text-center">
+        <thead class="text-center badge-danger">
+            <tr>
+                <th>Mã voucher</th>
+                <th>Ngày hiệu lực</th>
+                <th>Ngày kết thúc</th>
+                <th>Trạng thái</th>
+                <th>Số lượng</th>
+                <th>Loại giảm giá</th>
+                <th>Giá trị</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in vouchers)
+            {
+                <tr>
+                    <td>@item.VoucherCode</td>
+                    <td>@item.StartDate.Date.ToString("dd/MM/yyyy") </td>
+                    <td>@item.EndDate.Date.ToString("dd/MM/yyyy") </td>
+                    <td>
+                        @if (item.Status)
+                        {
+                            <span>Còn hiệu lực</span>
+                        }
+                        else
+                        {
+                            <span>Hết hiệu lực</span>
+                        }
+                    </td>
+                    <td>@item.VoucherQuantity</td>
+                    <td>@item.CategoryDiscount.DisplayName()</td>
+                    <td>@item.Value</td>
+                    <td>
+                        <a class="btn btn-info" href="/voucherdialog/@item.VoucherId">Sửa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    public List<Voucher> vouchers;
+    protected override void OnInitialized()
+    {
+        vouchers = _voucherSvc.GetAllVoucher();
+    }
+    private void Delete(int id)
+    {
+
+    }
+}

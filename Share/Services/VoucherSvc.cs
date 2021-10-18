@@ -62,5 +62,42 @@ namespace Share.Services
             catch (Exception){ value = 0; }
             return value;
         }
+        public List<Voucher> GetAllVoucher()
+        {
+            var list = _context.Vouchers.ToList();
+            return list;
+        }
+
+        public Voucher GetVoucher(int id)
+        {
+            var voucher = _context.Vouchers.Find(id);
+            return voucher;
+        }
+        
+        public int AddVoucher(Voucher voucher)
+        {
+            int value = 0;
+            try
+            {
+                _context.Add(voucher);
+                _context.SaveChanges();
+                value = voucher.VoucherId;
+            }
+            catch (Exception) { value = 0; }
+            return value;
+        }
+
+        public int EditVoucher(int id, Voucher voucher)
+        {
+            int value = 0;
+            try
+            {
+                _context.Update(voucher);
+                _context.SaveChanges();
+                value = voucher.VoucherId;
+            }
+            catch (Exception) { value = 0; }
+            return value;
+        }
     }
 }

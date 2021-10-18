@@ -382,3 +382,7 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\ref\Server.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.pdb
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherList.razor.g.cs
