@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Server
+namespace Server.Pages.ShipInfoes
 {
     #line hidden
     using System;
@@ -82,13 +82,80 @@ using Server.Shared;
 #line default
 #line hidden
 #nullable disable
-    public partial class App : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+using Microsoft.AspNetCore.Hosting;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/shipinfodialog/{id}")]
+    public partial class ShipInfoDialog : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 72 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+       
+    [Parameter]
+    public string id { get; set; }
+
+    private ShipInfo shipinfo { get; set; }
+    IReadOnlyList<IBrowserFile> selectedFiles;
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            shipinfo = new ShipInfo();
+        }
+        else
+        {
+            shipinfo = _shipInfoSvc.GetShipInfo(int.Parse(id));
+        }
+    }
+
+    private void SubmitForm()
+    {   
+        if (shipinfo.ShipId == 0)
+        {
+            _shipInfoSvc.AddShipInfo(shipinfo);
+        }
+        else
+        {
+            _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
+        }
+        navigation.NavigateTo("shipinfolist");
+    }
+    private void Cancel()
+    {
+        navigation.NavigateTo("shipinfolist", true);
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IShipInfoSvc _shipInfoSvc { get; set; }
     }
 }
 #pragma warning restore 1591

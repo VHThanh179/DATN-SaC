@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Server
+namespace Server.Pages.ShipInfoes
 {
     #line hidden
     using System;
@@ -82,13 +82,59 @@ using Server.Shared;
 #line default
 #line hidden
 #nullable disable
-    public partial class App : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
+using Share.Helpers;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/shipinfolist")]
+    public partial class ShipInfoList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 68 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
+       
+    [Parameter]
+    public string SearchString { get; set; }
+
+    public List<ShipInfo> shipinfoes { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            shipinfoes = _shipinfovc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+        }
+        else
+        {
+            shipinfoes = _shipinfovc.GetAllShipInfo();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        shipinfoes = _shipinfovc.GetAllShipInfo();
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IShipInfoSvc _shipinfovc { get; set; }
     }
 }
 #pragma warning restore 1591
