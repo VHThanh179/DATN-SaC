@@ -1,0 +1,120 @@
+﻿@page "/orderetail/{id}"
+@using Share.Models
+@using System.IO
+@using Microsoft.AspNetCore.Hosting
+@inject Share.Interfaces.IOrderSvc _orderService
+@inject NavigationManager navigation
+@inject IWebHostEnvironment env
+
+<style>
+    dl {
+        border: 3px double #ccc;
+        padding: 0.5em;
+        display: flex;
+        flex-flow: row wrap;
+        border: solid #333;
+    }
+
+    dt {
+        flex-basis: 20%;
+        padding: 2px 4px;
+        background: #333;
+        text-align: right;
+        color: #fff;
+        float: left;
+        clear: left;
+    }
+
+        dt::after {
+            content: ":";
+        }
+
+    dd {
+        flex-basis: 70%;
+        flex-grow: 1;
+        margin: 0;
+        padding: 2px 4px;
+        border-bottom: 1px solid #333;
+        padding: 0 0 0.5em 0;
+    }
+</style>
+<h3>Chi tiết đơn hàng</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">
+            @order.Customer.Email
+        </dd>
+
+        <dt class="col-sm-2">Địa chỉ</dt>
+        <dd class="col-sm-10">
+            @order.Customer.Address
+        </dd>
+
+        <dt class="col-sm-2">Ngày đặt</dt>
+        <dd class="col-sm-10">
+            @order.OrderDate
+        </dd>
+
+        <dt class="col-sm-2">Tổng tiền</dt>
+        <dd class="col-sm-10">
+            @order.Total
+        </dd>
+
+        <dt class="col-sm-2">Trạng thái đơn hàng</dt>
+        <dd class="col-sm-10">
+            @order.OrderStatus
+        </dd>
+
+        <dt class="col-sm-2">Ghi chú</dt>
+        <dd class="col-sm-10">
+            @order.Notes
+        </dd>
+    </dl>
+    <table class="table table-bordered table-hover table-primary table-striped">
+        <thead class="text-center badge-primary">
+            <tr>
+                <th>Món ăn</th>
+                <th>Hình</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in order.OrderDetails)
+            {
+                <tr>
+                    <td>@item.Product.ProductName</td>
+                    <td><img src="images/Product/@item.Product.Image" style="width:150px" /></td>
+                    <td>@item.Quantity</td>
+                    <td>@item.TotalAmount</td>
+                    <td>@item.Notes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a class="btn btn-info" href="/orderdialog/@order.OrderId">Sửa</a> |
+        <a class="btn" href="/orderlist">Danh sách</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+    private string Tieude = "";
+    public Order order;
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            navigation.NavigateTo("orderlist", true);
+        }
+        else
+        {
+            order = _orderService.GetOrder(int.Parse(id));
+        }
+    }
+}
