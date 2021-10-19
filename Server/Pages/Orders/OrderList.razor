@@ -1,0 +1,42 @@
+﻿@page "/orderlist"
+@using Share.Models
+@using Server.Data
+@using Share.Helpers
+@inject Share.Interfaces.IOrderSvc _orderService
+<h3>Danh sách đơn hàng</h3>
+<table class="table table-bordered table-hover table-primary table-striped">
+    <thead class="text-center badge-primary">
+        <tr>
+            <td>Khách hàng</td>
+            <td>Ngày đặt</td>
+            <td>Tổng tiền</td>
+            <td>Trạng thái</td>
+            <td>Ghi chú</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in orders)
+        {
+            <tr>
+                <td>@item.Customer.Email</td>
+                <td>@item.Customer.Address</td>
+                <td>@item.OrderDate</td>
+                <td>@item.Total</td>
+                <td>@item.OrderStatus.DisplayName()</td>
+                <td>@item.Notes</td>
+                <td>
+                    <a class="btn btn-info" href="/orderialog/@item.OrderId">Sửa</a>
+                    <a class="btn" href="/orderdetail/@item.OrderId">Chi tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@code {
+    public List<Order> orders;
+    protected override void OnInitialized()
+    {
+        orders = _orderService.GetAllOrder();
+    }
+}
