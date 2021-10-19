@@ -14,7 +14,7 @@ namespace Share.Services
         protected DataContext _context;
         public ShipInfoSvc (DataContext context)
         {
-            context = _context;
+            _context = context;
         }
 
         //asyc
@@ -120,8 +120,7 @@ namespace Share.Services
 
         public List<ShipInfo> GetAllShipInfo()
         {
-            List<ShipInfo> list = new List<ShipInfo>();
-            list    = _context.ShipInfos.ToList();
+            List<ShipInfo> list = _context.ShipInfos.ToList();
             return list;
         }
 

@@ -9,6 +9,7 @@
 
 <div class="row">
     <div class="col-md-4 m-auto">
+        <h2 class="text-success text-center">Thông tin giao hàng</h2>
         <EditForm Model="@shipinfo" OnValidSubmit="@SubmitForm">
             <DataAnnotationsValidator />
             <input type="hidden" @bind="shipinfo.ShipId" />
@@ -36,7 +37,15 @@
 
             <div class="form-label-group">
                 <label class="control-label">Hình thức vận chuyển</label>
-                <input @bind="shipinfo.ShippingMethod" class="form-control" readonly/>
+                @if (shipinfo.ShippingMethod)
+                {
+                    <input class="form-control" value="Giao hàng tận nhà" readonly />
+                }
+                else
+                {
+                    <input class="form-control" value="Lấy hàng trực tiếp" readonly />
+                }
+
             </div>
 
             <div class="form-group">

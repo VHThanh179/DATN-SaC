@@ -2,7 +2,7 @@
 @using Share.Models
 @using Share.Helpers
 @layout MainLayout
-@inject Share.Interfaces.IShipInfoSvc _shipinfovc;
+@inject Share.Interfaces.IShipInfoSvc _shipinfoSvc;
 
 <div>
     <h1>Danh sách vận chuyển</h1>
@@ -75,17 +75,17 @@
     {
         if (!string.IsNullOrEmpty(SearchString))
         {
-            shipinfoes = _shipinfovc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
         }
         else
         {
-            shipinfoes = _shipinfovc.GetAllShipInfo();
+            shipinfoes = _shipinfoSvc.GetAllShipInfo();
         }
     }
 
     protected override void OnInitialized()
     {
-        shipinfoes = _shipinfovc.GetAllShipInfo();
+        shipinfoes = _shipinfoSvc.GetAllShipInfo();
     }
 
 }

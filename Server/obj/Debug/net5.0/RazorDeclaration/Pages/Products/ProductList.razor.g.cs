@@ -97,7 +97,7 @@ using Share.Helpers;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/ProductList")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/productlist")]
     public partial class ProductList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

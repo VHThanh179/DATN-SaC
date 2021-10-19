@@ -98,12 +98,19 @@ using System.IO;
 #nullable disable
 #nullable restore
 #line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
+using Share.Helpers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
 using Microsoft.AspNetCore.Hosting;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/orderetail/{id}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/orderdetail/{id}")]
     public partial class OrderDetail : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -112,7 +119,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 104 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
+#line 110 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
        
     [Parameter]
     public string id { get; set; }

@@ -112,7 +112,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderList.razor"
+#line 37 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderList.razor"
        
     public List<Order> orders;
     protected override void OnInitialized()

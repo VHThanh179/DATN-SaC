@@ -117,24 +117,24 @@ using Share.Helpers;
     {
         if (!string.IsNullOrEmpty(SearchString))
         {
-            shipinfoes = _shipinfovc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
         }
         else
         {
-            shipinfoes = _shipinfovc.GetAllShipInfo();
+            shipinfoes = _shipinfoSvc.GetAllShipInfo();
         }
     }
 
     protected override void OnInitialized()
     {
-        shipinfoes = _shipinfovc.GetAllShipInfo();
+        shipinfoes = _shipinfoSvc.GetAllShipInfo();
     }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IShipInfoSvc _shipinfovc { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IShipInfoSvc _shipinfoSvc { get; set; }
     }
 }
 #pragma warning restore 1591
