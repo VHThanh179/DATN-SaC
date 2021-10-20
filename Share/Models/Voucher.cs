@@ -16,25 +16,25 @@ namespace Share.Models
         [Key]
         public int VoucherId { get; set; }
 
-        [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
+        //[ForeignKey("Customer")]
+        //public int CustomerId { get; set; }
 
         [Column(TypeName = "varchar(200)"), MaxLength(200)]
         [Required(ErrorMessage = "Bạn cần nhập mã voucher!")]
         [Display(Name = "Mã voucher")]
-        public int VoucherCode { get; set; }
+        public string VoucherCode { get; set; }
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Required, Range(0, int.MaxValue, ErrorMessage = "Bạn cần chọn ngày bắt đầu!")]
+        [Required(ErrorMessage = "Bạn cần chọn ngày bắt đầu!")]
         [Display(Name = "Ngày bắt đầu")]
         public DateTime StartDate { get; set; }
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Required, Range(0, int.MaxValue, ErrorMessage = "Bạn cần chọn ngày bắt đầu!")]
+        [Required(ErrorMessage = "Bạn cần chọn ngày kết thúc!")]
         [Display(Name = "Ngày kết thúc")]
         public DateTime EndDate { get; set; }
 
@@ -44,7 +44,7 @@ namespace Share.Models
 
         [Required, Range(0, int.MaxValue, ErrorMessage = "Bạn cần chọn số lượng voucher!")]
         [Display(Name = "Số lượng voucher")]
-        public bool VoucherQuantity { get; set; }
+        public int VoucherQuantity { get; set; }
 
         [Display(Name = "Loại giảm giá")]
         [Required(ErrorMessage = "Hãy chọn loại giảm giá"), Range(1, int.MaxValue, ErrorMessage = "Vui lòng chọn loại giảm giá")]
@@ -53,6 +53,6 @@ namespace Share.Models
         [Display(Name = "Giá trị")]
         public double Value { get; set; }
 
-        public Customer Customer { get; set; }        
+        //public Customer Customer { get; set; }        
     }
 }
