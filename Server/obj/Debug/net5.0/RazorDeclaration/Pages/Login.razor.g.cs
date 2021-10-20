@@ -113,9 +113,8 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
+#line 54 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
       
-    private bool loading;
     private string error;
 
     string username = "";
@@ -140,11 +139,11 @@ using System.ComponentModel.DataAnnotations;
         error = "";
         if (username == "")
         {
-            error = "- Vui lòng nhập Username";
+            error = " Vui lòng nhập tài khoản";
         }
         if (password == "")
         {
-            error += (error == "" ? "" : "<br/>" + "- Vui lòng nhập Password");
+            error += (error == "" ? "" : "<br/>") + " Vui lòng nhập mật khẩu";
         }
         if (error == "")
         {

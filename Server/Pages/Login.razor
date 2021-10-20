@@ -4,54 +4,54 @@
 @layout LoginLayout
 @inject NavigationManager NavigationManager
 @attribute [AllowAnonymous]
-@*<div class="col-md-4 offset-md-3 mt-5">
-        <div class="card">
-            <h4 class="card-header">Đăng nhập</h4>
-            <div class="card-body">
-                <div class="form-group">
-                    <input type="text" id="username" @bind="@username" class="form-control" placeholder="Username" />
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" @bind="@password" class="form-control" @onkeypress="Enter" placeholder="Password"/>
-                </div>
-                <button class="ml-md-auto btn btn-dark" @onclick="CheckLogin">LOGIN</button>
-                @if (!string.IsNullOrEmpty(error))
-                {
-                    <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
-                }
-            </div>
-        </div>
-    </div>*@
+
 <div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 m-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center font-weight-bold">Đăng Nhập Website</h5>
-                    <form class="form-signin">
-                        <input type="hidden" />
-                        <div class="form-label-group">
-                            <input type="text" id="username" @bind="@username" class="form-control" placeholder="Tên đăng nhập" required autofocus />
-                            @*<label for="username">Tên đăng nhập</label>*@
+    <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Đăng Nhập SaC Website</h1>
+                                </div>
+                                <form class="user">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user"
+                                               id="username" @bind="@username" aria-describedby="emailHelp" placeholder="Tên đăng nhập"
+                                               required autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" @bind="@password" class="form-control form-control-user" @onkeypress="Enter"
+                                               id="password" placeholder="Mật khẩu" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox small">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck">
+                                            <label class="custom-control-label" for="customCheck">Ghi nhớ</label>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-user btn-block" @onclick="CheckLogin">Đăng nhập</button>
+                                    @if (!string.IsNullOrEmpty(error))
+                                    {
+                                        <div class="alert alert-danger mt-3 mb-3">@((MarkupString)error)</div>
+                                    }
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="forgot-password.html">Quên mật khẩu?</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-label-group mt-3">
-                            <input type="password" id="password" @bind="@password" class="form-control" @onkeypress="Enter" placeholder="Mật khẩu" required />
-                            @*<label for="password">Mật khẩu</label>*@
-                        </div>
-                        <button class="mt-3 btn btn-lg btn-dark btn-block text-uppercase" @onclick="CheckLogin">Đăng nhập</button>
-                        <hr class="my-4">
-                        @if (!string.IsNullOrEmpty(error))
-                        {
-                            <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
-                        }
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @code{
-    private bool loading;
     private string error;
 
     string username = "";
@@ -76,11 +76,11 @@
         error = "";
         if (username == "")
         {
-            error = "- Vui lòng nhập Username";
+            error = " Vui lòng nhập tài khoản";
         }
         if (password == "")
         {
-            error += (error == "" ? "" : "<br/>" + "- Vui lòng nhập Password");
+            error += (error == "" ? "" : "<br/>") + " Vui lòng nhập mật khẩu";
         }
         if (error == "")
         {
