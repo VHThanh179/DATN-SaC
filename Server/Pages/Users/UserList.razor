@@ -1,0 +1,62 @@
+﻿@page "/userlist"
+@using Share.Models
+@using Share.Helpers
+@inject Share.Interfaces.IUserSvc _userService
+<h3>Danh sách người dùng</h3>
+@if (users == null)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+    <a class="btn btn-success p-10" href="/userdialog/0">Thêm</a>
+    <table class="table table-bordered table-hover table-warning table-striped mt-3 text-center">
+        <thead class="text-center badge-danger">
+            <tr>
+                <th>Tài khoản</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Ngày sinh</th>
+                <th>Vai trò</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in users)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.FullName </td>
+                    <td>@item.Email</td>
+                    <td>@item.DoB.Date.ToString("dd/MM/yyyy")</td>
+                    <td>@item.Roles.DisplayName()</td>
+                    <td>
+                    @if (item.Status)
+                    {
+                        <span>Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span>Không hoạt động</span>
+                    }
+                    </td>
+                    <td>
+                        <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a> 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    public List<User> users;
+    protected override void OnInitialized()
+    {
+        users = _userService.GetAllUser();
+    }
+    private void Delete(int id)
+    {
+
+    }
+}

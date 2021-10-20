@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Share.Models
 {
@@ -15,6 +16,7 @@ namespace Share.Models
         [Display(Name = "Nhân viên")]
         Staff = 2
     }
+
     public class User
     {
         [Key]
@@ -46,6 +48,14 @@ namespace Share.Models
         [Display(Name = "Trạng thái hoạt động")]
         public bool Status { get; set; }
 
+        [Display(Name = "Nhập lại mật khẩu")]
+        [Column(TypeName = "varchar(50)"), MaxLength(50)]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Mật khẩu không khớp")]
+        [NotMapped]
+        public string ConfirmPass { get; set; }
+
+        [Required(ErrorMessage = "Mời nhập mật khẩu")]
         [Display(Name = "Mật khẩu")]
         [Column(TypeName = "varchar(50)"), MaxLength(50)]
         [DataType(DataType.Password)]

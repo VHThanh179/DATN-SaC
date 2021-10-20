@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FbBxLGW6U2/kCsrq77v279sL9+YIB8IoT89JVYUB3GcA8uv2RpyWkNTGZXCFJYlqgH1MZBidenCPuyb6Lmg3ZA==",
+  "dgSpecHash": "XpA0x3oJbwNPaXAz/JSComQG+w9x4vao97jV7SVr/dkoJo0zwuuTEA71U4C17WWgLsnbF/Z335MGinjpkEDCew==",
   "success": true,
   "projectFilePath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj",
   "expectedPackageFiles": [
@@ -9,8 +9,12 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
-    "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.3\\microsoft.aspnetcore.authorization.5.0.3.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.10\\microsoft.aspnetcore.authorization.5.0.10.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.blazor.httpclient\\3.1.0-preview4.19579.2\\microsoft.aspnetcore.blazor.httpclient.3.1.0-preview4.19579.2.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.10\\microsoft.aspnetcore.components.5.0.10.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\5.0.10\\microsoft.aspnetcore.components.analyzers.5.0.10.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\5.0.10\\microsoft.aspnetcore.components.forms.5.0.10.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.components.web\\5.0.10\\microsoft.aspnetcore.components.web.5.0.10.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.cryptography.keyderivation\\2.2.0\\microsoft.aspnetcore.cryptography.keyderivation.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
@@ -23,7 +27,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.10\\microsoft.aspnetcore.http.features.5.0.10.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.identity\\2.2.0\\microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
-    "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.metadata\\5.0.3\\microsoft.aspnetcore.metadata.5.0.3.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.metadata\\5.0.10\\microsoft.aspnetcore.metadata.5.0.10.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.0\\microsoft.aspnetcore.razor.language.5.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.razor.runtime\\2.2.0\\microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",
@@ -65,6 +69,7 @@
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.identitymodel.protocols\\5.6.0\\microsoft.identitymodel.protocols.5.6.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\5.6.0\\microsoft.identitymodel.protocols.openidconnect.5.6.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.6.0\\microsoft.identitymodel.tokens.5.6.0.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.jsinterop\\5.0.10\\microsoft.jsinterop.5.0.10.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
@@ -159,12 +164,5 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

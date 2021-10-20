@@ -90,7 +90,7 @@ using Server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Shared\NavMenu.razor"
+#line 69 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

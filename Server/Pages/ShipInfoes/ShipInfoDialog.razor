@@ -1,0 +1,116 @@
+﻿@page "/shipinfodialog/{id}"
+@using Share.Models
+@using System.IO;
+@using Microsoft.AspNetCore.Hosting
+@layout MainLayout
+@inject Share.Interfaces.IShipInfoSvc _shipInfoSvc
+@inject NavigationManager navigation
+@inject IWebHostEnvironment env
+
+<div class="row">
+    <div class="col-md-4 m-auto">
+        <h2 class="text-success text-center">Thông tin giao hàng</h2>
+        <EditForm Model="@shipinfo" OnValidSubmit="@SubmitForm">
+            <DataAnnotationsValidator />
+            <input type="hidden" @bind="shipinfo.ShipId" />
+            <div class="form-group">
+                <label class="control-label">Mã đơn hàng</label>
+                <input @bind="shipinfo.OrderId" class="form-control" readonly/>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Tên khách hàng</label>
+                <input @bind="shipinfo.CusName" class="form-control" readonly/>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Địa chỉ giao hàng</label>
+                <input @bind="shipinfo.Address" class="form-control" />
+                <ValidationMessage For="@(() => shipinfo.Address)" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Số điện thoại</label>
+                <input @bind="shipinfo.PhoneNumber" class="form-control" />
+                <ValidationMessage For="@(() => shipinfo.PhoneNumber)" />
+            </div>
+
+            <div class="form-label-group">
+                <label class="control-label">Hình thức vận chuyển</label>
+                @if (shipinfo.ShippingMethod)
+                {
+                    <input class="form-control" value="Giao hàng tận nhà" readonly />
+                }
+                else
+                {
+                    <input class="form-control" value="Lấy hàng trực tiếp" readonly />
+                }
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Ghi chú</label>
+                <textarea class="form-control" @bind="shipinfo.Notes" cols="30" rows="5" maxlength="200"></textarea>
+                <ValidationMessage For="@(() => shipinfo.Notes)" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Giá vận chuyển</label>
+                <input @bind="shipinfo.Price" class="form-control" readonly/>
+                <ValidationMessage For="@(() => shipinfo.Price)" />
+            </div>
+
+            <div class="form-label-group">
+                <label class="control-label">Đối tác vận chuyển</label>
+                <InputSelect @bind-Value="@shipinfo.Partner" class="form-control">
+                    @foreach (var partner in Enum.GetValues(typeof(Partner)))
+                    {
+                        <option value="@partner">@partner</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <div class="form-group m-3">
+                <button type="submit" class="btn btn-info">Lưu</button>
+                <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    private ShipInfo shipinfo { get; set; }
+    IReadOnlyList<IBrowserFile> selectedFiles;
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            shipinfo = new ShipInfo();
+        }
+        else
+        {
+            shipinfo = _shipInfoSvc.GetShipInfo(int.Parse(id));
+        }
+    }
+
+    private void SubmitForm()
+    {   
+        if (shipinfo.ShipId == 0)
+        {
+            _shipInfoSvc.AddShipInfo(shipinfo);
+        }
+        else
+        {
+            _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
+        }
+        navigation.NavigateTo("shipinfolist");
+    }
+    private void Cancel()
+    {
+        navigation.NavigateTo("shipinfolist", true);
+    }
+
+}
