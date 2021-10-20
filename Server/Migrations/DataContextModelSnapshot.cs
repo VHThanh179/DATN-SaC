@@ -221,6 +221,7 @@ namespace Server.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -249,9 +250,6 @@ namespace Server.Migrations
                     b.Property<int>("CategoryDiscount")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("date");
 
@@ -269,12 +267,10 @@ namespace Server.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<bool>("VoucherQuantity")
-                        .HasColumnType("bit");
+                    b.Property<int>("VoucherQuantity")
+                        .HasColumnType("int");
 
                     b.HasKey("VoucherId");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("Vouchers");
                 });
@@ -318,17 +314,6 @@ namespace Server.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("Share.Models.Voucher", b =>
-                {
-                    b.HasOne("Share.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Share.Models.Order", b =>

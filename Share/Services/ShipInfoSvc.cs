@@ -14,8 +14,11 @@ namespace Share.Services
         protected DataContext _context;
         public ShipInfoSvc (DataContext context)
         {
-            context = _context;
+            _context = context;
         }
+
+        //asyc
+
         public async Task<int> AddShipInfoAsync(ShipInfo shipInfo)
         {
             int ret = 0;
@@ -73,6 +76,67 @@ namespace Share.Services
             return shipInfo = await _context.ShipInfos
                 .Where(x => x.OrderId == orderId)
                 .Include(x => x.Order).FirstOrDefaultAsync();
+        }
+
+        //sync
+
+        public int AddShipInfo(ShipInfo shipInfo)
+        {
+            int ret = 0;
+            try
+            {
+                _context.Add(shipInfo);
+                _context.SaveChangesAsync();
+                ret = shipInfo.ShipId;
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
+        }
+
+        public int EditShipInfo(int id, ShipInfo shipInfo)
+        {
+            int value = 0;
+            try
+            {
+                //ShipInfo _shipInfo = null;
+                //_shipInfo = _context.ShipInfos.Find(id);
+                //_shipInfo.CusName = shipInfo.CusName;
+                //_shipInfo.Address = shipInfo.Address;
+                //_shipInfo.PhoneNumber = shipInfo.PhoneNumber;
+                //_shipInfo.Notes = shipInfo.Notes;
+                //_shipInfo.Price = shipInfo.Price;
+                _context.ShipInfos.Update(shipInfo);
+                value = shipInfo.ShipId;
+
+
+                _context.SaveChangesAsync();
+            }
+            catch (Exception) { }
+            return value;
+        }
+
+        public List<ShipInfo> GetAllShipInfo()
+        {
+            List<ShipInfo> list = _context.ShipInfos.ToList();
+            return list;
+        }
+
+        public ShipInfo GetShipInfo(int id)
+        {
+            ShipInfo shipInfo = null;
+            shipInfo = _context.ShipInfos.Find(id);
+            return shipInfo;
+        }
+
+        public  ShipInfo GetShipInfoByOrder(int orderId)
+        {
+            var shipInfo = new ShipInfo();
+            return shipInfo = _context.ShipInfos
+                .Where(x => x.OrderId == orderId)
+                .Include(x => x.Order).FirstOrDefault();
         }
     }
 }
