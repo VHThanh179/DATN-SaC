@@ -69,13 +69,6 @@ using Microsoft.JSInterop;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Newtonsoft.Json;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 10 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Client;
 
@@ -90,15 +83,22 @@ using Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+#line 13 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using BlazorAnimate;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
 using Share.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using BlazorAnimate;
+#line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+using Newtonsoft.Json;
 
 #line default
 #line hidden
@@ -112,6 +112,38 @@ using BlazorAnimate;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 229 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+             
+
+    public List<Product> products;
+    protected string imgUrl = "";
+    protected string temp = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+
+        products = new List<Product>();
+        using (var client = new HttpClient())
+        {
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("Product"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+            }
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
 }
 #pragma warning restore 1591
