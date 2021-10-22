@@ -33,5 +33,27 @@ namespace Share.Services
             }
             return ret;
         }
+
+        //sync 
+        public List<OrderDetails> GetOrderDetailsByOrder(int orderid)
+        {
+            return _context.OrderDetails.Where(o => o.OrderId == orderid).ToList();
+        }
+
+        public int AddOrderDetails(OrderDetails orderDetails)
+        {
+            int ret = 0;
+            try
+            {
+                _context.OrderDetails.Add(orderDetails);
+                _context.SaveChanges();
+                ret = orderDetails.OrderId;
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
+        }
     }
 }

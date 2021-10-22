@@ -79,6 +79,7 @@ namespace Share.Services
             int value = 0;
             try
             {
+                voucher.Status = true;
                 _context.Add(voucher);
                 _context.SaveChanges();
                 value = voucher.VoucherId;

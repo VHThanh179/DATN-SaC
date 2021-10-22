@@ -38,6 +38,8 @@ namespace Share.Models
         [Column(TypeName = "varchar(20)"), MaxLength(20)]
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"), Required(ErrorMessage ="Số điện thoại không đúng")]
         public string PhoneNumber { get; set; }
+
+
         [Required(ErrorMessage ="Hãy chọn hình thức")]
         [Display(Name = "Hình thức ship")]
         public bool ShippingMethod { get; set; }
