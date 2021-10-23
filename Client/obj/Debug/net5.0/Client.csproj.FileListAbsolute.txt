@@ -711,3 +711,9 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Shared\WebL
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\bin\Debug\net5.0\wwwroot\_framework\BlazorAnimate.dll.gz
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\bin\Debug\net5.0\wwwroot\_framework\BlazorAnimate.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\build-gz\9G8GytHx.gz
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\RazorDeclaration\Shared\InnerPageLayout.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Shared\InnerPageLayout.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Register.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\Register.razor.g.cs
