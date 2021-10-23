@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -19,7 +20,6 @@ namespace API.Controllers
             _productSvc = productSvc;
         }
         // GET: api/GetAllProduct
-        [Route("api/[controller]")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetAllProduct()
         {
@@ -27,9 +27,8 @@ namespace API.Controllers
         }
 
         // GET api/GetProduct/5
-        [Route("GetProduct")]
-        [HttpGet]
-        public async Task<ActionResult<Product>> GetProduct([FromQuery] int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
             return await _productSvc.GetProductAsync(id);
         }

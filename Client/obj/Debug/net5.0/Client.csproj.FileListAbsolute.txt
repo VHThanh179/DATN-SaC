@@ -1424,3 +1424,5 @@ D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Client.csproj.CopyComplete
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Client.dll
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\ref\Client.dll
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Client.pdb
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Detail.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Detail.razor.g.cs

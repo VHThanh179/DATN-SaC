@@ -1,0 +1,117 @@
+﻿@page "/detail/{id}"
+@using Share.Helpers
+@using Share.Models
+@using Newtonsoft.Json;
+@inject IJSRuntime JSRuntime
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject NavigationManager NavigationManager
+@layout WebLayout
+
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+        <ol>
+            <li><a href="/">Home</a></li>
+            <li>@product.ProductName</li>
+        </ol>
+        <h2>@product.ProductName</h2>
+
+    </div>
+</section><!-- End Breadcrumbs -->
+<!-- ======= Portfolio Details Section ======= -->
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-8">
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                        @{
+                            temp = imgUrl + product.Image;
+                        }
+                        <div class="swiper-slide">
+                            <img src="@temp" alt="">
+                        </div>
+
+                        @*<div class="swiper-slide">
+            <img src="assets/img/portfolio/portfolio-2.jpg" alt="">
+        </div>
+
+        <div class="swiper-slide">
+            <img src="assets/img/portfolio/portfolio-3.jpg" alt="">
+        </div>*@
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="portfolio-info">
+                    <h3>Thông tin sản phẩm</h3>
+                    <ul>
+                        <li><strong>Loại sản phẩm</strong>: @product.Category.DisplayName()</li>
+                        <li><strong>Giá sản phẩm</strong>: @product.Price</li>
+                        <li><strong>Tình trạng</strong>: 
+                        @if (product.Status)
+                        {   
+                            <span>Còn hàng</span> 
+                        }
+                        else
+                        {
+                            <span>Hết hàng</span>
+                        }
+                        </li>
+                        @*<li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>*@
+                    </ul>
+                </div>
+                <div class="portfolio-description">
+                    <h2>Mô tả sản phẩm</h2>
+                    <p>
+                        @product.Description
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Portfolio Details Section -->
+
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    protected string imgUrl = "";
+    protected string temp = "";
+    public Product product;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            NavigationManager.NavigateTo("/", true);
+        }
+        else
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+
+            product = new Product();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var response = await client.GetAsync($"Product/{id}"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    product = JsonConvert.DeserializeObject<Product>(apiResponse);
+                }
+            }
+        }
+    }
+}
