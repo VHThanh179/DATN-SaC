@@ -14,7 +14,7 @@
 
         <ol>
             <li><a href="/">Home</a></li>
-            <li>@product.ProductName</li>
+            <li>Chi tiết sản phẩm</li>
         </ol>
         <h2>@product.ProductName</h2>
 
@@ -53,8 +53,18 @@
                 <div class="portfolio-info">
                     <h3>Thông tin sản phẩm</h3>
                     <ul>
-                        <li><strong>Loại sản phẩm</strong>: @product.Category.DisplayName()</li>
-                        <li><strong>Giá sản phẩm</strong>: @product.Price</li>
+                        <li>
+                            <strong>Loại sản phẩm</strong>: 
+                            @if (product.Category == Category.Backpack)
+                            {
+                                <span>Ba lô</span>
+                            }
+                            else
+                            {
+                                <span>Phụ kiện</span>
+                            }
+                        </li>
+                        <li><strong>Giá sản phẩm</strong>: @string.Format("{0:#,0}", product.Price) VNĐ</li>
                         <li><strong>Tình trạng</strong>: 
                         @if (product.Status)
                         {   
@@ -88,7 +98,7 @@
 
     protected string imgUrl = "";
     protected string temp = "";
-    public Product product;
+    public Product product ;
 
     protected override async Task OnInitializedAsync()
     {

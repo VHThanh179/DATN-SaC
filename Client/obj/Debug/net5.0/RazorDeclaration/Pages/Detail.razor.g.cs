@@ -120,14 +120,14 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 85 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
+#line 95 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
        
     [Parameter]
     public string id { get; set; }
 
     protected string imgUrl = "";
     protected string temp = "";
-    public Product product;
+    public Product product ;
 
     protected override async Task OnInitializedAsync()
     {
