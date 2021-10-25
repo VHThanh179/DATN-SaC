@@ -1,5 +1,11 @@
 ﻿@inherits LayoutComponentBase
-
+@inject IModalService modal
+@using Pages 
+<style>
+    .blazored-modal {
+        width: 960px;
+    }
+</style>
 <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
@@ -11,34 +17,35 @@
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a class="nav-link active" style="cursor:pointer" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Trang chủ</a></li>
-                <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">Giỏ hàng</a></li>
+                <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Trang chủ</a></li>
+                <li>
+                    <a class="nav-link" style="cursor:pointer" @onclick="@(() => modal.Show<Cart>("Cart Modal"))">Giỏ hàng</a>
+                </li>
                 <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">Sản phẩm</a></li>
                 <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Liên hệ</a></li>
                 <li class="dropdown">
                     <a style="cursor:pointer"><span>Tài khoản</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a class="nav-link scrollto" href="/login">Đăng nhập</a></li>
-                        <li><a class="nav-link scrollto" href="#">Đăng ký</a></li>
+                        <li><a class="nav-link " href="/login">Đăng nhập</a></li>
+                        <li><a class="nav-link " href="#">Đăng ký</a></li>
                     </ul>
                 </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
-
         @*<div class="header-social-links d-flex align-items-center">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>*@
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>*@
     </div>
 </header><!-- End Header -->
 
 <main id="main">
     @Body
 </main>
-
+<CascadingBlazoredModal />
 <!-- ======= Footer ======= -->
 <footer id="footer">
     <div class="footer-top">
@@ -101,8 +108,9 @@
 
     <div class="container">
         <div class="credits">
-           
+
             Designed by <b>4Dev</b>
         </div>
     </div>
 </footer><!-- End Footer -->
+<!-- Modal -->

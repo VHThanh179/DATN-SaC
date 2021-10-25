@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "AmESY9fwF82ZxciWU0yanVuwH9aPQ0piIlFZ8Ti/UXLf2BGzTeXF87MSFfPIwZCFG3Yh281E8pOIgZ9qCIalXg==",
+  "dgSpecHash": "ypqyFVGemJflK91TX95kejdYLonddeHj1lmxPjX7vIvlFh8OeoPMQWW43KksvAONZDLxv+8c89CC1ZW9RSUIfg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Client\\Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Navteiv\\.nuget\\packages\\blazoranimate\\3.0.0\\blazoranimate.3.0.0.nupkg.sha512",
+    "C:\\Users\\Navteiv\\.nuget\\packages\\blazored.modal\\6.0.1\\blazored.modal.6.0.1.nupkg.sha512",
     "C:\\Users\\Navteiv\\.nuget\\packages\\blazored.sessionstorage\\1.0.13\\blazored.sessionstorage.1.0.13.nupkg.sha512",
     "C:\\Users\\Navteiv\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.10\\microsoft.aspnetcore.authorization.5.0.10.nupkg.sha512",
     "C:\\Users\\Navteiv\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.10\\microsoft.aspnetcore.components.5.0.10.nupkg.sha512",
