@@ -1,3 +1,4 @@
+using Blazored.Modal;
 using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,7 @@ namespace Client
 
             builder.Services.AddBlazoredSessionStorage();
 
+            builder.Services.AddBlazoredModal();
             await builder.Build().RunAsync();
         }
     }

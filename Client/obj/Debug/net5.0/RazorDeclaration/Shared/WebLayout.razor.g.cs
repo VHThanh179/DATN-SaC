@@ -103,6 +103,34 @@ using BlazorAnimate;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 14 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+using Pages;
+
+#line default
+#line hidden
+#nullable disable
     public partial class WebLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -110,6 +138,7 @@ using BlazorAnimate;
         {
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
     }
 }
 #pragma warning restore 1591

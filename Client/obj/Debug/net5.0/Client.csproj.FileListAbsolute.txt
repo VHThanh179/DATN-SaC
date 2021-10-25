@@ -1426,3 +1426,14 @@ D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\ref\Client.dll
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Client.pdb
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Detail.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Detail.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\_framework\Blazored.Modal.dll.gz
+D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\_framework\Blazored.Modal.dll
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Cart.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Register.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Shared\InnerPageLayout.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Cart.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Register.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Shared\InnerPageLayout.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\qxPkyRsb.gz
