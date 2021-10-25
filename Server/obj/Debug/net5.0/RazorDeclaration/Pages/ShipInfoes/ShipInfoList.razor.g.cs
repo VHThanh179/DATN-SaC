@@ -106,7 +106,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 68 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
+#line 60 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
        
     [Parameter]
     public string SearchString { get; set; }

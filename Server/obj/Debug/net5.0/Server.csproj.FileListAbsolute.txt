@@ -404,3 +404,4 @@ D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouch
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherList.razor.g.cs
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherDialog.razor.g.cs
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\BlazorAnimate.dll
