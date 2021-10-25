@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "jCn7j2HQCTwZCDPrh0FNe0zJwegSUmQhdujSiP3YPm+lNwkRHCBYkrBlAdRGxQWweGsCFT4M63qbPS+vKvLaRg==",
+  "dgSpecHash": "V41vpbwNXrJT+EZIa89i1d7xxktD/QN/Jj3V0vNfaybzwRu3wTY+63ndAML847RCpNBV2W5ay2IqGeiHAuxtwg==",
   "success": true,
   "projectFilePath": "D:\\DATN\\Project\\SaCBackpack\\Client\\Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admins\\.nuget\\packages\\blazoranimate\\3.0.0\\blazoranimate.3.0.0.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\blazored.modal\\6.0.1\\blazored.modal.6.0.1.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\blazored.sessionstorage\\1.0.13\\blazored.sessionstorage.1.0.13.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.10\\microsoft.aspnetcore.authorization.5.0.10.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.10\\microsoft.aspnetcore.components.5.0.10.nupkg.sha512",

@@ -87,6 +87,27 @@ using BlazorAnimate;
 #line hidden
 #nullable disable
 #nullable restore
+#line 14 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
 using Share.Helpers;
 
