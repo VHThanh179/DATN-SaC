@@ -1,17 +1,30 @@
 ﻿@page "/voucherlist"
 @using Share.Models
 @using Share.Helpers
+@layout MainLayout
 @inject Share.Interfaces.IVoucherSvc _voucherSvc
-<h3>Danh sách voucher</h3>
+<h1 class="font-weight-bold text-center">Danh sách giảm giá</h1>
 @if (vouchers == null)
 {
     <p><em>Loading ...</em></p>
 }
 else
 {
-    <a class="btn btn-success p-10" href="/voucherdialog/0">Thêm</a>
-    <table class="table table-bordered table-hover table-warning table-striped mt-3 text-center">
-        <thead class="text-center badge-danger">
+    <div class="text-right">
+    <a style="text-decoration:none;" href="/voucherdialog/0"><button type="button" class="btn btn-success btn-circle btn-lg"><i class="fa fa-plus"></i></button></a>
+    <br />
+    <br />
+    <div class="">
+        <input type="text" @bind="@SearchString" />
+        <button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>
+        <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+    </div>
+    <br />
+    <br />
+</div>
+
+    <table class="table table-hover text-center">
+        <thead class="thead-dark">
             <tr>
                 <th>Mã voucher</th>
                 <th>Ngày hiệu lực</th>
@@ -52,13 +65,23 @@ else
     </table>
 }
 @code {
+    [Parameter]
+    public string SearchString { get; set; }
     public List<Voucher> vouchers;
     protected override void OnInitialized()
     {
         vouchers = _voucherSvc.GetAllVoucher();
     }
-    private void Delete(int id)
+    protected override void OnParametersSet()
     {
-
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            vouchers = _voucherSvc.GetAllVoucher().Where(x => x.VoucherCode.ToUpper().Contains(SearchString.ToUpper())).ToList();
+        }
+        else
+        {
+            vouchers = _voucherSvc.GetAllVoucher();
+        }
     }
+
 }

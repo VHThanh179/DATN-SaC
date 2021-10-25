@@ -89,6 +89,7 @@ using Share.Models;
 #line default
 #line hidden
 #nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/customerlist")]
     public partial class CustomerList : Microsoft.AspNetCore.Components.ComponentBase
     {
