@@ -22,6 +22,27 @@
           "buildMultiTargeting/BlazorAnimate.props": {}
         }
       },
+      "Blazored.Modal/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6",
+          "Microsoft.AspNetCore.Components.Web": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6",
+          "Microsoft.JSInterop.WebAssembly": "3.2.1"
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Modal.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Modal.props": {}
+        }
+      },
       "Blazored.SessionStorage/1.0.13": {
         "type": "package",
         "dependencies": {
@@ -1686,6 +1707,27 @@
         },
         "buildMultiTargeting": {
           "buildMultiTargeting/BlazorAnimate.props": {}
+        }
+      },
+      "Blazored.Modal/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6",
+          "Microsoft.AspNetCore.Components.Web": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6",
+          "Microsoft.JSInterop.WebAssembly": "3.2.1"
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Modal.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Modal.props": {}
         }
       },
       "Blazored.SessionStorage/1.0.13": {
@@ -3361,6 +3403,25 @@
         "lib/netstandard2.0/BlazorAnimate.dll",
         "staticwebassets/aos.css",
         "staticwebassets/blazorAnimateInterop.js"
+      ]
+    },
+    "Blazored.Modal/6.0.1": {
+      "sha512": "a7FwVYU2nDL6MBvtBnkp8GSLTEdZU4eKcN8ZcfhQNh4tFwGRKsIvz9jN+6eIEGV1PdI2rbzHkif/igyOcfC8Zg==",
+      "type": "package",
+      "path": "blazored.modal/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.modal.6.0.1.nupkg.sha512",
+        "blazored.modal.nuspec",
+        "build/Blazored.Modal.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Blazored.Modal.props",
+        "buildTransitive/Blazored.Modal.props",
+        "icon.png",
+        "lib/netstandard2.1/Blazored.Modal.dll",
+        "staticwebassets/blazored-modal.css",
+        "staticwebassets/blazored.modal.js"
       ]
     },
     "Blazored.SessionStorage/1.0.13": {
@@ -8087,6 +8148,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "BlazorAnimate >= 3.0.0",
+      "Blazored.Modal >= 6.0.1",
       "Blazored.SessionStorage >= 1.0.13",
       "Microsoft.AspNetCore.Components >= 5.0.10",
       "Microsoft.AspNetCore.Components.WebAssembly >= 5.0.6",
@@ -8152,6 +8214,10 @@
             "target": "Package",
             "version": "[3.0.0, )"
           },
+          "Blazored.Modal": {
+            "target": "Package",
+            "version": "[6.0.1, )"
+          },
           "Blazored.SessionStorage": {
             "target": "Package",
             "version": "[1.0.13, )"
@@ -8207,5 +8273,13 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\DATN\\Project\\SaCBackpack\\Client\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
