@@ -1,0 +1,61 @@
+﻿@page "/customerlist"
+@layout MainLayout
+@using Share.Models
+@inject Share.Interfaces.ICustomerSvc _customerSvc
+
+<h1 class="font-weight-bold text-center">Danh sách khách hàng</h1>
+
+@if (customers == null)
+{
+    <p><em>Đang tải...</em></p>
+}
+else
+{
+    <table class="table table-hover text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>Họ và tên</th>
+                <th>Ngày sinh</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in customers)
+            {
+                <tr>
+                    <td>@item.FullName</td>
+                    <td>@item.CreatedDate.Date.ToString("dd/MM/yyyy")</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Email</td>
+                    <td>@item.Address</td>
+                    <td>
+                        @if (item.Status == true)
+                        {
+                            <span>Đang hoạt động</span>
+                        }
+                        else
+                        {
+                            <span>Dừng hoạt động</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-info font-weight-bold" href="/customerDialog/@item.CustomerId">Sửa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    public List<Customer> customers;
+
+    protected override void OnInitialized()
+    {
+        customers = _customerSvc.GetAllCustomer();
+    }
+}

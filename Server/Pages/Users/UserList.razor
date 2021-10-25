@@ -1,17 +1,18 @@
 ﻿@page "/userlist"
 @using Share.Models
 @using Share.Helpers
+@layout MainLayout
 @inject Share.Interfaces.IUserSvc _userService
-<h3>Danh sách người dùng</h3>
+<h1 class="font-weight-bold text-center">Danh sách người dùng</h1>
 @if (users == null)
 {
     <p><em>Loading ...</em></p>
 }
 else
 {
-    <a class="btn btn-success p-10" href="/userdialog/0">Thêm</a>
-    <table class="table table-bordered table-hover table-warning table-striped mt-3 text-center">
-        <thead class="text-center badge-danger">
+
+    <table class="table table-hover text-center">
+        <thead class="thead-dark">
             <tr>
                 <th>Tài khoản</th>
                 <th>Họ tên</th>
@@ -32,17 +33,17 @@ else
                     <td>@item.DoB.Date.ToString("dd/MM/yyyy")</td>
                     <td>@item.Roles.DisplayName()</td>
                     <td>
-                    @if (item.Status)
-                    {
-                        <span>Hoạt động</span>
-                    }
-                    else
-                    {
-                        <span>Không hoạt động</span>
-                    }
+                        @if (item.Status)
+                        {
+                            <span>Hoạt động</span>
+                        }
+                        else
+                        {
+                            <span>Không hoạt động</span>
+                        }
                     </td>
                     <td>
-                        <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a> 
+                        <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a>
                     </td>
                 </tr>
             }

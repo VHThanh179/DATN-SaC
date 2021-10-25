@@ -9,13 +9,16 @@ namespace Share.Interfaces
 {
     public interface IVoucherSvc
     {
-        Task<List<Voucher>> GetVouchersAsync();
-        List<Voucher> GetAllVoucher();
-        Task<Voucher> GetVoucherAsync(int id);
-        Voucher GetVoucher(int id); 
-        Task<int> AddVoucherAsync(Voucher voucher);
-        int AddVoucher(Voucher voucher);
+        //async
+        Task<List<Voucher>> GetVouchersAsync();        
+        Task<Voucher> GetVoucherAsync(int id);       
+        Task<int> AddVoucherAsync(Voucher voucher);       
         Task<int> EditVoucherAsync(int id, Voucher voucher);
+        
+        //sync
+        List<Voucher> GetAllVoucher();
+        Voucher GetVoucher(int id);
+        int AddVoucher(Voucher voucher);
         int EditVoucher(int id, Voucher voucher);
     }
 }

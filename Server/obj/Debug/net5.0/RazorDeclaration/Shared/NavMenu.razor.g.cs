@@ -90,7 +90,7 @@ using Server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 62 "D:\DATN\Project\SaCBackpack\Server\Shared\NavMenu.razor"
+#line 69 "D:\DATN\Project\SaCBackpack\Server\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

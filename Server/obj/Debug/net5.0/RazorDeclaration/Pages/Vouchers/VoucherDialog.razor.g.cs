@@ -98,7 +98,7 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
+#line 74 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
        
     [Parameter]
     public string id { get; set; }

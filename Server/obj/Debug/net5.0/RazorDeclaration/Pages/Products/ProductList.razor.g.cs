@@ -97,7 +97,7 @@ using Share.Helpers;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/ProductList")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/productlist")]
     public partial class ProductList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -106,7 +106,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 64 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductList.razor"
+#line 69 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductList.razor"
        
     [Parameter]
     public string SearchString { get; set; }
