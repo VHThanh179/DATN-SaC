@@ -68,5 +68,67 @@ namespace Share.Services
             }
             return ret;
         }
+
+        //sync 
+
+        public List<Order> GetAllOrder()
+        {
+            List<Order> orders = new List<Order>();
+            return orders = _context.Orders.OrderByDescending(o => o.OrderDate)
+                .Include(c => c.Customer)
+                .Include(o => o.OrderDetails)
+                .ToList();
+        }
+
+        public List<Order> GetOrderByCustomer(int CustomerId)
+        {
+            List<Order> orders = new List<Order>();
+            return orders = _context.Orders.Where(o => o.CustomerId == CustomerId).OrderByDescending(o => o.OrderDate)
+                .Include(c => c.Customer)
+                .Include(o => o.OrderDetails)
+                .ToList();
+        }
+
+        public Order GetOrder(int id)
+        {
+            Order order = null;
+            return order = _context.Orders.Where(o => o.OrderId == id)
+                .Include(c => c.Customer)
+                .Include(o => o.OrderDetails).ThenInclude(p => p.Product)
+                .FirstOrDefault();
+        }
+
+        public int AddOrder(Order order)
+        {
+            int ret = 0;
+            try
+            {
+                _context.Add(order);
+                _context.SaveChanges();
+                ret = order.OrderId;
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
+        }
+
+        public int EditOrder(int id, Order order)
+        {
+            int ret = 0;
+            try
+            {
+                _context.Update(order);
+                _context.SaveChanges();
+                ret = order.OrderId;
+
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
+        }
     }
 }
