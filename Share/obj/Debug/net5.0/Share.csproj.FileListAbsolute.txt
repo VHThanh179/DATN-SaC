@@ -12,4 +12,3 @@ D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\Share.dll
 D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\ref\Share.dll
 D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\Share.pdb
 D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\Share.genruntimeconfig.cache
-D:\DATN\Project\SaCBackpack\Share\obj\Debug\net5.0\Share.csproj.AssemblyReference.cache

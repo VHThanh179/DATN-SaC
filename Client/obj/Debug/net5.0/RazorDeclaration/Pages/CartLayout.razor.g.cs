@@ -83,6 +83,13 @@ using Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using BlazorAnimate;
 
@@ -111,29 +118,35 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
+#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
 using Share.Models.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
-using Share.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
 using Newtonsoft.Json;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/detail/{id}")]
-    public partial class Detail : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
+using Share.Helpers;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/cart")]
+    public partial class CartLayout : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -141,93 +154,69 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 100 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
+#line 190 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
        
-    [Parameter]
-    public string id { get; set; }
-
+    private string emailAddress;
+    public Cart orderCart;
+    private double totalCost = 0;
     protected string imgUrl = "";
     protected string temp = "";
-    public Product product ;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        if (string.IsNullOrWhiteSpace(id) || id == "0")
-        {
-            NavigationManager.NavigateTo("/", true);
-        }
-        else
-        {
-            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-            imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-
-            product = new Product();
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-                client.BaseAddress = new Uri(apiUrl);
-                using (var response = await client.GetAsync($"Product/{id}"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    product = JsonConvert.DeserializeObject<Product>(apiResponse);
-                }
-            }
-        }
-    }
-
-    private void AddCart(int id)
-    {
-        //var cart = HttpContext.Session.GetString("cart");//get key cart
-        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        var cart = sessionStorage.GetItem<string>("cart");
         if (cart == null)
         {
-            List<CartItem> listCart = new List<CartItem>()
-        {
-                    new CartItem
-                    {
-                        product = product,
-                        Quantity = 1,
-                        Price = product.Price
-                    }
-            };
-
-            Cart orderCart = new Cart()
-            {
-                ListViewCart = listCart,
-                Total = Calculate(listCart)
-            };
-
-            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
+            orderCart = new Share.Models.ViewModels.Cart();
         }
         else
         {
+            orderCart = JsonConvert.DeserializeObject<Cart>(cart);
+        }
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    }
 
-            Cart orderCart = JsonConvert.DeserializeObject<Cart>(cart);
-            bool check = true;
-            for (int i = 0; i < orderCart.ListViewCart.Count; i++)
+    private void UpdateCart(CartItem item)
+    {
+        item.Price = item.Quantity * item.product.Price;
+        orderCart.Total = Calculate(orderCart.ListViewCart);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+    }
+
+    private void DeleteCart(CartItem item)
+    {
+        orderCart.ListViewCart.Remove(item);
+        orderCart.Total = Calculate(orderCart.ListViewCart);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+    }
+
+    private async Task OrderCart()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var khachhangid = sessionStorage.GetItem<int>("khachhangId");
+
+        orderCart.CustomerId = khachhangid;
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+
+            if (response.StatusCode != HttpStatusCode.OK)
             {
-                if (orderCart.ListViewCart[i].product.ProductId == id)
-                {
-                    orderCart.ListViewCart[i].Quantity++;
-                    orderCart.ListViewCart[i].Price = product.Price * orderCart.ListViewCart[i].Quantity;
-                    check = false;
-                }
-            }
 
-            if (check)
+            }
+            else
             {
-                orderCart.ListViewCart.Add(new CartItem
-                {
-                    product = product,
-                    Quantity = 1,
-                    Price = product.Price * 1
-                });
+                sessionStorage.RemoveItem("cart");
+                await JSRuntime.InvokeAsync<object>("clearCart", "");
+                NavigationManager.NavigateTo("/history");
             }
-            orderCart.Total = Calculate(orderCart.ListViewCart);
-            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
     }
 
@@ -243,6 +232,7 @@ using Newtonsoft.Json;
         }
         return total;
     }
+
 
 #line default
 #line hidden

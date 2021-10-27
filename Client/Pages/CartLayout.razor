@@ -1,4 +1,12 @@
 ﻿@page "/cart"
+@using System.Net
+@using Share.Models.ViewModels
+@using Newtonsoft.Json
+@using Share.Helpers
+@inject IJSRuntime JSRuntime
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject NavigationManager NavigationManager
 
 <style>
     .payment-info {
@@ -39,30 +47,30 @@
         cursor: pointer
     }
 
-    label.radio input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        visibility: hidden;
-        pointer-events: none
-    }
+        label.radio input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            pointer-events: none
+        }
 
-    label.radio span {
-        padding: 1px 12px;
-        border: 2px solid #ada9a9;
-        display: inline-block;
-        color: #8f37aa;
-        border-radius: 3px;
-        text-transform: uppercase;
-        font-size: 11px;
-        font-weight: 300
-    }
+        label.radio span {
+            padding: 1px 12px;
+            border: 2px solid #ada9a9;
+            display: inline-block;
+            color: #8f37aa;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 300
+        }
 
-    label.radio input:checked + span {
-        border-color: #fff;
-        background-color: blue;
-        color: #fff
-    }
+        label.radio input:checked + span {
+            border-color: #fff;
+            background-color: blue;
+            color: #fff
+        }
 
     .credit-inputs {
         background: rgb(102, 102, 221);
@@ -70,10 +78,10 @@
         border-color: rgb(102, 102, 221)
     }
 
-    .credit-inputs::placeholder {
-        color: #fff;
-        font-size: 13px
-    }
+        .credit-inputs::placeholder {
+            color: #fff;
+            font-size: 13px
+        }
 
     .credit-card-label {
         font-size: 9px;
@@ -106,31 +114,34 @@
     .spec {
         font-size: 11px
     }
-   
-</style>
+</style> 
 <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
     <div class="container p-3 rounded cart">
         <div class="row no-gutters">
             <div class="col-md-8">
                 <div class="product-details mr-2">
-                    <a href="/" class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2">Continue Shopping</span></a>
+                    <a href="/" class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2">Tiếp tục mua hàng</span></a>
                     <hr>
-                    <h6 class="mb-0">Shopping cart</h6>
+                    <h6 class="mb-0">Giỏ hàng</h6>
                     <div class="d-flex justify-content-between">
-                        <span>You have 4 items in your cart</span>
+                        <span>Bạn đã thêm @orderCart.ListViewCart.Count sản phẩm vào giỏ hàng</span>
                         <div class="d-flex flex-row align-items-center">
                             <span class="text-black-50">Sort by:</span>
                             <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                        <div class="d-flex flex-row">
-                            <img class="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="40">
-                            <div class="ml-2"><span class="font-weight-bold d-block">Iphone 11 pro</span><span class="spec">256GB, Navy Blue</span></div>
+                    @foreach (var item in orderCart.ListViewCart)
+                    {
+                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                            <div class="d-flex flex-row">
+                                <img class="rounded" src="@(imgUrl + item.product.Image)" width="40">
+                                <div class="ml-2"><span class="font-weight-bold d-block">@item.product.ProductName</span><span class="spec">@item.product.Category.DisplayName()</span></div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center"><span class="d-block">@item.Quantity</span><span class="d-block ml-5 font-weight-bold">@string.Format("{0:#,0}", item.Price) VNĐ</span><i @onclick="() => DeleteCart(item)" class="fa fa-trash-o ml-3 text-black-50"></i></div>
                         </div>
-                        <div class="d-flex flex-row align-items-center"><span class="d-block">2</span><span class="d-block ml-5 font-weight-bold">$900</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    }
+
+                    @*<div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                         <div class="d-flex flex-row">
                             <img class="rounded" src="https://i.imgur.com/GQnIUfs.jpg" width="40">
                             <div class="ml-2"><span class="font-weight-bold d-block">One pro 7T</span><span class="spec">256GB, Navy Blue</span></div>
@@ -150,7 +161,7 @@
                             <div class="ml-2"><span class="font-weight-bold d-block">Samsung galaxy Note 10&nbsp;</span><span class="spec">256GB, Navy Blue</span></div>
                         </div>
                         <div class="d-flex flex-row align-items-center"><span class="d-block">1</span><span class="d-block ml-5 font-weight-bold">$999</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-md-4">
@@ -177,5 +188,81 @@
 </Animate>
 
 @code {
+    private string emailAddress;
+    public Cart orderCart;
+    private double totalCost = 0;
+    protected string imgUrl = "";
+    protected string temp = "";
+
+    protected override void OnInitialized()
+    {
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        var cart = sessionStorage.GetItem<string>("cart");
+        if (cart == null)
+        {
+            orderCart = new Share.Models.ViewModels.Cart();
+        }
+        else
+        {
+            orderCart = JsonConvert.DeserializeObject<Cart>(cart);
+        }
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    }
+
+    private void UpdateCart(CartItem item)
+    {
+        item.Price = item.Quantity * item.product.Price;
+        orderCart.Total = Calculate(orderCart.ListViewCart);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+    }
+
+    private void DeleteCart(CartItem item)
+    {
+        orderCart.ListViewCart.Remove(item);
+        orderCart.Total = Calculate(orderCart.ListViewCart);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+    }
+
+    private async Task OrderCart()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var khachhangid = sessionStorage.GetItem<int>("khachhangId");
+
+        orderCart.CustomerId = khachhangid;
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+
+            }
+            else
+            {
+                sessionStorage.RemoveItem("cart");
+                await JSRuntime.InvokeAsync<object>("clearCart", "");
+                NavigationManager.NavigateTo("/history");
+            }
+        }
+    }
+
+    private float Calculate(List<CartItem> listCart)
+    {
+        float total = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                total += listCart[i].Price;
+            }
+        }
+        return total;
+    }
 
 }
