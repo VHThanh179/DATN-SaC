@@ -113,7 +113,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "D:\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
+#line 70 "D:\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
        
     [Parameter]
     public string id { get; set; }

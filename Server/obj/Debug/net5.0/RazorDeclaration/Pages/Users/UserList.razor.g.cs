@@ -96,6 +96,7 @@ using Share.Helpers;
 #line default
 #line hidden
 #nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/userlist")]
     public partial class UserList : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,7 +106,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "D:\DATN-SaC\Server\Pages\Users\UserList.razor"
+#line 53 "D:\DATN-SaC\Server\Pages\Users\UserList.razor"
        
     public List<User> users;
     protected override void OnInitialized()
