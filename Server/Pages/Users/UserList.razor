@@ -43,7 +43,10 @@ else
                         }
                     </td>
                     <td>
-                        <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a>
+                        @if (role == "Admin")
+                        {
+                            <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a>
+                        }                        
                     </td>
                 </tr>
             }
@@ -52,9 +55,11 @@ else
 }
 @code {
     public List<User> users;
+    public string role { get; set; }
     protected override void OnInitialized()
     {
         users = _userService.GetAllUser();
+        role = Server.Pages.CheckLoginModel.role;
     }
     private void Delete(int id)
     {
