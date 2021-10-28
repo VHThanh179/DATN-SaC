@@ -8,7 +8,6 @@
         color: #fff;
         font-weight: bold
     }
-
     .product-details {
         padding: 10px
     }
@@ -106,19 +105,24 @@
     .spec {
         font-size: 11px
     }
-   
+    .button:focus {
+        outline: none;
+    }
 </style>
 <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
     <div class="container p-3 rounded cart">
         <div class="row no-gutters">
             <div class="col-md-8">
                 <div class="product-details mr-2">
-                    <a href="/" class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2">Continue Shopping</span></a>
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2">Tiếp tục mua sắm</span></a>
+                        <a style="cursor:pointer" class="d-flex flex-row align-items-end" @onclick="ChangeDisplay"><span class="ml-2">Mã khuyến mãi</span></a>
+                    </div>
                     <hr>
                     <h6 class="mb-0">Shopping cart</h6>
                     <div class="d-flex justify-content-between">
                         <span>You have 4 items in your cart</span>
-                        <div class="d-flex flex-row align-items-center">
+                        <div class="d-flex flex-row align-items-end">
                             <span class="text-black-50">Sort by:</span>
                             <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>
                         </div>
@@ -128,31 +132,16 @@
                             <img class="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="40">
                             <div class="ml-2"><span class="font-weight-bold d-block">Iphone 11 pro</span><span class="spec">256GB, Navy Blue</span></div>
                         </div>
-                        <div class="d-flex flex-row align-items-center"><span class="d-block">2</span><span class="d-block ml-5 font-weight-bold">$900</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                        <div class="d-flex flex-row">
-                            <img class="rounded" src="https://i.imgur.com/GQnIUfs.jpg" width="40">
-                            <div class="ml-2"><span class="font-weight-bold d-block">One pro 7T</span><span class="spec">256GB, Navy Blue</span></div>
+                        <div class="d-flex flex-row align-items-start">
+                            <span><i class="fa fa-minus"> &nbsp;&nbsp;</i></span>
+                            <span class="d-block">2&nbsp; &nbsp;</span>
+                            <span><i class="fa fa-plus"></i></span>
                         </div>
-                        <div class="d-flex flex-row align-items-center"><span class="d-block">2</span><span class="d-block ml-5 font-weight-bold">$900</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                        <div class="d-flex flex-row align-items-center"><span class="d-block font-weight-bold">500000đ</span></div>
+                        <div class="d-flex flex-row align-items-end"><i class="fa fa-trash-o ml-3 text-black-50 "></i></div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                        <div class="d-flex flex-row">
-                            <img class="rounded" src="https://i.imgur.com/o2fKskJ.jpg" width="40">
-                            <div class="ml-2"><span class="font-weight-bold d-block">Google pixel 4 XL</span><span class="spec">256GB, Axe black</span></div>
-                        </div>
-                        <div class="d-flex flex-row align-items-center"><span class="d-block">1</span><span class="d-block ml-5 font-weight-bold">$800</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                        <div class="d-flex flex-row">
-                            <img class="rounded" src="https://i.imgur.com/Tja5H1c.jpg" width="40">
-                            <div class="ml-2"><span class="font-weight-bold d-block">Samsung galaxy Note 10&nbsp;</span><span class="spec">256GB, Navy Blue</span></div>
-                        </div>
-                        <div class="d-flex flex-row align-items-center"><span class="d-block">1</span><span class="d-block ml-5 font-weight-bold">$999</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
                     </div>
                 </div>
-            </div>
             <div class="col-md-4">
                 <div class="payment-info">
                     <div class="d-flex justify-content-between align-items-center"><span>Card details</span><img class="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30"></div><span class="type d-block mt-3 mb-1">Card type</span><label class="radio"> <input type="radio" name="card" value="payment" checked> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
@@ -165,6 +154,12 @@
                         <div class="col-md-6"><label class="credit-card-label">Date</label><input type="text" class="form-control credit-inputs" placeholder="12/24"></div>
                         <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text" class="form-control credit-inputs" placeholder="342"></div>
                     </div>
+                    @if (flag)
+                    {
+                        <div id="couponInput"><label class="credit-card-label">Coupon code</label><input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000"></div>
+                    }
+
+
                     <hr class="line">
                     <div class="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div>
                     <div class="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div>
@@ -173,9 +168,15 @@
             </div>
         </div>
     </div>
-
 </Animate>
 
 @code {
-
+    private bool flag = false;
+    private void ChangeDisplay()
+    {
+        if (!flag)
+            flag = true;
+        else
+            flag = false;
+    }
 }
