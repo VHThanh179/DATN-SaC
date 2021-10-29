@@ -106,7 +106,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductList.razor"
+#line 71 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductList.razor"
        
     [Parameter]
     public string SearchString { get; set; }

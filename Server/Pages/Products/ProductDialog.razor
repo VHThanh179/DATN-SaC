@@ -54,7 +54,7 @@
 
             <div class="form-group">
                 <label class="control-label">Thông tin mô tả</label>
-                <textarea class="form-control" @bind="product.Description" cols="30" rows="15" maxlength="500"></textarea>
+                <textarea class="form-control" @bind="product.Description" cols="30" rows="15"></textarea>
                 @*<input @bind="product.Description" class="form-control"/>*@
                 <ValidationMessage For="@(() => product.Description)" />
             </div>

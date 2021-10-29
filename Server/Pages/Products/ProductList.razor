@@ -3,7 +3,6 @@
 @using Share.Helpers
 @layout MainLayout
 @inject Share.Interfaces.IProductSvc _productSvc;
-
 <div>
     <h1 class="font-weight-bold text-center">Danh sách sản phẩm</h1>
     @if (products == null)
@@ -13,7 +12,10 @@
     else
     {
 <div class="text-right">
-    <a style="text-decoration:none;" href="/productdialog/0"><button type="button" class="btn btn-success btn-circle btn-lg"><i class="fa fa-plus"></i></button></a>
+
+    <button type="button" class="btn btn-success btn-circle btn-md">
+        <a style="text-decoration:none;" href="/productdialog/0"><i class="fa fa-plus" style="color:white;font-size:20px;"></i></a>
+    </button>
     <br />
     <br />
     <div class="">

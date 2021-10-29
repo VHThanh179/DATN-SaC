@@ -26,30 +26,23 @@
 
         <div class="row gy-4">
 
-            <div class="col-lg-8">
+            <div class="col-lg-6 text-center">
                 <div class="portfolio-details-slider swiper">
                     <div class="swiper-wrapper align-items-center">
                         @{
                             temp = imgUrl + product.Image;
                         }
                         <div class="swiper-slide">
-                            <img src="@temp" alt="">
+                            <img src="@temp" class="img-thumbnail w-75" alt="">
                         </div>
 
-                        @*<div class="swiper-slide">
-            <img src="assets/img/portfolio/portfolio-2.jpg" alt="">
-        </div>
-
-        <div class="swiper-slide">
-            <img src="assets/img/portfolio/portfolio-3.jpg" alt="">
-        </div>*@
 
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="portfolio-info">
                     <h3>Thông tin sản phẩm</h3>
                     <ul>
@@ -76,7 +69,7 @@
                                 <span>Hết hàng</span>
                             }
                         </li>
-                        @*<li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>*@
+                        <li><button class="btn btn-dark text-right" @onclick="() => AddCart(product.ProductId)">THÊM VÀO GIỎ HÀNG </button></li> 
                     </ul>
                 </div>
                 <div class="portfolio-description">
@@ -84,10 +77,6 @@
                     <p>
                         @product.Description
                     </p>
-                </div>
-
-                <div>
-                    <button class="btn btn-outline-primary" @onclick="() => AddCart(product.ProductId)">Thêm vào giỏ hàng</button>
                 </div>
             </div>
 
