@@ -420,3 +420,8 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Order
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderList.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\ShipInfoes\ShipInfoDialog.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\ShipInfoes\ShipInfoList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\BlazingComponents.Summernote.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Syncfusion.Blazor.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Syncfusion.ExcelExport.Net.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Syncfusion.Licensing.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Syncfusion.PdfExport.Net.dll

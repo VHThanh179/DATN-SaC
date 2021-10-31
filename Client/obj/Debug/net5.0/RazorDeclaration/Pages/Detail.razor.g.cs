@@ -141,7 +141,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 89 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
+#line 87 "D:\DATN\Project\SaCBackpack\Client\Pages\Detail.razor"
        
     [Parameter]
     public string id { get; set; }

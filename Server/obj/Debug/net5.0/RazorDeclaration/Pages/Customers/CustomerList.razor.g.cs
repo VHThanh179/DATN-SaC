@@ -83,6 +83,13 @@ using Server.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerList.razor"
 using Share.Models;
 

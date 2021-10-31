@@ -154,16 +154,19 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 184 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
+#line 188 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
        
     private string emailAddress;
     public Cart orderCart;
     private double totalCost = 0;
     protected string imgUrl = "";
     protected string temp = "";
+    public List<Voucher> voucherlist;
 
     protected override void OnInitialized()
     {
+        voucherlist = new List<Voucher>();
+
         emailAddress = sessionStorage.GetItem<string>("Email");
         var cart = sessionStorage.GetItem<string>("cart");
         if (cart == null)
@@ -189,12 +192,24 @@ using Share.Helpers;
         }
     }
 
-    //private void UpdateCart(CartItem item)
-    //{
-    //    item.Price = item.Quantity * item.product.Price;
-    //    orderCart.Total = Calculate(orderCart.ListViewCart);
-    //    sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-    //}
+    private void PlusQuantityAndUpdateCart(CartItem item)
+    {
+        PlusQuantity(item);
+        UpdateCart(item);
+    }
+
+    private void MinusQuantityAndUpdateCart(CartItem item)
+    {
+        MinusQuantity(item);
+        UpdateCart(item);
+    }
+
+    private void UpdateCart(CartItem item)
+    {
+        item.Price = item.Quantity * item.product.Price;
+        orderCart.Total = Calculate(orderCart.ListViewCart);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+    }
 
     private void DeleteCart(CartItem item)
     {
@@ -219,7 +234,7 @@ using Share.Helpers;
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode == HttpStatusCode.OK)
             {
 
             }
