@@ -42,7 +42,10 @@ namespace Server
             services.AddAuthentication(
                 CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
-
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Role", x => x.RequireClaim("Role"));
+            });
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
@@ -85,6 +88,7 @@ namespace Server
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();

@@ -6,7 +6,7 @@
 <h1 class="font-weight-bold text-center">Danh sách người dùng</h1>
 @if (users == null)
 {
-    <p><em>Loading ...</em></p>
+    <p><em>Đang tải ...</em></p>
 }
 else
 {
@@ -26,43 +26,41 @@ else
         <tbody>
             @foreach (var item in users)
             {
-                <tr>
-                    <td>@item.UserName</td>
-                    <td>@item.FullName </td>
-                    <td>@item.Email</td>
-                    <td>@item.DoB.Date.ToString("dd/MM/yyyy")</td>
-                    <td>@item.Roles.DisplayName()</td>
-                    <td>
-                        @if (item.Status)
+            <tr>
+                <td>@item.UserName</td>
+                <td>@item.FullName </td>
+                <td>@item.Email</td>
+                <td>@item.DoB.Date.ToString("dd/MM/yyyy")</td>
+                <td>@item.Roles.DisplayName()</td>
+                <td>
+                    @if (item.Status)
+                    {
+                        <span>Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span>Không hoạt động</span>
+                    }
+                </td>
+                <AuthorizeView>
+                    <Authorized>
+                        @if (context.User.IsInRole("Manager"))
                         {
-                            <span>Hoạt động</span>
+                            <td>
+                                   <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a>
+                            </td>
                         }
-                        else
-                        {
-                            <span>Không hoạt động</span>
-                        }
-                    </td>
-                    <td>
-                        @if (role == "Admin")
-                        {
-                            <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a>
-                        }                        
-                    </td>
-                </tr>
+                    </Authorized>
+                </AuthorizeView>
+            </tr>
             }
         </tbody>
     </table>
 }
 @code {
     public List<User> users;
-    public string role { get; set; }
     protected override void OnInitialized()
     {
         users = _userService.GetAllUser();
-        role = Server.Pages.CheckLoginModel.role;
-    }
-    private void Delete(int id)
-    {
-
     }
 }

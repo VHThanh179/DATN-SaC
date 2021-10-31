@@ -90,10 +90,9 @@ using Server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "D:\DATN-SaC\Server\Shared\NavMenu.razor"
+#line 73 "D:\DATN-SaC\Server\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
-
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()

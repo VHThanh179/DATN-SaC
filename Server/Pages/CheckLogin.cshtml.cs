@@ -46,8 +46,8 @@ namespace Server.Pages
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, paramUsername),
-                    new Claim(ClaimTypes.Role, "Admin")
+                    new Claim(ClaimTypes.Name, user.FullName),
+                    new Claim(ClaimTypes.Role, user.Roles.ToString())
                 };
                 var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var authProperties = new AuthenticationProperties

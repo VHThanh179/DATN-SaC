@@ -106,18 +106,12 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 56 "D:\DATN-SaC\Server\Pages\Users\UserList.razor"
+#line 60 "D:\DATN-SaC\Server\Pages\Users\UserList.razor"
        
     public List<User> users;
-    public string role { get; set; }
     protected override void OnInitialized()
     {
         users = _userService.GetAllUser();
-        role = Server.Pages.CheckLoginModel.role;
-    }
-    private void Delete(int id)
-    {
-
     }
 
 #line default

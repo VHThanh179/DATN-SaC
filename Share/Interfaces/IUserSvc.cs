@@ -16,7 +16,7 @@ namespace Share.Interfaces
         Task<int> AddUserAsync(User user);
         Task<int> EditUserAsync(int id, User user);
         Task<User> LoginAsync(ViewLogin login);
-
+        
         //sync
         List<User> GetAllUser();
         User GetUser(int id);
