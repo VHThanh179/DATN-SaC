@@ -106,7 +106,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 64 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Products\ProductList.razor"
+#line 69 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Products\ProductList.razor"
        
     [Parameter]
     public string SearchString { get; set; }

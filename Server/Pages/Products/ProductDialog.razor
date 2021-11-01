@@ -8,7 +8,8 @@
 @inject IWebHostEnvironment env
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 m-auto">
+        <h4 class="font-weight-bolder text-center">Thêm sản phẩm</h4>
         <EditForm Model="@product" OnValidSubmit="@SubmitForm">
             <DataAnnotationsValidator />
             <input type="hidden" @bind="product.ProductId" />
@@ -58,7 +59,7 @@
                 <ValidationMessage For="@(() => product.Description)" />
             </div>
 
-            <div class="form-group">
+            <div class="form-group text-center">
                 <button type="submit" class="btn btn-info">Lưu</button>
                 <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
             </div>

@@ -103,6 +103,7 @@ using Share.Helpers;
 #line default
 #line hidden
 #nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/orderlist")]
     public partial class OrderList : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -112,7 +113,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 37 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Orders\OrderList.razor"
+#line 46 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Orders\OrderList.razor"
        
     public List<Order> orders;
     protected override void OnInitialized()

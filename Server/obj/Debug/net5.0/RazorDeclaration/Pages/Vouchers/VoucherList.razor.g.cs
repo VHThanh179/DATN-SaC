@@ -96,6 +96,7 @@ using Share.Helpers;
 #line default
 #line hidden
 #nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/voucherlist")]
     public partial class VoucherList : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,17 +106,27 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Vouchers\VoucherList.razor"
+#line 67 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Vouchers\VoucherList.razor"
        
+    [Parameter]
+    public string SearchString { get; set; }
     public List<Voucher> vouchers;
     protected override void OnInitialized()
     {
         vouchers = _voucherSvc.GetAllVoucher();
     }
-    private void Delete(int id)
+    protected override void OnParametersSet()
     {
-
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            vouchers = _voucherSvc.GetAllVoucher().Where(x => x.VoucherCode.ToUpper().Contains(SearchString.ToUpper())).ToList();
+        }
+        else
+        {
+            vouchers = _voucherSvc.GetAllVoucher();
+        }
     }
+
 
 #line default
 #line hidden
