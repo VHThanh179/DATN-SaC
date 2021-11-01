@@ -10,7 +10,7 @@ namespace Share.Interfaces
     public interface IVoucherSvc
     {
         //async
-        Task<List<Voucher>> GetVouchersAsync();        
+        Task<List<Voucher>> GetAllVoucherAsync();        
         Task<Voucher> GetVoucherAsync(int id);       
         Task<int> AddVoucherAsync(Voucher voucher);       
         Task<int> EditVoucherAsync(int id, Voucher voucher);

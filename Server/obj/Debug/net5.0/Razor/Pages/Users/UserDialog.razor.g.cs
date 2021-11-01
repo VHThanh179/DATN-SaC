@@ -80,7 +80,18 @@ using Server.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD
 #line 2 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Users\UserDialog.razor"
+=======
+#line 11 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+>>>>>>> Thanh-Module
 using Share.Models;
 
 #line default

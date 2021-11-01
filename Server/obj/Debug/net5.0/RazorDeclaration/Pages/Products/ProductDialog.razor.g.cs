@@ -83,6 +83,13 @@ using Server.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
 using Share.Models;
 
@@ -103,6 +110,13 @@ using Microsoft.AspNetCore.Hosting;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
+using Syncfusion.Blazor.RichTextEditor;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/productdialog/{id}")]
     public partial class ProductDialog : Microsoft.AspNetCore.Components.ComponentBase
@@ -113,13 +127,31 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
+#line 75 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
        
+
     [Parameter]
     public string id { get; set; }
 
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
+
+    public List<ToolbarItemModel> Toolbars = new List<ToolbarItemModel>()
+        {
+        new ToolbarItemModel() { Command = ToolbarCommand.Bold },
+        new ToolbarItemModel() { Command = ToolbarCommand.Italic },
+        new ToolbarItemModel() { Command = ToolbarCommand.Underline },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontSize },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontColor },
+        new ToolbarItemModel() { Command = ToolbarCommand.LowerCase },
+        new ToolbarItemModel() { Command = ToolbarCommand.UpperCase },
+        new ToolbarItemModel() { Command = ToolbarCommand.Alignments },
+        new ToolbarItemModel() { Command = ToolbarCommand.CreateLink },
+        new ToolbarItemModel() { Command = ToolbarCommand.Undo },
+        new ToolbarItemModel() { Command = ToolbarCommand.Redo }
+        };
+
+
     protected override void OnInitialized()
     {
         if (string.IsNullOrWhiteSpace(id) || id == "0")

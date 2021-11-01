@@ -1,5 +1,5 @@
 ﻿@page "/detail/{id}"
-@using Share.Helpers
+@using Share.Models.ViewModels
 @using Share.Models
 @using Newtonsoft.Json;
 @inject IJSRuntime JSRuntime
@@ -26,35 +26,28 @@
 
         <div class="row gy-4">
 
-            <div class="col-lg-8">
+            <div class="col-lg-6 text-center">
                 <div class="portfolio-details-slider swiper">
                     <div class="swiper-wrapper align-items-center">
                         @{
                             temp = imgUrl + product.Image;
                         }
                         <div class="swiper-slide">
-                            <img src="@temp" alt="">
+                            <img src="@temp" class="img-thumbnail w-75" alt="">
                         </div>
 
-                        @*<div class="swiper-slide">
-            <img src="assets/img/portfolio/portfolio-2.jpg" alt="">
-        </div>
-
-        <div class="swiper-slide">
-            <img src="assets/img/portfolio/portfolio-3.jpg" alt="">
-        </div>*@
 
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="portfolio-info">
                     <h3>Thông tin sản phẩm</h3>
                     <ul>
                         <li>
-                            <strong>Loại sản phẩm</strong>: 
+                            <strong>Loại sản phẩm</strong>:
                             @if (product.Category == Category.Backpack)
                             {
                                 <span>Ba lô</span>
@@ -65,24 +58,23 @@
                             }
                         </li>
                         <li><strong>Giá sản phẩm</strong>: @string.Format("{0:#,0}", product.Price) VNĐ</li>
-                        <li><strong>Tình trạng</strong>: 
-                        @if (product.Status)
-                        {   
-                            <span>Còn hàng</span> 
-                        }
-                        else
-                        {
-                            <span>Hết hàng</span>
-                        }
+                        <li>
+                            <strong>Tình trạng</strong>:
+                            @if (product.Status)
+                            {
+                                <span>Còn hàng</span>
+                            }
+                            else
+                            {
+                                <span>Hết hàng</span>
+                            }
                         </li>
-                        @*<li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>*@
+                        <li><button class="btn btn-dark text-right" @onclick="() => AddCart(product.ProductId)">THÊM VÀO GIỎ HÀNG </button></li> 
                     </ul>
                 </div>
                 <div class="portfolio-description">
-                    <h2>Mô tả sản phẩm</h2>
-                    <p>
-                        @product.Description
-                    </p>
+                    <h2>Mô tả sản phẩm</h2>                        
+                     @((MarkupString)product.Description)
                 </div>
             </div>
 
@@ -123,5 +115,74 @@
                 }
             }
         }
+    }
+
+    private void AddCart(int id)
+    {
+        //var cart = HttpContext.Session.GetString("cart");//get key cart
+        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+        if (cart == null)
+        {
+            List<CartItem> listCart = new List<CartItem>()
+        {
+                    new CartItem
+                    {
+                        product = product,
+                        Quantity = 1,
+                        Price = product.Price
+                    }
+            };
+
+            Cart orderCart = new Cart()
+            {
+                ListViewCart = listCart,
+                Total = Calculate(listCart)
+            };
+
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
+        }
+        else
+        {
+
+            Cart orderCart = JsonConvert.DeserializeObject<Cart>(cart);
+            bool check = true;
+            for (int i = 0; i < orderCart.ListViewCart.Count; i++)
+            {
+                if (orderCart.ListViewCart[i].product.ProductId == id)
+                {
+                    orderCart.ListViewCart[i].Quantity++;
+                    orderCart.ListViewCart[i].Price = product.Price * orderCart.ListViewCart[i].Quantity;
+                    check = false;
+                }
+            }
+
+            if (check)
+            {
+                orderCart.ListViewCart.Add(new CartItem
+                {
+                    product = product,
+                    Quantity = 1,
+                    Price = product.Price * 1
+                });
+            }
+            orderCart.Total = Calculate(orderCart.ListViewCart);
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+        }
+    }
+
+    private float Calculate(List<CartItem> listCart)
+    {
+        float total = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                total += listCart[i].Price;
+            }
+        }
+        return total;
     }
 }

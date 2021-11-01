@@ -1,0 +1,316 @@
+﻿@page "/cart"
+@using System.Net
+@using Share.Models.ViewModels
+@using Newtonsoft.Json
+@using Share.Helpers
+@inject IJSRuntime JSRuntime
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject NavigationManager NavigationManager
+
+<style>
+    .my-custom-scrollbar {
+        position: relative;
+        height: 400px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+    .payment-info {
+        background: blue;
+        padding: 10px;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: bold
+    }
+
+    .product-details {
+        padding: 10px
+    }
+
+    body {
+        background: #eee
+    }
+
+    .cart {
+        background: #fff
+    }
+
+    .p-about {
+        font-size: 12px
+    }
+
+    .table-shadow {
+        -webkit-box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, 0.42);
+        box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, 0.42)
+    }
+
+    .type {
+        font-weight: 400;
+        font-size: 10px
+    }
+
+    label.radio {
+        cursor: pointer
+    }
+
+        label.radio input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            pointer-events: none
+        }
+
+        label.radio span {
+            padding: 1px 12px;
+            border: 2px solid #ada9a9;
+            display: inline-block;
+            color: #8f37aa;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 300
+        }
+
+        label.radio input:checked + span {
+            border-color: #fff;
+            background-color: blue;
+            color: #fff
+        }
+
+    .credit-inputs {
+        background: rgb(102, 102, 221);
+        color: #fff !important;
+        border-color: rgb(102, 102, 221)
+    }
+
+        .credit-inputs::placeholder {
+            color: #fff;
+            font-size: 13px
+        }
+
+    .credit-card-label {
+        font-size: 9px;
+        font-weight: 300
+    }
+
+    .form-control.credit-inputs:focus {
+        background: rgb(102, 102, 221);
+        border: rgb(102, 102, 221)
+    }
+
+    .line {
+        border-bottom: 1px solid rgb(102, 102, 221)
+    }
+
+    .information span {
+        font-size: 12px;
+        font-weight: 500
+    }
+
+    .information {
+        margin-bottom: 5px
+    }
+
+    .items {
+        -webkit-box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.25);
+        box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08)
+    }
+
+    .spec {
+        font-size: 11px
+    }
+
+    .button:focus {
+        outline: none;
+    }
+</style>
+<Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
+    <div class="container p-3 rounded cart">
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="product-details mr-2">
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2">Tiếp tục mua sắm</span></a>
+                        <a style="cursor:pointer" class="d-flex flex-row align-items-end" @onclick="ChangeDisplay"><span class="ml-2">Mã khuyến mãi</span></a>
+                    </div>
+                    <hr>
+                    <h6 class="mb-0">Giỏ hàng</h6>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table table-responsive mb-0">
+                            <tbody>
+                                @foreach (var item in orderCart.ListViewCart)
+                                {
+                                    <tr class="">
+                                        <th scope="row" width="300px">
+                                            <img class="rounded" src="@(imgUrl + item.product.Image)" width="40">
+                                            <span class="ml-2"><span class="font-weight-bold">@item.product.ProductName</span></span>
+                                            <div class="ml-2"><span class="spec badge bg-dark">@item.product.Category.DisplayName()</span></div>
+                                            @*<span class="ml-2"><span class="font-weight-bold">@item.product.ProductName</span> &nbsp; <span class="spec badge bg-dark">@item.product.Category.DisplayName()</span></span>*@
+                                        </th>
+                                        <th class="text-center">
+                                            <span><i class="fa fa-minus" @onclick="() => MinusQuantityAndUpdateCart(item)"> &nbsp;&nbsp;</i></span>
+                                            <span class="">@item.Quantity&nbsp; &nbsp;</span>
+                                            <span><i class="fa fa-plus" @onclick="() => PlusQuantityAndUpdateCart(item)"></i></span>
+                                        </th>
+                                        <th class="text-center" width="100px"><span class="font-weight-bold">@string.Format("{0:#,0}", item.Price)đ</span></th>
+                                        <th class="text-center" width="30px"><i @onclick="() => DeleteCart(item)" class="fa fa-trash-o ml-3 text-black-50 "></i></th>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="payment-info">
+                    <div class="d-flex justify-content-between align-items-center"><span>Card details</span><img class="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30"></div><span class="type d-block mt-3 mb-1">Card type</span><label class="radio"> <input type="radio" name="card" value="payment" checked> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
+                    <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" /></span> </label>
+                    <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png" /></span> </label>
+                    <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" /></span> </label>
+                    <div><label class="credit-card-label">Name on card</label><input type="text" class="form-control credit-inputs" placeholder="Name" autofocus></div>
+                    <div><label class="credit-card-label">Card number</label><input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000"></div>
+                    <div class="row">
+                        <div class="col-md-6"><label class="credit-card-label">Date</label><input type="text" class="form-control credit-inputs" placeholder="12/24"></div>
+                        <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text" class="form-control credit-inputs" placeholder="342"></div>
+                    </div>
+                    @if (flag)
+                    {
+                        <div id="couponInput"><label class="credit-card-label">Nhập mã khuyến mãi</label><input type="text" class="form-control credit-inputs" placeholder="Mã khuyến mãi ..."></div>
+                        <button class="btn btn-secondary btn-block d-flex justify-content-between mt-3" type="button"><span>Áp dụng</span></button>
+                    }
+
+
+                    <hr class="line">
+                    <div class="d-flex justify-content-between information"><span>Subtotal</span><span>@orderCart.Total</span></div>
+                    <div class="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div>
+                    <div class="d-flex justify-content-between information"><span>Total</span><span>@orderCart.Total</span></div>
+                    <button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"><span>Checkout<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between pl-3">
+                <span>&nbsp; Bạn đã thêm @orderCart.ListViewCart.Count sản phẩm vào giỏ hàng</span>
+            </div>
+        </div>
+    </div>
+</Animate>
+
+@code {
+    private string emailAddress;
+    public Cart orderCart;
+    private double totalCost = 0;
+    protected string imgUrl = "";
+    protected string temp = "";
+    public List<Voucher> voucherlist;
+
+    protected override void OnInitialized()
+    {
+        voucherlist = new List<Voucher>();
+
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        var cart = sessionStorage.GetItem<string>("cart");
+        if (cart == null)
+        {
+            orderCart = new Share.Models.ViewModels.Cart();
+        }
+        else
+        {
+            orderCart = JsonConvert.DeserializeObject<Cart>(cart);
+        }
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    }
+
+    private void PlusQuantity(CartItem item)
+    {
+        item.Quantity++;
+    }
+    private void MinusQuantity(CartItem item)
+    {
+        if (item.Quantity > 0)
+        {
+            item.Quantity--;
+        }
+    }
+
+    private void PlusQuantityAndUpdateCart(CartItem item)
+    {
+        PlusQuantity(item);
+        UpdateCart(item);
+    }
+
+    private void MinusQuantityAndUpdateCart(CartItem item)
+    {
+        MinusQuantity(item);
+        UpdateCart(item);
+    }
+
+    private void UpdateCart(CartItem item)
+    {
+        item.Price = item.Quantity * item.product.Price;
+        orderCart.Total = Calculate(orderCart.ListViewCart);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+    }
+
+    private void DeleteCart(CartItem item)
+    {
+        orderCart.ListViewCart.Remove(item);
+        orderCart.Total = Calculate(orderCart.ListViewCart);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+    }
+
+    private async Task OrderCart()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var khachhangid = sessionStorage.GetItem<int>("khachhangId");
+
+        orderCart.CustomerId = khachhangid;
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+
+            }
+            else
+            {
+                sessionStorage.RemoveItem("cart");
+                await JSRuntime.InvokeAsync<object>("clearCart", "");
+                NavigationManager.NavigateTo("/history");
+            }
+        }
+    }
+
+    private float Calculate(List<CartItem> listCart)
+    {
+        float total = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                total += listCart[i].Price;
+            }
+        }
+        return total;
+    }
+
+    private bool flag = false;
+    private void ChangeDisplay()
+    {
+        if (!flag)
+            flag = true;
+        else
+            flag = false;
+    }
+}
