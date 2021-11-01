@@ -8159,24 +8159,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asus\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Admins\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Client\\Client.csproj",
+      "projectUniqueName": "D:\\DATN\\Project\\SaCBackpack\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Client\\Client.csproj",
-      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Client\\obj\\",
+      "projectPath": "D:\\DATN\\Project\\SaCBackpack\\Client\\Client.csproj",
+      "packagesPath": "C:\\Users\\Admins\\.nuget\\packages\\",
+      "outputPath": "D:\\DATN\\Project\\SaCBackpack\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Admins\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -8189,8 +8194,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj": {
-              "projectPath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Share\\Share.csproj"
+            "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj": {
+              "projectPath": "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj"
             }
           }
         }
@@ -8252,7 +8257,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.browser-wasm",
-            "version": "[5.0.4, 5.0.4]"
+            "version": "[5.0.9, 5.0.9]"
           }
         ],
         "frameworkReferences": {
@@ -8260,7 +8265,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
