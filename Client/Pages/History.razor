@@ -1,0 +1,94 @@
+﻿@page "/history"
+@layout WebLayout
+@inject IModalService modal
+
+<style>
+    .lastest-product {
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="latest-products text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading h2 text-center">LỊCH SỬ ĐẶT HÀNG</div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Ngày đặt
+                        </th>
+                        <th>
+                            Tổng tiền
+                        </th>
+                        <th>
+                            Trạng thái
+                        </th>
+                        <th>
+                            Ghi chú
+                        </th>
+                        <th>
+                            Địa chỉ
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*@foreach (var item in Model)
+        {*@
+                    <tr>
+                        <td>
+                            20/10/2021
+                        </td>
+                        <td>
+                            200000
+                        </td>
+                        <td>
+                            Đã giao
+                        </td>
+                        <td>
+                            ABC
+                        </td>
+                        <td>
+                            SG
+                        </td>
+                        <td>
+                            <a class="btn btn-light btn-user btn" @onclick="@(() => modal.Show<OrderDetails>("Chi tiết đơn hàng"))">Chi tiết đơn hàng</a>
+                            <a class="btn btn-light btn-user btn" @onclick="@(() => modal.Show<ShipInfo>("Thông tin vận chuyển"))">Thông tin vận chuyển</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            20/10/2021
+                        </td>
+                        <td>
+                            200000
+                        </td>
+                        <td>
+                            Đã giao
+                        </td>
+                        <td>
+                            ABC
+                        </td>
+                        <td>
+                            SG
+                        </td>
+                        <td>
+
+                            <a class="btn btn-light btn-user btn" @onclick="@(() => modal.Show<OrderDetails>("Chi tiết đơn hàng"))">Chi tiết đơn hàng</a>
+                            <a class="btn btn-light btn-user btn" @onclick="@(() => modal.Show<ShipInfo>("Thông tin vận chuyển"))">Thông tin vận chuyển</a>
+                        </td>
+                    </tr>
+                    @*}*@
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}
