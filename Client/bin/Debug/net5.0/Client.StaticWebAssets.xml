@@ -1,6 +1,6 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\" />
-  <ContentRoot BasePath="/" Path="D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\scopedcss\bundle\" />
-  <ContentRoot BasePath="_content/BlazorAnimate" Path="C:\Users\Admins\.nuget\packages\blazoranimate\3.0.0\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\Admins\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="/" Path="C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/BlazorAnimate" Path="C:\Users\asus\.nuget\packages\blazoranimate\3.0.0\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\asus\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
 </StaticWebAssets>

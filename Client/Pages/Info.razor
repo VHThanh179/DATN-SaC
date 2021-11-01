@@ -125,18 +125,22 @@
                                                <input type="text" id="inputEmail" class="form-control" placeholder="Địa chỉ mail" required autofocus>
                                                <label for="inputEmail">Địa chỉ mail</label>
                                            </div>
+
                                            <div class="form-label-group">
                                                <input type="text" id="inputFullname" class="form-control" placeholder="Họ tên" required>
                                                <label for="inputFullname">Họ tên</label>
                                            </div>
+
                                            <div class="form-label-group">
                                                <input type="date" id="dob" class="form-control" placeholder="Ngày sinh" required>
                                                <label for="dob">Ngày sinh</label>
                                            </div>
+
                                            <div class="form-label-group">
                                                <input type="text" id="address" class="form-control" placeholder="Địa chỉ" required>
                                                <label for="address">Địa chỉ</label>
                                            </div>
+
                                            <div class="form-label-group">
                                                <input type="text" id="phone" class="form-control" placeholder="Số điện thoại" required>
                                                <label for="phone">Số điện thoại</label>
@@ -161,6 +165,48 @@
                    </div>
                </div>
            </Animate>
-@code {
 
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    protected string imgUrl = "";
+    protected string temp = "";
+    public Customer customer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            customer = new Customer();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var response = await client.GetAsync("Cus/?id=" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
+            }
+        }
+    }
+
+    private void SubmitForm()
+    {
+
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/", true);
+    }
 }

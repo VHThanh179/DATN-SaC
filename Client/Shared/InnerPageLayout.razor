@@ -1,5 +1,5 @@
 ﻿@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
-@inject NavigationManager navigationManager
+@inject NavigationManager NavigationManager
 @inherits LayoutComponentBase
 <style>
     main {
@@ -109,17 +109,24 @@
 </footer><!-- End Footer -->
 
 @code {
-    //string CusEmail;
-    //string cart;
-    //int CusId;
-
+    //string email;
+    //int customerid;
     //protected override async Task OnInitializedAsync()
     //{
-    //    CusEmail = sessionStorage.GetItem<string>("Email");
-    //    cart = sessionStorage.GetItem<string>("cart");
-    //    CusId = sessionStorage.GetItem<int>("customerId");
-    //}
+    //    email = sessionStorage.GetItem<string>("Email");
 
+    //    customerid = sessionStorage.GetItem<int>("customerId");
+    //}
+    //protected void o()
+    //{
+    //    email = sessionStorage.GetItem<string>("Email");
+    //}
+    //protected void Logout()
+    //{
+    //    sessionStorage.RemoveItem("AccessToken");
+    //    sessionStorage.RemoveItem("Email");
+    //    NavigationManager.NavigateTo("/");
+    //}
     //protected void Logout()
     //{
     //    sessionStorage.RemoveItem("AccessToken");
