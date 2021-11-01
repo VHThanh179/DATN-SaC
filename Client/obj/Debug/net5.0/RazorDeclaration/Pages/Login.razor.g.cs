@@ -124,6 +124,34 @@ using Blazored.Modal.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
+using System.Web;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
+using Share.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(InnerPageLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
@@ -133,6 +161,87 @@ using Blazored.Modal.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 168 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
+       
+    private bool loading;
+    private string error;
+    string email = "";
+    string password = "";
+    private string name;
+    protected override void OnInitialized()
+    {
+
+    }
+    private string Encode(string param)
+    {
+        return HttpUtility.UrlEncode(param);
+    }
+    public void Enter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            if (password != string.Empty || password != "")
+            {
+                Checklogin();
+            }
+        }
+    }
+    private async Task Checklogin()
+    {
+        error = "";
+        if (email == "")
+        {
+            error = " - Bạn cần nhập email.";
+        }
+        if (password == "")
+        {
+            error += (error == "" ? "" : "<br/>") + " - Bạn cần nhập password.";
+        }
+        if (error == "")
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            using (var client = new HttpClient())
+            {
+                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = email, Password = password };
+                client.DefaultRequestHeaders.Add("Access-Control-Alow-Origin", "*");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin),
+                    System.Text.Encoding.UTF8,
+                    "application/json");
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "Token", content);
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    error += (error == "" ? "" : "<br/>") + "- Lỗi khi gọi API.";
+
+                }
+                else
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ViewToken>>(apiResponse);
+                    if (list.Count > 0)
+                    {
+                        var viewToken = list[0];
+                        var accessToken = viewToken.Token;
+                        sessionStorage.SetItem("customerId", viewToken.customerID);
+                        sessionStorage.SetItem("Email", email);
+                        sessionStorage.SetItem("AccessToken", accessToken);
+                        //await JSRuntime.InvokeAsync<object>("refreshMenu", new { email = email });
+                        NavigationManager.NavigateTo("/", true);
+
+                    }
+                }
+            }
+        }
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

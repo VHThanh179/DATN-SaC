@@ -69,13 +69,6 @@ using Microsoft.JSInterop;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Newtonsoft.Json;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 10 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Client;
 
@@ -85,13 +78,6 @@ using Client;
 #nullable restore
 #line 11 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Client.Shared;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 12 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Share.Models;
 
 #line default
 #line hidden
@@ -124,6 +110,27 @@ using Blazored.Modal.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Register.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\Register.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\Register.razor"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(InnerPageLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/register")]
     public partial class Register : Microsoft.AspNetCore.Components.ComponentBase
@@ -133,6 +140,54 @@ using Blazored.Modal.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 185 "D:\DATN\Project\SaCBackpack\Client\Pages\Register.razor"
+       
+    Customer customer = new Customer();
+
+    protected override void OnInitialized()
+    {
+        customer.CreatedDate = DateTime.Now;
+        customer.Status = true;
+    }
+    private async void SubmitForm()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(customer), System.Text.Encoding.UTF8,
+                "application/json");
+            client.DefaultRequestHeaders.Add("Access-Control-Alow-Origin", "*");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "customer", content);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+
+            }
+            else
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                if (apiResponse == "-1")
+                {
+
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("/");
+                }
+            }
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime IJSRuntime { get; set; }
     }
 }
 #pragma warning restore 1591
