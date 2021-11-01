@@ -125,7 +125,7 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
 using Pages;
 
 #line default
@@ -138,7 +138,27 @@ using Pages;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 140 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+      
+    string emailAddress;
+    string cusName;
+    int customerId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        customerId = sessionStorage.GetItem<int>("customerId");
+        cusName = sessionStorage.GetItem<string>("CusName");
+    }
+
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
 }
 #pragma warning restore 1591

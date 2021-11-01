@@ -24,18 +24,3 @@
         })
     })
 }
-//function refreshMenu(obj) {
-
-//    if (obj != "") {
-//        var html = '<li class="dropdown"><a style="cursor:pointer" id="information" href="/info">' + obj.email + '</a><i class="bi bi-chevron-down"></i></li>';
-//        html += '<li class="dropdown"><a class="nav-link btn btn-link text-dark" id="logout" href="/logout">Logout | </a></li>';
-//        document.getElementById('navLogin').outerHTML = html;
-//    }
-//    else {
-//        var html = '<li class="dropdown"><a style="cursor:pointer"<span>Tài khoản</span> id="register" href="/Register">Đăng ký</a><i class="bi bi-chevron-down"></i>';
-//        html += '<li><a class="nav-link scrollto" href="/login">Đăng nhập</a></li>';
-//        html += '<li><a class="nav-link scrollto" href="/register">Đăng ký</a></li>';
-//        document.getElementById('navLogin').outerHTML = html;
-
-//    }
-//}

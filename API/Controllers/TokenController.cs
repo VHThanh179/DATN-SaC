@@ -56,7 +56,8 @@ namespace API.Controllers
                         ViewToken viewToken = new ViewToken()
                         {
                             Token = new JwtSecurityTokenHandler().WriteToken(token),
-                            customerID = cus.CustomerId
+                            customerID = cus.CustomerId,
+                            customerName = cus.FullName
                         };
 
                         list.Add(viewToken);

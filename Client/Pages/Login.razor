@@ -223,6 +223,7 @@
                     {
                         var viewToken = list[0];
                         var accessToken = viewToken.Token;
+                        sessionStorage.SetItem("CusName", viewToken.customerName);
                         sessionStorage.SetItem("customerId", viewToken.customerID);
                         sessionStorage.SetItem("Email", email);
                         sessionStorage.SetItem("AccessToken", accessToken);

@@ -8,12 +8,12 @@ namespace Share.Models.ViewModels
 {
     public class ViewToken
     {
-        //[Required]
+
         public string Token { get; set; }
 
-        //[Required]
         public int customerID { get; set; }
 
-        //public string ReturnUrl { get; set; }
+        public string customerName { get; set; }
+
     }
 }

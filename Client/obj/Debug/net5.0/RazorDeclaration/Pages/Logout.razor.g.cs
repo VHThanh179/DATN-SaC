@@ -155,25 +155,17 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 12 "D:\DATN\Project\SaCBackpack\Client\Pages\Logout.razor"
+#line 9 "D:\DATN\Project\SaCBackpack\Client\Pages\Logout.razor"
        
-    private bool loading;
-    private string error;
-    string email = "";
-    string password = "";
-    private string name;
     protected override async Task OnInitializedAsync()
     {
         sessionStorage.Clear();
-        await JSRuntime.InvokeAsync<object>("refreshMenu", "");
         NavigationManager.NavigateTo("/");
-}
+    }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
