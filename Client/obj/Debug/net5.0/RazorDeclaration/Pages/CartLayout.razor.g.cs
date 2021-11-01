@@ -154,7 +154,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 188 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
+#line 203 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
        
     private string emailAddress;
     public Cart orderCart;
