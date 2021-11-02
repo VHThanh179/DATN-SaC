@@ -82,6 +82,13 @@ using Server.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -90,7 +97,7 @@ using Server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Shared\NavMenu.razor"
+#line 69 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

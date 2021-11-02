@@ -83,6 +83,13 @@ using Server.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Products\ProductList.razor"
 using Share.Models;
 
@@ -90,13 +97,14 @@ using Share.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Products\ProductList.razor"
-using Microsoft.EntityFrameworkCore;
+#line 3 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Products\ProductList.razor"
+using Share.Helpers;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/ProductList")]
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/productlist")]
     public partial class ProductList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

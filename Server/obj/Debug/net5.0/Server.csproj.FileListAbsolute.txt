@@ -10,54 +10,21 @@ D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\ref\Server.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Server.pdb
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Server.Views.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Server.Views.pdb
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.csproj.AssemblyReference.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.GeneratedMSBuildEditorConfig.editorconfig
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.AssemblyInfoInputs.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.AssemblyInfo.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.csproj.CoreCompileInputs.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.MvcApplicationPartsAssemblyInfo.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorComponent.input.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorComponent.output.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Server.dll
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.TagHelpers.input.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.TagHelpers.output.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorCoreGenerate.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\App.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.Manifest.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.xml
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\bundle\Server.styles.css
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\projectbundle\Server.bundle.scp.css
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorTargetAssemblyInfo.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorTargetAssemblyInfo.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.Views.pdb
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.dll
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\ref\Server.dll
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.pdb
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.csproj.CopyComplete
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Humanizer.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Blazor.HttpClient.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Forms.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -72,38 +39,7 @@ D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Logg
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Newtonsoft.Json.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.IO.Pipelines.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Runtime.Caching.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Share.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Share.pdb
-=======
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Blazor.HttpClient.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.JSInterop.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
@@ -112,11 +48,18 @@ D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.C
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Composition.AttributedModel.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Composition.Convention.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Composition.Hosting.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Composition.Runtime.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Composition.TypedParts.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.IO.Pipelines.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Runtime.Caching.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.resources.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.resources.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -169,103 +112,84 @@ D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.Wo
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\appsettings.Development.json
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\appsettings.json
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.StaticWebAssets.xml
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.exe
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.deps.json
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.runtimeconfig.json
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.runtimeconfig.dev.json
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ref\Server.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.Views.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.Views.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Humanizer.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Identity.Client.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Newtonsoft.Json.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.IO.Pipelines.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Runtime.Caching.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Share.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Share.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.csprojAssemblyReference.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.AssemblyInfoInputs.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.AssemblyInfo.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.csproj.CoreCompileInputs.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorComponent.input.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorComponent.output.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Server.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.TagHelpers.input.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.TagHelpers.output.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorCoreGenerate.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\App.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.Manifest.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.xml
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\bundle\Server.styles.css
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\projectbundle\Server.bundle.scp.css
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorTargetAssemblyInfo.cache
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorTargetAssemblyInfo.cs
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.Views.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.csproj.CopyComplete
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\ref\Server.dll
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.pdb
-C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Share.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Share.pdb
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.AssemblyInfoInputs.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.AssemblyInfo.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.csproj.CoreCompileInputs.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.MvcApplicationPartsAssemblyInfo.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorComponent.input.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Shared\LoginControl.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Shared\LoginLayout.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorComponent.output.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Server.dll
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.TagHelpers.input.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.TagHelpers.output.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorCoreGenerate.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\App.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Shared\LoginControl.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Shared\LoginLayout.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\CheckLogin.cshtml.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Logout.cshtml.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.Manifest.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.xml
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\bundle\Server.styles.css
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\projectbundle\Server.bundle.scp.css
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorTargetAssemblyInfo.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.RazorTargetAssemblyInfo.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.Views.pdb
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.csproj.CopyComplete
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.dll
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\ref\Server.dll
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.pdb
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.csproj.AssemblyReference.cache
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Users\UserDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Users\UserList.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\appsettings.json
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Server.StaticWebAssets.xml
@@ -281,6 +205,9 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Server.Views.pdb
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Humanizer.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Blazor.HttpClient.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -304,6 +231,7 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.Identit
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.JSInterop.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
@@ -403,6 +331,13 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Shared\LoginControl.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Shared\LoginLayout.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -416,11 +351,20 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\App.razor.g
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Users\UserDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Users\UserList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Shared\LoginControl.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Shared\LoginLayout.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\CheckLogin.cshtml.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Logout.cshtml.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cache
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cs
@@ -438,11 +382,260 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\ref\Server.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.pdb
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductDialog.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductList.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductDialog.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductList.razor.g.cs
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Forms.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
-D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.JSInterop.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\ShipInfoes\ShipInfoList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\ShipInfoes\ShipInfoList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\ShipInfoes\ShipInfoDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\ShipInfoes\ShipInfoDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderDetail.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderDetail.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Customers\CustomerList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Customers\CustomerList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Customers\CustomerDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Customers\CustomerDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherDialog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\BlazorAnimate.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\bin\Debug\net5.0\BlazorAnimate.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Customers\CustomerDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Customers\CustomerList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderDetail.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\ShipInfoes\ShipInfoDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\RazorDeclaration\Pages\ShipInfoes\ShipInfoList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Customers\CustomerDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Customers\CustomerList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderDetail.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderList.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\ShipInfoes\ShipInfoDialog.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\obj\Debug\net5.0\Razor\Pages\ShipInfoes\ShipInfoList.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Syncfusion.Blazor.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Syncfusion.ExcelExport.Net.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Syncfusion.Licensing.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Syncfusion.PdfExport.Net.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\appsettings.json
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.StaticWebAssets.xml
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.exe
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.deps.json
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.runtimeconfig.json
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.runtimeconfig.dev.json
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ref\Server.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.Views.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Server.Views.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\BlazorAnimate.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Humanizer.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Blazor.HttpClient.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.JSInterop.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\dotnet-aspnet-codegenerator-design.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Syncfusion.Blazor.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Syncfusion.ExcelExport.Net.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Syncfusion.Licensing.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Syncfusion.PdfExport.Net.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Composition.AttributedModel.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Composition.Convention.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Composition.Hosting.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Composition.Runtime.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Composition.TypedParts.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.IO.Pipelines.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Runtime.Caching.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Share.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\bin\Debug\net5.0\Share.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.csprojAssemblyReference.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.AssemblyInfoInputs.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.AssemblyInfo.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.csproj.CoreCompileInputs.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorComponent.input.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Customers\CustomerDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Customers\CustomerList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderDetail.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Orders\OrderList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Products\ProductList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\ShipInfoes\ShipInfoDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\ShipInfoes\ShipInfoList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Vouchers\VoucherList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Shared\LoginControl.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Shared\LoginLayout.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorComponent.output.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\RazorDeclaration\Server.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.TagHelpers.input.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.TagHelpers.output.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorCoreGenerate.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\App.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Customers\CustomerDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Customers\CustomerList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderDetail.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Orders\OrderList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Products\ProductList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\ShipInfoes\ShipInfoDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\ShipInfoes\ShipInfoList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Users\UserDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Users\UserList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherDialog.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Vouchers\VoucherList.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Shared\LoginControl.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Shared\LoginLayout.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\CheckLogin.cshtml.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\Logout.cshtml.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorAssemblyInfo.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.Manifest.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\staticwebassets\Server.StaticWebAssets.xml
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\bundle\Server.styles.css
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\scopedcss\projectbundle\Server.bundle.scp.css
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorTargetAssemblyInfo.cache
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.RazorTargetAssemblyInfo.cs
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.Views.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.csproj.CopyComplete
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\ref\Server.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache

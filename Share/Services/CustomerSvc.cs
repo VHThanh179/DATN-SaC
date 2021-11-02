@@ -92,12 +92,42 @@ namespace Share.Services
 
         }
 
-        public async Task<Customer> LoginAsync(ViewWebLogin login)
+        public async Task<Customer> LoginAsync(ViewWebLogin viewWebLogin)
         {
-            var acc = await _context.Customers.Where(c => c.Email.Equals(login.Email)
-                    && c.Password.Equals(_encodeHelper.Encode(login.Password))
+            var acc = await _context.Customers.Where(c => c.Email.Equals(viewWebLogin.Email)
+                    && c.Password.Equals(_encodeHelper.Encode(viewWebLogin.Password))
                     ).FirstOrDefaultAsync();
             return acc;
+        }
+
+        //sync
+        public List<Customer> GetAllCustomer()
+        {
+            return _context.Customers.ToList();
+        }
+
+        public Customer GetCustomer(int id)
+        {
+            Customer customer = null;
+            customer = _context.Customers.Find(id);
+            customer.ConfirmPassword = customer.Password;
+            return customer;
+        }
+
+        public int EditCustomer(int id, Customer customer)
+        {
+            int ret = 0;
+            try
+            {
+                _context.Update(customer);
+                _context.SaveChanges();
+                ret = customer.CustomerId;
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
         }
     }
 }

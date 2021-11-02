@@ -1,29 +1,70 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Server</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="productlist">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Product
-            </NavLink>
-        </li>
-    </ul>
-</div>
+﻿
+@*<div id="wrapper" class="@NavMenuCssClass" @onclick="ToggleNavMenu">*@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">SaC</div>
+    </a>
+    <hr class="sidebar-divider my-0">
+    <li class="nav-item">
+        <a class="nav-link" href="" Match="NavLinkMatch.All">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/productlist">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Sản phẩm</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/orderlist">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Đơn hàng</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/customerlist">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Khách hàng</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/userlist">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Quản lý</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/voucherlist">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Phiếu giảm giá</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Thống kê</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/shipinfolist">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Thông tin vận chuyển</span>
+        </a>
+    </li>
+</ul>
+@*</div>*@
 
 @code {
     private bool collapseNavMenu = true;

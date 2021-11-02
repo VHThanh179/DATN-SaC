@@ -1,0 +1,9 @@
+﻿@page "/loginControl"
+@using System.Web;
+
+<AuthorizeView>
+    <Authorized>
+        <b>Xin chào, @context.User.Identity.Name !</b>
+        <a href="/logout?returnUrl=/" target="_top">Đăng xuất</a>
+    </Authorized>
+</AuthorizeView>

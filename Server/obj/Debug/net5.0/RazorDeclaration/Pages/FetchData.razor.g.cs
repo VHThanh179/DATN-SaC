@@ -83,6 +83,13 @@ using Server.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\FetchData.razor"
 using Server.Data;
 
