@@ -4,7 +4,7 @@
 @using System.Net;
 @using Newtonsoft.Json;
 @using Share.Models;
-@layout WebLayout;
+@layout InnerPageLayout;
 @inject NavigationManager NavigationManager
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
@@ -127,43 +127,43 @@
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title text-center fw-bold">Thông tin Khách hàng</h5>
-                                <EditForm Model="@customer" OnSubmit="@SubmitForm" class="form-signin">
+                            <h5 class="card-title text-center fw-bold">ĐĂNG NHẬP HỆ THỐNG</h5>
+                                <EditForm Model="@cus" OnSubmit="@SubmitForm" class="form-signin">
                                     <DataAnnotationsValidator />
-                                    <input type="hidden" @bind="customer.CustomerId" />
+                                    <input type="hidden" @bind="cus.CustomerId" />
                                     <div class="form-label-group">
-                                        <input type="text" id="inputEmail" @bind="@customer.Email" class="form-control">
+                                        <input type="text" id="inputEmail" @bind="@cus.Email" class="form-control">
                                         <label class="control-label">Địa chỉ Email</label>
-                                        <ValidationMessage For="@(() => customer.Email)" />
+                                        <ValidationMessage For="@(() => cus.Email)" />
                                     </div>
 
                                     <div class="form-label-group">
-                                        <input type="text" id="inputFullname" @bind="@customer.FullName" class="form-control">
+                                        <input type="text" id="inputFullname" @bind="@cus.FullName" class="form-control">
                                         <label class="control-label">Họ tên</label>
-                                        <ValidationMessage For="@(() => customer.FullName)" />
+                                        <ValidationMessage For="@(() => cus.FullName)" />
                                     </div>
 
                                     <div class="form-label-group">
-                                        <input type="text" id="inputEmail" @bind="@customer.DoB" class="form-control">
+                                        <input type="text" id="inputEmail" @bind="@cus.DoB" class="form-control">
                                         <label class="control-label">Ngày sinh</label>
-                                        <ValidationMessage For="@(() => customer.DoB)" />
+                                        <ValidationMessage For="@(() => cus.DoB)" />
                                     </div>
 
                                     <div class="form-label-group">
-                                        <input type="text" id="inputEmail" @bind="@customer.Address" class="form-control">
+                                        <input type="text" id="inputEmail" @bind="@cus.Address" class="form-control">
                                         <label class="control-label">Địa chỉ</label>
-                                        <ValidationMessage For="@(() => customer.Address)" />
+                                        <ValidationMessage For="@(() => cus.Address)" />
                                     </div>
 
                                     <div class="form-label-group">
-                                        <input type="text" id="inputEmail" @bind="@customer.PhoneNumber" class="form-control">
+                                        <input type="text" id="inputEmail" @bind="@cus.PhoneNumber" class="form-control">
                                         <label class="control-label">Số điện thoại</label>
-                                        <ValidationMessage For="@(() => customer.PhoneNumber)" />
+                                        <ValidationMessage For="@(() => cus.PhoneNumber)" />
                                     </div>
 
                                     <div class="d-grid">
                                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Lưu</button>
-                                        <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
+                                        <button class="btn btn-lg btn-danger btn-block text-uppercase" @onclick="@Cancel" value="Thoát"></button>
                                     </div>
                                 </EditForm>
                         </div>
@@ -176,10 +176,10 @@
 
 @code {
     [Parameter]
-    public string id { get; set; }
-
+    public string id { get; set;}
     protected string imgUrl = "";
-    public Customer customer;
+    protected string temp = "";
+    public Customer cus;
 
     protected override async Task OnInitializedAsync()
     {
@@ -192,7 +192,7 @@
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             imgUrl = config.GetSection("API")["ImgUrl"].ToString();
             var accessToken = sessionStorage.GetItem<string>("AccessToken");
-            customer = new Customer();
+            cus = new Customer();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
@@ -201,7 +201,7 @@
                 using (var response = await client.GetAsync("Cus/?id=" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
         }
