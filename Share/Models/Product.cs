@@ -47,9 +47,8 @@ namespace Share.Models
         public IBrowserFile ImageFile { get; set; }
 
         [Required(ErrorMessage = "Mời nhập thông tin mô tả sản phẩm")]
-        [StringLength(500)]
         [Display(Name = "Mô tả")]
-        [Column(TypeName = "nvarchar(500)")]
+        [Column(TypeName = "nvarchar(max)")]
         public string Description { get; set; }
 
         [Display(Name = "Đang phục vụ")]

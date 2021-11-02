@@ -83,6 +83,13 @@ using Server.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserList.razor"
 using Share.Models;
 
@@ -106,16 +113,26 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserList.razor"
+#line 67 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserList.razor"
        
+    [Parameter]
+    public string SearchString { get; set; }
     public List<User> users;
     protected override void OnInitialized()
     {
         users = _userService.GetAllUser();
     }
-    private void Delete(int id)
-    {
 
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            users = _userService.GetAllUser().Where(x => x.FullName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+        }
+        else
+        {
+            users = _userService.GetAllUser();
+        }
     }
 
 #line default

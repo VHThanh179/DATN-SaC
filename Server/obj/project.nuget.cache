@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Vsy0RAYMER2d0RpGe3mXSIRvGtoPCD7wLQLLFB41yAltQqPl9QbtLwSQm9dpqm4zm6tmFHWMIhzdhR7ryMM8yw==",
+  "dgSpecHash": "6/LpU2JU0qWNyIr0lzm40hjG/gcjU19K8P2xJ6NaQKzyQoq9j07rqufxRGyUVtszt4od4OzPQH+lORcoFCj6rw==",
   "success": true,
   "projectFilePath": "D:\\DATN\\Project\\SaCBackpack\\Server\\Server.csproj",
   "expectedPackageFiles": [
@@ -85,8 +85,13 @@
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\minver\\2.0.0\\minver.2.0.0.nupkg.sha512",
-    "C:\\Users\\Admins\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.blazor\\19.3.0.47\\syncfusion.blazor.19.3.0.47.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.excelexport.net.core\\19.3.0.47\\syncfusion.excelexport.net.core.19.3.0.47.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.licensing\\19.3.0.47\\syncfusion.licensing.19.3.0.47.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.pdfexport.net.core\\19.3.0.47\\syncfusion.pdfexport.net.core.19.3.0.47.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",

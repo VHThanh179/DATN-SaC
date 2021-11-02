@@ -22,7 +22,7 @@ namespace Share.Services
             return voucher;
         }
 
-        public async Task<List<Voucher>> GetVouchersAsync()
+        public async Task<List<Voucher>> GetAllVoucherAsync()
         {
             var list = await _context.Vouchers.ToListAsync();
             return list;
@@ -45,16 +45,6 @@ namespace Share.Services
             int value = 0;
             try
             {
-                //Voucher _voucher = null;
-                //_voucher = _context.Vouchers.Find(id);
-
-                //_voucher.VoucherCode = voucher.VoucherCode;
-                //_voucher.VoucherQuantity = voucher.VoucherQuantity;
-                //_voucher.StartDate = voucher.StartDate;
-                //_voucher.EndDate = voucher.EndDate;
-                //_voucher.CategoryDiscount = voucher.CategoryDiscount;
-                //_voucher.Value = voucher.Value;
-
                 _context.Update(voucher);
                 await _context.SaveChangesAsync();
                 value = voucher.VoucherId;

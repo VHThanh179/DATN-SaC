@@ -154,16 +154,19 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 190 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
+#line 203 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
        
     private string emailAddress;
     public Cart orderCart;
     private double totalCost = 0;
     protected string imgUrl = "";
     protected string temp = "";
+    public List<Voucher> voucherlist;
 
     protected override void OnInitialized()
     {
+        voucherlist = new List<Voucher>();
+
         emailAddress = sessionStorage.GetItem<string>("Email");
         var cart = sessionStorage.GetItem<string>("cart");
         if (cart == null)
@@ -175,6 +178,30 @@ using Share.Helpers;
             orderCart = JsonConvert.DeserializeObject<Cart>(cart);
         }
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    }
+
+    private void PlusQuantity(CartItem item)
+    {
+        item.Quantity++;
+    }
+    private void MinusQuantity(CartItem item)
+    {
+        if (item.Quantity > 0)
+        {
+            item.Quantity--;
+        }
+    }
+
+    private void PlusQuantityAndUpdateCart(CartItem item)
+    {
+        PlusQuantity(item);
+        UpdateCart(item);
+    }
+
+    private void MinusQuantityAndUpdateCart(CartItem item)
+    {
+        MinusQuantity(item);
+        UpdateCart(item);
     }
 
     private void UpdateCart(CartItem item)
@@ -207,7 +234,7 @@ using Share.Helpers;
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode == HttpStatusCode.OK)
             {
 
             }
@@ -233,6 +260,14 @@ using Share.Helpers;
         return total;
     }
 
+    private bool flag = false;
+    private void ChangeDisplay()
+    {
+        if (!flag)
+            flag = true;
+        else
+            flag = false;
+    }
 
 #line default
 #line hidden

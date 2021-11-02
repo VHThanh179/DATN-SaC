@@ -1,0 +1,15 @@
+﻿@page "/logout"
+@using System.Net;
+@using System.Web;
+@using System.ComponentModel.DataAnnotations
+@layout InnerPageLayout
+@inject NavigationManager NavigationManager
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        sessionStorage.Clear();
+        NavigationManager.NavigateTo("/");
+    }
+}

@@ -39,7 +39,7 @@ namespace API.Controllers
             }
             catch
             {
-                return BadRequest();
+                //return BadRequest();
             }
             return Ok(1);
         }
@@ -55,7 +55,7 @@ namespace API.Controllers
             }
             catch
             {
-                return BadRequest();
+                //return BadRequest();
             }
             return Ok(1);
         }

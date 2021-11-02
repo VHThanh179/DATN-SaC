@@ -10,6 +10,20 @@
 }
 else
 {
+    <div class="text-right">
+        <a style="text-decoration:none;" href="/userdialog/0">
+            <button type="button" class="btn btn-success btn-circle btn-md"><i class="fa fa-plus" style="color:white;font-size:20px;"></i></button>
+        </a>
+        <br />
+        <br />
+        <div class="">
+            <input type="text" @bind="@SearchString" />
+            <button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>
+            <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+        </div>
+        <br />
+        <br />
+    </div>
 
     <table class="table table-hover text-center">
         <thead class="thead-dark">
@@ -51,13 +65,23 @@ else
     </table>
 }
 @code {
+    [Parameter]
+    public string SearchString { get; set; }
     public List<User> users;
     protected override void OnInitialized()
     {
         users = _userService.GetAllUser();
     }
-    private void Delete(int id)
-    {
 
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            users = _userService.GetAllUser().Where(x => x.FullName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+        }
+        else
+        {
+            users = _userService.GetAllUser();
+        }
     }
 }
