@@ -6,11 +6,24 @@
 <h1 class="font-weight-bold text-center">Danh sách người dùng</h1>
 @if (users == null)
 {
-    <p><em>Loading ...</em></p>
+    <p><em>Đang tải ...</em></p>
 }
 else
 {
-
+    <div class="text-right">
+        <a style="text-decoration:none;" href="userdialog/0">
+            <button type="button" class="btn btn-success btn-circle btn-md"><i class="fa fa-plus" style="color:white;font-size:20px;"></i></button>
+        </a>
+        <br />
+        <br />
+        <div class="">
+            <input type="text" @bind="@SearchString" />
+            <button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>
+            <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+        </div>
+        <br />
+        <br />
+    </div>
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
@@ -42,22 +55,41 @@ else
                             <span>Không hoạt động</span>
                         }
                     </td>
-                    <td>
-                        <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a>
-                    </td>
+                    <AuthorizeView>
+                        <Authorized>
+                            @if (context.User.IsInRole("Manager"))
+                            {
+                                <td>
+                                    <a class="btn btn-info" href="/userdialog/@item.UserId">Sửa</a>
+                                </td>
+                            }
+                        </Authorized>
+                    </AuthorizeView>
                 </tr>
             }
         </tbody>
     </table>
 }
 @code {
+    [Parameter]
+    public string SearchString { get; set; }
     public List<User> users;
+
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            users = _userService.GetAllUser().Where(x => x.UserName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+        }
+        else
+        {
+            users = _userService.GetAllUser();
+        }
+    }
+
     protected override void OnInitialized()
     {
         users = _userService.GetAllUser();
     }
-    private void Delete(int id)
-    {
-
-    }
+}
 }

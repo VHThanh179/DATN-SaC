@@ -1,5 +1,13 @@
 ﻿@page "/login"
+@using System.Web;
+@using System.Net;
+@using System.ComponentModel.DataAnnotations;
+@using Share.Models.ViewModels
 @layout InnerPageLayout
+@inject NavigationManager NavigationManager
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject IJSRuntime JSRuntime
 <style>
       :root {
           --input-padding-x: 1.5rem;
@@ -120,14 +128,14 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center fw-bold">ĐĂNG NHẬP HỆ THỐNG</h5>
-                            <form class="form-signin">
+                            <form class="form-signin" @onsubmit="Checklogin">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                    <input type="text" id="inputEmail" @bind="@email" class="form-control" placeholder="Email address" required autofocus>
                                     <label for="inputEmail">Địa chỉ mail</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                    <input type="password" id="inputPassword" @bind="@password" @onkeypress="Enter" class="form-control" placeholder="Password" required>
                                     <label for="inputPassword">Mật khẩu</label>
                                 </div>
 
@@ -138,6 +146,10 @@
                                 <div class="d-grid">
                                     <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit">Đăng nhập</button>
                                 </div>
+                                @if (!string.IsNullOrEmpty(error))
+                                {
+                                    <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
+                                }
                                 <hr class="my-4">
                                 <div class="d-grid gap-2">
                                     <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Đăng nhập với Google</button>
@@ -153,5 +165,75 @@
 </Animate>
 
 @code {
+    private bool loading;
+    private string error;
+    string email = "";
+    string password = "";
+    private string name;
+    protected override void OnInitialized()
+    {
+
+    }
+    private string Encode(string param)
+    {
+        return HttpUtility.UrlEncode(param);
+    }
+    public void Enter(KeyboardEventArgs e)
+    {
+        if(e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            if(password != string.Empty || password != "")
+            {
+                Checklogin();
+            }
+        }
+    }
+    private async Task Checklogin()
+    {
+        error = "";
+        if (email == "")
+        {
+            error = " - Bạn cần nhập email.";
+        }
+        if (password == "")
+        {
+            error += (error == "" ? "" : "<br/>") + " - Bạn cần nhập password.";
+        }
+        if (error == "")
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            using (var client = new HttpClient())
+            {
+                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = email, Password = password };
+                client.DefaultRequestHeaders.Add("Access-Control-Alow-Origin", "*");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin),
+                    System.Text.Encoding.UTF8,
+                    "application/json");
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "Token", content);
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    error += (error == "" ? "" : "<br/>") + "- Lỗi khi gọi API.";
+
+                }
+                else
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ViewToken>>(apiResponse);
+                    if (list.Count > 0)
+                    {
+                        var viewToken = list[0];
+                        var accessToken = viewToken.Token;
+                        sessionStorage.SetItem("CusName", viewToken.customerName);
+                        sessionStorage.SetItem("customerId", viewToken.customerID);
+                        sessionStorage.SetItem("Email", email);
+                        sessionStorage.SetItem("AccessToken", accessToken);
+                        //await JSRuntime.InvokeAsync<object>("refreshMenu", new { email = email });
+                        NavigationManager.NavigateTo("/", true);
+
+                    }
+                }
+            }
+        }
+    }
 
 }

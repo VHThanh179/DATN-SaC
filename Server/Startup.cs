@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Syncfusion.Blazor;
 
 namespace Server
 {
@@ -46,6 +47,8 @@ namespace Server
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton(Configuration.GetSection("MailSettings").Get<MailSettings>());
+
             services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 , b => b.MigrationsAssembly("Server")));
             services.AddTransient<IProductSvc, ProductSvc>();
@@ -57,15 +60,23 @@ namespace Server
             services.AddTransient<IOrderDetailsSvc, OrderDetailsSvc>();
             services.AddTransient<ICustomerSvc, CustomerSvc>();
 
+
             services.AddHttpContextAccessor();
             services.AddScoped<HttpContextAccessor>();
             services.AddHttpClient();
             services.AddScoped<HttpClient>();
+            services.AddScoped<IMailSvc, MailSvc>();
+
+            //syncfusion
+            services.AddSyncfusionBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTI3NzMyQDMxMzkyZTMzMmUzMENjWmFkNktSdXQ0REpjVnRRUHJ5TUVNbXRBUGVDSzY2aWZvUXBmT05pVVE9");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

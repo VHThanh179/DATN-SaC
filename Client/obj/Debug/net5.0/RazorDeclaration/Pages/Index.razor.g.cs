@@ -118,7 +118,14 @@ using Share.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+using Share.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -134,8 +141,23 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 228 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
-             
+#line 9 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+           
+    protected async override Task OnAfterRenderAsync(bool fistRender)
+    {
+        if (fistRender)
+        {
+            await JSRuntime.InvokeAsync<object>("initializeCarousel");
+            fistRender = false;
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 313 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+      
 
     public List<Product> products;
     protected string imgUrl = "";
@@ -160,9 +182,80 @@ using Newtonsoft.Json;
         }
     }
 
+    private void AddCart(int id)
+    {
+        //var cart = HttpContext.Session.GetString("cart");//get key cart
+        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+        if (cart == null)
+        {
+            var product = products.Where(u => u.ProductId == id).FirstOrDefault();
+            List<CartItem> listCart = new List<CartItem>()
+    {
+                    new CartItem
+                    {
+                        product = product,
+                        Quantity = 1,
+                        Price = product.Price
+                    }
+            };
+
+            Cart orderCart = new Cart()
+            {
+                ListViewCart = listCart,
+                Total = Calculate(listCart)
+            };
+
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
+        }
+        else
+        {
+            var product = products.Where(u => u.ProductId == id).FirstOrDefault();
+            Cart orderCart = JsonConvert.DeserializeObject<Cart>(cart);
+            bool check = true;
+            for (int i = 0; i < orderCart.ListViewCart.Count; i++)
+            {
+                if (orderCart.ListViewCart[i].product.ProductId == id)
+                {
+                    orderCart.ListViewCart[i].Quantity++;
+                    orderCart.ListViewCart[i].Price = product.Price * orderCart.ListViewCart[i].Quantity;
+                    check = false;
+                }
+            }
+
+            if (check)
+            {
+                orderCart.ListViewCart.Add(new CartItem
+                {
+                    product = product,
+                    Quantity = 1,
+                    Price = product.Price * 1
+                });
+            }
+            orderCart.Total = Calculate(orderCart.ListViewCart);
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+        }
+    }
+
+    private float Calculate(List<CartItem> listCart)
+    {
+        float total = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                total += listCart[i].Price;
+            }
+        }
+        return total;
+    }
+
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.JSInterop.IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }

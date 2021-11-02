@@ -8,11 +8,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Share", "Share\Share.csproj", "{D4DE6B5D-FC4D-4478-844F-F95CE8B322F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{B7C3EE87-5585-4A89-8852-1C818A5B0F45}"
-<<<<<<< HEAD
-=======
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{6545853B-7A97-47BC-B780-BCCE34D74240}"
->>>>>>> Thanh-api
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

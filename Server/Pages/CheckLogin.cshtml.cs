@@ -20,6 +20,7 @@ namespace Server.Pages
     {
         [Inject]
         public Share.Interfaces.IUserSvc _userService { get; set; }
+        public static string role { get; set; }
         public CheckLoginModel(Share.Interfaces.IUserSvc userSvc)
         {
             _userService = userSvc;
@@ -39,13 +40,14 @@ namespace Server.Pages
             if (user != null)
             {
                 flagLogin = true;
+                role = user.Roles.ToString();
             }
             if (flagLogin)
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, paramUsername),
-                    new Claim(ClaimTypes.Role, "Admin")
+                    new Claim(ClaimTypes.Name, user.FullName),
+                    new Claim(ClaimTypes.Role, user.Roles.ToString())
                 };
                 var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var authProperties = new AuthenticationProperties

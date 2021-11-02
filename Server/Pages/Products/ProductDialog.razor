@@ -2,6 +2,7 @@
 @using Share.Models
 @using System.IO;
 @using Microsoft.AspNetCore.Hosting
+@using Syncfusion.Blazor.RichTextEditor
 @layout MainLayout
 @inject Share.Interfaces.IProductSvc _productSvc
 @inject NavigationManager navigation
@@ -54,8 +55,9 @@
 
             <div class="form-group">
                 <label class="control-label">Thông tin mô tả</label>
-                <textarea class="form-control" @bind="product.Description" cols="30" rows="15" maxlength="500"></textarea>
-                @*<input @bind="product.Description" class="form-control"/>*@
+                <SfRichTextEditor @bind-Value="product.Description">
+                    <RichTextEditorToolbarSettings Items="Toolbars" />
+                </SfRichTextEditor>
                 <ValidationMessage For="@(() => product.Description)" />
             </div>
 
@@ -67,12 +69,33 @@
     </div>
 </div>
 
+
+
+
 @code {
+
     [Parameter]
     public string id { get; set; }
 
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
+
+    public List<ToolbarItemModel> Toolbars = new List<ToolbarItemModel>()
+        {
+        new ToolbarItemModel() { Command = ToolbarCommand.Bold },
+        new ToolbarItemModel() { Command = ToolbarCommand.Italic },
+        new ToolbarItemModel() { Command = ToolbarCommand.Underline },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontSize },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontColor },
+        new ToolbarItemModel() { Command = ToolbarCommand.LowerCase },
+        new ToolbarItemModel() { Command = ToolbarCommand.UpperCase },
+        new ToolbarItemModel() { Command = ToolbarCommand.Alignments },
+        new ToolbarItemModel() { Command = ToolbarCommand.CreateLink },
+        new ToolbarItemModel() { Command = ToolbarCommand.Undo },
+        new ToolbarItemModel() { Command = ToolbarCommand.Redo }
+        };
+
+
     protected override void OnInitialized()
     {
         if (string.IsNullOrWhiteSpace(id) || id == "0")

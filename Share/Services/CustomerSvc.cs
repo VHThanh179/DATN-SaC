@@ -92,10 +92,10 @@ namespace Share.Services
 
         }
 
-        public async Task<Customer> LoginAsync(ViewWebLogin login)
+        public async Task<Customer> LoginAsync(ViewWebLogin viewWebLogin)
         {
-            var acc = await _context.Customers.Where(c => c.Email.Equals(login.Email)
-                    && c.Password.Equals(_encodeHelper.Encode(login.Password))
+            var acc = await _context.Customers.Where(c => c.Email.Equals(viewWebLogin.Email)
+                    && c.Password.Equals(_encodeHelper.Encode(viewWebLogin.Password))
                     ).FirstOrDefaultAsync();
             return acc;
         }

@@ -82,6 +82,13 @@ using Server.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -90,10 +97,9 @@ using Server.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "D:\DATN\Project\SaCBackpack\Server\Shared\NavMenu.razor"
+#line 73 "D:\DATN\Project\SaCBackpack\Server\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
-
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()

@@ -23,5 +23,8 @@ namespace Share.Interfaces
         int AddUser(User user);
         int EditUser(int id, User user);
         User Login(ViewLogin viewLogin);
+        User GetUserbyMail(string email);
+        int EditUserbyMail(int id, User user);
+        bool CheckEmail(string email);
     }
 }

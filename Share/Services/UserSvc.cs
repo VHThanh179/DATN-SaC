@@ -115,6 +115,14 @@ namespace Share.Services
             return user;
         }
 
+
+        public User GetUserbyMail(string email)
+        {
+            User user = null;
+            user = _context.Users.Where(e => e.Email == email).FirstOrDefault();
+            return user;
+        }
+
         public int AddUser(User user)
         {
             int ret = 0;
@@ -157,6 +165,40 @@ namespace Share.Services
                && u.Password.Equals(_encodeHelper.Encode(login.Password))
                ).FirstOrDefault();
             return acc;
+        }
+
+        public int EditUserbyMail(int id, User user)
+        {
+            int ret = 0;
+            try
+            {
+                user.Password = _encodeHelper.Encode(user.Password);
+                user.ConfirmPass = user.Password;
+                _context.Update(user);
+                _context.SaveChanges();
+                ret = user.UserId;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ret = 0;
+            }
+            return ret;
+        }
+
+        public bool CheckEmail(string email)
+        {
+            User user = new User();
+            user = _context.Users.Where(e => e.Email == email).FirstOrDefault();
+            if (user == null)
+            {
+                return false;
+            }
+            if (user.Email == email)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

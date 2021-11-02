@@ -131,6 +131,39 @@ using Blazored.Modal.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 111 "D:\DATN\Project\SaCBackpack\Client\Shared\InnerPageLayout.razor"
+       
+    //string email;
+    //int customerid;
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    email = sessionStorage.GetItem<string>("Email");
+
+    //    customerid = sessionStorage.GetItem<int>("customerId");
+    //}
+    //protected void o()
+    //{
+    //    email = sessionStorage.GetItem<string>("Email");
+    //}
+    //protected void Logout()
+    //{
+    //    sessionStorage.RemoveItem("AccessToken");
+    //    sessionStorage.RemoveItem("Email");
+    //    NavigationManager.NavigateTo("/");
+    //}
+    //protected void Logout()
+    //{
+    //    sessionStorage.RemoveItem("AccessToken");
+    //    sessionStorage.RemoveItem("Email");
+    //    navigationManager.NavigateTo("/", true);
+    //}
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
 }
 #pragma warning restore 1591
