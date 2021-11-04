@@ -22,6 +22,27 @@
           "buildMultiTargeting/BlazorAnimate.props": {}
         }
       },
+      "Blazored.Modal/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6",
+          "Microsoft.AspNetCore.Components.Web": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6",
+          "Microsoft.JSInterop.WebAssembly": "3.2.1"
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Modal.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Modal.props": {}
+        }
+      },
       "DevExpress.Data/20.1.3": {
         "type": "package",
         "dependencies": {
@@ -1103,6 +1124,18 @@
         },
         "runtime": {
           "lib/net5.0/Microsoft.JSInterop.dll": {}
+        }
+      },
+      "Microsoft.JSInterop.WebAssembly/3.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.JSInterop": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll": {}
         }
       },
       "Microsoft.Net.Http.Headers/2.2.0": {
@@ -2801,6 +2834,25 @@
         "staticwebassets/blazorAnimateInterop.js"
       ]
     },
+    "Blazored.Modal/6.0.1": {
+      "sha512": "a7FwVYU2nDL6MBvtBnkp8GSLTEdZU4eKcN8ZcfhQNh4tFwGRKsIvz9jN+6eIEGV1PdI2rbzHkif/igyOcfC8Zg==",
+      "type": "package",
+      "path": "blazored.modal/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.modal.6.0.1.nupkg.sha512",
+        "blazored.modal.nuspec",
+        "build/Blazored.Modal.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Blazored.Modal.props",
+        "buildTransitive/Blazored.Modal.props",
+        "icon.png",
+        "lib/netstandard2.1/Blazored.Modal.dll",
+        "staticwebassets/blazored-modal.css",
+        "staticwebassets/blazored.modal.js"
+      ]
+    },
     "DevExpress.Data/20.1.3": {
       "sha512": "kObojQdPntNdATsgavklJFGDblKADatUgBKR7CpTa08pCcAYrF5Pn4kEwWjPNJH2TaQnrYppyN8d9N9Fqx0ifg==",
       "type": "package",
@@ -4224,6 +4276,21 @@
         "microsoft.jsinterop.nuspec"
       ]
     },
+    "Microsoft.JSInterop.WebAssembly/3.2.1": {
+      "sha512": "wYKx4YeBTnv1bzKZtdsWH0O9OmmYm7zq56QkKCUdl1hDg4Gn0lmCDfYBC0r1k5/Wh64IveuWwpkyTWjqCmp4pg==",
+      "type": "package",
+      "path": "microsoft.jsinterop.webassembly/3.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll",
+        "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.xml",
+        "microsoft.jsinterop.webassembly.3.2.1.nupkg.sha512",
+        "microsoft.jsinterop.webassembly.nuspec"
+      ]
+    },
     "Microsoft.Net.Http.Headers/2.2.0": {
       "sha512": "iZNkjYqlo8sIOI0bQfpsSoMTmB/kyvmV2h225ihyZT33aTp48ZpF6qYnXxzSXmHt8DpBAwBTX+1s1UFLbYfZKg==",
       "type": "package",
@@ -5428,12 +5495,11 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
+      "sha512": "LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7949,12 +8015,11 @@
       ]
     },
     "System.Runtime.Serialization.Primitives/4.3.0": {
-      "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
+      "sha512": "2Z5t70a2SwMsfQDp9KOclaZNyQhfIga2gppq9lIUDM1A4ohTshn4JqT7ir8bvIhXgorWKYDAr6rPzEbi/nTGKg==",
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -9243,12 +9308,11 @@
       ]
     },
     "System.Xml.XmlSerializer/4.3.0": {
-      "sha512": "MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
+      "sha512": "VShQJhOxgD/5M2Z1IWm1vMaSqlbjo1zdFf8H7Ahte6bTvSUhUko/gDpAVVhGgGgTDeue4QyNg1fu1Zz2GKSEuQ==",
       "type": "package",
       "path": "system.xml.xmlserializer/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -9322,6 +9386,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "BlazorAnimate >= 3.0.0",
+      "Blazored.Modal >= 6.0.1",
       "Microsoft.AspNetCore.Authorization >= 5.0.10",
       "Microsoft.AspNetCore.Blazor.HttpClient >= 3.1.0-preview4.19579.2",
       "Microsoft.AspNetCore.Http >= 2.2.2",
@@ -9335,29 +9400,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admins\\.nuget\\packages\\": {},
+    "C:\\Users\\Navteiv\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DATN\\Project\\SaCBackpack\\Server\\Server.csproj",
+      "projectUniqueName": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "D:\\DATN\\Project\\SaCBackpack\\Server\\Server.csproj",
-      "packagesPath": "C:\\Users\\Admins\\.nuget\\packages\\",
-      "outputPath": "D:\\DATN\\Project\\SaCBackpack\\Server\\obj\\",
+      "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\Navteiv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admins\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+        "C:\\Users\\Navteiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -9370,8 +9433,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj": {
-              "projectPath": "D:\\DATN\\Project\\SaCBackpack\\Share\\Share.csproj"
+            "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj": {
+              "projectPath": "C:\\Users\\Navteiv\\Desktop\\DATN\\DATN-SaC\\Share\\Share.csproj"
             }
           }
         }
@@ -9389,6 +9452,10 @@
           "BlazorAnimate": {
             "target": "Package",
             "version": "[3.0.0, )"
+          },
+          "Blazored.Modal": {
+            "target": "Package",
+            "version": "[6.0.1, )"
           },
           "Microsoft.AspNetCore.Authorization": {
             "target": "Package",
@@ -9447,7 +9514,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

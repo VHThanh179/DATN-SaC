@@ -7,72 +7,108 @@
 @inject Share.Interfaces.IProductSvc _productSvc
 @inject NavigationManager navigation
 @inject IWebHostEnvironment env
+@inject IModalService modal
 
-<div class="row">
-    <div class="col-md-4 m-auto">
-        <h4 class="font-weight-bolder text-center">Thêm sản phẩm</h4>
+<style>
+    .my-custom-scrollbar {
+        position: relative;
+        height: 650px;
+        overflow: auto;
+    }
+
+    .textEditorScroll {
+        position: relative;
+        height: 175px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+
+    main {
+        height: 650px;
+    }
+</style>
+<main class="row table-wrapper-scroll-y my-custom-scrollbar">
+    <div class="col-10 m-auto">
         <EditForm Model="@product" OnValidSubmit="@SubmitForm">
             <DataAnnotationsValidator />
             <input type="hidden" @bind="product.ProductId" />
-            <div class="form-group">
-                <label class="control-label">Tên sản phẩm</label>
-                <input @bind="product.ProductName" class="form-control" />
-                <ValidationMessage For="@(() => product.ProductName)" />
-            </div>
-
-            <div class="form-group">
-                <label class="control-label">Giá</label>
-                <input @bind="product.Price" class="form-control" />
-                <ValidationMessage For="@(() => product.Price)" />
-            </div>
-
-            @*Phần hình ảnh*@
-            <div class="form-group">
-                <label class="control-label">Phân loại</label>
-                <InputSelect @bind-Value="@product.Category" class="form-control">
-                    <option value="@Category.Backpack">Ba lô</option>
-                    <option value="@Category.Accessories">Phụ kiện</option>
-                </InputSelect>
-            </div>
-
-            @if (product.Image != null)
-            {
-                <div class="form-group">
-                    <img src="images/Product/@product.Image" style="height:100px" />
+            <div class="row">
+                <div class="form-group col-6">
+                    <label class="control-label">Tên sản phẩm</label>
+                    <input @bind="product.ProductName" class="form-control" />
+                    <ValidationMessage For="@(() => product.ProductName)" />
                 </div>
-            }
 
-            <div class="form-group">
-                <label class="control-label">Chọn hình</label>
-                <InputFile class="form-control" OnChange="OnInputFileChange" />
+                <div class="form-group col-6">
+                    <label class="control-label">Giá</label>
+                    <input @bind="product.Price" class="form-control" />
+                    <ValidationMessage For="@(() => product.Price)" />
+                </div>
             </div>
 
-            <div class="form-group form-check">
-                <label class="form-check-label">
+            <div class="row">
+                @*Phần hình ảnh*@
+                <div class="form-group col-6">
+                    <label class="control-label">Phân loại</label>
+                    <InputSelect @bind-Value="@product.Category" class="form-control">
+                        <option value="@Category.Backpack">Ba lô</option>
+                        <option value="@Category.Accessories">Phụ kiện</option>
+                    </InputSelect>
+                </div>
+                <div class="form-group form-check col-6">
+                    <label class="form-check-label"> </label>
                     <input type="checkbox" class="form-check-input" @bind="product.Status" /> Trạng thái
-                </label>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="control-label">Thông tin mô tả</label>
-                <SfRichTextEditor @bind-Value="product.Description">
-                    <RichTextEditorToolbarSettings Items="Toolbars" />
-                </SfRichTextEditor>
-                <ValidationMessage For="@(() => product.Description)" />
+            <div class="row">
+                <div class="form-group col-6">
+                    <label class="control-label">Chọn hình</label>
+                    <InputFile class="form-control" OnChange="OnInputFileChange" />
+                </div>
+                @if (product.Image != null)
+                {
+                    <div class="form-group col-6">
+                        <img src="images/Product/@product.Image" style="height:100px" />
+                    </div>
+                }
             </div>
-
+            <div class="row">
+                <div class="form-group col-12">
+                    <label class="control-label">
+                        Thông tin mô tả
+                    </label>
+                    <div class="textEditorScroll table-wrapper-scroll-y">
+                        <SfRichTextEditor @bind-Value="product.Description">
+                            <RichTextEditorToolbarSettings Items="Toolbars" />
+                        </SfRichTextEditor>
+                        <ValidationMessage For="@(() => product.Description)" />
+                    </div>
+                </div>
+            </div>
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-info">Lưu</button>
-                <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
+                @if (id == "0")
+                {
+                    <button type="submit" class="btn btn-info">Thêm</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-info">Cập nhật</button>
+                }
+                <input type="button" class="ml-2 btn btn-primary" @onclick="@Cancel" value="Thoát" />
             </div>
         </EditForm>
     </div>
-</div>
+</main>
 
 
 
 
 @code {
+    [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 
     [Parameter]
     public string id { get; set; }
@@ -81,7 +117,7 @@
     IReadOnlyList<IBrowserFile> selectedFiles;
 
     public List<ToolbarItemModel> Toolbars = new List<ToolbarItemModel>()
-        {
+{
         new ToolbarItemModel() { Command = ToolbarCommand.Bold },
         new ToolbarItemModel() { Command = ToolbarCommand.Italic },
         new ToolbarItemModel() { Command = ToolbarCommand.Underline },
@@ -144,11 +180,12 @@
         {
             _productSvc.EditProduct(product.ProductId, product);
         }
-        navigation.NavigateTo("productlist");
+        navigation.NavigateTo("productlist", true);
     }
     private void Cancel()
     {
-        navigation.NavigateTo("productlist", true);
+        //navigation.NavigateTo("productlist", true);
+        ModalInstance.CloseAsync(ModalResult.Ok<Product>(product));
     }
 
     private void OnInputFileChange(InputFileChangeEventArgs e)
