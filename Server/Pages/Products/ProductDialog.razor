@@ -58,9 +58,12 @@
                         <option value="@Category.Accessories">Phụ kiện</option>
                     </InputSelect>
                 </div>
-                <div class="form-group form-check col-6">
-                    <label class="form-check-label"> </label>
-                    <input type="checkbox" class="form-check-input" @bind="product.Status" /> Trạng thái
+                <div class="form-group col-6">
+                    <label class="control-label">Trạng thái</label>
+                    <InputSelect @bind-Value="status" class="form-control">
+                        <option value="true">Còn hàng</option>
+                        <option value="false">Không còn hàng</option>
+                    </InputSelect>
                 </div>
             </div>
 
@@ -113,6 +116,8 @@
     [Parameter]
     public string id { get; set; }
 
+    private string status = null;
+
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
 
@@ -142,6 +147,14 @@
         else
         {
             product = _productSvc.GetProduct(int.Parse(id));
+            if (product.Status == true)
+            {
+                status = "true";
+            }
+            else
+            {
+                status = "false";
+            }
         }
     }
 
@@ -174,10 +187,12 @@
         }
         if (product.ProductId == 0)
         {
+            product.Status = bool.Parse(status);
             _productSvc.AddProduct(product);
         }
         else
         {
+            product.Status = bool.Parse(status);
             _productSvc.EditProduct(product.ProductId, product);
         }
         navigation.NavigateTo("productlist", true);

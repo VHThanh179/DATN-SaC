@@ -148,12 +148,14 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 110 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
+#line 113 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 
     [Parameter]
     public string id { get; set; }
+
+    private string status = null;
 
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
@@ -184,6 +186,14 @@ using Syncfusion.Blazor.RichTextEditor;
         else
         {
             product = _productSvc.GetProduct(int.Parse(id));
+            if (product.Status == true)
+            {
+                status = "true";
+            }
+            else
+            {
+                status = "false";
+            }
         }
     }
 
@@ -216,10 +226,12 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         if (product.ProductId == 0)
         {
+            product.Status = bool.Parse(status);
             _productSvc.AddProduct(product);
         }
         else
         {
+            product.Status = bool.Parse(status);
             _productSvc.EditProduct(product.ProductId, product);
         }
         navigation.NavigateTo("productlist", true);
