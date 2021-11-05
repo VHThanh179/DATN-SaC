@@ -161,12 +161,12 @@ using Share.Helpers;
     private double totalCost = 0;
     protected string imgUrl = "";
     protected string temp = "";
+    public string vouchercode;
+    public Voucher voucher = new Voucher();
     public List<Voucher> voucherlist;
 
     protected override void OnInitialized()
     {
-        voucherlist = new List<Voucher>();
-
         emailAddress = sessionStorage.GetItem<string>("Email");
         var cart = sessionStorage.GetItem<string>("cart");
         if (cart == null)
@@ -178,6 +178,23 @@ using Share.Helpers;
             orderCart = JsonConvert.DeserializeObject<Cart>(cart);
         }
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        voucherlist = new List<Voucher>();
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("Voucher"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                voucherlist = JsonConvert.DeserializeObject<List<Voucher>>(apiResponse);
+            }
+        }
     }
 
     private void PlusQuantity(CartItem item)
@@ -206,9 +223,30 @@ using Share.Helpers;
 
     private void UpdateCart(CartItem item)
     {
-        item.Price = item.Quantity * item.product.Price;
-        orderCart.Total = Calculate(orderCart.ListViewCart);
-        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+        double discount;
+        if (voucher.VoucherCode != null)
+        {
+            if (voucher.CategoryDiscount == CategoryDiscount.Percent)
+            {
+                discount = voucher.Value / 100;
+                item.Price = item.Quantity * item.product.Price;
+                orderCart.Total = Calculate(orderCart.ListViewCart) - (Calculate(orderCart.ListViewCart) * (float)discount);
+                sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            }
+            else
+            {
+                discount = voucher.Value;
+                item.Price = item.Quantity * item.product.Price;
+                orderCart.Total = Calculate(orderCart.ListViewCart) - (float)discount;
+                sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            }
+        }
+        else
+        {
+            item.Price = item.Quantity * item.product.Price;
+            orderCart.Total = Calculate(orderCart.ListViewCart);
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+        }
     }
 
     private void DeleteCart(CartItem item)
@@ -268,6 +306,21 @@ using Share.Helpers;
         else
             flag = false;
     }
+
+    private void CheckVoucher(Cart cart)
+    {
+        foreach (var item in voucherlist)
+        {
+            if (vouchercode == item.VoucherCode)
+            {
+                if (item.Status == true)
+                {
+                voucher = item;
+                UpdateCart(cart.ListViewCart.FirstOrDefault());
+                }
+            }
+        }
+}
 
 #line default
 #line hidden

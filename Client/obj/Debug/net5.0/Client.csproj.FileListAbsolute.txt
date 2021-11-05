@@ -1526,3 +1526,5 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\ref\Client.dll
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Client.pdb
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ChangePassword.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\ChangePassword.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ChangePassword.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\ChangePassword.razor.g.cs
