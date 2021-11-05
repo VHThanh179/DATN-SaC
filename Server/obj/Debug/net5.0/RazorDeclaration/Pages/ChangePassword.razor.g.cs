@@ -110,6 +110,20 @@ using Blazored.Modal.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(LoginLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/changepass")]
     public partial class ChangePassword : Microsoft.AspNetCore.Components.ComponentBase
@@ -119,6 +133,42 @@ using Blazored.Modal.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 41 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
+       
+    public string oldPass, newPass, confirmPass;
+
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    string id;
+    User user = new User();
+    protected override void OnInitialized()
+    {
+        id = AuthStat.Result.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        user = _userService.GetUser(int.Parse(id));
+    }
+
+    public void ChangePass()
+    {
+        if (!string.IsNullOrEmpty(oldPass) || !string.IsNullOrEmpty(newPass) || !string.IsNullOrEmpty(confirmPass))
+        {
+            if (string.Equals(user.Password, _encodeHelper.Encode(oldPass)))
+            {
+                if (string.Equals(newPass, confirmPass))
+                {
+                    user.Password = _encodeHelper.Encode(newPass);
+                    user.ConfirmPass = user.Password;
+                    _userService.EditUser(int.Parse(id), user);
+                }
+            }
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IEncodeHelper _encodeHelper { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }
     }
 }
 #pragma warning restore 1591
