@@ -139,7 +139,7 @@ using Pages;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 140 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 120 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
       
     string emailAddress;
     string cusName;

@@ -19,6 +19,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Syncfusion.Blazor;
+using Blazored.Modal;
 
 namespace Server
 {
@@ -43,7 +44,7 @@ namespace Server
             services.AddAuthentication(
                 CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
-
+            services.AddBlazoredModal();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
