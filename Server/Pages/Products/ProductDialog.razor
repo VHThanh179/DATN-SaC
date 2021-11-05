@@ -47,11 +47,18 @@
                 <InputFile class="form-control" OnChange="OnInputFileChange" />
             </div>
 
-            <div class="form-group form-check">
+            <div class="form-group">
+                <InputSelect @bind-Value="status" class="form-control">
+                    <option value="true">Còn hàng</option>
+                    <option value="false">Không còn hàng</option>
+                </InputSelect>
+            </div>
+
+            @*<div class="form-group form-check">
                 <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" @bind="product.Status" /> Trạng thái
                 </label>
-            </div>
+            </div>*@
 
             <div class="form-group">
                 <label class="control-label">Thông tin mô tả</label>
@@ -76,6 +83,8 @@
 
     [Parameter]
     public string id { get; set; }
+
+    public string status = null;
 
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
@@ -106,6 +115,14 @@
         else
         {
             product = _productSvc.GetProduct(int.Parse(id));
+            if (product.Status == true)
+            {
+                status = "true";
+            }
+            else
+            {
+                status = "false";
+            }
         }
     }
 
@@ -138,10 +155,12 @@
         }
         if (product.ProductId == 0)
         {
+            product.Status = bool.Parse(status);
             _productSvc.AddProduct(product);
         }
         else
         {
+            product.Status = bool.Parse(status);
             _productSvc.EditProduct(product.ProductId, product);
         }
         navigation.NavigateTo("productlist");

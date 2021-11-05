@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@using System.Security.Claims
 @inject NavigationManager NavigationManager
 @*<div class="page">*@
 @*<div class="sidebar">
@@ -57,10 +58,15 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/userdialog/">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Thông tin cá nhân
-                                </a>
+                                <AuthorizeView>
+                                    <Authorized>
+                                        <a class="dropdown-item" href="/userdialog/@context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value">
+                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Thông tin cá nhân
+                                        </a>
+                                    </Authorized>
+                                </AuthorizeView>
+                                
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cài đặt
