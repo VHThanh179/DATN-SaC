@@ -121,6 +121,13 @@ using Blazored.Modal.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(InnerPageLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/info")]
     public partial class Info : Microsoft.AspNetCore.Components.ComponentBase

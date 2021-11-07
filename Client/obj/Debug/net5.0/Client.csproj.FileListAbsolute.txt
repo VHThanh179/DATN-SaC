@@ -1528,3 +1528,11 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\RazorDeclaration\
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\ChangePassword.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ChangePassword.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\ChangePassword.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll.gz
+D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll.gz
+D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll
+D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\9gbM8AXU.gz
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\WwlFZZh9.gz
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Authentication.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Authentication.razor.g.cs

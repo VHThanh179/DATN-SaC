@@ -1,5 +1,8 @@
 ﻿@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject NavigationManager navigationManager
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject SignOutSessionStateManager SignOutManager
 @inherits LayoutComponentBase
 @inject IModalService modal
 @using Pages
@@ -30,28 +33,44 @@
                 </li>
                 <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">Sản phẩm</a></li>
                 <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Liên hệ</a></li>
-                @if (emailAddress != null && emailAddress != "")
-                {
-                    <li class="dropdown">
-                        <a style="cursor:pointer"><span>@cusName</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a class="nav-link " href="/info">Thông tin cá nhân</a></li>
-                            <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
-                            <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
-                            <li><a class="nav-link " href="/logout">Đăng xuất</a></li>
-                        </ul>
-                    </li>
-                }
-                else
-                {
-                    <li class="dropdown">
-                        <a style="cursor:pointer"><span>Tài khoản</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a class="nav-link " href="/login">Đăng nhập</a></li>
-                            <li><a class="nav-link " href="/register">Đăng ký</a></li>
-                        </ul>
-                    </li>
-                }
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="dropdown">
+                            <a style="cursor:pointer"><span>@context.User.Identity.Name</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a class="nav-link " href="/info">Thông tin cá nhân</a></li>
+                                <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
+                                <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
+                                <li><a class="nav-link " @onclick="BeginSignOut">Đăng xuất</a></li>
+                            </ul>
+                        </li>
+                    </Authorized>
+                    <NotAuthorized>
+                        @if (emailAddress != null && emailAddress != "")
+                        {
+                            <li class="dropdown">
+                                <a style="cursor:pointer"><span>@cusName</span> <i class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a class="nav-link " href="/info">Thông tin cá nhân</a></li>
+                                    <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
+                                    <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
+                                    <li><a class="nav-link " href="/logout">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="dropdown">
+                                <a style="cursor:pointer"><span>Tài khoản</span> <i class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a class="nav-link " href="/login">Đăng nhập</a></li>
+                                    <li><a class="nav-link " href="/register">Đăng ký</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </NotAuthorized>
+                </AuthorizeView>
+                
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -80,7 +99,7 @@
                         <p>
                             CVPM Quang Trung <br>
                             Quận 12, TP. HCM<br><br>
-                            
+
                         </p>
                     </div>
                 </div>
@@ -127,6 +146,12 @@
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
         cusName = sessionStorage.GetItem<string>("CusName");
+    }
+
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        navigationManager.NavigateTo($"authentication/logout");
     }
 
 }

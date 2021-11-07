@@ -124,6 +124,13 @@ using Blazored.Modal.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+#line default
+#line hidden
+#nullable disable
     public partial class ShipInfo : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client
+namespace Client.Pages
 {
     #line hidden
     using System;
@@ -125,26 +125,28 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Authentication.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 1 "D:\DATN\Project\SaCBackpack\Client\App.razor"
-using Microsoft.AspNetCore.Components.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-    public partial class App : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/authentication/{action}")]
+    public partial class Authentication : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 8 "D:\DATN\Project\SaCBackpack\Client\Pages\Authentication.razor"
+      
+    [Parameter] public string Action { get; set; }
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

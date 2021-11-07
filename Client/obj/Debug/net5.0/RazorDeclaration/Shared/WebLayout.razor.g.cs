@@ -125,7 +125,21 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
 using Pages;
 
 #line default
@@ -139,7 +153,7 @@ using Pages;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 120 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 139 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
       
     string emailAddress;
     string cusName;
@@ -152,11 +166,18 @@ using Pages;
         cusName = sessionStorage.GetItem<string>("CusName");
     }
 
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        navigationManager.NavigateTo($"authentication/logout");
+    }
+
 
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private SignOutSessionStateManager SignOutManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
