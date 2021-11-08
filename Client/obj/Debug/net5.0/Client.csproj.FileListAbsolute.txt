@@ -1536,3 +1536,13 @@ D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\9gbM8AXU.gz
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\WwlFZZh9.gz
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Authentication.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Authentication.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll.gz
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll.gz
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Authentication.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Checkout.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\Authentication.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\Checkout.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\build-gz\kMtMGKmo.gz
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\build-gz\BK+vfqho.gz
