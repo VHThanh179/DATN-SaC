@@ -1546,3 +1546,5 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\Authe
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\Checkout.razor.g.cs
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\build-gz\kMtMGKmo.gz
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\build-gz\BK+vfqho.gz
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ProductsPage.razor.g.cs
+C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\ProductsPage.razor.g.cs

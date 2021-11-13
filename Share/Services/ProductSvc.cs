@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Share.Common;
 using Share.Interfaces;
 using Share.Models;
+using Share.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,6 +124,12 @@ namespace Share.Services
                 ret = 0;
             }
             return ret;
+        }
+        public async Task<PagedList<Product>> GetPagingProducts(PagingParameter productParameters)
+        {
+            var products = await _context.Products.ToListAsync();
+            return PagedList<Product>
+                .ToPagedList(products, productParameters.PageNumber, productParameters.PageSize);
         }
     }
 }
