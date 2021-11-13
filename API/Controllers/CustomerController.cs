@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Share.Interfaces;
 using Share.Models;
 using System;
@@ -15,9 +16,11 @@ namespace API.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerSvc _customerSvc;
-        public CustomerController(ICustomerSvc customerSvc)
+        private readonly IEncodeHelper _encodeSvc;
+        public CustomerController(ICustomerSvc customerSvc, IEncodeHelper encodeSvc)
         {
             _customerSvc = customerSvc;
+            _encodeSvc = encodeSvc;
         }
 
         // GET: api/GetCustomer/5
@@ -25,6 +28,16 @@ namespace API.Controllers
         public async Task<ActionResult<Customer>> GetCustomer([FromQuery] int id)
         {
             return await _customerSvc.GetCustomerAsync(id);
+        }
+
+        // NOTE: Method encode pass cũ khách hàng nhập
+        // GET: api/Customer/GetPass/pass
+        // 
+        [Route("GetPass")]
+        [HttpGet]
+        public ActionResult<string> GetPass([FromQuery] string pass)
+        {
+            return _encodeSvc.Encode(pass);
         }
 
         // POST api/Customer
@@ -39,14 +52,15 @@ namespace API.Controllers
             }
             catch
             {
-                //return BadRequest();
+                return BadRequest();
             }
             return Ok(1);
         }
 
         // PUT api/Customer/5
         // To protect fcrom overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        // NOTE: Xóa id ở HTTPPUT
+        [HttpPut]
         public async Task<ActionResult<int>> UpdateCustomer(int id, Customer customer)
         {
             try

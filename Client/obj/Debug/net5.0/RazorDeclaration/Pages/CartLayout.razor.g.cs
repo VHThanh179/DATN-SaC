@@ -13,140 +13,140 @@ namespace Client.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 1 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 2 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 3 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 4 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 5 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 6 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 7 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 8 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 10 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Client;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 11 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Client.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 12 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Share.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 13 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using BlazorAnimate;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 14 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 15 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 16 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+#line 17 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
+#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
 using System.Net;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
 using Share.Models.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
 using Newtonsoft.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
 using Share.Helpers;
 
 #line default
@@ -161,13 +161,11 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 221 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
+#line 231 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
        
     private string emailAddress;
     public Cart orderCart;
-    private double totalCost = 0;
     protected string imgUrl = "";
-    protected string temp = "";
     public string vouchercode;
     public Voucher voucher = new Voucher();
     public List<Voucher> voucherlist;
@@ -263,34 +261,34 @@ using Share.Helpers;
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
     }
 
-    private async Task OrderCart()
-    {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangid = sessionStorage.GetItem<int>("khachhangId");
+    //private async Task OrderCart()
+    //{
+    //    var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+    //    imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    //    var accessToken = sessionStorage.GetItem<string>("AccessToken");
+    //    var khachhangid = sessionStorage.GetItem<int>("khachhangId");
 
-        orderCart.CustomerId = khachhangid;
+    //    orderCart.CustomerId = khachhangid;
 
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+    //    using (var client = new HttpClient())
+    //    {
+    //        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+    //        StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
+    //        client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+    //        HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
 
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
+    //        if (response.StatusCode == HttpStatusCode.OK)
+    //        {
 
-            }
-            else
-            {
-                sessionStorage.RemoveItem("cart");
-                await JSRuntime.InvokeAsync<object>("clearCart", "");
-                NavigationManager.NavigateTo("/history");
-            }
-        }
-    }
+    //        }
+    //        else
+    //        {
+    //            sessionStorage.RemoveItem("cart");
+    //            await JSRuntime.InvokeAsync<object>("clearCart", "");
+    //            NavigationManager.NavigateTo("/history");
+    //        }
+    //    }
+    //}
 
     private float Calculate(List<CartItem> listCart)
     {
@@ -303,15 +301,6 @@ using Share.Helpers;
             }
         }
         return total;
-    }
-
-    private bool flag = false;
-    private void ChangeDisplay()
-    {
-        if (!flag)
-            flag = true;
-        else
-            flag = false;
     }
 
     private void CheckVoucher(Cart cart)

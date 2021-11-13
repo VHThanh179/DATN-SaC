@@ -38,9 +38,7 @@
                         <li class="dropdown">
                             <a style="cursor:pointer"><span>@context.User.Identity.Name</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a class="nav-link " href="/info">Thông tin cá nhân</a></li>
                                 <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
-                                <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
                                 <li><a class="nav-link " style="cursor:pointer" @onclick="BeginSignOut">Đăng xuất</a></li>
                             </ul>
                         </li>
@@ -51,7 +49,7 @@
                             <li class="dropdown">
                                 <a style="cursor:pointer"><span>@cusName</span> <i class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a class="nav-link " href="/info">Thông tin cá nhân</a></li>
+                                    <li><a class="nav-link " href="/info/@customerId">Thông tin cá nhân</a></li>
                                     <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
                                     <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
                                     <li><a class="nav-link " href="/logout">Đăng xuất</a></li>
