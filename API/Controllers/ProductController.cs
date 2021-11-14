@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Share.Common;
 using Share.Interfaces;
 using Share.Models;
 using System;
@@ -25,7 +27,16 @@ namespace API.Controllers
         {
             return await _productSvc.GetAllProductAsync();
         }
-
+        [HttpGet]
+        [Route("/api/paging")]
+        public async Task<ActionResult<ProductDTO>> Get([FromQuery] PagingParameter productParameters)
+        {
+            var prodObj = new ProductDTO();
+            var products = await _productSvc.GetPagingProducts(productParameters);
+            prodObj.Products = products;
+            prodObj.TotalCount = products.TotalCount;
+            return Ok(prodObj); 
+        }
         // GET api/GetProduct/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)

@@ -32,7 +32,7 @@
                 <li>
                     <a class="nav-link" style="cursor:pointer" @onclick="@(() => modal.Show<CartLayout>("Thông tin giỏ hàng"))">Giỏ hàng</a>
                 </li>
-                <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">Sản phẩm</a></li>
+                <li><a href="/products" class="nav-link" style="cursor:pointer" >Sản phẩm</a></li>
                 <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Liên hệ</a></li>
                 <AuthorizeView>
                     <Authorized>

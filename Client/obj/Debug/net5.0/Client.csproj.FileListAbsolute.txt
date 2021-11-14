@@ -1518,6 +1518,8 @@ C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\Razor\Pages\Check
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\build-gz\kMtMGKmo.gz
 C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\obj\Debug\net5.0\build-gz\BK+vfqho.gz
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Checkout.razor.g.cs
-D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Checkout.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ProductsPage.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ShipInfoPage.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Checkout.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\ProductsPage.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\ShipInfoPage.razor.g.cs
