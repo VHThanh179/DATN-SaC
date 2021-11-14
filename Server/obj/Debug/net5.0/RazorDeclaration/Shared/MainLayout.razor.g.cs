@@ -89,6 +89,34 @@ using Syncfusion.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 12 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -97,7 +125,7 @@ using Syncfusion.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 113 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+#line 115 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     protected async override Task OnInitializedAsync()

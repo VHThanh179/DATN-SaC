@@ -86,6 +86,27 @@ using Syncfusion.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 12 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {

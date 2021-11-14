@@ -124,6 +124,13 @@ using Blazored.Modal.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+#line default
+#line hidden
+#nullable disable
     public partial class InnerPageLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -132,7 +139,7 @@ using Blazored.Modal.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 111 "D:\DATN\Project\SaCBackpack\Client\Shared\InnerPageLayout.razor"
+#line 91 "D:\DATN\Project\SaCBackpack\Client\Shared\InnerPageLayout.razor"
        
     //string email;
     //int customerid;

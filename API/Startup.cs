@@ -95,6 +95,8 @@ namespace API
 
             services.AddTransient<IOrderSvc, OrderSvc>();
 
+            services.AddTransient<IVoucherSvc, VoucherSvc>();
+
             services.AddCors(options => options.AddPolicy(
                   "_mypolicy", builder => builder
                   .AllowAnyOrigin()

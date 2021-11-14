@@ -1,8 +1,13 @@
-﻿@page "/info"
+﻿@page "/info/{id}"
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@using System.Net;
+@using Newtonsoft.Json;
+@using Share.Models;
+@layout WebLayout
 @inject NavigationManager NavigationManager
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
-@layout InnerPageLayout
 <style>
     :root {
         --input-padding-x: 1.5rem;
@@ -99,18 +104,9 @@
                 color: #777;
             }
 
-    .btn-google {
-        color: white;
-        background-color: #ea4335;
-    }
-
-    .btn-facebook {
-        color: white;
-        background-color: #3b5998;
-    }
 
     /* Fallback for Edge
-    -------------------------------------------------- */
+        -------------------------------------------------- */
 
 </style>
 <br />
@@ -122,46 +118,46 @@
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title text-center fw-bold">CẬP NHẬT THÔNG TIN</h5>
-                            <form class="form-signin">
-                                <hr class="my-4">
+                            <h5 class="card-title text-center fw-bold">Thông tin cá nhân</h5>
+                            <EditForm Model="@cus" OnValidSubmit="@SubmitForm" class="form-signin">
+                                <DataAnnotationsValidator />
+                                <input type="hidden" @bind="cus.CustomerId" />
                                 <div class="form-label-group">
-                                    <input type="text" id="inputEmail" class="form-control" placeholder="Địa chỉ mail" required autofocus>
-                                    <label for="inputEmail">Địa chỉ mail</label>
+                                    <input type="text" id="inputEmail" @bind="cus.Email" class="form-control" readonly>
+                                    <label class="control-label">Địa chỉ Email</label>
+                                    <ValidationMessage For="@(() => cus.Email)" />
+                                </div>
+
+
+                                <div class="form-label-group">
+                                    <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control">
+                                    <label class="control-label">Họ tên</label>
+                                    <ValidationMessage For="@(() => cus.FullName)" />
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="text" id="inputFullname" class="form-control" placeholder="Họ tên" required>
-                                    <label for="inputFullname">Họ tên</label>
+                                    <input type="date" id="inputEmail" @bind="cus.DoB" class="form-control">
+                                    <label class="control-label">Ngày sinh</label>
+                                    <ValidationMessage For="@(() => cus.DoB)" />
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="date" id="dob" class="form-control" placeholder="Ngày sinh" required>
-                                    <label for="dob">Ngày sinh</label>
+                                    <input type="text" id="inputEmail" @bind="cus.Address" class="form-control">
+                                    <label class="control-label">Địa chỉ</label>
+                                    <ValidationMessage For="@(() => cus.Address)" />
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="text" id="address" class="form-control" placeholder="Địa chỉ" required>
-                                    <label for="address">Địa chỉ</label>
+                                    <input type="text" id="inputEmail" @bind="cus.PhoneNumber" class="form-control">
+                                    <label class="control-label">Số điện thoại</label>
+                                    <ValidationMessage For="@(() => cus.PhoneNumber)" />
                                 </div>
 
-                                <div class="form-label-group">
-                                    <input type="text" id="phone" class="form-control" placeholder="Số điện thoại" required>
-                                    <label for="phone">Số điện thoại</label>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-lg btn-google btn-block text-uppercase" value="Lưu" type="submit">Lưu</button>
+                                    <button class="btn btn-lg btn-facebook btn-block text-uppercase" @onclick="@Cancel" value="Thoát">Thoát</button>
                                 </div>
-                                <div class="form-label-group" style="display:none">
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required>
-                                    <label for="inputPassword">Mật khẩu</label>
-                                </div>
-                                <div class="form-label-group" style="display:none">
-                                    <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" required>
-                                    <label for="inputConfirmPassword">Xác nhận mật khẩu</label>
-                                </div>
-                                <div class="d-grid">
-                                    <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit">cập nhật</button>
-                                </div>
-
-                            </form>
+                            </EditForm>
                         </div>
                     </div>
                 </div>
@@ -173,10 +169,7 @@
 @code {
     [Parameter]
     public string id { get; set; }
-
-    protected string imgUrl = "";
-    protected string temp = "";
-    public Customer customer;
+    public Customer cus;
 
     protected override async Task OnInitializedAsync()
     {
@@ -187,28 +180,53 @@
         else
         {
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-            imgUrl = config.GetSection("API")["ImgUrl"].ToString();
             var accessToken = sessionStorage.GetItem<string>("AccessToken");
-            customer = new Customer();
+            cus = new Customer();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 client.BaseAddress = new Uri(apiUrl);
-                using (var response = await client.GetAsync("Cus/?id=" + id))
+                using (var response = await client.GetAsync("Customer/?id=" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
         }
     }
 
-    private void SubmitForm()
+    private async void SubmitForm()
     {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var customerId = sessionStorage.GetItem<int>("customerId");
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(cus), System.Text.Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            HttpResponseMessage response = await client.PutAsync("customer/?id=" + customerId, content);
 
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+
+            }
+            else
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                if (apiResponse == "-1")
+                {
+
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("/", true);
+                }
+            }
+        }
     }
-
     private void Cancel()
     {
         NavigationManager.NavigateTo("/", true);

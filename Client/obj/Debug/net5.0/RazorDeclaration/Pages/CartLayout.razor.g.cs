@@ -118,6 +118,13 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
 using System.Net;
 
@@ -154,19 +161,17 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 203 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
+#line 205 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
        
     private string emailAddress;
     public Cart orderCart;
-    private double totalCost = 0;
     protected string imgUrl = "";
-    protected string temp = "";
+    public string vouchercode;
+    public Voucher voucher = new Voucher();
     public List<Voucher> voucherlist;
 
     protected override void OnInitialized()
     {
-        voucherlist = new List<Voucher>();
-
         emailAddress = sessionStorage.GetItem<string>("Email");
         var cart = sessionStorage.GetItem<string>("cart");
         if (cart == null)
@@ -178,6 +183,23 @@ using Share.Helpers;
             orderCart = JsonConvert.DeserializeObject<Cart>(cart);
         }
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        voucherlist = new List<Voucher>();
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("Voucher"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                voucherlist = JsonConvert.DeserializeObject<List<Voucher>>(apiResponse);
+            }
+        }
     }
 
     private void PlusQuantity(CartItem item)
@@ -206,9 +228,30 @@ using Share.Helpers;
 
     private void UpdateCart(CartItem item)
     {
-        item.Price = item.Quantity * item.product.Price;
-        orderCart.Total = Calculate(orderCart.ListViewCart);
-        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+        double discount;
+        if (voucher.VoucherCode != null)
+        {
+            if (voucher.CategoryDiscount == CategoryDiscount.Percent)
+            {
+                discount = voucher.Value / 100;
+                item.Price = item.Quantity * item.product.Price;
+                orderCart.Total = Calculate(orderCart.ListViewCart) - (Calculate(orderCart.ListViewCart) * (float)discount);
+                sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            }
+            else
+            {
+                discount = voucher.Value;
+                item.Price = item.Quantity * item.product.Price;
+                orderCart.Total = Calculate(orderCart.ListViewCart) - (float)discount;
+                sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            }
+        }
+        else
+        {
+            item.Price = item.Quantity * item.product.Price;
+            orderCart.Total = Calculate(orderCart.ListViewCart);
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+        }
     }
 
     private void DeleteCart(CartItem item)
@@ -218,34 +261,34 @@ using Share.Helpers;
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
     }
 
-    private async Task OrderCart()
-    {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangid = sessionStorage.GetItem<int>("khachhangId");
+    //private async Task OrderCart()
+    //{
+    //    var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+    //    imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    //    var accessToken = sessionStorage.GetItem<string>("AccessToken");
+    //    var khachhangid = sessionStorage.GetItem<int>("khachhangId");
 
-        orderCart.CustomerId = khachhangid;
+    //    orderCart.CustomerId = khachhangid;
 
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+    //    using (var client = new HttpClient())
+    //    {
+    //        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+    //        StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
+    //        client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+    //        HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
 
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
+    //        if (response.StatusCode == HttpStatusCode.OK)
+    //        {
 
-            }
-            else
-            {
-                sessionStorage.RemoveItem("cart");
-                await JSRuntime.InvokeAsync<object>("clearCart", "");
-                NavigationManager.NavigateTo("/history");
-            }
-        }
-    }
+    //        }
+    //        else
+    //        {
+    //            sessionStorage.RemoveItem("cart");
+    //            await JSRuntime.InvokeAsync<object>("clearCart", "");
+    //            NavigationManager.NavigateTo("/history");
+    //        }
+    //    }
+    //}
 
     private float Calculate(List<CartItem> listCart)
     {
@@ -260,18 +303,25 @@ using Share.Helpers;
         return total;
     }
 
-    private bool flag = false;
-    private void ChangeDisplay()
+    private void CheckVoucher(Cart cart)
     {
-        if (!flag)
-            flag = true;
-        else
-            flag = false;
+        foreach (var item in voucherlist)
+        {
+            if (vouchercode == item.VoucherCode)
+            {
+                if (item.Status == true)
+                {
+                    voucher = item;
+                    UpdateCart(cart.ListViewCart.FirstOrDefault());
+                }
+            }
+        }
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }

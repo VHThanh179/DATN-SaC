@@ -125,7 +125,21 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
 using Pages;
 
 #line default
@@ -139,24 +153,51 @@ using Pages;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 140 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 138 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
       
     string emailAddress;
     string cusName;
     int customerId;
+    public Customer cus;
 
     protected override async Task OnInitializedAsync()
     {
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
-        cusName = sessionStorage.GetItem<string>("CusName");
+        if (customerId != 0)
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            cus = new Customer();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var response = await client.GetAsync("Customer/?id=" + customerId))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
+                cusName = cus.FullName;
+            }
+        }
+
+    }
+
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        navigationManager.NavigateTo($"authentication/logout");
     }
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private SignOutSessionStateManager SignOutManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
