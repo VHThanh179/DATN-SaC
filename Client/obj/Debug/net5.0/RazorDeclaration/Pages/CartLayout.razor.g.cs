@@ -161,13 +161,11 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 221 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
+#line 205 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
        
     private string emailAddress;
     public Cart orderCart;
-    private double totalCost = 0;
     protected string imgUrl = "";
-    protected string temp = "";
     public string vouchercode;
     public Voucher voucher = new Voucher();
     public List<Voucher> voucherlist;
@@ -263,34 +261,34 @@ using Share.Helpers;
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
     }
 
-    private async Task OrderCart()
-    {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangid = sessionStorage.GetItem<int>("khachhangId");
+    //private async Task OrderCart()
+    //{
+    //    var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+    //    imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    //    var accessToken = sessionStorage.GetItem<string>("AccessToken");
+    //    var khachhangid = sessionStorage.GetItem<int>("khachhangId");
 
-        orderCart.CustomerId = khachhangid;
+    //    orderCart.CustomerId = khachhangid;
 
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+    //    using (var client = new HttpClient())
+    //    {
+    //        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+    //        StringContent content = new StringContent(JsonConvert.SerializeObject(orderCart), System.Text.Encoding.UTF8, "application/json");
+    //        client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+    //        HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
 
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
+    //        if (response.StatusCode == HttpStatusCode.OK)
+    //        {
 
-            }
-            else
-            {
-                sessionStorage.RemoveItem("cart");
-                await JSRuntime.InvokeAsync<object>("clearCart", "");
-                NavigationManager.NavigateTo("/history");
-            }
-        }
-    }
+    //        }
+    //        else
+    //        {
+    //            sessionStorage.RemoveItem("cart");
+    //            await JSRuntime.InvokeAsync<object>("clearCart", "");
+    //            NavigationManager.NavigateTo("/history");
+    //        }
+    //    }
+    //}
 
     private float Calculate(List<CartItem> listCart)
     {
@@ -303,15 +301,6 @@ using Share.Helpers;
             }
         }
         return total;
-    }
-
-    private bool flag = false;
-    private void ChangeDisplay()
-    {
-        if (!flag)
-            flag = true;
-        else
-            flag = false;
     }
 
     private void CheckVoucher(Cart cart)

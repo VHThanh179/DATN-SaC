@@ -125,8 +125,15 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+#line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
 using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+using Share.Models.ViewModels;
 
 #line default
 #line hidden
@@ -140,19 +147,72 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 214 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+#line 226 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
-    private Share.Models.ShipInfo shipInfo { get; set; }
+    public ShipInfo shipInfo;
+    public Customer customer;
+    public int cusId;
+    public string emailAddress;
+    public Cart orderCart;
+
+    //protected override void OnInitialized()
+    //{
+    //}
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("PaypalButton");
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var cart = sessionStorage.GetItem<string>("cart");
+        if (cart == null)
+        {
+            orderCart = new Share.Models.ViewModels.Cart();
+        }
+        else
+        {
+            orderCart = JsonConvert.DeserializeObject<Cart>(cart);
+        }
+
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        cusId = sessionStorage.GetItem<int>("customerId");
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        customer = new Customer();
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("Customer/?id=" + cusId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+            }
+        }
+
+    }
+
+
 
     private void Cancel()
     {
-        ModalInstance.CloseAsync(ModalResult.Ok<Share.Models.ShipInfo>(shipInfo));
+        ModalInstance.CloseAsync(ModalResult.Ok<ShipInfo>(shipInfo));
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
     }
 }

@@ -147,6 +147,82 @@ using Newtonsoft.Json;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 158 "D:\DATN\Project\SaCBackpack\Client\Pages\ChangePassword.razor"
+       
+    // NOTE: Các property cần có
+    public Customer customer { get; set; }
+    public int customerId { get; set; }
+    public string oldPass = "";
+    public string newPass = "";
+    public string confirmPass = "";
+    public string encodePass = "";
+    private async Task SubmitForm()
+    {
+        // NOTE: Lấy id của khách hàng bằng session
+        customerId = sessionStorage.GetItem<int>("customerId");
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        customer = new Customer();
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("customer/GetPass/?pass=" + oldPass))
+            {
+                // NOTE: Mật khẩu cũ sau khi encode sẽ gán cho biến encodePass
+                encodePass = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(encodePass);
+            }
+            customer = new Customer();
+            // NOTE: Lấy ra khách hàng theo id
+            using (var response = await client.GetAsync("customer/?id=" + customerId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+            }
+            // NOTE: So sánh pass cũ đã encode với pass trong db
+            if (string.Equals(encodePass, customer.Password))
+            {
+                // NOTE: So sánh pass mới với confirm pass
+                if (string.Equals(newPass, confirmPass))
+                {
+                    // NOTE: Gán pass của customer hiện tại = pass mới
+                    // NOTE: Phải gán cả cho confirmPass của customer hiện tại nếu không sẽ bị lỗi confirmPass is null
+                    customer.Password = newPass;
+                    customer.ConfirmPassword = newPass;
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(customer), System.Text.Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PutAsync("customer/?id=" + customerId, content);
+                    if (response.StatusCode != HttpStatusCode.OK) { }
+                    else
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        if (apiResponse == "-1")
+                        {
+
+                        }
+                        else // Change pass successfully
+                        {
+                            NavigationManager.NavigateTo("/logout", true);
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Mật khẩu mới và xác nhận mật khẩu mới không khớp");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Mật khẩu cũ không đúng");
+            }
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }

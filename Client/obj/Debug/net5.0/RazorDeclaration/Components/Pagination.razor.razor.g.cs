@@ -13,83 +13,137 @@ namespace Client.Components
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 1 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+=======
+#line 1 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using System.Net.Http.Json;
+=======
+#line 2 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 3 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
+=======
+#line 3 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 4 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
+=======
+#line 4 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Microsoft.AspNetCore.Components.Forms;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 5 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
+=======
+#line 5 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Microsoft.AspNetCore.Components.Routing;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 6 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
+=======
+#line 6 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Microsoft.AspNetCore.Components.Web;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 7 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
+=======
+#line 7 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Microsoft.AspNetCore.Components.Web.Virtualization;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 8 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+=======
+#line 8 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 9 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Newtonsoft.Json;
+=======
+#line 9 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Server;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 10 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Client;
+=======
+#line 10 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Server.Shared;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 11 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Client.Shared;
+=======
+#line 11 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Syncfusion.Blazor;
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using Share.Models;
 
@@ -105,20 +159,31 @@ using BlazorAnimate;
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+=======
+#line 12 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 15 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+=======
+#line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
 #line 16 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+=======
+#line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
 using Blazored.Modal.Services;
 
 #line default
@@ -138,6 +203,23 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
         {
         }
         #pragma warning restore 1998
+<<<<<<< HEAD:Client/obj/Debug/net5.0/RazorDeclaration/Components/Pagination.razor.razor.g.cs
+=======
+#nullable restore
+#line 73 "D:\DATN\Project\SaCBackpack\Server\Shared\NavMenu.razor"
+       
+    private bool collapseNavMenu = true;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+#line default
+#line hidden
+#nullable disable
+>>>>>>> master:Server/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
     }
 }
 #pragma warning restore 1591

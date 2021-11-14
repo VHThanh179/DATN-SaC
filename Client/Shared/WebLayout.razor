@@ -5,6 +5,7 @@
 @inject SignOutSessionStateManager SignOutManager
 @inherits LayoutComponentBase
 @inject IModalService modal
+@inject Microsoft.Extensions.Configuration.IConfiguration config
 @using Pages
 <style>
     .blazored-modal {
@@ -38,9 +39,7 @@
                         <li class="dropdown">
                             <a style="cursor:pointer"><span>@context.User.Identity.Name</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a class="nav-link " href="/info">Thông tin cá nhân</a></li>
                                 <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
-                                <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
                                 <li><a class="nav-link " style="cursor:pointer" @onclick="BeginSignOut">Đăng xuất</a></li>
                             </ul>
                         </li>
@@ -51,7 +50,7 @@
                             <li class="dropdown">
                                 <a style="cursor:pointer"><span>@cusName</span> <i class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a class="nav-link " href="/info">Thông tin cá nhân</a></li>
+                                    <li><a class="nav-link " href="/info/@customerId">Thông tin cá nhân</a></li>
                                     <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
                                     <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
                                     <li><a class="nav-link " href="/logout">Đăng xuất</a></li>
@@ -70,7 +69,7 @@
                         }
                     </NotAuthorized>
                 </AuthorizeView>
-                
+
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -140,12 +139,31 @@
     string emailAddress;
     string cusName;
     int customerId;
+    public Customer cus;
 
     protected override async Task OnInitializedAsync()
     {
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
-        cusName = sessionStorage.GetItem<string>("CusName");
+        if (customerId != 0)
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            cus = new Customer();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var response = await client.GetAsync("Customer/?id=" + customerId))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
+                cusName = cus.FullName;
+            }
+        }
+
     }
 
     private async Task BeginSignOut(MouseEventArgs args)
