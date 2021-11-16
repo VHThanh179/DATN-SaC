@@ -90,6 +90,27 @@ using Syncfusion.Blazor;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
 using Share.Models;
 
@@ -127,17 +148,20 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 75 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
+#line 113 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
        
+    [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 
     [Parameter]
     public string id { get; set; }
+
+    private string status = null;
 
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
 
     public List<ToolbarItemModel> Toolbars = new List<ToolbarItemModel>()
-        {
+{
         new ToolbarItemModel() { Command = ToolbarCommand.Bold },
         new ToolbarItemModel() { Command = ToolbarCommand.Italic },
         new ToolbarItemModel() { Command = ToolbarCommand.Underline },
@@ -162,6 +186,14 @@ using Syncfusion.Blazor.RichTextEditor;
         else
         {
             product = _productSvc.GetProduct(int.Parse(id));
+            if (product.Status == true)
+            {
+                status = "true";
+            }
+            else
+            {
+                status = "false";
+            }
         }
     }
 
@@ -194,17 +226,20 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         if (product.ProductId == 0)
         {
+            product.Status = bool.Parse(status);
             _productSvc.AddProduct(product);
         }
         else
         {
+            product.Status = bool.Parse(status);
             _productSvc.EditProduct(product.ProductId, product);
         }
-        navigation.NavigateTo("productlist");
+        navigation.NavigateTo("productlist", true);
     }
     private void Cancel()
     {
-        navigation.NavigateTo("productlist", true);
+        //navigation.NavigateTo("productlist", true);
+        ModalInstance.CloseAsync(ModalResult.Ok<Product>(product));
     }
 
     private void OnInputFileChange(InputFileChangeEventArgs e)
@@ -216,6 +251,7 @@ using Syncfusion.Blazor.RichTextEditor;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IProductSvc _productSvc { get; set; }

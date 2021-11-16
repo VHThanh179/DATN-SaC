@@ -90,6 +90,27 @@ using Syncfusion.Blazor;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductList.razor"
 using Share.Models;
 
@@ -113,10 +134,12 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductList.razor"
+#line 74 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductList.razor"
        
     [Parameter]
     public string SearchString { get; set; }
+
+
 
     public List<Product> products { get; set; }
 
@@ -137,10 +160,23 @@ using Share.Helpers;
         products = _productSvc.GetAllProduct();
     }
 
+    void ShowModalProduct(int prodId)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(ProductDialog.id), prodId.ToString());
+        string title;
+        if (prodId == 0)
+        {
+            title = "Thêm sản phẩm";
+        }
+        else { title = "Cập nhật sản phẩm"; }
+        modal.Show<ProductDialog>(title, parameters);
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IProductSvc _productSvc { get; set; }
     }
 }

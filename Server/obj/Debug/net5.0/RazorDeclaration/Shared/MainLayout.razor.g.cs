@@ -89,6 +89,34 @@ using Syncfusion.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -97,7 +125,7 @@ using Syncfusion.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 113 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
+#line 115 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     protected async override Task OnInitializedAsync()

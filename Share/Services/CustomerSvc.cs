@@ -30,6 +30,7 @@ namespace Share.Services
         {
             Customer customer = null;
             customer = await _context.Customers.FindAsync(id);
+            customer.ConfirmPassword = customer.Password;
             return customer;
         }
 

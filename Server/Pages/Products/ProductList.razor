@@ -3,30 +3,32 @@
 @using Share.Helpers
 @layout MainLayout
 @inject Share.Interfaces.IProductSvc _productSvc;
+@inject IModalService modal
 
-
-<h1 class="font-weight-bold text-center">Danh sách sản phẩm</h1>
 @if (products == null)
 {
     <p><em>Loading ...</em></p>
 }
 else
 {
-<div class="text-right">
-    <a style="text-decoration:none;" href="/productdialog/0">
-        <button type="button" class="btn btn-success btn-circle btn-md"><i class="fa fa-plus" style="color:white;font-size:20px;"></i></button>
-    </a>
-    <br />
-    <br />
-    <div class="">
-        <input type="text" @bind="@SearchString" />
-        <button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>
-        <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+    <div class="text-right">
+        <a style="text-decoration:none;" @onclick="@(() => ShowModalProduct(0))" class="btn btn-success btn-circle btn-md">
+            <i class="fa fa-plus mt-2" style="color:white;font-size:20px;"></i>
+        </a>
+    </div>
+    <div class="row">
+        <h1 class="col-6 font-weight-bold text-left">
+            Danh sách sản phẩm
+        </h1>
+        <div class="col-6 text-right">
+            <br />
+            <input type="text" @bind="@SearchString" />
+            <button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>
+            <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+        </div>
     </div>
     <br />
     <br />
-</div>
-
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
@@ -35,11 +37,12 @@ else
                 <th scope="col">Phân loại</th>
                 <th scope="col" style="width:20%">Hình</th>
                 <th scope="col">Trạng thái</th>
-                <th scope="col" style="width:30%">Thông tin</th>
+                @*<th scope="col" style="width:30%">Thông tin</th>*@
                 <th scope="col">Hành động</th>
             </tr>
         </thead>
         <tbody>
+
             @foreach (var item in products)
             {
                 <tr>
@@ -56,20 +59,23 @@ else
                         {
                             <span>Hết hàng</span>
                         }
-                    </td>
-                    <td>@((MarkupString)item.Description)</td>
+                    </td>           
                     <td>
-                        <a class="btn btn-info" href="/productdialog/@item.ProductId">Sửa</a>
+                        <button class="btn btn-info" @onclick="@(() => ShowModalProduct(item.ProductId))">Xem thông tin</button>
                     </td>
                 </tr>
+
             }
         </tbody>
     </table>
+
 }
 
 @code {
     [Parameter]
     public string SearchString { get; set; }
+
+
 
     public List<Product> products { get; set; }
 
@@ -90,4 +96,16 @@ else
         products = _productSvc.GetAllProduct();
     }
 
+    void ShowModalProduct(int prodId)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(ProductDialog.id), prodId.ToString());
+        string title;
+        if (prodId == 0)
+        {
+            title = "Thêm sản phẩm";
+        }
+        else { title = "Cập nhật sản phẩm"; }
+        modal.Show<ProductDialog>(title, parameters);
+    }
 }

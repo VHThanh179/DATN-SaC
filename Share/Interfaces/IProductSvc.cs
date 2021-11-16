@@ -1,4 +1,6 @@
-﻿using Share.Models;
+﻿using Share.Common;
+using Share.Models;
+using Share.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,8 @@ namespace Share.Interfaces
         Task<Product> GetProductAsync(int id);
         Task<int> AddProductAsync(Product product);
         Task<int> EditProductAsync(int id, Product product);
+        Task<PagedList<Product>> GetPagingProducts(PagingParameter productParameters);
+
 
         //sync
         List<Product> GetAllProduct();
