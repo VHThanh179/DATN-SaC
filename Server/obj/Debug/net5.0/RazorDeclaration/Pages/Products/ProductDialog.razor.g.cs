@@ -148,7 +148,7 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 113 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
+#line 114 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 

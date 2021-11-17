@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TyD75u0wZG/vCfL8vJvgtrWvN3qZN0LC6aPEgylYbxRBgluKdSar838fvk2MbI1SP8ng92KtSYpbcSjX4byvKw==",
+  "dgSpecHash": "aK8DpTgEGevJvxrazqxYY+jkNHR1Zeo1R7+VXs6n+UubvyfX40Tj48167IuPsoEnBYbzUwSmCO8qWLtw+UT3WA==",
   "success": true,
   "projectFilePath": "D:\\DATN\\Project\\SaCBackpack\\Client\\Client.csproj",
   "expectedPackageFiles": [
@@ -18,7 +18,7 @@
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\5.0.6\\microsoft.aspnetcore.components.webassembly.devserver.5.0.6.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.10\\microsoft.aspnetcore.http.features.5.0.10.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.aspnetcore.metadata\\5.0.10\\microsoft.aspnetcore.metadata.5.0.10.nupkg.sha512",
-    "C:\\Users\\Admins\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.10\\microsoft.entityframeworkcore.5.0.10.nupkg.sha512",
@@ -72,6 +72,11 @@
     "C:\\Users\\Admins\\.nuget\\packages\\runtime.any.system.text.encoding.extensions\\4.3.0\\runtime.any.system.text.encoding.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\runtime.any.system.threading.tasks\\4.3.0\\runtime.any.system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.blazor.buttons\\19.3.0.54\\syncfusion.blazor.buttons.19.3.0.54.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.blazor.core\\19.3.0.54\\syncfusion.blazor.core.19.3.0.54.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.blazor.popups\\19.3.0.54\\syncfusion.blazor.popups.19.3.0.54.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.blazor.themes\\19.3.0.54\\syncfusion.blazor.themes.19.3.0.54.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\syncfusion.licensing\\19.3.0.54\\syncfusion.licensing.19.3.0.54.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
@@ -137,12 +142,5 @@
     "C:\\Users\\Admins\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.9\\microsoft.netcore.app.runtime.browser-wasm.5.0.9.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\DATN\\Project\\SaCBackpack\\Client\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

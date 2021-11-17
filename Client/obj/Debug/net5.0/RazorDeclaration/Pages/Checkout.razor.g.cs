@@ -125,6 +125,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 18 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
 using Share.Models;
 
@@ -147,13 +154,12 @@ using Share.Models.ViewModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 226 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+#line 215 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
-    public ShipInfo shipInfo;
-    public Customer customer;
+    public ShipInfo shipInfo { get; set; }
+    public Customer customer { get; set; }
     public int cusId;
-    public string emailAddress;
     public Cart orderCart;
 
     //protected override void OnInitialized()
@@ -170,6 +176,8 @@ using Share.Models.ViewModels;
 
     protected override async Task OnInitializedAsync()
     {
+        customer = new Customer();
+        shipInfo = new ShipInfo();
         var cart = sessionStorage.GetItem<string>("cart");
         if (cart == null)
         {
@@ -178,14 +186,23 @@ using Share.Models.ViewModels;
         else
         {
             orderCart = JsonConvert.DeserializeObject<Cart>(cart);
+            if (orderCart.Total <= 1000000)
+            {
+                shipInfo.Price = 30000;
+            }
+            else if (orderCart.Total <= 2000000)
+            {
+                shipInfo.Price = 20000;
+            }
+            else
+            {
+                shipInfo.Price = 10000;
+            }
         }
 
-        emailAddress = sessionStorage.GetItem<string>("Email");
         cusId = sessionStorage.GetItem<int>("customerId");
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        customer = new Customer();
-
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
@@ -196,6 +213,9 @@ using Share.Models.ViewModels;
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
             }
+            shipInfo.CusName = customer.FullName;
+            shipInfo.Address = customer.Address;
+            shipInfo.PhoneNumber = customer.PhoneNumber;
         }
 
     }

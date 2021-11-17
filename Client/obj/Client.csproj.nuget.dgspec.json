@@ -84,6 +84,10 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "Syncfusion.Blazor.Popups": {
+              "target": "Package",
+              "version": "[19.3.0.54, )"
+            },
             "System.Net.Http.Json": {
               "target": "Package",
               "version": "[5.0.0, )"

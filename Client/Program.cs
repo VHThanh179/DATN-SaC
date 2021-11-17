@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Syncfusion.Blazor;
 
 namespace Client
 {
@@ -23,7 +24,11 @@ namespace Client
 
             builder.Services.AddOidcAuthentication(options => {
                 builder.Configuration.Bind("Local", options.ProviderOptions);
+                options.ProviderOptions.DefaultScopes.Add("email");
             });
+
+            builder.Services.AddSyncfusionBlazor();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTI3NzMyQDMxMzkyZTMzMmUzMENjWmFkNktSdXQ0REpjVnRRUHJ5TUVNbXRBUGVDSzY2aWZvUXBmT05pVVE9");
 
             builder.Services.AddBlazoredSessionStorage();
 
