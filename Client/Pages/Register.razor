@@ -196,8 +196,7 @@
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+        {            
             StringContent content = new StringContent(JsonConvert.SerializeObject(customer), System.Text.Encoding.UTF8,
                 "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Alow-Origin", "*");

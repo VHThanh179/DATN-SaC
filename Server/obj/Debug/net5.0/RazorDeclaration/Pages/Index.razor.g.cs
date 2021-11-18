@@ -91,21 +91,35 @@ using Syncfusion.Blazor;
 #nullable disable
 #nullable restore
 #line 12 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
 using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Index.razor"
+using Share.Models;
 
 #line default
 #line hidden
@@ -118,6 +132,20 @@ using Blazored.Modal.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 403 "D:\DATN\Project\SaCBackpack\Server\Pages\Index.razor"
+      
+    public List<Statistical> statisticals { get; set; }
+
+    protected override void OnInitialized()
+    {
+        statisticals = _statisticalSvc.GetAllStatistical();
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IStatisticalSvc _statisticalSvc { get; set; }
     }
 }
 #pragma warning restore 1591

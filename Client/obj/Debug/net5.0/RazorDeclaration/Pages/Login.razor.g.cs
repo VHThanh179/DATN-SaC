@@ -222,7 +222,6 @@ using Syncfusion.Blazor.Popups;
                 HttpResponseMessage response = await client.PostAsync(apiUrl + "Token", content);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    OpenDialog();
                     //error += (error == "" ? "" : "<br/>") + "- Lỗi khi gọi API.";                   
                 }
                 else
@@ -239,6 +238,10 @@ using Syncfusion.Blazor.Popups;
                         sessionStorage.SetItem("AccessToken", accessToken);
                         NavigationManager.NavigateTo("/", true);
 
+                    }
+                    else
+                    {
+                        OpenDialog();
                     }
                 }
             }
