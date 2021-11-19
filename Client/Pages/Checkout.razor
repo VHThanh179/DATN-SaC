@@ -147,7 +147,7 @@
 
                                 <div class="form-group col-6">
                                     <label class="control-label">Địa chỉ giao hàng</label>
-                                    <input class="form-control" @bind="shipInfo.Address"/>
+                                    <input class="form-control" @bind="shipInfo.Address" />
                                 </div>
                             </div>
 
@@ -160,14 +160,17 @@
                                 <div class="form-label-group col-6">
                                     <label class="control-label">Hình thức vận chuyển</label>
                                     <br />
-                                    <select>
-                                        <option value="">Trực tiếp</option>
-                                        <option value="">Tận nhà</option>
-
+                                    <select class="form-control" @bind="display">
+                                        <option value="0">Trực tiếp</option>
+                                        <option value="1">Gián tiếp</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="form-group mt-2">
+                                <label class="control-label">Ghi chú</label>
+                                <textarea class="form-control" cols="30" rows="6" maxlength="200" @bind="shipInfo.Notes"></textarea>
+                            </div>
+                            <div class="row mt-2" id="moreInfoShipping" style="visibility:hidden">
                                 <div class="form-group col-6">
                                     <label class="control-label">Giá vận chuyển</label>
                                     <input type="number" class="form-control" @bind="shipInfo.Price" readonly />
@@ -176,20 +179,17 @@
                                 <div class="form-label-group col-6">
                                     <label class="control-label">Đối tác vận chuyển</label>
                                     <br />
-                                    <select>
+                                    <select class="form-control">
                                         <option value="">Grab</option>
                                         <option value="">Now</option>
                                         <option value="">Gojek</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group mt-2">
-                                <label class="control-label">Ghi chú</label>
-                                <textarea class="form-control" cols="30" rows="5" maxlength="200" @bind="shipInfo.Notes"></textarea>
-                            </div>
+
 
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
@@ -198,7 +198,7 @@
                     <hr class="line">
                     <div class="d-flex justify-content-between information"><span>Tiền hàng</span><span>@orderCart.Total</span></div>
                     <div class="d-flex justify-content-between information"><span>Shipping</span><span>@shipInfo.Price</span></div>
-                    <div class="d-flex justify-content-between information"><span>Tổng cộng</span><span id="totalPrice">@(orderCart.Total + shipInfo.Price)</span></div> 
+                    <div class="d-flex justify-content-between information"><span>Tổng cộng</span><span id="totalPrice">@(orderCart.Total + shipInfo.Price)</span></div>
                     <div id="paypal-button-container"></div>
                 </div>
             </div>
@@ -218,7 +218,7 @@
     public Customer customer { get; set; }
     public int cusId;
     public Cart orderCart;
-
+    private int display;
     //protected override void OnInitialized()
     //{
     //}
@@ -229,8 +229,17 @@
         {
             await JSRuntime.InvokeVoidAsync("PaypalButton");
         }
+        if (display == 0)
+        {
+            Console.WriteLine(display + "non display");
+            await JSRuntime.InvokeVoidAsync("noneDisplayMoreInfoShipping");
+        }
+        else
+        {
+            Console.WriteLine(display + "display");
+            await JSRuntime.InvokeVoidAsync("displayMoreInfoShipping");
+        }
     }
-
     protected override async Task OnInitializedAsync()
     {
         customer = new Customer();
@@ -276,9 +285,6 @@
         }
 
     }
-
-
-
     private void Cancel()
     {
         ModalInstance.CloseAsync(ModalResult.Ok<ShipInfo>(shipInfo));
