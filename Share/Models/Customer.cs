@@ -14,11 +14,11 @@ namespace Share.Models
         public int CustomerId { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
-        [Display(Name = "Họ tên"), Required(ErrorMessage = "Mời nhập họ tên")]
+        [Display(Name = "Họ tên")]
         public string FullName { get; set; }
 
         [Column(TypeName = "varchar(50)"), MaxLength(50)]
-        [DataType(DataType.EmailAddress), Required(ErrorMessage = "Mời nhập Email")]
+        [DataType(DataType.EmailAddress)]
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; }
 
@@ -29,10 +29,10 @@ namespace Share.Models
         public DateTime DoB { get; set; }
 
         [Display(Name = "Địa chỉ")]
-        [Column(TypeName = "nvarchar(200)"),Required(ErrorMessage = "Vui lòng nhập địa chỉ.")]
+        [Column(TypeName = "nvarchar(200)")]
         public string Address { get; set; }
 
-        [Required(ErrorMessage = "Bạn cần nhập số điện thoại"), Display(Name = "Số điện thoại")]
+        [Display(Name = "Số điện thoại")]
         [Column(TypeName = "varchar(15)"), MaxLength(15)]
         [RegularExpression(@"^\(?([0-9]{3})[-. ]?([0-9]{4})[-. ]?([0-9]{3})$", ErrorMessage = "Số điện thoại không đúng")]
         //091-1234-567

@@ -1538,3 +1538,6 @@ D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\6MB7+bI9.gz
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\aDucdQX9.gz
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\y4NQ0v+j.gz
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\dFRA0TGr.gz
+D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.Extensions.Http.dll.gz
+D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.Extensions.Http.dll
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\build-gz\5cZsi1hd.gz

@@ -488,6 +488,21 @@
           "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.dll": {}
         }
       },
+      "Microsoft.Extensions.Http/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Logging": "5.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Options": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {}
+        }
+      },
       "Microsoft.Extensions.Logging/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -2244,6 +2259,21 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Http/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Logging": "5.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Options": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {}
         }
       },
       "Microsoft.Extensions.Logging/5.0.0": {
@@ -4334,6 +4364,26 @@
         "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.xml",
         "microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512",
         "microsoft.extensions.filesystemglobbing.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Microsoft.Extensions.Http/5.0.0": {
+      "sha512": "kT1ijDKZuSUhBtYoC1sXrmVKP7mA08h9Xrsr4VrS/QOtiKCEtUTTd7dd3XI9dwAb46tZSak13q/zdIcr4jqbyg==",
+      "type": "package",
+      "path": "microsoft.extensions.http/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Http.dll",
+        "lib/net461/Microsoft.Extensions.Http.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+        "microsoft.extensions.http.5.0.0.nupkg.sha512",
+        "microsoft.extensions.http.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
@@ -8604,6 +8654,7 @@
       "Microsoft.AspNetCore.Components.WebAssembly >= 5.0.6",
       "Microsoft.AspNetCore.Components.WebAssembly.Authentication >= 5.0.10",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 5.0.6",
+      "Microsoft.Extensions.Http >= 5.0.0",
       "Newtonsoft.Json >= 13.0.1",
       "Share >= 1.0.0",
       "Syncfusion.Blazor.Popups >= 19.3.0.54",
@@ -8690,6 +8741,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.6, )"
+          },
+          "Microsoft.Extensions.Http": {
+            "target": "Package",
+            "version": "[5.0.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

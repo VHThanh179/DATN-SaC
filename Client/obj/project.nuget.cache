@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aK8DpTgEGevJvxrazqxYY+jkNHR1Zeo1R7+VXs6n+UubvyfX40Tj48167IuPsoEnBYbzUwSmCO8qWLtw+UT3WA==",
+  "dgSpecHash": "Ps3iT8x3ZUyvo9ZbUXHVRFX/NqbBGTsG4rLQClQEASpKCfAWkgurbl1FcGK+Yk4B+QpKbl+eBygyf+wSTq6dLA==",
   "success": true,
   "projectFilePath": "D:\\DATN\\Project\\SaCBackpack\\Client\\Client.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,7 @@
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\5.0.0\\microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\5.0.0\\microsoft.extensions.fileproviders.physical.5.0.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\5.0.0\\microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\microsoft.extensions.http\\5.0.0\\microsoft.extensions.http.5.0.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
