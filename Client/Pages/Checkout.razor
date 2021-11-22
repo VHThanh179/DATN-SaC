@@ -3,8 +3,10 @@
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject NavigationManager navigationManager
+@using System.Net
 @using Share.Models
 @using Share.Models.ViewModels
+@using Microsoft.AspNetCore.Components.Authorization
 
 <style>
     .my-custom-scrollbar {
@@ -140,6 +142,16 @@
                     <div class="table-wrapper-scroll-y my-custom-scrollbar">
                         <form class="col-11 m-auto">
                             <div class="row">
+                                <div class="form-group col-8">
+                                    <label class="control-label">Mã giảm giá</label>
+                                    <input class="form-control" @bind="vouchercode"/>
+                                </div>
+                                <div class="form-group col-4">
+                                    <input class="btn btn-outline-success" value="Áp dụng" @onclick="CheckVoucher"/>                                    
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
                                 <div class="form-group col-6">
                                     <label class="control-label">Tên khách hàng</label>
                                     <input class="form-control" @bind="shipInfo.CusName" />
@@ -147,7 +159,7 @@
 
                                 <div class="form-group col-6">
                                     <label class="control-label">Địa chỉ giao hàng</label>
-                                    <input class="form-control" @bind="shipInfo.Address"/>
+                                    <input class="form-control" @bind="shipInfo.Address" />
                                 </div>
                             </div>
 
@@ -160,46 +172,70 @@
                                 <div class="form-label-group col-6">
                                     <label class="control-label">Hình thức vận chuyển</label>
                                     <br />
-                                    <select>
-                                        <option value="">Trực tiếp</option>
-                                        <option value="">Tận nhà</option>
-
+                                    <select class="form-control" @bind="display" required>
+                                        <option value="">Chọn phương thức</option>
+                                        <option value="0">Lấy hàng trực tiếp</option>
+                                        <option value="1">Giao hàng tận nhà</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="form-group mt-2">
+                                <label class="control-label">Ghi chú</label>
+                                <textarea class="form-control" cols="30" rows="6" maxlength="200" @bind="shipInfo.Notes"></textarea>
+                            </div>
+                            <div class="row mt-2" id="moreInfoShipping" style="visibility:hidden">
                                 <div class="form-group col-6">
                                     <label class="control-label">Giá vận chuyển</label>
                                     <input type="number" class="form-control" @bind="shipInfo.Price" readonly />
                                 </div>
 
                                 <div class="form-label-group col-6">
-                                    <label class="control-label">Đối tác vận chuyển</label>
+                                    <label class="control-label">Đơn vị vận chuyển</label>
                                     <br />
-                                    <select>
-                                        <option value="">Grab</option>
-                                        <option value="">Now</option>
-                                        <option value="">Gojek</option>
+                                    <select class="form-control" @bind="shipPartner" required>
+                                        <option value="">Chọn đơn vị</option>
+                                        <option value="1">Grab</option>
+                                        <option value="2">Now</option>
+                                        <option value="3">Gojek</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group mt-2">
-                                <label class="control-label">Ghi chú</label>
-                                <textarea class="form-control" cols="30" rows="5" maxlength="200" @bind="shipInfo.Notes"></textarea>
-                            </div>
+
 
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="payment-info">
                     <hr class="line">
-                    <div class="d-flex justify-content-between information"><span>Tiền hàng</span><span>@orderCart.Total</span></div>
-                    <div class="d-flex justify-content-between information"><span>Shipping</span><span>@shipInfo.Price</span></div>
-                    <div class="d-flex justify-content-between information"><span>Tổng cộng</span><span id="totalPrice">@(orderCart.Total + shipInfo.Price)</span></div> 
+                    <div class="d-flex justify-content-between information"><span>Tiền hàng</span><span>@string.Format("{0:#,0}", orderCart.Total) VNĐ</span></div>
+                    <div class="d-flex justify-content-between information"><span>Giảm giá</span><span>@displayvalue</span></div>
+                    <div class="d-flex justify-content-between information"><span>Shipping</span><span>@string.Format("{0:#,0}", shipInfo.Price) VNĐ</span></div>
+                    <div class="d-flex justify-content-between information">
+                        <span>Tổng cộng</span>
+                        <span id="totalPrice">
+                            @if (vouchervalue != 0)
+                            {
+                                if (vouchervalue <= 1)
+                                {
+                                    total = (orderCart.Total + shipInfo.Price) - ((orderCart.Total + shipInfo.Price) * vouchervalue);
+                                }
+                                else
+                                {
+                                    total = (orderCart.Total + shipInfo.Price) - vouchervalue;
+                                }
+                            }
+                            else
+                            {
+                                total = orderCart.Total + shipInfo.Price;
+                            }
+                            @string.Format("{0:#,0}", total) VNĐ
+                        </span>
+                    </div>
                     <div id="paypal-button-container"></div>
+                    <button class="btn-outline-success" @onclick="OrderCart">Thanh toán</button>
                 </div>
             </div>
             <div class="row">
@@ -214,14 +250,22 @@
 </Animate>
 @code {
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     public ShipInfo shipInfo { get; set; }
     public Customer customer { get; set; }
+    public APICart apiCart { get; set; }
     public int cusId;
+    public string emailAddress;
+    public string emailGoogle;
     public Cart orderCart;
-
-    //protected override void OnInitialized()
-    //{
-    //}
+    private int display;
+    private int shipPartner;
+    public double vouchervalue = 0;
+    public string displayvalue = "";
+    public string vouchercode { get; set; }
+    public Voucher voucher;
+    public List<Voucher> listvoucher;
+    public double total = 0;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -229,8 +273,17 @@
         {
             await JSRuntime.InvokeVoidAsync("PaypalButton");
         }
+        if (display == 0)
+        {
+            Console.WriteLine(display + "non display");
+            await JSRuntime.InvokeVoidAsync("noneDisplayMoreInfoShipping");
+        }
+        else
+        {
+            Console.WriteLine(display + "display");
+            await JSRuntime.InvokeVoidAsync("displayMoreInfoShipping");
+        }
     }
-
     protected override async Task OnInitializedAsync()
     {
         customer = new Customer();
@@ -258,29 +311,165 @@
         }
 
         cusId = sessionStorage.GetItem<int>("customerId");
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        using (var client = new HttpClient())
+        customer = new Customer();
+        if (emailAddress != null && emailAddress != "")
         {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("Customer/?id=" + cusId))
+            using (var client = new HttpClient())
             {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var response = await client.GetAsync("Customer/?id=" + cusId))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
+            }
+            shipInfo.CusName = customer.FullName;
+            shipInfo.Address = customer.Address;
+            shipInfo.PhoneNumber = customer.PhoneNumber;
+        }
+        if (emailGoogle != null && emailGoogle != "")
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + emailGoogle))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
             }
             shipInfo.CusName = customer.FullName;
             shipInfo.Address = customer.Address;
             shipInfo.PhoneNumber = customer.PhoneNumber;
         }
 
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("Voucher"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                listvoucher = JsonConvert.DeserializeObject<List<Voucher>>(apiResponse);
+            }
+        }
     }
 
+    private async Task OrderCart()
+    {
+        if (display == 0)
+        {
+            shipInfo.ShippingMethod = true;
+        }
+        else
+        {
+            shipInfo.ShippingMethod = false;
+        }
 
+        if (shipPartner == 1)
+        {
+            shipInfo.Partner = Partner.Grab;
+        }
+        else if (shipPartner == 2)
+        {
+            shipInfo.Partner = Partner.Now;
+        }
+        else if (shipPartner == 3)
+        {
+            shipInfo.Partner = Partner.Gojek;
+        }
+        else
+        {
+            shipInfo.Partner = Partner.None;
+        }
+
+
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        orderCart.CustomerId = customer.CustomerId;
+
+        apiCart = new APICart();
+        apiCart.cart = orderCart;
+        apiCart.shipInfo = shipInfo;
+        apiCart.voucherCode = vouchercode;
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(apiCart), System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+
+            }
+            else
+            {
+                sessionStorage.RemoveItem("cart");
+                navigationManager.NavigateTo("/history");
+            }
+        }
+    }
 
     private void Cancel()
     {
         ModalInstance.CloseAsync(ModalResult.Ok<ShipInfo>(shipInfo));
+    }
+
+    private void CheckVoucher()
+    {
+        voucher = new Voucher();
+        foreach (var item in listvoucher)
+        {
+            if (vouchercode == item.VoucherCode)
+            {
+                voucher = item;
+            }
+        }
+        if (voucher.VoucherCode != null)
+        {
+            if (voucher.Status)
+            {
+                if (voucher.VoucherQuantity > 0)
+                {
+                    if (voucher.CategoryDiscount == CategoryDiscount.Cash)
+                    {
+                        vouchervalue = voucher.Value;
+                        displayvalue = string.Format("{0:#,0}", vouchervalue) + " VNĐ";
+                    }
+                    else
+                    {
+                        vouchervalue = voucher.Value / 100;
+                        displayvalue = voucher.Value.ToString() + " %";
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Voucher hết số lượng");
+                }
+
+            }
+            else
+            {
+                vouchervalue = 0;
+                displayvalue = "";
+                Console.WriteLine("Voucher hết hạn");
+            }
+        }
+        else
+        {
+            vouchervalue = 0;
+            displayvalue = "";
+            Console.WriteLine("Mã voucher sai");
+        }
+
     }
 }

@@ -22,3 +22,12 @@
     }).render('#paypal-button-container');
   //This function displays Smart Payment Buttons on your web page.
 }
+displayMoreInfoShipping = function () {
+    var x = document.getElementById("moreInfoShipping");
+    x.style.visibility = "visible"
+}
+noneDisplayMoreInfoShipping = function () {
+    var x = document.getElementById("moreInfoShipping");
+    x.style.visibility = "hidden";
+}
+

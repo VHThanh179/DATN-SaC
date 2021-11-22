@@ -34,6 +34,13 @@ namespace Share.Services
             return customer;
         }
 
+        public async Task<Customer> GetCustomerbyEmailAsync(string email)
+        {
+            Customer customer = null;
+            customer = await _context.Customers.Where(e => e.Email == email).FirstOrDefaultAsync();
+            return customer;
+        }
+
         public async Task<int> AddCustomerAsync(Customer customer)
         {
             int ret = 0;

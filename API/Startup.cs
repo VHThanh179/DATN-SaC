@@ -99,6 +99,8 @@ namespace API
 
             services.AddTransient<IVoucherSvc, VoucherSvc>();
 
+            services.AddTransient<IShipInfoSvc, ShipInfoSvc>();
+
             services.AddTransient<IAccountLogic, AccountLogic>();
 
             services.AddCors(options => options.AddPolicy(

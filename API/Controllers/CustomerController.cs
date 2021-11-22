@@ -42,6 +42,13 @@ namespace API.Controllers
             return _encodeSvc.Encode(pass);
         }
 
+        [Route("GetCustomerbyMail")]
+        [HttpGet]
+        public async Task<ActionResult<Customer>> GetCustomerbyMail([FromQuery] string email)
+        {
+            return await _customerSvc.GetCustomerbyEmailAsync(email);
+        }
+
         [HttpPost]
         [Route("login-google-customer")]
         public async Task<IActionResult> LoginGoogleCustomer(LoginGoogleCustomer googleCustomer)
