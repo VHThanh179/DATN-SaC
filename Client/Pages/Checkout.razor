@@ -215,7 +215,7 @@
                     <div class="d-flex justify-content-between information"><span>Shipping</span><span>@string.Format("{0:#,0}", shipInfo.Price) VNĐ</span></div>
                     <div class="d-flex justify-content-between information">
                         <span>Tổng cộng</span>
-                        <span id="totalPrice">
+                        <span>
                             @if (vouchervalue != 0)
                             {
                                 if (vouchervalue <= 1)
@@ -231,6 +231,7 @@
                             {
                                 total = orderCart.Total + shipInfo.Price;
                             }
+                            <span  id="totalPrice" style="display:none;">@total</span>
                             @string.Format("{0:#,0}", total) VNĐ
                         </span>
                     </div>

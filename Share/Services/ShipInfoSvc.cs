@@ -72,10 +72,9 @@ namespace Share.Services
 
         public async Task<ShipInfo> GetShipInfoByOrderAsync(int orderId)
         {
-            var shipInfo = new ShipInfo();
+            ShipInfo shipInfo = null;
             return shipInfo = await _context.ShipInfos
-                .Where(x => x.OrderId == orderId)
-                .Include(x => x.Order).FirstOrDefaultAsync();
+                .Where(x => x.OrderId == orderId).FirstOrDefaultAsync();
         }
 
         //sync
