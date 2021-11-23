@@ -141,16 +141,6 @@
                     <hr>
                     <div class="table-wrapper-scroll-y my-custom-scrollbar">
                         <form class="col-11 m-auto">
-                            <div class="row">
-                                <div class="form-group col-8">
-                                    <label class="control-label">Mã giảm giá</label>
-                                    <input class="form-control" @bind="vouchercode"/>
-                                </div>
-                                <div class="form-group col-4">
-                                    <input class="btn btn-outline-success" value="Áp dụng" @onclick="CheckVoucher"/>                                    
-                                </div>
-                            </div>
-
                             <div class="row mt-2">
                                 <div class="form-group col-6">
                                     <label class="control-label">Tên khách hàng</label>
@@ -177,6 +167,15 @@
                                         <option value="0">Lấy hàng trực tiếp</option>
                                         <option value="1">Giao hàng tận nhà</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-8">
+                                    <label class="control-label">Mã giảm giá</label>
+                                    <input class="form-control" @bind="vouchercode" />
+                                </div>
+                                <div class="form-group col-4">
+                                    <input class="btn btn-outline-success mt-4" value="Áp dụng" @onclick="CheckVoucher" />
                                 </div>
                             </div>
                             <div class="form-group mt-2">
@@ -236,6 +235,7 @@
                     </div>
                     <div id="paypal-button-container"></div>
                     <button class="btn-outline-success" @onclick="OrderCart">Thanh toán</button>
+                    <button onclick="test()">Call C#</button>
                 </div>
             </div>
             <div class="row">
@@ -284,8 +284,11 @@
             await JSRuntime.InvokeVoidAsync("displayMoreInfoShipping");
         }
     }
+    private static Func<Task> OrderWithPayPal;
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("asm name: " + typeof(Program).Assembly.GetName().Name);
+        OrderWithPayPal = OrderCart;
         customer = new Customer();
         shipInfo = new ShipInfo();
         var cart = sessionStorage.GetItem<string>("cart");
@@ -363,7 +366,12 @@
         }
     }
 
-    private async Task OrderCart()
+    [JSInvokable]
+    public static async Task CheckoutWithPaypal()
+    {
+        await OrderWithPayPal.Invoke();
+    }
+    public async Task OrderCart()
     {
         if (display == 0)
         {
