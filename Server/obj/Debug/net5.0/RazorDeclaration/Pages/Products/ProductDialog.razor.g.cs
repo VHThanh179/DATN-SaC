@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Products\ProductDialog.razor"
 using Share.Models;
 
@@ -155,7 +169,7 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 114 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Products\ProductDialog.razor"
+#line 115 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Products\ProductDialog.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 
@@ -223,7 +237,7 @@ using Syncfusion.Blazor.RichTextEditor;
             var file = selectedFiles[0];
             string filePath = dirPath + @"\" + file.Name;
             {
-                Stream stream = file.OpenReadStream();
+                Stream stream = file.OpenReadStream(MAXALLOWEDSIZE);
                 FileStream fs = File.Create(filePath);
                 await stream.CopyToAsync(fs);
                 stream.Close();
@@ -258,6 +272,7 @@ using Syncfusion.Blazor.RichTextEditor;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }

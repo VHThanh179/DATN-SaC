@@ -135,6 +135,20 @@ using Syncfusion.Blazor.Popups;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 19 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
     public partial class OrderDetails : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

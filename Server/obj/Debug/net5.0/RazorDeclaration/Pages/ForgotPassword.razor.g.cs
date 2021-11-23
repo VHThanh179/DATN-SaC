@@ -118,7 +118,28 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ForgotPassword.razor"
+#line 16 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ForgotPassword.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ForgotPassword.razor"
            [AllowAnonymous]
 
 #line default
@@ -134,7 +155,7 @@ using Blazored.Modal.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ForgotPassword.razor"
+#line 59 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ForgotPassword.razor"
       
     private string error;
     public string email = "";
@@ -153,16 +174,33 @@ using Blazored.Modal.Services;
                 _mailSvc.SendEmailAsync(mail, pass);
                 user.Password = pass;
                 _userSvc.EditUserbyMail(user.UserId, user);
+                dialogContent = "Mật khẩu mới đã được gửi qua mail";
+                OpenDialog();
             }
             else
             {
-                error = " Email không tồn tại vui lòng nhập lại email!";
+                dialogContent = "Email không tồn tại vui lòng thử lại";
+                OpenDialog();
             }
         }
         else
         {
-            error = " Vui lòng nhập email để lấy lại mật khẩu!";
+            dialogContent = "Vui lòng nhập mail";
+            OpenDialog();
         }
+    }
+
+    private string dialogContent;
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsVisible = false;
     }
 
 #line default
@@ -171,7 +209,7 @@ using Blazored.Modal.Services;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IEncodeHelper _encodeHelper { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IMailSvc _mailSvc { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

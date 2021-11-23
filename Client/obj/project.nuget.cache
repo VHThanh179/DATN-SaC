@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "VR6TU4MSmYFxpCkcOkgLfOZuU4thm9sxUnH3pMwJTtiTZ0okF9MfDfR6A+AUo/hkCuuSg7FfvtIRnyBNniVkuA==",
+  "dgSpecHash": "uEKg62ryCA/QF5IyUG3XkX2jtrf4tViVOgB0XIXAkdNjeqWhNrIhCRWG/gRF3P04o5Do0C3bGce7dljZaxDlZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Client\\Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asus\\.nuget\\packages\\blazoranimate\\3.0.0\\blazoranimate.3.0.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\blazored.modal\\6.0.1\\blazored.modal.6.0.1.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\blazored.sessionstorage\\1.0.13\\blazored.sessionstorage.1.0.13.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\blazored.toast\\3.2.2\\blazored.toast.3.2.2.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.10\\microsoft.aspnetcore.authorization.5.0.10.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.10\\microsoft.aspnetcore.components.5.0.10.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\5.0.10\\microsoft.aspnetcore.components.analyzers.5.0.10.nupkg.sha512",

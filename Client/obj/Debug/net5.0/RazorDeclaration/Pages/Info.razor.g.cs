@@ -118,6 +118,20 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 19 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Info.razor"
 using System.Text.Json;
 

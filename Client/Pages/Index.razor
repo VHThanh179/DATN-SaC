@@ -5,6 +5,7 @@
 @layout WebLayout
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject IToastService toastService
 @using Newtonsoft.Json
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime;
 @functions{
@@ -312,7 +313,7 @@
 
 <SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
     <DialogTemplates>
-        <Header> Thông báo !</Header>
+        <Header ><i class="fa fa-envelope-open" aria-hidden="true"></i> Thông báo !</Header>
         <Content> Thêm vào giỏ hàng thành công </Content>
     </DialogTemplates>
     <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
@@ -362,7 +363,6 @@
                         Price = product.Price
                     }
             };
-
             Cart orderCart = new Cart()
             {
                 ListViewCart = listCart,
@@ -370,6 +370,7 @@
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            toastService.ShowSuccess("Lưu thành công!");
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else

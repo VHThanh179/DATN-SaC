@@ -8,6 +8,7 @@
 @inject NavigationManager navigation
 @inject IWebHostEnvironment env
 @inject IModalService modal
+@inject IToastService toastService
 
 <style>
     .my-custom-scrollbar {
@@ -100,7 +101,7 @@
                 }
                 else
                 {
-                    <button type="submit" class="btn btn-info">Cập nhật</button>
+                    <button type="submit" class="btn btn-info"  @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Cập nhật</button>
                 }
                 <input type="button" class="ml-2 btn btn-primary" @onclick="@Cancel" value="Thoát" />
             </div>
@@ -178,7 +179,7 @@
             var file = selectedFiles[0];
             string filePath = dirPath + @"\" + file.Name;
             {
-                Stream stream = file.OpenReadStream();
+                Stream stream = file.OpenReadStream(MAXALLOWEDSIZE);
                 FileStream fs = File.Create(filePath);
                 await stream.CopyToAsync(fs);
                 stream.Close();

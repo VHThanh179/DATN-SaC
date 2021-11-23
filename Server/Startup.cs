@@ -20,6 +20,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Syncfusion.Blazor;
 using Blazored.Modal;
+using Blazored.Toast;
 
 namespace Server
 {
@@ -43,7 +44,7 @@ namespace Server
             });
             services.AddAuthentication(
                 CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
-
+            services.AddBlazoredToast();
             services.AddBlazoredModal();
             services.AddRazorPages();
             services.AddServerSideBlazor();

@@ -118,6 +118,20 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 19 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Index.razor"
 using Share.Models;
 
@@ -139,7 +153,7 @@ using Syncfusion.Blazor.Popups;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Index.razor"
+#line 9 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Index.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -155,7 +169,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 10 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Index.razor"
+#line 11 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Index.razor"
            
     protected async override Task OnAfterRenderAsync(bool fistRender)
     {
@@ -170,7 +184,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
 #nullable restore
-#line 324 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Index.razor"
+#line 325 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Index.razor"
       
 
     public List<Product> products;
@@ -212,7 +226,6 @@ using Newtonsoft.Json;
                         Price = product.Price
                     }
             };
-
             Cart orderCart = new Cart()
             {
                 ListViewCart = listCart,
@@ -220,6 +233,7 @@ using Newtonsoft.Json;
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            toastService.ShowSuccess("Lưu thành công!");
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -284,6 +298,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.JSInterop.IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }

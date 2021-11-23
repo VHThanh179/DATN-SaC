@@ -2303,3 +2303,6 @@ C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\obj\Debug\net5.0\Client.cs
 C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\obj\Debug\net5.0\Client.dll
 C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\obj\Debug\net5.0\ref\Client.dll
 C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\obj\Debug\net5.0\Client.pdb
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\bin\Debug\net5.0\wwwroot\_framework\Blazored.Toast.dll.gz
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\bin\Debug\net5.0\wwwroot\_framework\Blazored.Toast.dll
+C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\obj\Debug\net5.0\build-gz\1yRRWY69.gz

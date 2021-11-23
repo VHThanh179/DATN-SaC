@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Syncfusion.Blazor;
+using Blazored.Toast;
 
 namespace Client
 {
@@ -26,7 +27,7 @@ namespace Client
                 builder.Configuration.Bind("Local", options.ProviderOptions);
                 options.ProviderOptions.DefaultScopes.Add("email");
             });
-
+            builder.Services.AddBlazoredToast();
             builder.Services.AddSyncfusionBlazor();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTI3NzMyQDMxMzkyZTMzMmUzMENjWmFkNktSdXQ0REpjVnRRUHJ5TUVNbXRBUGVDSzY2aWZvUXBmT05pVVE9");
 

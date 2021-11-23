@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Login.razor"
 using System.Web;
 
@@ -132,7 +146,14 @@ using System.ComponentModel.DataAnnotations;
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Login.razor"
+#line 4 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Login.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Login.razor"
            [AllowAnonymous]
 
 #line default
@@ -148,7 +169,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Login.razor"
+#line 67 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Login.razor"
       
     private string error;
 
@@ -185,6 +206,22 @@ using System.ComponentModel.DataAnnotations;
             NavigationManager.NavigateTo("CheckLogin?paramUsername=" + @Encode(@username)
                 + "&paramPassword=" + @Encode(@password), true);
         }
+        else
+        {
+            OpenDialog();
+        }
+    }
+
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsVisible = false;
     }
 
 #line default

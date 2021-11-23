@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Vouchers\VoucherDialog.razor"
 using Share.Models;
 
@@ -133,7 +147,7 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 74 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Vouchers\VoucherDialog.razor"
+#line 75 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\Vouchers\VoucherDialog.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -174,6 +188,7 @@ using Share.Models;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IVoucherSvc _voucherService { get; set; }
     }

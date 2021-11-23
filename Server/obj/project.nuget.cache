@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "MI3GYOAcBjDtkUdsdcF/nCp0p1FJjTQPoOtc6Omyl7NvnHKPorPb3wBCOeIUNMuqJ/OOMHjv7Qx86Z7m+aSTIw==",
+  "dgSpecHash": "HUO7eOqCmaMqBZf2iNC4UloNevJPvyc7/kaq1k3BP+UIaOtm0q3mGT8lpq1KXNVniBjq6erO7tQDWeSu6ujA5g==",
   "success": true,
   "projectFilePath": "C:\\Users\\asus\\OneDrive\\Máy tính\\DATN\\Project\\Server\\Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asus\\.nuget\\packages\\blazoranimate\\3.0.0\\blazoranimate.3.0.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\blazored.modal\\6.0.1\\blazored.modal.6.0.1.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\blazored.toast\\3.2.2\\blazored.toast.3.2.2.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

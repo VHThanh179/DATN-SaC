@@ -27,6 +27,7 @@
         "dependencies": {
           "BlazorAnimate": "3.0.0",
           "Blazored.Modal": "6.0.1",
+          "Blazored.Toast": "3.2.2",
           "Microsoft.AspNetCore.Authorization": "5.0.10",
           "Microsoft.AspNetCore.Blazor.HttpClient": "3.1.0-preview4.19579.2",
           "Microsoft.AspNetCore.Http": "2.2.2",
@@ -348,6 +349,22 @@
         },
         "compile": {
           "lib/netstandard2.1/Blazored.Modal.dll": {}
+        }
+      },
+      "Blazored.Toast/3.2.2": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "5.0.10",
+          "Microsoft.AspNetCore.Components.Web": "5.0.10",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Toast.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Toast.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -3854,6 +3871,13 @@
       "sha512": "sha512-a7FwVYU2nDL6MBvtBnkp8GSLTEdZU4eKcN8ZcfhQNh4tFwGRKsIvz9jN+6eIEGV1PdI2rbzHkif/igyOcfC8Zg==",
       "path": "blazored.modal/6.0.1",
       "hashPath": "blazored.modal.6.0.1.nupkg.sha512"
+    },
+    "Blazored.Toast/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6RiWHpgIgJJFWZHnmSZb/6IBP6LS6F5brLDGTBls/B4bTf0SzPsRoTUu2g6y7sY59/PFC1XeKbwXHys9PCe6lw==",
+      "path": "blazored.toast/3.2.2",
+      "hashPath": "blazored.toast.3.2.2.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

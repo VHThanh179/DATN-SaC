@@ -118,8 +118,29 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Shared\MainLayout.razor"
 using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Shared\MainLayout.razor"
+using Blazored.Toast.Configuration;
 
 #line default
 #line hidden
@@ -132,7 +153,7 @@ using System.Security.Claims;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 115 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Shared\MainLayout.razor"
+#line 124 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     protected async override Task OnInitializedAsync()
