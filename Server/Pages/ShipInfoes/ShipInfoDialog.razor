@@ -63,9 +63,16 @@
             <div class="form-label-group">
                 <label class="control-label">Đối tác vận chuyển</label>
                 <InputSelect @bind-Value="@shipinfo.Partner" class="form-control">
-                    @foreach (var partner in Enum.GetValues(typeof(Partner)))
+                    @foreach (Partner partner in Enum.GetValues(typeof(Partner)))
                     {
-                        <option value="@partner">@partner</option>
+                        if (partner == Partner.None)
+                        {
+                            <option value="@partner">Không có đơn vị</option>
+                        }
+                        else
+                        {
+                            <option value="@partner">@partner</option>
+                        }
                     }
                 </InputSelect>
             </div>

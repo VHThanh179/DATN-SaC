@@ -9,6 +9,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Syncfusion.Blazor;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Client.Providers;
+using Share.Services;
 
 namespace Client
 {
@@ -23,7 +27,25 @@ namespace Client
 
             builder.Services.AddOidcAuthentication(options => {
                 builder.Configuration.Bind("Local", options.ProviderOptions);
+                options.ProviderOptions.DefaultScopes.Add("email");
             });
+
+            builder.Services.AddHttpClient<AppAuthClient>(option =>
+            {
+                option.BaseAddress = new Uri("https://localhost:44370/api/");
+            });
+
+            builder.Services.AddOidcAuthentication<RemoteAuthenticationState,
+            RemoteUserAccount>(options =>
+            {
+                builder.Configuration.Bind("Local", options.ProviderOptions);
+
+                options.ProviderOptions.DefaultScopes.Add("email");
+            })
+            .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount, CustomAccountFactory>();
+
+            builder.Services.AddSyncfusionBlazor();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTI3NzMyQDMxMzkyZTMzMmUzMENjWmFkNktSdXQ0REpjVnRRUHJ5TUVNbXRBUGVDSzY2aWZvUXBmT05pVVE9");
 
             builder.Services.AddBlazoredSessionStorage();
 

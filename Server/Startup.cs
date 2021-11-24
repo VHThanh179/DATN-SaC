@@ -60,6 +60,7 @@ namespace Server
             services.AddTransient<IShipInfoSvc, ShipInfoSvc>();
             services.AddTransient<IOrderDetailsSvc, OrderDetailsSvc>();
             services.AddTransient<ICustomerSvc, CustomerSvc>();
+            services.AddTransient<IStatisticalSvc, StatisticalSvc>();
 
 
             services.AddHttpContextAccessor();

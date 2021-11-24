@@ -1,41 +1,49 @@
-﻿<h3>Thông tin vận chuyển</h3>
+﻿@page "/shipinfo/{id}"
+@using System.Net;
+@using Share.Models;
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@inject NavigationManager NavigationManager
+<h3>Thông tin vận chuyển</h3>
 <div>
     <hr />
     <dl class="row">
         <dt class="col-sm-4">Mã đơn hàng</dt>
         <dd class="col-sm-8">
-            1
+            @ships.OrderId
         </dd>
 
         <dt class="col-sm-4">Tên khách hàng</dt>
         <dd class="col-sm-8">
-            Võ Hoàng Thanh
+            @ships.CusName
         </dd>
 
         <dt class="col-sm-4">Địa chỉ nhận hàng</dt>
         <dd class="col-sm-8">
-            Thuận An, Bình Dương
+            @ships.Address
         </dd>
 
         <dt class="col-sm-4">Số điện thoại</dt>
         <dd class="col-sm-8">
-            0901616631
+            @ships.PhoneNumber
         </dd>
-        <dt class="col-sm-4">Phương thức thanh toán</dt>
+        <dt class="col-sm-4">Phương thức vận chuyển</dt>
         <dd class="col-sm-8">
-            Thanh toán khi nhận hàng
+            @ships.ShippingMethod
         </dd>
         <dt class="col-sm-4">Ghi chú</dt>
         <dd class="col-sm-8">
-            Mặt khách nhìn hơi đù
+            @ships.Notes
         </dd>
         <dt class="col-sm-4">Số tiền thu hộ</dt>
         <dd class="col-sm-8">
-            550000
+            @ships.Price
         </dd>
         <dt class="col-sm-4">Đối tác giao hàng</dt>
         <dd class="col-sm-8">
-            Now
+            @ships.Partner
         </dd>
     </dl>
 </div>
@@ -44,5 +52,34 @@
     <a class="btn" href="/History">Danh sách</a>
 </div>
 @code {
+    [Parameter]
+    public string id { get; set; }
+    private string Title = "";
+    protected string temp = "";
+    public ShipInfo ships;
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            NavigationManager.NavigateTo("/History", true); ;
+        }
+        else
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            ships = new ShipInfo();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var respone = await client.GetAsync("ShipInfo/?id=" + id))
+                {
+                    string apiResponse = await respone.Content.ReadAsStringAsync();
+                    ships = JsonConvert.DeserializeObject<ShipInfo>(apiResponse);
+                }
 
+            }
+        }
+    }
 }

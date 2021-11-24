@@ -131,6 +131,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/fetchdata")]
     public partial class FetchData : Microsoft.AspNetCore.Components.ComponentBase
     {

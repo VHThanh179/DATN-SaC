@@ -125,6 +125,13 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 18 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -153,7 +160,7 @@ using Pages;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 138 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 139 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
       
     string emailAddress;
     string cusName;

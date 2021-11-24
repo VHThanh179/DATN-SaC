@@ -18,16 +18,23 @@ namespace API.Controllers
     {
         private readonly IOrderSvc _orderSvc;
         private readonly IOrderDetailsSvc _orderDetailsSvc;
+        private readonly IShipInfoSvc _shipInfoSvc;
+        private readonly IVoucherSvc _voucherSvc;
 
-        public CartController(IOrderDetailsSvc orderDetailsSvc, IOrderSvc orderSvc)
+        public CartController(IOrderDetailsSvc orderDetailsSvc, IOrderSvc orderSvc, IShipInfoSvc shipInfoSvc, IVoucherSvc voucherSvc)
         {
             _orderDetailsSvc = orderDetailsSvc;
             _orderSvc = orderSvc;
+            _shipInfoSvc = shipInfoSvc;
+            _voucherSvc = voucherSvc;
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> PostCart(Cart cart)
+        public async Task<ActionResult<int>> PostCart(APICart content)
         {
+            Cart cart = content.cart;
+            ShipInfo shipInfo = content.shipInfo;
+            string vouCode = content.voucherCode;
             try
             {
                 var order = new Order()
@@ -36,7 +43,7 @@ namespace API.Controllers
                     CustomerId = cart.CustomerId,
                     Total = cart.Total,
                     OrderDate = DateTime.Now,
-                    Notes = ""
+                    Notes = shipInfo.Notes
                 };
 
                 int orderId = await _orderSvc.AddOrderAsync(order);
@@ -51,10 +58,20 @@ namespace API.Controllers
                         ProductId = dataCart[i].product.ProductId,
                         Quantity = dataCart[i].Quantity,
                         TotalAmount = dataCart[i].product.Price * dataCart[i].Quantity,
-                        Notes = ""
+                        Notes = order.Notes
                     };
                     await _orderDetailsSvc.AddOrderDetailsAsync(details);
                 }
+
+                shipInfo.OrderId = orderId;
+                await _shipInfoSvc.AddShipInfoAsync(shipInfo);
+                Voucher voucher = await _voucherSvc.GetVoucherByCodeAsync(vouCode);
+                if (voucher != null)
+                {
+                    voucher.VoucherQuantity--;
+                    await _voucherSvc.EditVoucherAsync(voucher);
+                }
+
             }
             catch
             {

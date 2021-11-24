@@ -27,7 +27,6 @@ namespace Server.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -37,12 +36,10 @@ namespace Server.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Password")
@@ -50,7 +47,6 @@ namespace Server.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
@@ -198,6 +194,33 @@ namespace Server.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("ShipInfos");
+                });
+
+            modelBuilder.Entity("Share.Models.Statistical", b =>
+                {
+                    b.Property<int>("StatisticalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("AnnualRevenue")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("MonthlyRevenue")
+                        .HasColumnType("money");
+
+                    b.Property<int>("QuantityOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuantityRegister")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatisticalMonth")
+                        .HasColumnType("int");
+
+                    b.HasKey("StatisticalId");
+
+                    b.ToTable("Statisticals");
                 });
 
             modelBuilder.Entity("Share.Models.User", b =>
