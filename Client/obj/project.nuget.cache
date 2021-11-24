@@ -137,12 +137,5 @@
     "C:\\Users\\Admins\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.9\\microsoft.netcore.app.runtime.browser-wasm.5.0.9.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\DATN\\Project\\SaCBackpack\\Client\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
