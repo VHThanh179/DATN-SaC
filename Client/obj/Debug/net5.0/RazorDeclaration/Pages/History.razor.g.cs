@@ -90,13 +90,6 @@ using Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Share.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using BlazorAnimate;
 
@@ -138,6 +131,34 @@ using Syncfusion.Blazor.Popups;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\History.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\History.razor"
+using System.Text.Json.Serialization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\History.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\History.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/history")]
     public partial class History : Microsoft.AspNetCore.Components.ComponentBase
@@ -147,7 +168,59 @@ using Syncfusion.Blazor.Popups;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 87 "D:\DATN\Project\SaCBackpack\Client\Pages\History.razor"
+       
+    private string email;
+    public List<Order> orders = new List<Order>();
+    public Share.Models.ViewModels.Cart giohang;
+    private double total = 0;
+    protected string imgUrl = "";
+    protected string temp = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        email = sessionStorage.GetItem<string>("Email");
+        int customerId = sessionStorage.GetItem<int>("customerId");
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        orders = new List<Order>();
+        using (var client = new HttpClient())
+        {
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            client.DefaultRequestHeaders.Authorization = new
+            System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("Order/?id=" + customerId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                orders = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(apiResponse);
+            }
+        }
+    }
+    void ShowOrderDetail(int orderId)
+    {
+        var parameter = new ModalParameters();
+        parameter.Add(nameof(OrderDetails.id), orderId.ToString());
+        modal.Show<OrderDetails>("Chi tiết đơn hàng", parameter);
+    }
+    void ShowShipInfo(int orderId)
+    {
+        var parameterr = new ModalParameters();
+        parameterr.Add(nameof(ShipInfoPage.id), orderId.ToString());
+        modal.Show<ShipInfoPage>("Thông tin vận chuyển", parameterr);
+    }
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

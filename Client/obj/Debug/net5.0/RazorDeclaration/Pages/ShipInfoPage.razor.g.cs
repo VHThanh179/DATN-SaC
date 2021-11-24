@@ -90,13 +90,6 @@ using Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Share.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using BlazorAnimate;
 
@@ -138,6 +131,35 @@ using Syncfusion.Blazor.Popups;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\ShipInfoPage.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Client\Pages\ShipInfoPage.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\ShipInfoPage.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\ShipInfoPage.razor"
+using System.Text.Json.Serialization;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/shipinfo/{id}")]
     public partial class ShipInfoPage : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -145,6 +167,46 @@ using Syncfusion.Blazor.Popups;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 54 "D:\DATN\Project\SaCBackpack\Client\Pages\ShipInfoPage.razor"
+       
+    [Parameter]
+    public string id { get; set; }
+    private string Title = "";
+    protected string temp = "";
+    public ShipInfo ships;
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            NavigationManager.NavigateTo("/History", true); ;
+        }
+        else
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            ships = new ShipInfo();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var respone = await client.GetAsync("ShipInfo/?id=" + id))
+                {
+                    string apiResponse = await respone.Content.ReadAsStringAsync();
+                    ships = JsonConvert.DeserializeObject<ShipInfo>(apiResponse);
+                }
+
+            }
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
 }
 #pragma warning restore 1591
