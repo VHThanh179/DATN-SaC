@@ -168,7 +168,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 251 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Checkout.razor"
+#line 252 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Checkout.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
