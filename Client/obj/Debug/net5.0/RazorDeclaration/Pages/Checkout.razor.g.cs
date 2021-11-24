@@ -205,8 +205,11 @@ using Microsoft.AspNetCore.Components.Authorization;
             await JSRuntime.InvokeVoidAsync("displayMoreInfoShipping");
         }
     }
+    private static Func<Task> OrderWithPayPal;
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("asm name: " + typeof(Program).Assembly.GetName().Name);
+        OrderWithPayPal = OrderCart;
         customer = new Customer();
         shipInfo = new ShipInfo();
         var cart = sessionStorage.GetItem<string>("cart");
@@ -284,7 +287,12 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
     }
 
-    private async Task OrderCart()
+    [JSInvokable]
+    public static async Task CheckoutWithPaypal()
+    {
+        await OrderWithPayPal.Invoke();
+    }
+    public async Task OrderCart()
     {
         if (display == 0)
         {
