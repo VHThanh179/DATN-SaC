@@ -11,9 +11,9 @@ namespace Share.Interfaces
     {
         //async
         Task<List<Voucher>> GetAllVoucherAsync();        
-        Task<Voucher> GetVoucherAsync(int id);       
+        Task<Voucher> GetVoucherByCodeAsync(string vcode);       
         Task<int> AddVoucherAsync(Voucher voucher);       
-        Task<int> EditVoucherAsync(int id, Voucher voucher);
+        Task<int> EditVoucherAsync(Voucher voucher);
         
         //sync
         List<Voucher> GetAllVoucher();

@@ -91,20 +91,27 @@ using Syncfusion.Blazor;
 #nullable disable
 #nullable restore
 #line 12 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
@@ -148,7 +155,7 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 113 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
+#line 114 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 

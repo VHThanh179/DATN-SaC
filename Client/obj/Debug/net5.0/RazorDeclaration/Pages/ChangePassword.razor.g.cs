@@ -138,6 +138,13 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\ChangePassword.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/changepass")]
     public partial class ChangePassword : Microsoft.AspNetCore.Components.ComponentBase
@@ -148,9 +155,9 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 158 "D:\DATN\Project\SaCBackpack\Client\Pages\ChangePassword.razor"
+#line 171 "D:\DATN\Project\SaCBackpack\Client\Pages\ChangePassword.razor"
        
-    // NOTE: Các property cần có
+        // NOTE: Các property cần có
     public Customer customer { get; set; }
     public int customerId { get; set; }
     public string oldPass = "";
@@ -200,25 +207,54 @@ using Newtonsoft.Json;
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (apiResponse == "-1")
                         {
-
+                            dialogContent = "Đổi mật khẩu thất bại";
                         }
                         else // Change pass successfully
                         {
-                            NavigationManager.NavigateTo("/logout", true);
+                            dialogContent = "Đổi mật khẩu thành công, vui lòng đăng nhập lại";
+                            reset = true;
+                            OpenDialog();
                         }
                     }
                 }
                 else
                 {
                     Console.WriteLine("Mật khẩu mới và xác nhận mật khẩu mới không khớp");
+                    dialogContent = "Mật khẩu mới và xác nhận mật khẩu mới không khớp";
+                    OpenDialog();
                 }
             }
             else
             {
                 Console.WriteLine("Mật khẩu cũ không đúng");
+                dialogContent = "Mật khẩu cũ không đúng, vui lòng kiểm tra";
+                OpenDialog();
             }
         }
     }
+
+    private string dialogContent;
+    private bool IsVisible { get; set; }
+    private bool reset { get; set; } = false;
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog(bool navigate)
+    {
+        if (navigate)
+        {
+            IsVisible = false;
+            NavigationManager.NavigateTo("/logout", true);
+        }
+        else
+        {
+            IsVisible = false;
+        }
+    }
+
 
 #line default
 #line hidden

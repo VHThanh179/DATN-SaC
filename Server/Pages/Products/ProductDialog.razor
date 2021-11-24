@@ -60,10 +60,11 @@
                 </div>
                 <div class="form-group col-6">
                     <label class="control-label">Trạng thái</label>
-                    <InputSelect @bind-Value="status" class="form-control">
+                    <select @bind="status" class="form-control" required>
+                        <option value="">Chọn trạng thái</option>
                         <option value="true">Còn hàng</option>
                         <option value="false">Hết hàng</option>
-                    </InputSelect>
+                    </select>
                 </div>
             </div>
 

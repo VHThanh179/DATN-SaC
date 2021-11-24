@@ -1,8 +1,9 @@
 ﻿@page "/login"
 @using System.Web;
 @using System.Net;
-@using System.ComponentModel.DataAnnotations;
+@using System.ComponentModel.DataAnnotations
 @using Share.Models.ViewModels
+@using Syncfusion.Blazor.Popups
 @layout InnerPageLayout
 @inject NavigationManager NavigationManager
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
@@ -130,12 +131,12 @@
                             <h5 class="card-title text-center fw-bold">ĐĂNG NHẬP HỆ THỐNG</h5>
                             <form class="form-signin" @onsubmit="Checklogin">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputEmail" @bind="@email" class="form-control" placeholder="Email address" required autofocus>
+                                    <input type="text" id="inputEmail" @bind="@email" class="form-control" placeholder="Email" autofocus required>
                                     <label for="inputEmail">Địa chỉ mail</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPassword" @bind="@password" @onkeypress="Enter" class="form-control" placeholder="Password" required>
+                                    <input type="password" id="inputPassword" @bind="@password" @onkeypress="Enter" class="form-control" placeholder="Mật khẩu" required>
                                     <label for="inputPassword">Mật khẩu</label>
                                 </div>
 
@@ -153,7 +154,7 @@
                                 <hr class="my-4">
                                 <div class="d-grid gap-2">
                                     <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><a href="/authentication/login" style="text-decoration:none;"><i class="fab fa-google mr-2"></i> Đăng nhập với Google</a></button>
-                                    <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Đăng nhập với Facebook</button>
+                                    @*<button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Đăng nhập với Facebook</button>*@
                                 </div>
                             </form>
                         </div>
@@ -164,16 +165,24 @@
     </div>
 </Animate>
 
+<SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
+    <DialogTemplates>
+        <Header> Thông báo !</Header>
+        <Content> Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin </Content>
+    </DialogTemplates>
+    <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@CloseDialog" />
+    </DialogButtons>
+</SfDialog>
+
 @code {
     private bool loading;
     private string error;
     string email = "";
     string password = "";
     private string name;
-    protected override void OnInitialized()
-    {
 
-    }
     private string Encode(string param)
     {
         return HttpUtility.UrlEncode(param);
@@ -212,8 +221,7 @@
                 HttpResponseMessage response = await client.PostAsync(apiUrl + "Token", content);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    error += (error == "" ? "" : "<br/>") + "- Lỗi khi gọi API.";
-
+                    //error += (error == "" ? "" : "<br/>") + "- Lỗi khi gọi API.";                   
                 }
                 else
                 {
@@ -227,13 +235,28 @@
                         sessionStorage.SetItem("customerId", viewToken.customerID);
                         sessionStorage.SetItem("Email", email);
                         sessionStorage.SetItem("AccessToken", accessToken);
-                        //await JSRuntime.InvokeAsync<object>("refreshMenu", new { email = email });
                         NavigationManager.NavigateTo("/", true);
 
+                    }
+                    else
+                    {
+                        OpenDialog();
                     }
                 }
             }
         }
     }
 
+
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsVisible = false;
+    }
 }

@@ -118,6 +118,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 18 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Register.razor"
 using System.Net;
 
@@ -163,8 +170,7 @@ using Newtonsoft.Json;
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+        {            
             StringContent content = new StringContent(JsonConvert.SerializeObject(customer), System.Text.Encoding.UTF8,
                 "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Alow-Origin", "*");
