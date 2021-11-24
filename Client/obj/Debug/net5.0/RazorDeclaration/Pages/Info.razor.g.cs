@@ -159,6 +159,13 @@ using Share.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/info/{id}")]
     public partial class Info : Microsoft.AspNetCore.Components.ComponentBase
@@ -169,15 +176,16 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 169 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
+#line 170 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
        
     [Parameter]
     public string id { get; set; }
     public Customer cus;
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        if (string.IsNullOrWhiteSpace(id) || id == "0" || id == "0")
         {
             NavigationManager.NavigateTo("/");
         }
@@ -185,16 +193,28 @@ using Share.Models;
         {
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            var accessTokenGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
             cus = new Customer();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 client.BaseAddress = new Uri(apiUrl);
-                using (var response = await client.GetAsync("Customer/?id=" + id))
+                if (accessTokenGoogle != null && accessTokenGoogle != "")
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + id))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    }
+                }
+                else
+                {
+                    using (var response = await client.GetAsync("Customer/?id=" + id))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    }
                 }
             }
         }
@@ -203,11 +223,21 @@ using Share.Models;
     private async void SubmitForm()
     {
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessTokenGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         var customerId = sessionStorage.GetItem<int>("customerId");
         using (var client = new HttpClient())
         {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            if (accessToken != null && accessToken != "")
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            }
+            if (accessTokenGoogle != null && accessTokenGoogle != "")
+            {
+                customerId = cus.CustomerId;
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessTokenGoogle);
+            }
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             StringContent content = new StringContent(JsonConvert.SerializeObject(cus), System.Text.Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
