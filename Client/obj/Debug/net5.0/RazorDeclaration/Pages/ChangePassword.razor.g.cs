@@ -169,7 +169,7 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 171 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\ChangePassword.razor"
+#line 187 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\ChangePassword.razor"
        
         // NOTE: Các property cần có
     public Customer customer { get; set; }

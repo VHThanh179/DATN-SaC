@@ -237,7 +237,7 @@ using Syncfusion.Blazor.RichTextEditor;
             var file = selectedFiles[0];
             string filePath = dirPath + @"\" + file.Name;
             {
-                Stream stream = file.OpenReadStream(MAXALLOWEDSIZE);
+                Stream stream = file.OpenReadStream();
                 FileStream fs = File.Create(filePath);
                 await stream.CopyToAsync(fs);
                 stream.Close();

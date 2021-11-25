@@ -190,7 +190,7 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 179 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Login.razor"
+#line 198 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Login.razor"
        
     private bool loading;
     private string error;
