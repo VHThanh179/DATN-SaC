@@ -159,6 +159,13 @@ using System.Text.Json.Serialization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\OrderDetails.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/orderdetails/{id}")]
     public partial class OrderDetails : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -168,15 +175,20 @@ using System.Text.Json.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "D:\DATN\Project\SaCBackpack\Client\Pages\OrderDetails.razor"
+#line 89 "D:\DATN\Project\SaCBackpack\Client\Pages\OrderDetails.razor"
        
     [Parameter]
     public string id { get; set; }
     private string Title = "";
     protected string temp = "";
     protected string imgUrl = "";
+    // Giống Bên ShipInfoPage
+    private string emailGoogle = "";
     public Order model;
     public List<Share.Models.OrderDetails> listOrder = new List<Share.Models.OrderDetails>();
+    // Giống Bên ShipInfoPage
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         if (string.IsNullOrWhiteSpace(id) || id == "0")
@@ -185,9 +197,16 @@ using System.Text.Json.Serialization;
         }
         else
         {
+            // Giống Bên ShipInfoPage
+            emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             imgUrl = config.GetSection("API")["ImgUrl"].ToString();
             var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            // Giống Bên ShipInfoPage
+            if (emailGoogle != null && emailGoogle != "")
+            {
+                accessToken = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
+            }
             model = new Order();
             using (var client = new HttpClient())
             {

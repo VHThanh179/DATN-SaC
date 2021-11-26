@@ -3,6 +3,7 @@
 @using Share.Models;
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
+@using Microsoft.AspNetCore.Components.Authorization
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject NavigationManager NavigationManager
@@ -91,8 +92,13 @@
     private string Title = "";
     protected string temp = "";
     protected string imgUrl = "";
+    // Giống Bên ShipInfoPage
+    private string emailGoogle = "";
     public Order model;
     public List<Share.Models.OrderDetails> listOrder = new List<Share.Models.OrderDetails>();
+    // Giống Bên ShipInfoPage
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         if (string.IsNullOrWhiteSpace(id) || id == "0")
@@ -101,9 +107,16 @@
         }
         else
         {
+            // Giống Bên ShipInfoPage
+            emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             imgUrl = config.GetSection("API")["ImgUrl"].ToString();
             var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            // Giống Bên ShipInfoPage
+            if (emailGoogle != null && emailGoogle != "")
+            {
+                accessToken = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
+            }
             model = new Order();
             using (var client = new HttpClient())
             {
