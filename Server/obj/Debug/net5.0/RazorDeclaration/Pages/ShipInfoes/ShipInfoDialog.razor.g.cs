@@ -177,7 +177,7 @@ using Microsoft.AspNetCore.Hosting;
         {
             _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
         }
-        navigation.NavigateTo("shipinfolist");
+        navigation.NavigateTo("shipinfolist", true);
     }
     private void Cancel()
     {

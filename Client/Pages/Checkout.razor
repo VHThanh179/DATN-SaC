@@ -211,7 +211,17 @@
                     <hr class="line">
                     <div class="d-flex justify-content-between information"><span>Tiền hàng</span><span>@string.Format("{0:#,0}", orderCart.Total) VNĐ</span></div>
                     <div class="d-flex justify-content-between information"><span>Giảm giá</span><span>@displayvalue</span></div>
-                    <div class="d-flex justify-content-between information"><span>Shipping</span><span>@string.Format("{0:#,0}", shipInfo.Price) VNĐ</span></div>
+                    <div class="d-flex justify-content-between information">
+                        <span>Shipping</span>
+                        @if (display == 0)
+                        {
+                            <span></span>
+                        }
+                        else
+                        {
+                            <span>@string.Format("{0:#,0}", shipInfo.Price) VNĐ</span>
+                        }
+                    </div>
                     <div class="d-flex justify-content-between information">
                         <span>Tổng cộng</span>
                         <span>
@@ -318,40 +328,32 @@
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         customer = new Customer();
-        if (emailAddress != null && emailAddress != "")
+        
+        using (var client = new HttpClient())
         {
-            using (var client = new HttpClient())
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            if(emailAddress != null && emailAddress != "")
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-                client.BaseAddress = new Uri(apiUrl);
                 using (var response = await client.GetAsync("Customer/?id=" + cusId))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
-            shipInfo.CusName = customer.FullName;
-            shipInfo.Address = customer.Address;
-            shipInfo.PhoneNumber = customer.PhoneNumber;
-        }
-        if (emailGoogle != null && emailGoogle != "")
-        {
-            using (var client = new HttpClient())
+            if (emailGoogle != null && emailGoogle != "")
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-                client.BaseAddress = new Uri(apiUrl);
                 using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + emailGoogle))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
-            shipInfo.CusName = customer.FullName;
-            shipInfo.Address = customer.Address;
-            shipInfo.PhoneNumber = customer.PhoneNumber;
         }
+        shipInfo.CusName = customer.FullName;
+        shipInfo.Address = customer.Address;
+        shipInfo.PhoneNumber = customer.PhoneNumber;
 
         using (var client = new HttpClient())
         {
@@ -374,11 +376,13 @@
     {
         if (display == 0)
         {
-            shipInfo.ShippingMethod = true;
+            shipInfo.ShippingMethod = false;
+            shipInfo.Price = 0;
+            shipInfo.Partner = Partner.None;
         }
         else
         {
-            shipInfo.ShippingMethod = false;
+            shipInfo.ShippingMethod = true;
         }
 
         if (shipPartner == 1)
@@ -401,6 +405,11 @@
 
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        // Giống Bên ShipInfoPage
+        if (emailGoogle != null && emailGoogle != "")
+        {
+            accessToken = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
+        }
         orderCart.CustomerId = customer.CustomerId;
 
         apiCart = new APICart();

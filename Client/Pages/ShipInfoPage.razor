@@ -3,6 +3,7 @@
 @using Share.Models;
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
+@using Microsoft.AspNetCore.Components.Authorization
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject NavigationManager NavigationManager
@@ -10,41 +11,82 @@
 <div>
     <hr />
     <dl class="row">
-        <dt class="col-sm-4">Mã đơn hàng</dt>
-        <dd class="col-sm-8">
-            @ships.OrderId
-        </dd>
+        @if (ships.ShippingMethod)
+        {
+            <dt class="col-sm-4">Phương thức vận chuyển</dt>
+            <dd class="col-sm-8">
+                Giao hàng tận nhà
+            </dd>
 
-        <dt class="col-sm-4">Tên khách hàng</dt>
-        <dd class="col-sm-8">
-            @ships.CusName
-        </dd>
+            <dt class="col-sm-4">Mã đơn hàng</dt>
+            <dd class="col-sm-8">
+                @ships.OrderId
+            </dd>
 
-        <dt class="col-sm-4">Địa chỉ nhận hàng</dt>
-        <dd class="col-sm-8">
-            @ships.Address
-        </dd>
+            <dt class="col-sm-4">Tên khách hàng</dt>
+            <dd class="col-sm-8">
+                @ships.CusName
+            </dd>
 
-        <dt class="col-sm-4">Số điện thoại</dt>
-        <dd class="col-sm-8">
-            @ships.PhoneNumber
-        </dd>
-        <dt class="col-sm-4">Phương thức vận chuyển</dt>
-        <dd class="col-sm-8">
-            @ships.ShippingMethod
-        </dd>
-        <dt class="col-sm-4">Ghi chú</dt>
-        <dd class="col-sm-8">
-            @ships.Notes
-        </dd>
-        <dt class="col-sm-4">Số tiền thu hộ</dt>
-        <dd class="col-sm-8">
-            @ships.Price
-        </dd>
-        <dt class="col-sm-4">Đối tác giao hàng</dt>
-        <dd class="col-sm-8">
-            @ships.Partner
-        </dd>
+            <dt class="col-sm-4">Địa chỉ nhận hàng</dt>
+            <dd class="col-sm-8">
+                @ships.Address
+            </dd>
+
+            <dt class="col-sm-4">Số điện thoại</dt>
+            <dd class="col-sm-8">
+                @ships.PhoneNumber
+            </dd>
+
+            <dt class="col-sm-4">Số tiền thu hộ</dt>
+            <dd class="col-sm-8">
+                @ships.Price
+            </dd>
+
+            <dt class="col-sm-4">Đối tác giao hàng</dt>
+            <dd class="col-sm-8">
+                @if (ships.Partner == Partner.None)
+                {
+                    <span>Chưa có đơn vị vận chuyển</span>
+                }
+                else
+                {
+                    @ships.Partner
+                }
+            </dd>
+
+            <dt class="col-sm-4">Ghi chú</dt>
+            <dd class="col-sm-8">
+                @ships.Notes
+            </dd>
+        }
+        else
+        {
+            <dt class="col-sm-4">Phương thức vận chuyển</dt>
+            <dd class="col-sm-8">
+                Lấy hàng trực tiếp
+            </dd>
+
+            <dt class="col-sm-4">Mã đơn hàng</dt>
+            <dd class="col-sm-8">
+                @ships.OrderId
+            </dd>
+
+            <dt class="col-sm-4">Tên khách hàng</dt>
+            <dd class="col-sm-8">
+                @ships.CusName
+            </dd>
+
+            <dt class="col-sm-4">Số điện thoại</dt>
+            <dd class="col-sm-8">
+                @ships.PhoneNumber
+            </dd>
+
+            <dt class="col-sm-4">Ghi chú</dt>
+            <dd class="col-sm-8">
+                @ships.Notes
+            </dd>
+        }
     </dl>
 </div>
 <div>
@@ -56,7 +98,12 @@
     public string id { get; set; }
     private string Title = "";
     protected string temp = "";
+    // Giống Bên History
+    private string emailGoogle = "";
     public ShipInfo ships;
+    // Giống Bên History
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         if (string.IsNullOrWhiteSpace(id) || id == "0")
@@ -65,15 +112,22 @@
         }
         else
         {
+            // Giống Bên History
+            emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            // Nếu maillGG khác null thì gán tokenGG cho accessToken, tương tự cho CHeckout, OrderDetails
+            if (emailGoogle != null && emailGoogle != "")
+            {
+                accessToken = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
+            }
             ships = new ShipInfo();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 client.BaseAddress = new Uri(apiUrl);
-                using (var respone = await client.GetAsync("ShipInfo/?id=" + id))
+                using (var respone = await client.GetAsync("ShipInfo/?orderId=" + id))
                 {
                     string apiResponse = await respone.Content.ReadAsStringAsync();
                     ships = JsonConvert.DeserializeObject<ShipInfo>(apiResponse);

@@ -159,6 +159,13 @@ using Share.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\History.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/history")]
     public partial class History : Microsoft.AspNetCore.Components.ComponentBase
@@ -169,17 +176,24 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 87 "D:\DATN\Project\SaCBackpack\Client\Pages\History.razor"
+#line 88 "D:\DATN\Project\SaCBackpack\Client\Pages\History.razor"
        
     private string email;
+    // tao bien mail Goole
+    private string emailGoogle;
     public List<Order> orders = new List<Order>();
     public Share.Models.ViewModels.Cart giohang;
+    public Customer customer;
+    // tao bien State xac thuc
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     private double total = 0;
     protected string imgUrl = "";
     protected string temp = "";
 
     protected override async Task OnInitializedAsync()
     {
+        // gan = mail Goole
+        emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
         email = sessionStorage.GetItem<string>("Email");
         int customerId = sessionStorage.GetItem<int>("customerId");
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
@@ -194,6 +208,18 @@ using Share.Models;
             System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
+            // Tạo mới object Cusomer
+            customer = new Customer();
+            // neu maillGG không null va rỗng thì get customer bằng email rồi gán customerId = customer.customerId được get từ db
+            if (emailGoogle != null && emailGoogle != "")
+            {
+                using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + emailGoogle))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    customer = Newtonsoft.Json.JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
+                customerId = customer.CustomerId;
+            }
             using (var response = await client.GetAsync("Order/?id=" + customerId))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
