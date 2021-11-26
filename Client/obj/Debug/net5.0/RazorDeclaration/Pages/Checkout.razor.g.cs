@@ -168,7 +168,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 250 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+#line 260 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
@@ -240,40 +240,32 @@ using Microsoft.AspNetCore.Components.Authorization;
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         customer = new Customer();
-        if (emailAddress != null && emailAddress != "")
+        
+        using (var client = new HttpClient())
         {
-            using (var client = new HttpClient())
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            if(emailAddress != null && emailAddress != "")
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-                client.BaseAddress = new Uri(apiUrl);
                 using (var response = await client.GetAsync("Customer/?id=" + cusId))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
-            shipInfo.CusName = customer.FullName;
-            shipInfo.Address = customer.Address;
-            shipInfo.PhoneNumber = customer.PhoneNumber;
-        }
-        if (emailGoogle != null && emailGoogle != "")
-        {
-            using (var client = new HttpClient())
+            if (emailGoogle != null && emailGoogle != "")
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-                client.BaseAddress = new Uri(apiUrl);
                 using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + emailGoogle))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
-            shipInfo.CusName = customer.FullName;
-            shipInfo.Address = customer.Address;
-            shipInfo.PhoneNumber = customer.PhoneNumber;
         }
+        shipInfo.CusName = customer.FullName;
+        shipInfo.Address = customer.Address;
+        shipInfo.PhoneNumber = customer.PhoneNumber;
 
         using (var client = new HttpClient())
         {
@@ -296,11 +288,13 @@ using Microsoft.AspNetCore.Components.Authorization;
     {
         if (display == 0)
         {
-            shipInfo.ShippingMethod = true;
+            shipInfo.ShippingMethod = false;
+            shipInfo.Price = 0;
+            shipInfo.Partner = Partner.None;
         }
         else
         {
-            shipInfo.ShippingMethod = false;
+            shipInfo.ShippingMethod = true;
         }
 
         if (shipPartner == 1)
@@ -323,6 +317,11 @@ using Microsoft.AspNetCore.Components.Authorization;
 
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        // Giống Bên ShipInfoPage
+        if (emailGoogle != null && emailGoogle != "")
+        {
+            accessToken = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
+        }
         orderCart.CustomerId = customer.CustomerId;
 
         apiCart = new APICart();
