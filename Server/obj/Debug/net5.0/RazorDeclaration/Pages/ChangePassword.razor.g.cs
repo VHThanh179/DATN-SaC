@@ -162,7 +162,7 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 75 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ChangePassword.razor"
+#line 63 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ChangePassword.razor"
        
     public string oldPass, newPass, confirmPass;
 

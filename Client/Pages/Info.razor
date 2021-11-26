@@ -105,7 +105,26 @@
                 color: #777;
             }
 
+    .ds {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+    }
 
+    .e-dlg-content {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+    }
+
+    .e-dialog {
+        border-radius: 30px;
+    }
+
+    .e-footer-content,
+    .e-dlg-header-content {
+        background: transparent;
+    }
     /* Fallback for Edge
         -------------------------------------------------- */
 
@@ -170,7 +189,7 @@
 <SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
     <DialogTemplates>
         <Header><i class="fa fa-envelope-open" aria-hidden="true"></i> Thông báo !</Header>
-        <Content> Lưu thông tin thành công </Content>
+        <Content><div class="ds"> Lưu thông tin thành công</div> </Content>
     </DialogTemplates>
     <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
     <DialogButtons>
