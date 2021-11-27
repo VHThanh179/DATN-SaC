@@ -155,7 +155,7 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 59 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ForgotPassword.razor"
+#line 80 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Server\Pages\ForgotPassword.razor"
       
     private string error;
     public string email = "";

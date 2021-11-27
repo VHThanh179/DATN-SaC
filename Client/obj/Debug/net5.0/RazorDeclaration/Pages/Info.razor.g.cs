@@ -183,7 +183,7 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 181 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Info.razor"
+#line 200 "C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\Pages\Info.razor"
        
     [Parameter]
     public string id { get; set; }
