@@ -5,6 +5,7 @@
 @using Newtonsoft.Json;
 @using Share.Models;
 @using Microsoft.AspNetCore.Components.Authorization;
+@using Syncfusion.Blazor.Popups
 @layout WebLayout
 @inject NavigationManager NavigationManager
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
@@ -105,7 +106,26 @@
                 color: #777;
             }
 
+    .ds {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+    }
 
+    .e-dlg-content {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+    }
+
+    .e-dialog {
+        border-radius: 30px;
+    }
+
+    .e-footer-content,
+    .e-dlg-header-content {
+        background: transparent;
+    }
     /* Fallback for Edge
         -------------------------------------------------- */
 
@@ -176,6 +196,17 @@
         </div>
     </div>
 </Animate>
+
+<SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
+    <DialogTemplates>
+        <Header><i class="fa fa-envelope-open" aria-hidden="true"></i> Thông báo !</Header>
+        <Content><div class="ds"> Lưu thông tin thành công</div> </Content>
+    </DialogTemplates>
+    <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@CloseDialog" />
+    </DialogButtons>
+</SfDialog>
 
 @code {
     [Parameter]
@@ -256,13 +287,26 @@
                 }
                 else
                 {
-                    NavigationManager.NavigateTo("/", true);
+                    OpenDialog();
                 }
             }
         }
     }
     private void Cancel()
     {
+        NavigationManager.NavigateTo("/", true);
+    }
+
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsVisible = false;
         NavigationManager.NavigateTo("/", true);
     }
 }

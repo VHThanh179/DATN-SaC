@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @using System.Security.Claims
 @inject NavigationManager NavigationManager
+@using Blazored.Toast.Configuration;
 @*<div class="page">*@
 @*<div class="sidebar">
 
@@ -61,7 +62,7 @@
                                         </a>
                                     </Authorized>
                                 </AuthorizeView>
-                                
+
                                 <a class="dropdown-item" href="/changepass">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đổi mật khẩu
@@ -110,6 +111,14 @@
 
 </div>
 @*</div>*@
+
+<BlazoredToasts Position="ToastPosition.TopRight"
+                Timeout="10"
+                IconType="IconType.FontAwesome"
+                SuccessClass="success-toast-override"
+                SuccessIcon="fa fa-thumbs-up"
+                ErrorIcon="fa fa-bug" />
+
 <CascadingBlazoredModal />
 
 @code{
