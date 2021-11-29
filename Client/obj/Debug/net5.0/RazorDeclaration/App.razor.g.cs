@@ -139,6 +139,20 @@ using Syncfusion.Blazor.Popups;
 #line hidden
 #nullable disable
 #nullable restore
+#line 19 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\DATN\Project\SaCBackpack\Client\App.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 

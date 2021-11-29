@@ -118,8 +118,15 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Syncfusion.Blazor.Popups;
+#line 19 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -166,6 +173,13 @@ using Microsoft.AspNetCore.Components.Authorization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 8 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/info/{id}")]
     public partial class Info : Microsoft.AspNetCore.Components.ComponentBase
@@ -176,7 +190,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 170 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
+#line 211 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -256,13 +270,26 @@ using Microsoft.AspNetCore.Components.Authorization;
                 }
                 else
                 {
-                    NavigationManager.NavigateTo("/", true);
+                    OpenDialog();
                 }
             }
         }
     }
     private void Cancel()
     {
+        NavigationManager.NavigateTo("/", true);
+    }
+
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsVisible = false;
         NavigationManager.NavigateTo("/", true);
     }
 

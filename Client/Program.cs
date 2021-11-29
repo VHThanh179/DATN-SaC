@@ -13,6 +13,7 @@ using Syncfusion.Blazor;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Client.Providers;
 using Share.Services;
+using Blazored.Toast;
 
 namespace Client
 {
@@ -24,6 +25,8 @@ namespace Client
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            builder.Services.AddBlazoredToast();
 
             builder.Services.AddOidcAuthentication(options => {
                 builder.Configuration.Bind("Local", options.ProviderOptions);

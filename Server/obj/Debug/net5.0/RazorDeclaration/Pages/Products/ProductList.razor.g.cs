@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductList.razor"
 using Share.Models;
 
@@ -141,24 +155,104 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 74 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductList.razor"
+#line 84 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductList.razor"
        
-    [Parameter]
+    //[Parameter]
     public string SearchString { get; set; }
-
-
+    public string SearchCategory { get; set; }
+    public string SearchStatus { get; set; }
+    int ids = 0;
 
     public List<Product> products { get; set; }
 
-    protected override void OnParametersSet()
+    //protected override void OnParametersSet()
+    //{
+    //    if (!string.IsNullOrEmpty(SearchString))
+    //    {
+    //        products = _productSvc.GetAllProduct().Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+    //    }
+    //    else
+    //    {
+    //        products = _productSvc.GetAllProduct();
+    //    }
+    //}
+
+    protected void SearchInfo(ChangeEventArgs args)
     {
+        SearchString = args.Value.ToString();
         if (!string.IsNullOrEmpty(SearchString))
         {
-            products = _productSvc.GetAllProduct().Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+            products = _productSvc.GetAllProduct().Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper())
+            || x.Price.ToString().Contains(SearchString)).ToList();
         }
         else
         {
             products = _productSvc.GetAllProduct();
+        }
+    }
+
+    protected void SearchProductStatus(ChangeEventArgs args)
+    {
+        SearchStatus = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchStatus))
+        {
+            products = _productSvc.GetAllProduct().Where(x => x.Status.ToString() == SearchStatus).ToList();
+        }
+        else
+        {
+            products = _productSvc.GetAllProduct();
+        }
+    }
+
+    protected void SearchProductCategory(ChangeEventArgs args)
+    {
+        SearchCategory = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchCategory))
+        {
+            products = _productSvc.GetAllProduct().Where(x => x.Category.ToString() == SearchCategory).ToList();
+        }
+        else
+        {
+            products = _productSvc.GetAllProduct();
+        }
+    }
+
+    protected void ProductSorting(string SortColumn)
+    {
+        products = _productSvc.GetAllProduct();
+        if (ids == 0)
+        {
+            ids = 1;
+
+            switch (SortColumn)
+            {
+                case "ProductName":
+                    products = products.OrderBy(x => x.ProductName).ToList();
+                    break;
+                case "Price":
+                    products = products.OrderBy(x => x.Price).ToList();
+                    break;
+                case "Category":
+                    products = products.OrderBy(x => x.Category).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "ProductName":
+                    products = products.OrderByDescending(x => x.ProductName).ToList();
+                    break;
+                case "Price":
+                    products = products.OrderByDescending(x => x.Price).ToList();
+                    break;
+                case "Category":
+                    products = products.OrderByDescending(x => x.Category).ToList();
+                    break;
+            }
         }
     }
 

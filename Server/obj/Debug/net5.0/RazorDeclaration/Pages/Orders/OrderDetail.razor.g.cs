@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
 using Share.Models;
 
@@ -154,7 +168,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 110 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
+#line 113 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
        
     [Parameter]
     public string id { get; set; }

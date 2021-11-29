@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
 using Share.Models;
 
@@ -133,10 +147,12 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 85 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+#line 129 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
        
     [Parameter]
     public string id { get; set; }
+    public bool isUserNameExisted = false;
+    public bool isEmailExisted = false;
     private Share.Models.User user { get; set; }
     private string Tilte = "";
     protected override void OnInitialized()
@@ -156,13 +172,36 @@ using Share.Models;
     {
         if (user.UserId == 0)
         {
-            _userService.AddUser(user);
+            if (!_userService.CheckEmail(user.Email) && !_userService.CheckUserName(user.UserName))
+            {
+                _userService.AddUser(user);
+                navigation.NavigateTo("UserList");
+            }
+            else
+            {
+                if (_userService.CheckEmail(user.Email))
+                {
+                    isEmailExisted = true;
+                }
+                else
+                {
+                    isEmailExisted = false;
+                }
+                if (_userService.CheckUserName(user.UserName))
+                {
+                    isUserNameExisted = true;
+                }
+                else
+                {
+                    isUserNameExisted = false;
+                }
+            }
         }
         else
         {
             _userService.EditUser(user.UserId, user);
+            navigation.NavigateTo("UserList");
         }
-        navigation.NavigateTo("UserList");
     }
     private void Cancel()
     {
@@ -174,6 +213,7 @@ using Share.Models;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }
     }

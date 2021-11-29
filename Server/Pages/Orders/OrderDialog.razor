@@ -5,6 +5,7 @@
 @inject Share.Interfaces.IOrderSvc _orderService
 @inject NavigationManager navigation
 @inject IWebHostEnvironment env
+@inject IToastService toastService
 
 <div class="container">
     <div class="row">
@@ -35,13 +36,13 @@
 
                                 <div class="form-label-group mt-3">
                                     <label class="control-lable">Ngày đặt</label>
-                                    <input type="date" @bind="order.OrderDate" class="form-control" disabled/>
+                                    <input type="date" @bind="order.OrderDate" class="form-control" disabled />
                                     <span asp-validation-for="OrderDate" class="text-danger"></span>
                                 </div>
 
                                 <div class="form-label-group mt-3">
                                     <label class="control-lable">Tổng tiền</label>
-                                    <input type="number" @bind="order.Total" class="form-control" disabled/>
+                                    <input type="number" @bind="order.Total" class="form-control" disabled />
                                     <span asp-validation-for="Tongtien" class="text-danger"></span>
                                 </div>
 
@@ -61,7 +62,7 @@
                                 </div>
 
                                 <div class="form-label-group mt-4">
-                                    <button type="submit" class="btn btn-info">Lưu</button>
+                                    <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
                                     <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
                                 </div>
                             </EditForm>
@@ -74,9 +75,9 @@
 </div>
 
 @code {
-        [Parameter]
-        public string id { get; set; }
-private Share.Models.Order order { get; set; }
+    [Parameter]
+    public string id { get; set; }
+    private Share.Models.Order order { get; set; }
 
     protected override void OnInitialized()
     {

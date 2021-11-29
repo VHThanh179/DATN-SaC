@@ -190,11 +190,18 @@ namespace Share.Services
         {
             User user = new User();
             user = _context.Users.Where(e => e.Email == email).FirstOrDefault();
-            if (user == null)
+            if (user != null)
             {
-                return false;
+                return true;
             }
-            if (user.Email == email)
+            return false;
+        }
+
+        public bool CheckUserName(string userName)
+        {
+            User user = new User();
+            user = _context.Users.Where(u => u.UserName == userName).FirstOrDefault();
+            if (user != null)
             {
                 return true;
             }

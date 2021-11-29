@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserList.razor"
 using Share.Models;
 
@@ -141,21 +155,93 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 73 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserList.razor"
+#line 80 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserList.razor"
        
-    [Parameter]
+    private string searchValue;
     public string SearchString { get; set; }
+    int ids = 0;
     public List<User> users;
 
-    protected override void OnParametersSet()
+    //protected override void OnParametersSet()
+    //{
+    //    if (!string.IsNullOrEmpty(SearchString))
+    //    {
+    //        users = _userService.GetAllUser().Where(x => x.UserName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+    //    }
+    //    else
+    //    {
+    //        users = _userService.GetAllUser();
+    //    }
+    //}
+
+    protected void SearchInfo(ChangeEventArgs args)
     {
+        SearchString = args.Value.ToString();
         if (!string.IsNullOrEmpty(SearchString))
         {
-            users = _userService.GetAllUser().Where(x => x.UserName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+            users = _userService.GetAllUser().Where(x => x.UserName.ToUpper().Contains(SearchString.ToUpper())
+            || x.FullName.ToUpper().Contains(SearchString.ToUpper()) || x.Email.ToUpper().Contains(SearchString.ToUpper())
+            || x.DoB.ToString().Contains(SearchString)).ToList();
         }
         else
         {
             users = _userService.GetAllUser();
+        }
+    }
+
+    protected void UserSorting(string SortColumn)
+    {
+        users = _userService.GetAllUser();
+        if (ids == 0)
+        {
+            ids = 1;
+            switch (SortColumn)
+            {
+                case "UserName":
+                    users = users.OrderBy(x => x.UserName).ToList();
+                    break;
+                case "FullName":
+                    users = users.OrderBy(x => x.FullName).ToList();
+                    break;
+                case "Email":
+                    users = users.OrderBy(x => x.Email).ToList();
+                    break;
+                case "DoB":
+                    users = users.OrderBy(x => x.DoB).ToList();
+                    break;
+                case "Roles":
+                    users = users.OrderBy(x => x.Roles).ToList();
+                    break;
+                case "Status":
+                    users = users.OrderBy(x => x.Status).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "UserName":
+                    users = users.OrderByDescending(x => x.UserName).ToList();
+                    break;
+                case "FullName":
+                    users = users.OrderByDescending(x => x.FullName).ToList();
+                    break;
+                case "Email":
+                    users = users.OrderByDescending(x => x.Email).ToList();
+                    break;
+                case "DoB":
+                    users = users.OrderByDescending(x => x.DoB).ToList();
+                    break;
+                case "Roles":
+                    users = users.OrderByDescending(x => x.Roles).ToList();
+                    break;
+                case "Status":
+                    users = users.OrderByDescending(x => x.Status).ToList();
+                    break;
+            }
         }
     }
 
