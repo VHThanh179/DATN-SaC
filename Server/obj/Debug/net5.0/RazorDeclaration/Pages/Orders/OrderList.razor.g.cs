@@ -148,9 +148,91 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderList.razor"
+#line 69 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderList.razor"
        
+    public string SearchString { get; set; }
+    public string SearchStatus { get; set; }
+    int ids = 0;
     public List<Order> orders;
+
+    protected void SearchInfo(ChangeEventArgs args)
+    {
+        SearchString = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            orders = _orderService.GetAllOrder().Where(x => x.Customer.Email.ToUpper().Contains(SearchString.ToUpper())
+            || (x.Customer.Address != null && x.Customer.Address.ToUpper().Contains(SearchString.ToUpper()))
+            || x.Total.ToString().Contains(SearchString) || x.OrderDate.ToString().Contains(SearchString)).ToList();
+        }
+        else
+        {
+            orders = _orderService.GetAllOrder();
+        }
+    }
+
+    protected void SearchOrderStatus(ChangeEventArgs args)
+    {
+        SearchStatus = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchStatus))
+        {
+            orders = _orderService.GetAllOrder().Where(x => x.OrderStatus.ToString() == SearchStatus).ToList();
+        }
+        else
+        {
+            orders = _orderService.GetAllOrder();
+        }
+    }
+
+    protected void OrderSorting(string SortColumn)
+    {
+        orders = _orderService.GetAllOrder();
+        if (ids == 0)
+        {
+            ids = 1;
+            switch (SortColumn)
+            {
+                case "Email":
+                    orders = orders.OrderBy(x => x.Customer.Email).ToList();
+                    break;
+                case "Address":
+                    orders = orders.OrderBy(x => x.Customer.Address).ToList();
+                    break;
+                case "OrderDate":
+                    orders = orders.OrderBy(x => x.OrderDate).ToList();
+                    break;
+                case "Total":
+                    orders = orders.OrderBy(x => x.Total).ToList();
+                    break;
+                case "OrderStatus":
+                    orders = orders.OrderBy(x => x.OrderStatus).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "Email":
+                    orders = orders.OrderByDescending(x => x.Customer.Email).ToList();
+                    break;
+                case "Address":
+                    orders = orders.OrderByDescending(x => x.Customer.Address).ToList();
+                    break;
+                case "OrderDate":
+                    orders = orders.OrderByDescending(x => x.OrderDate).ToList();
+                    break;
+                case "Total":
+                    orders = orders.OrderByDescending(x => x.Total).ToList();
+                    break;
+                case "OrderStatus":
+                    orders = orders.OrderByDescending(x => x.OrderStatus).ToList();
+                    break;
+            }
+        }
+    }
+
     protected override void OnInitialized()
     {
         orders = _orderService.GetAllOrder();

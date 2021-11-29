@@ -154,7 +154,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 110 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
+#line 113 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDetail.razor"
        
     [Parameter]
     public string id { get; set; }

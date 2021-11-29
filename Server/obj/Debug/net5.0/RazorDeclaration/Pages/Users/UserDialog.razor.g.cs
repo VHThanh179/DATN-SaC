@@ -133,10 +133,12 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 85 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+#line 127 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
        
     [Parameter]
     public string id { get; set; }
+    public bool isUserNameExisted = false;
+    public bool isEmailExisted = false;
     private Share.Models.User user { get; set; }
     private string Tilte = "";
     protected override void OnInitialized()
@@ -156,13 +158,36 @@ using Share.Models;
     {
         if (user.UserId == 0)
         {
-            _userService.AddUser(user);
+            if (!_userService.CheckEmail(user.Email) && !_userService.CheckUserName(user.UserName))
+            {
+                _userService.AddUser(user);
+                navigation.NavigateTo("UserList");
+            }
+            else
+            {
+                if (_userService.CheckEmail(user.Email))
+                {
+                    isEmailExisted = true;
+                }
+                else
+                {
+                    isEmailExisted = false;
+                }
+                if (_userService.CheckUserName(user.UserName))
+                {
+                    isUserNameExisted = true;
+                }
+                else
+                {
+                    isUserNameExisted = false;
+                }
+            }
         }
         else
         {
             _userService.EditUser(user.UserId, user);
+            navigation.NavigateTo("UserList");
         }
-        navigation.NavigateTo("UserList");
     }
     private void Cancel()
     {

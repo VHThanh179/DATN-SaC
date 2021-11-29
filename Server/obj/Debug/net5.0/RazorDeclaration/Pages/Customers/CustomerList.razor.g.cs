@@ -134,9 +134,85 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerList.razor"
+#line 66 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerList.razor"
        
+    //[Parameter]
+    public string SearchString { get; set; }
+    int ids = 0;
     public List<Customer> customers;
+
+    protected void SearchInfo(ChangeEventArgs args)
+    {
+        SearchString = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            customers = _customerSvc.GetAllCustomer().Where(x => x.FullName.ToUpper().Contains(SearchString.ToUpper())
+            || x.Email.ToUpper().Contains(SearchString.ToUpper()) || (x.Address != null && x.Address.ToUpper().Contains(SearchString.ToUpper()))
+            || (x.PhoneNumber != null && x.PhoneNumber.Contains(SearchString)) || x.DoB.ToString().Contains(SearchString)
+            || x.CreatedDate.ToString().Contains(SearchString)).ToList();
+        }
+        else
+        {
+            customers = _customerSvc.GetAllCustomer();
+        }
+    }
+
+    protected void CustomerSorting(string SortColumn)
+    {
+        customers = _customerSvc.GetAllCustomer();
+        if (ids == 0)
+        {
+            ids = 1;
+
+            switch (SortColumn)
+            {
+                case "FullName":
+                    customers = customers.OrderBy(x => x.FullName).ToList();
+                    break;
+                case "CreatedDate":
+                    customers = customers.OrderBy(x => x.CreatedDate).ToList();
+                    break;
+                case "PhoneNumber":
+                    customers = customers.OrderBy(x => x.PhoneNumber).ToList();
+                    break;
+                case "Email":
+                    customers = customers.OrderBy(x => x.Email).ToList();
+                    break;
+                case "Address":
+                    customers = customers.OrderBy(x => x.Address).ToList();
+                    break;
+                case "Status":
+                    customers = customers.OrderBy(x => x.Status).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "FullName":
+                    customers = customers.OrderByDescending(x => x.FullName).ToList();
+                    break;
+                case "CreatedDate":
+                    customers = customers.OrderByDescending(x => x.CreatedDate).ToList();
+                    break;
+                case "PhoneNumber":
+                    customers = customers.OrderByDescending(x => x.PhoneNumber).ToList();
+                    break;
+                case "Email":
+                    customers = customers.OrderByDescending(x => x.Email).ToList();
+                    break;
+                case "Address":
+                    customers = customers.OrderByDescending(x => x.Address).ToList();
+                    break;
+                case "Status":
+                    customers = customers.OrderByDescending(x => x.Status).ToList();
+                    break;
+            }
+        }
+    }
 
     protected override void OnInitialized()
     {

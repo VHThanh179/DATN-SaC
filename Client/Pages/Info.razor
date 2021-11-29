@@ -129,12 +129,22 @@
                                     <ValidationMessage For="@(() => cus.Email)" />
                                 </div>
 
-
-                                <div class="form-label-group">
-                                    <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control">
-                                    <label class="control-label">Họ tên</label>
-                                    <ValidationMessage For="@(() => cus.FullName)" />
-                                </div>
+                                <AuthorizeView>
+                                    <Authorized Context="Authorized">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control" readonly>
+                                            <label class="control-label">Họ tên</label>
+                                            <ValidationMessage For="@(() => cus.FullName)" />
+                                        </div>
+                                    </Authorized>
+                                    <NotAuthorized Context="NotAuthorized">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control">
+                                            <label class="control-label">Họ tên</label>
+                                            <ValidationMessage For="@(() => cus.FullName)" />
+                                        </div>
+                                    </NotAuthorized>
+                                </AuthorizeView>                           
 
                                 <div class="form-label-group">
                                     <input type="date" id="inputEmail" @bind="cus.DoB" class="form-control">
