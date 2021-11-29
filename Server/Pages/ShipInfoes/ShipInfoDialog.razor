@@ -66,7 +66,14 @@
                 <InputSelect @bind-Value="@shipinfo.Partner" class="form-control">
                     @foreach (var partner in Enum.GetValues(typeof(Partner)))
                     {
-                        <option value="@partner">@partner</option>
+                        if ((Partner)partner == Partner.None)
+                        {
+                            <option value="@partner">Không có đơn vị</option>
+                        }
+                        else
+                        {
+                            <option value="@partner">@partner</option>
+                        }
                     }
                 </InputSelect>
             </div>
@@ -107,7 +114,7 @@
         {
             _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
         }
-        navigation.NavigateTo("shipinfolist");
+        navigation.NavigateTo("shipinfolist", true);
     }
     private void Cancel()
     {

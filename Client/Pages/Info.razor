@@ -4,6 +4,7 @@
 @using System.Net;
 @using Newtonsoft.Json;
 @using Share.Models;
+@using Microsoft.AspNetCore.Components.Authorization;
 @using Syncfusion.Blazor.Popups
 @layout WebLayout
 @inject NavigationManager NavigationManager
@@ -148,12 +149,22 @@
                                     <ValidationMessage For="@(() => cus.Email)" />
                                 </div>
 
-
-                                <div class="form-label-group">
-                                    <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control">
-                                    <label class="control-label">Họ tên</label>
-                                    <ValidationMessage For="@(() => cus.FullName)" />
-                                </div>
+                                <AuthorizeView>
+                                    <Authorized Context="Authorized">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control" readonly>
+                                            <label class="control-label">Họ tên</label>
+                                            <ValidationMessage For="@(() => cus.FullName)" />
+                                        </div>
+                                    </Authorized>
+                                    <NotAuthorized Context="NotAuthorized">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control">
+                                            <label class="control-label">Họ tên</label>
+                                            <ValidationMessage For="@(() => cus.FullName)" />
+                                        </div>
+                                    </NotAuthorized>
+                                </AuthorizeView>                           
 
                                 <div class="form-label-group">
                                     <input type="date" id="inputEmail" @bind="cus.DoB" class="form-control">
@@ -201,10 +212,11 @@
     [Parameter]
     public string id { get; set; }
     public Customer cus;
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        if (string.IsNullOrWhiteSpace(id) || id == "0" || id == "0")
         {
             NavigationManager.NavigateTo("/");
         }
@@ -212,16 +224,28 @@
         {
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            var accessTokenGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
             cus = new Customer();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 client.BaseAddress = new Uri(apiUrl);
-                using (var response = await client.GetAsync("Customer/?id=" + id))
+                if (accessTokenGoogle != null && accessTokenGoogle != "")
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + id))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    }
+                }
+                else
+                {
+                    using (var response = await client.GetAsync("Customer/?id=" + id))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    }
                 }
             }
         }
@@ -230,11 +254,21 @@
     private async void SubmitForm()
     {
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessTokenGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         var customerId = sessionStorage.GetItem<int>("customerId");
         using (var client = new HttpClient())
         {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            if (accessToken != null && accessToken != "")
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            }
+            if (accessTokenGoogle != null && accessTokenGoogle != "")
+            {
+                customerId = cus.CustomerId;
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessTokenGoogle);
+            }
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             StringContent content = new StringContent(JsonConvert.SerializeObject(cus), System.Text.Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);

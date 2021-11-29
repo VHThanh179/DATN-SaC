@@ -168,6 +168,13 @@ using Share.Models;
 #nullable disable
 #nullable restore
 #line 7 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
 using Syncfusion.Blazor.Popups;
 
 #line default
@@ -183,15 +190,16 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 200 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
+#line 211 "D:\DATN\Project\SaCBackpack\Client\Pages\Info.razor"
        
     [Parameter]
     public string id { get; set; }
     public Customer cus;
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        if (string.IsNullOrWhiteSpace(id) || id == "0" || id == "0")
         {
             NavigationManager.NavigateTo("/");
         }
@@ -199,16 +207,28 @@ using Syncfusion.Blazor.Popups;
         {
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            var accessTokenGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
             cus = new Customer();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 client.BaseAddress = new Uri(apiUrl);
-                using (var response = await client.GetAsync("Customer/?id=" + id))
+                if (accessTokenGoogle != null && accessTokenGoogle != "")
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + id))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    }
+                }
+                else
+                {
+                    using (var response = await client.GetAsync("Customer/?id=" + id))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        cus = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    }
                 }
             }
         }
@@ -217,11 +237,21 @@ using Syncfusion.Blazor.Popups;
     private async void SubmitForm()
     {
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessTokenGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         var customerId = sessionStorage.GetItem<int>("customerId");
         using (var client = new HttpClient())
         {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            if (accessToken != null && accessToken != "")
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            }
+            if (accessTokenGoogle != null && accessTokenGoogle != "")
+            {
+                customerId = cus.CustomerId;
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessTokenGoogle);
+            }
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             StringContent content = new StringContent(JsonConvert.SerializeObject(cus), System.Text.Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);

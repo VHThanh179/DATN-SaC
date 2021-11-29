@@ -13,6 +13,7 @@ namespace Share.Interfaces
     {
         //async
         Task<List<Product>> GetAllProductAsync();
+        Task<List<Product>> GetFiveBestSellingProductsAsync();
         Task<Product> GetProductAsync(int id);
         Task<int> AddProductAsync(Product product);
         Task<int> EditProductAsync(int id, Product product);

@@ -3,7 +3,19 @@
 @using Share.Models
 @inject Share.Interfaces.ICustomerSvc _customerSvc
 
-<h1 class="font-weight-bold text-center">Danh sách khách hàng</h1>
+<div class="row">
+    <h1 class="col-6 font-weight-bold text-left">
+        Danh sách khách hàng
+    </h1>
+    <div class="col-6 text-right">
+        <br />
+        <input type="text" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
+        @*<button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>*@
+        <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+    </div>
+</div>
+<br />
+<br />
 
 @if (customers == null)
 {
@@ -14,12 +26,12 @@ else
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
-                <th>Họ và tên</th>
-                <th>Ngày sinh</th>
-                <th>Số điện thoại</th>
-                <th>Email</th>
-                <th>Địa chỉ</th>
-                <th>Trạng thái</th>
+                <th @onclick="@(()=>CustomerSorting("FullName"))">Họ và tên</th>
+                <th @onclick="@(()=>CustomerSorting("CreatedDate"))">Ngày sinh</th>
+                <th @onclick="@(()=>CustomerSorting("PhoneNumber"))">Số điện thoại</th>
+                <th @onclick="@(()=>CustomerSorting("Email"))">Email</th>
+                <th @onclick="@(()=>CustomerSorting("Address"))">Địa chỉ</th>
+                <th @onclick="@(()=>CustomerSorting("Status"))">Trạng thái</th>
                 <th></th>
             </tr>
         </thead>
@@ -52,7 +64,83 @@ else
 }
 
 @code {
+    //[Parameter]
+    public string SearchString { get; set; }
+    int ids = 0;
     public List<Customer> customers;
+
+    protected void SearchInfo(ChangeEventArgs args)
+    {
+        SearchString = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            customers = _customerSvc.GetAllCustomer().Where(x => x.FullName.ToUpper().Contains(SearchString.ToUpper())
+            || x.Email.ToUpper().Contains(SearchString.ToUpper()) || (x.Address != null && x.Address.ToUpper().Contains(SearchString.ToUpper()))
+            || (x.PhoneNumber != null && x.PhoneNumber.Contains(SearchString)) || x.DoB.ToString().Contains(SearchString)
+            || x.CreatedDate.ToString().Contains(SearchString)).ToList();
+        }
+        else
+        {
+            customers = _customerSvc.GetAllCustomer();
+        }
+    }
+
+    protected void CustomerSorting(string SortColumn)
+    {
+        customers = _customerSvc.GetAllCustomer();
+        if (ids == 0)
+        {
+            ids = 1;
+
+            switch (SortColumn)
+            {
+                case "FullName":
+                    customers = customers.OrderBy(x => x.FullName).ToList();
+                    break;
+                case "CreatedDate":
+                    customers = customers.OrderBy(x => x.CreatedDate).ToList();
+                    break;
+                case "PhoneNumber":
+                    customers = customers.OrderBy(x => x.PhoneNumber).ToList();
+                    break;
+                case "Email":
+                    customers = customers.OrderBy(x => x.Email).ToList();
+                    break;
+                case "Address":
+                    customers = customers.OrderBy(x => x.Address).ToList();
+                    break;
+                case "Status":
+                    customers = customers.OrderBy(x => x.Status).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "FullName":
+                    customers = customers.OrderByDescending(x => x.FullName).ToList();
+                    break;
+                case "CreatedDate":
+                    customers = customers.OrderByDescending(x => x.CreatedDate).ToList();
+                    break;
+                case "PhoneNumber":
+                    customers = customers.OrderByDescending(x => x.PhoneNumber).ToList();
+                    break;
+                case "Email":
+                    customers = customers.OrderByDescending(x => x.Email).ToList();
+                    break;
+                case "Address":
+                    customers = customers.OrderByDescending(x => x.Address).ToList();
+                    break;
+                case "Status":
+                    customers = customers.OrderByDescending(x => x.Status).ToList();
+                    break;
+            }
+        }
+    }
 
     protected override void OnInitialized()
     {

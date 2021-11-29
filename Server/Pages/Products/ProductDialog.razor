@@ -73,6 +73,10 @@
                 <div class="form-group col-6">
                     <label class="control-label">Chọn hình</label>
                     <InputFile class="form-control" OnChange="OnInputFileChange" />
+                    @if (isOverSized)
+                    {
+                        <span class="text-danger">Kích thước ảnh phải nhỏ hơn 1MB</span>
+                    }
                 </div>
                 @if (product.Image != null)
                 {
@@ -119,6 +123,7 @@
     public string id { get; set; }
 
     private string status = null;
+    public bool isOverSized { get; set; }
 
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
@@ -177,27 +182,34 @@
             }
 
             var file = selectedFiles[0];
-            string filePath = dirPath + @"\" + file.Name;
+            if (file.Size < 1000000)
             {
-                Stream stream = file.OpenReadStream();
-                FileStream fs = File.Create(filePath);
-                await stream.CopyToAsync(fs);
-                stream.Close();
-                fs.Close();
+                string filePath = dirPath + @"\" + file.Name;
+                {
+                    Stream stream = file.OpenReadStream(1000000);
+                    FileStream fs = File.Create(filePath);
+                    await stream.CopyToAsync(fs);
+                    stream.Close();
+                    fs.Close();
+                }
+                product.Image = file.Name;
+                if (product.ProductId == 0)
+                {
+                    product.Status = bool.Parse(status);
+                    _productSvc.AddProduct(product);
+                }
+                else
+                {
+                    product.Status = bool.Parse(status);
+                    _productSvc.EditProduct(product.ProductId, product);
+                }
+                navigation.NavigateTo("productlist", true);
             }
-            product.Image = file.Name;
+            else
+            {
+                isOverSized = true;
+            }
         }
-        if (product.ProductId == 0)
-        {
-            product.Status = bool.Parse(status);
-            _productSvc.AddProduct(product);
-        }
-        else
-        {
-            product.Status = bool.Parse(status);
-            _productSvc.EditProduct(product.ProductId, product);
-        }
-        navigation.NavigateTo("productlist", true);
     }
     private void Cancel()
     {

@@ -24,13 +24,18 @@ namespace API.Controllers
         {
             return await _voucherSvc.GetAllVoucherAsync();
         }
+        //[HttpGet]
+        //public async Task<ActionResult<Voucher>> GetVoucher([FromQuery] string code)
+        //{
+        //    return await _voucherSvc.GetVoucherByCodeAsync(code);
+        //}
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<int>> UpdateVoucher(int id, Voucher voucher)
+        public async Task<ActionResult<int>> UpdateVoucher(Voucher voucher)
         {
             try
             {
-                await _voucherSvc.EditVoucherAsync(id, voucher);
+                await _voucherSvc.EditVoucherAsync(voucher);
             }
             catch
             {

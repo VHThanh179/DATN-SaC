@@ -16,9 +16,9 @@ namespace Share.Services
         {
             _context = context;
         }
-        public async Task<Voucher> GetVoucherAsync(int id)
+        public async Task<Voucher> GetVoucherByCodeAsync(string vouchercode)
         {
-            var voucher = await _context.Vouchers.FindAsync(id);
+            var voucher = await _context.Vouchers.Where(x => x.VoucherCode == vouchercode).FirstOrDefaultAsync();
             return voucher;
         }
 
@@ -40,7 +40,7 @@ namespace Share.Services
             return value;
         }
 
-        public async Task<int> EditVoucherAsync(int id, Voucher voucher)
+        public async Task<int> EditVoucherAsync(Voucher voucher)
         {
             int value = 0;
             try

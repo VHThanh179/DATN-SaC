@@ -147,14 +147,28 @@ using Blazored.Toast.Services;
 #nullable disable
 #nullable restore
 #line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
-using Share.Models;
+using System.Net;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
 using Share.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
@@ -168,17 +182,25 @@ using Share.Models.ViewModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 215 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+#line 260 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     public ShipInfo shipInfo { get; set; }
     public Customer customer { get; set; }
+    public APICart apiCart { get; set; }
     public int cusId;
+    public string emailAddress;
+    public string emailGoogle;
     public Cart orderCart;
-
-    //protected override void OnInitialized()
-    //{
-    //}
+    private int display;
+    private int shipPartner;
+    public double vouchervalue = 0;
+    public string displayvalue = "";
+    public string vouchercode { get; set; }
+    public Voucher voucher;
+    public List<Voucher> listvoucher;
+    public double total = 0;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -186,10 +208,22 @@ using Share.Models.ViewModels;
         {
             await JSRuntime.InvokeVoidAsync("PaypalButton");
         }
+        if (display == 0)
+        {
+            Console.WriteLine(display + "non display");
+            await JSRuntime.InvokeVoidAsync("noneDisplayMoreInfoShipping");
+        }
+        else
+        {
+            Console.WriteLine(display + "display");
+            await JSRuntime.InvokeVoidAsync("displayMoreInfoShipping");
+        }
     }
-
+    private static Func<Task> OrderWithPayPal;
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("asm name: " + typeof(Program).Assembly.GetName().Name);
+        OrderWithPayPal = OrderCart;
         customer = new Customer();
         shipInfo = new ShipInfo();
         var cart = sessionStorage.GetItem<string>("cart");
@@ -215,30 +249,170 @@ using Share.Models.ViewModels;
         }
 
         cusId = sessionStorage.GetItem<int>("customerId");
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        customer = new Customer();
+        
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("Customer/?id=" + cusId))
+            if(emailAddress != null && emailAddress != "")
+            {
+                using (var response = await client.GetAsync("Customer/?id=" + cusId))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
+            }
+            if (emailGoogle != null && emailGoogle != "")
+            {
+                using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + emailGoogle))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
+            }
+        }
+        shipInfo.CusName = customer.FullName;
+        shipInfo.Address = customer.Address;
+        shipInfo.PhoneNumber = customer.PhoneNumber;
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("Voucher"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                listvoucher = JsonConvert.DeserializeObject<List<Voucher>>(apiResponse);
             }
-            shipInfo.CusName = customer.FullName;
-            shipInfo.Address = customer.Address;
-            shipInfo.PhoneNumber = customer.PhoneNumber;
         }
-
     }
 
+    [JSInvokable]
+    public static async Task CheckoutWithPaypal()
+    {
+        await OrderWithPayPal.Invoke();
+    }
+    public async Task OrderCart()
+    {
+        if (display == 0)
+        {
+            shipInfo.ShippingMethod = false;
+            shipInfo.Price = 0;
+            shipInfo.Partner = Partner.None;
+        }
+        else
+        {
+            shipInfo.ShippingMethod = true;
+        }
 
+        if (shipPartner == 1)
+        {
+            shipInfo.Partner = Partner.Grab;
+        }
+        else if (shipPartner == 2)
+        {
+            shipInfo.Partner = Partner.Now;
+        }
+        else if (shipPartner == 3)
+        {
+            shipInfo.Partner = Partner.Gojek;
+        }
+        else
+        {
+            shipInfo.Partner = Partner.None;
+        }
+
+
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        // Giống Bên ShipInfoPage
+        if (emailGoogle != null && emailGoogle != "")
+        {
+            accessToken = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
+        }
+        orderCart.CustomerId = customer.CustomerId;
+
+        apiCart = new APICart();
+        apiCart.cart = orderCart;
+        apiCart.shipInfo = shipInfo;
+        apiCart.voucherCode = vouchercode;
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(apiCart), System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+
+            }
+            else
+            {
+                sessionStorage.RemoveItem("cart");
+                navigationManager.NavigateTo("/history");
+            }
+        }
+    }
 
     private void Cancel()
     {
         ModalInstance.CloseAsync(ModalResult.Ok<ShipInfo>(shipInfo));
+    }
+
+    private void CheckVoucher()
+    {
+        voucher = new Voucher();
+        foreach (var item in listvoucher)
+        {
+            if (vouchercode == item.VoucherCode)
+            {
+                voucher = item;
+            }
+        }
+        if (voucher.VoucherCode != null)
+        {
+            if (voucher.Status)
+            {
+                if (voucher.VoucherQuantity > 0)
+                {
+                    if (voucher.CategoryDiscount == CategoryDiscount.Cash)
+                    {
+                        vouchervalue = voucher.Value;
+                        displayvalue = string.Format("{0:#,0}", vouchervalue) + " VNĐ";
+                    }
+                    else
+                    {
+                        vouchervalue = voucher.Value / 100;
+                        displayvalue = voucher.Value.ToString() + " %";
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Voucher hết số lượng");
+                }
+
+            }
+            else
+            {
+                vouchervalue = 0;
+                displayvalue = "";
+                Console.WriteLine("Voucher hết hạn");
+            }
+        }
+        else
+        {
+            vouchervalue = 0;
+            displayvalue = "";
+            Console.WriteLine("Mã voucher sai");
+        }
+
     }
 
 #line default

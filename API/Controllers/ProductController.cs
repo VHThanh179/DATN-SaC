@@ -27,6 +27,14 @@ namespace API.Controllers
         {
             return await _productSvc.GetAllProductAsync();
         }
+
+        [HttpGet]
+        [Route("/api/FiveProducts")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetFiveBestSellingProducts()
+        {
+            return await _productSvc.GetFiveBestSellingProductsAsync();
+        }
+
         [HttpGet]
         [Route("/api/paging")]
         public async Task<ActionResult<ProductDTO>> Get([FromQuery] PagingParameter productParameters)

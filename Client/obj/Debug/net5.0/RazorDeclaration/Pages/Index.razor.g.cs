@@ -118,6 +118,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 18 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 19 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
 using Blazored.Toast;
 
@@ -146,14 +153,7 @@ using Share.Models.ViewModels;
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
-using Syncfusion.Blazor.Popups;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 9 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+#line 8 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -169,7 +169,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 11 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+#line 10 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
            
     protected async override Task OnAfterRenderAsync(bool fistRender)
     {
@@ -184,7 +184,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
 #nullable restore
-#line 325 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+#line 314 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
       
 
     public List<Product> products;
@@ -202,7 +202,7 @@ using Newtonsoft.Json;
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("Product"))
+            using (var response = await client.GetAsync("FiveProducts"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
@@ -253,7 +253,6 @@ using Newtonsoft.Json;
 
             if (check)
             {
-                OpenDialog();
                 orderCart.ListViewCart.Add(new CartItem
                 {
                     product = product,
@@ -281,17 +280,6 @@ using Newtonsoft.Json;
             }
         }
         return total;
-    }
-    private bool IsVisible { get; set; }
-
-    private void OpenDialog()
-    {
-        IsVisible = true;
-    }
-
-    private void CloseDialog()
-    {
-        IsVisible = false;
     }
 
 #line default

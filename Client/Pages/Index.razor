@@ -1,7 +1,6 @@
 ﻿@page "/"
 @using Share.Models
 @using Share.Models.ViewModels
-@using Syncfusion.Blazor.Popups
 @layout WebLayout
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
@@ -311,16 +310,6 @@
     </section><!-- End Contact Section -->
 </Animate>
 
-<SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
-    <DialogTemplates>
-        <Header ><i class="fa fa-envelope-open" aria-hidden="true"></i> Thông báo !</Header>
-        <Content> Thêm vào giỏ hàng thành công </Content>
-    </DialogTemplates>
-    <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
-    <DialogButtons>
-        <DialogButton Content="OK" IsPrimary="true" OnClick="@CloseDialog" />
-    </DialogButtons>
-</SfDialog>
 
 @code{
 
@@ -339,7 +328,7 @@
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("Product"))
+            using (var response = await client.GetAsync("FiveProducts"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
@@ -390,7 +379,6 @@
 
             if (check)
             {
-                OpenDialog();
                 orderCart.ListViewCart.Add(new CartItem
                 {
                     product = product,
@@ -418,17 +406,6 @@
             }
         }
         return total;
-    }
-    private bool IsVisible { get; set; }
-
-    private void OpenDialog()
-    {
-        IsVisible = true;
-    }
-
-    private void CloseDialog()
-    {
-        IsVisible = false;
     }
 }
 

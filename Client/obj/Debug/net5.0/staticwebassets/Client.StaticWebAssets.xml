@@ -1,12 +1,12 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\bin\Debug\net5.0\wwwroot\" />
-  <ContentRoot BasePath="/" Path="C:\Users\asus\OneDrive\Máy tính\DATN\Project\Client\obj\Debug\net5.0\scopedcss\bundle\" />
-  <ContentRoot BasePath="_content/BlazorAnimate" Path="C:\Users\asus\.nuget\packages\blazoranimate\3.0.0\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\asus\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Blazored.Toast" Path="C:\Users\asus\.nuget\packages\blazored.toast\3.2.2\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication" Path="C:\Users\asus\.nuget\packages\microsoft.aspnetcore.components.webassembly.authentication\5.0.10\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Syncfusion.Blazor.Buttons" Path="C:\Users\asus\.nuget\packages\syncfusion.blazor.buttons\19.3.0.54\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Syncfusion.Blazor.Core" Path="C:\Users\asus\.nuget\packages\syncfusion.blazor.core\19.3.0.54\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Syncfusion.Blazor.Popups" Path="C:\Users\asus\.nuget\packages\syncfusion.blazor.popups\19.3.0.54\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Syncfusion.Blazor.Themes" Path="C:\Users\asus\.nuget\packages\syncfusion.blazor.themes\19.3.0.54\build\..\staticwebassets\" />
+  <ContentRoot BasePath="/" Path="D:\DATN\Project\SaCBackpack\Client\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/BlazorAnimate" Path="C:\Users\Admins\.nuget\packages\blazoranimate\3.0.0\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\Admins\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazored.Toast" Path="C:\Users\Admins\.nuget\packages\blazored.toast\3.2.2\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication" Path="C:\Users\Admins\.nuget\packages\microsoft.aspnetcore.components.webassembly.authentication\5.0.10\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Buttons" Path="C:\Users\Admins\.nuget\packages\syncfusion.blazor.buttons\19.3.0.54\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Core" Path="C:\Users\Admins\.nuget\packages\syncfusion.blazor.core\19.3.0.54\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Popups" Path="C:\Users\Admins\.nuget\packages\syncfusion.blazor.popups\19.3.0.54\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Syncfusion.Blazor.Themes" Path="C:\Users\Admins\.nuget\packages\syncfusion.blazor.themes\19.3.0.54\build\..\staticwebassets\" />
 </StaticWebAssets>
