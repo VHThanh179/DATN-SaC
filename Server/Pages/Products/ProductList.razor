@@ -22,8 +22,18 @@ else
         </h1>
         <div class="col-6 text-right">
             <br />
-            <input type="text" @bind="@SearchString" />
-            <button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>
+            <select value="@SearchCategory" @onchange="SearchProductCategory">
+                <option value="">Chọn thể lọai</option>
+                <option value="@Category.Backpack">Ba lô</option>
+                <option value="@Category.Accessories">Phụ kiện</option>
+            </select>
+            <select value="@SearchStatus" @onchange="SearchProductStatus">
+                <option value="">Chọn trạng thái</option>
+                <option value="True">Còn hàng</option>
+                <option value="False">Hết hàng</option>
+            </select>
+            <input type="text" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
+            @*<button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>*@
             <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
         </div>
     </div>
@@ -32,9 +42,9 @@ else
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Tên</th>
-                <th scope="col">Giá</th>
-                <th scope="col">Phân loại</th>
+                <th scope="col" @onclick="@(()=>ProductSorting("ProductName"))">Tên</th>
+                <th scope="col" @onclick="@(()=>ProductSorting("Price"))">Giá</th>
+                <th scope="col" @onclick="@(()=>ProductSorting("Category"))">Phân loại</th>
                 <th scope="col" style="width:20%">Hình</th>
                 <th scope="col">Trạng thái</th>
                 @*<th scope="col" style="width:30%">Thông tin</th>*@
@@ -72,22 +82,102 @@ else
 }
 
 @code {
-    [Parameter]
+    //[Parameter]
     public string SearchString { get; set; }
-
-
+    public string SearchCategory { get; set; }
+    public string SearchStatus { get; set; }
+    int ids = 0;
 
     public List<Product> products { get; set; }
 
-    protected override void OnParametersSet()
+    //protected override void OnParametersSet()
+    //{
+    //    if (!string.IsNullOrEmpty(SearchString))
+    //    {
+    //        products = _productSvc.GetAllProduct().Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+    //    }
+    //    else
+    //    {
+    //        products = _productSvc.GetAllProduct();
+    //    }
+    //}
+
+    protected void SearchInfo(ChangeEventArgs args)
     {
+        SearchString = args.Value.ToString();
         if (!string.IsNullOrEmpty(SearchString))
         {
-            products = _productSvc.GetAllProduct().Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+            products = _productSvc.GetAllProduct().Where(x => x.ProductName.ToUpper().Contains(SearchString.ToUpper())
+            || x.Price.ToString().Contains(SearchString)).ToList();
         }
         else
         {
             products = _productSvc.GetAllProduct();
+        }
+    }
+
+    protected void SearchProductStatus(ChangeEventArgs args)
+    {
+        SearchStatus = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchStatus))
+        {
+            products = _productSvc.GetAllProduct().Where(x => x.Status.ToString() == SearchStatus).ToList();
+        }
+        else
+        {
+            products = _productSvc.GetAllProduct();
+        }
+    }
+
+    protected void SearchProductCategory(ChangeEventArgs args)
+    {
+        SearchCategory = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchCategory))
+        {
+            products = _productSvc.GetAllProduct().Where(x => x.Category.ToString() == SearchCategory).ToList();
+        }
+        else
+        {
+            products = _productSvc.GetAllProduct();
+        }
+    }
+
+    protected void ProductSorting(string SortColumn)
+    {
+        products = _productSvc.GetAllProduct();
+        if (ids == 0)
+        {
+            ids = 1;
+
+            switch (SortColumn)
+            {
+                case "ProductName":
+                    products = products.OrderBy(x => x.ProductName).ToList();
+                    break;
+                case "Price":
+                    products = products.OrderBy(x => x.Price).ToList();
+                    break;
+                case "Category":
+                    products = products.OrderBy(x => x.Category).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "ProductName":
+                    products = products.OrderByDescending(x => x.ProductName).ToList();
+                    break;
+                case "Price":
+                    products = products.OrderByDescending(x => x.Price).ToList();
+                    break;
+                case "Category":
+                    products = products.OrderByDescending(x => x.Category).ToList();
+                    break;
+            }
         }
     }
 

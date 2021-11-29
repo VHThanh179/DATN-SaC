@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
 using Share.Models;
 
@@ -141,22 +155,129 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 60 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
+#line 91 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
        
-    [Parameter]
+    //[Parameter]
     public string SearchString { get; set; }
+    public string SearchPartner { get; set; }
+    public string SearchShippingMethod { get; set; }
+    int ids = 0;
 
     public List<ShipInfo> shipinfoes { get; set; }
 
-    protected override void OnParametersSet()
+    //protected override void OnParametersSet()
+    //{
+    //    if (!string.IsNullOrEmpty(SearchString))
+    //    {
+    //        shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+    //    }
+    //    else
+    //    {
+    //        shipinfoes = _shipinfoSvc.GetAllShipInfo();
+    //    }
+    //}
+
+    protected void SearchInfo(ChangeEventArgs args)
     {
+        SearchString = args.Value.ToString();
         if (!string.IsNullOrEmpty(SearchString))
         {
-            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())
+            || x.Address.ToUpper().Contains(SearchString.ToUpper()) || x.PhoneNumber.Contains(SearchString)
+            || x.Price.ToString().Contains(SearchString) || x.OrderId.ToString().Contains(SearchString)).ToList();
         }
         else
         {
             shipinfoes = _shipinfoSvc.GetAllShipInfo();
+        }
+    }
+
+    protected void SearchShipPartner(ChangeEventArgs args)
+    {
+        SearchPartner = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchPartner))
+        {
+            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.Partner.ToString() == SearchPartner).ToList();
+        }
+        else
+        {
+            shipinfoes = _shipinfoSvc.GetAllShipInfo();
+        }
+    }
+
+    protected void SearchShipMethod(ChangeEventArgs args)
+    {
+        SearchShippingMethod = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchShippingMethod))
+        {
+            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.ShippingMethod.ToString() == SearchShippingMethod).ToList();
+        }
+        else
+        {
+            shipinfoes = _shipinfoSvc.GetAllShipInfo();
+        }
+    }
+
+    protected void ShipInfoSorting(string SortColumn)
+    {
+        shipinfoes = _shipinfoSvc.GetAllShipInfo();
+        if (ids == 0)
+        {
+            ids = 1;
+
+            switch (SortColumn)
+            {
+                case "OrderId":
+                    shipinfoes = shipinfoes.OrderBy(x => x.OrderId).ToList();
+                    break;
+                case "CusName":
+                    shipinfoes = shipinfoes.OrderBy(x => x.CusName).ToList();
+                    break;
+                case "Address":
+                    shipinfoes = shipinfoes.OrderBy(x => x.Address).ToList();
+                    break;
+                case "PhoneNumber":
+                    shipinfoes = shipinfoes.OrderBy(x => x.PhoneNumber).ToList();
+                    break;
+                case "ShippingMethod":
+                    shipinfoes = shipinfoes.OrderBy(x => x.ShippingMethod).ToList();
+                    break;
+                case "Price":
+                    shipinfoes = shipinfoes.OrderBy(x => x.Price).ToList();
+                    break;
+                case "Partner":
+                    shipinfoes = shipinfoes.OrderBy(x => x.Partner).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "OrderId":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.OrderId).ToList();
+                    break;
+                case "CusName":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.CusName).ToList();
+                    break;
+                case "Address":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.Address).ToList();
+                    break;
+                case "PhoneNumber":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.PhoneNumber).ToList();
+                    break;
+                case "ShippingMethod":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.ShippingMethod).ToList();
+                    break;
+                case "Price":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.Price).ToList();
+                    break;
+                case "Partner":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.Partner).ToList();
+                    break;
+            }
         }
     }
 

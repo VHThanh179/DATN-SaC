@@ -118,6 +118,20 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 19 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\ChangePassword.razor"
 using System.Net;
 
@@ -155,7 +169,7 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 171 "D:\DATN\Project\SaCBackpack\Client\Pages\ChangePassword.razor"
+#line 187 "D:\DATN\Project\SaCBackpack\Client\Pages\ChangePassword.razor"
        
         // NOTE: Các property cần có
     public Customer customer { get; set; }

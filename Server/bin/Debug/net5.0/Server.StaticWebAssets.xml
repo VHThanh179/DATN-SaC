@@ -2,5 +2,6 @@
   <ContentRoot BasePath="/" Path="D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\scopedcss\bundle\" />
   <ContentRoot BasePath="_content/BlazorAnimate" Path="C:\Users\Admins\.nuget\packages\blazoranimate\3.0.0\build\..\staticwebassets\" />
   <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\Admins\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazored.Toast" Path="C:\Users\Admins\.nuget\packages\blazored.toast\3.2.2\build\..\staticwebassets\" />
   <ContentRoot BasePath="_content/Syncfusion.Blazor" Path="C:\Users\Admins\.nuget\packages\syncfusion.blazor\19.3.0.47\build\..\staticwebassets\" />
 </StaticWebAssets>

@@ -236,3 +236,4 @@ D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.dll
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\ref\Server.dll
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.pdb
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Blazored.Toast.dll

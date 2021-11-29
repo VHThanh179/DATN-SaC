@@ -37,7 +37,7 @@
                 <AuthorizeView>
                     <Authorized>
                         <li class="dropdown">
-                            <a style="cursor:pointer"><span>@context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault()</span> <i class="bi bi-chevron-down"></i></a>
+                            <a style="cursor:pointer"><span>@context.User.Identity.Name</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><a class="nav-link " href="/info/@context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault()">Thông tin cá nhân</a></li>
                                 <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>

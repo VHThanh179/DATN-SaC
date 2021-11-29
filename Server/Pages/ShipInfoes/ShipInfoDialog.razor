@@ -6,6 +6,7 @@
 @inject Share.Interfaces.IShipInfoSvc _shipInfoSvc
 @inject NavigationManager navigation
 @inject IWebHostEnvironment env
+@inject IToastService toastService
 
 <div class="row">
     <div class="col-md-4 m-auto">
@@ -15,12 +16,12 @@
             <input type="hidden" @bind="shipinfo.ShipId" />
             <div class="form-group">
                 <label class="control-label">Mã đơn hàng</label>
-                <input @bind="shipinfo.OrderId" class="form-control" readonly/>
+                <input @bind="shipinfo.OrderId" class="form-control" readonly />
             </div>
 
             <div class="form-group">
                 <label class="control-label">Tên khách hàng</label>
-                <input @bind="shipinfo.CusName" class="form-control" readonly/>
+                <input @bind="shipinfo.CusName" class="form-control" readonly />
             </div>
 
             <div class="form-group">
@@ -56,7 +57,7 @@
 
             <div class="form-group">
                 <label class="control-label">Giá vận chuyển</label>
-                <input @bind="shipinfo.Price" class="form-control" readonly/>
+                <input @bind="shipinfo.Price" class="form-control" readonly />
                 <ValidationMessage For="@(() => shipinfo.Price)" />
             </div>
 
@@ -78,7 +79,7 @@
             </div>
 
             <div class="form-group m-3">
-                <button type="submit" class="btn btn-info">Lưu</button>
+                <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
                 <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
             </div>
         </EditForm>
@@ -104,7 +105,7 @@
     }
 
     private void SubmitForm()
-    {   
+    {
         if (shipinfo.ShipId == 0)
         {
             _shipInfoSvc.AddShipInfo(shipinfo);

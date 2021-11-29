@@ -132,6 +132,20 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 19 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
 using System.Web;
 
@@ -176,7 +190,7 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 179 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
+#line 198 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
        
     private bool loading;
     private string error;

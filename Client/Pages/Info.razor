@@ -5,6 +5,7 @@
 @using Newtonsoft.Json;
 @using Share.Models;
 @using Microsoft.AspNetCore.Components.Authorization;
+@using Syncfusion.Blazor.Popups
 @layout WebLayout
 @inject NavigationManager NavigationManager
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
@@ -105,7 +106,26 @@
                 color: #777;
             }
 
+    .ds {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+    }
 
+    .e-dlg-content {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+    }
+
+    .e-dialog {
+        border-radius: 30px;
+    }
+
+    .e-footer-content,
+    .e-dlg-header-content {
+        background: transparent;
+    }
     /* Fallback for Edge
         -------------------------------------------------- */
 
@@ -129,12 +149,22 @@
                                     <ValidationMessage For="@(() => cus.Email)" />
                                 </div>
 
-
-                                <div class="form-label-group">
-                                    <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control">
-                                    <label class="control-label">Họ tên</label>
-                                    <ValidationMessage For="@(() => cus.FullName)" />
-                                </div>
+                                <AuthorizeView>
+                                    <Authorized Context="Authorized">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control" readonly>
+                                            <label class="control-label">Họ tên</label>
+                                            <ValidationMessage For="@(() => cus.FullName)" />
+                                        </div>
+                                    </Authorized>
+                                    <NotAuthorized Context="NotAuthorized">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputFullname" @bind="cus.FullName" class="form-control">
+                                            <label class="control-label">Họ tên</label>
+                                            <ValidationMessage For="@(() => cus.FullName)" />
+                                        </div>
+                                    </NotAuthorized>
+                                </AuthorizeView>                           
 
                                 <div class="form-label-group">
                                     <input type="date" id="inputEmail" @bind="cus.DoB" class="form-control">
@@ -166,6 +196,17 @@
         </div>
     </div>
 </Animate>
+
+<SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
+    <DialogTemplates>
+        <Header><i class="fa fa-envelope-open" aria-hidden="true"></i> Thông báo !</Header>
+        <Content><div class="ds"> Lưu thông tin thành công</div> </Content>
+    </DialogTemplates>
+    <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" OnClick="@CloseDialog" />
+    </DialogButtons>
+</SfDialog>
 
 @code {
     [Parameter]
@@ -246,13 +287,26 @@
                 }
                 else
                 {
-                    NavigationManager.NavigateTo("/", true);
+                    OpenDialog();
                 }
             }
         }
     }
     private void Cancel()
     {
+        NavigationManager.NavigateTo("/", true);
+    }
+
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsVisible = false;
         NavigationManager.NavigateTo("/", true);
     }
 }

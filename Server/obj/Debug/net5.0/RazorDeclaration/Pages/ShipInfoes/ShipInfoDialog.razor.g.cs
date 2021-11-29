@@ -118,6 +118,20 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
 using Share.Models;
 
@@ -148,7 +162,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+#line 89 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -168,7 +182,7 @@ using Microsoft.AspNetCore.Hosting;
     }
 
     private void SubmitForm()
-    {   
+    {
         if (shipinfo.ShipId == 0)
         {
             _shipInfoSvc.AddShipInfo(shipinfo);
@@ -188,6 +202,7 @@ using Microsoft.AspNetCore.Hosting;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IShipInfoSvc _shipInfoSvc { get; set; }

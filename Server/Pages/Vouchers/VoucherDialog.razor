@@ -2,6 +2,7 @@
 @using Share.Models
 @inject Share.Interfaces.IVoucherSvc _voucherService
 @inject NavigationManager navigation
+@inject IToastService toastService
 
 <div class="container">
     <div class="row">
@@ -50,7 +51,7 @@
                                 </div>
                                 <div class="form-label-group mt-3">
                                     <label class="control-label">Giá trị</label>
-                                    <input type="number" @bind="voucher.Value" class="form-control" />
+                                    <input type="number" min="0" @bind="voucher.Value" class="form-control" />
                                     <ValidationMessage For="@(() => voucher.Value)" />
                                 </div>
                                 <div class="form-label-group mt-3">
@@ -59,7 +60,7 @@
                                     <ValidationMessage For="@(() => voucher.VoucherQuantity)" />
                                 </div>
                                 <div class="form-label-group mt-3">
-                                    <button type="submit" class="btn btn-info">Lưu</button>
+                                    <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
                                     <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
                                 </div>
                             </EditForm>
