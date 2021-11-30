@@ -91,21 +91,42 @@ using Syncfusion.Blazor;
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
 using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -134,26 +155,133 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Vouchers\VoucherList.razor"
+#line 79 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Vouchers\VoucherList.razor"
        
-    [Parameter]
+    //[Parameter]
     public string SearchString { get; set; }
+    public string SearchCategory { get; set; }
+    public string SearchStatus { get; set; }
+    int ids = 0;
     public List<Voucher> vouchers;
-    protected override void OnInitialized()
+
+    protected void SearchInfo(ChangeEventArgs args)
     {
-        vouchers = _voucherSvc.GetAllVoucher();
-    }
-    protected override void OnParametersSet()
-    {
+        SearchString = args.Value.ToString();
         if (!string.IsNullOrEmpty(SearchString))
         {
-            vouchers = _voucherSvc.GetAllVoucher().Where(x => x.VoucherCode.ToUpper().Contains(SearchString.ToUpper())).ToList();
+            vouchers = _voucherSvc.GetAllVoucher().Where(x => x.VoucherCode.ToUpper().Contains(SearchString.ToUpper())
+            || x.StartDate.ToString().Contains(SearchString) || x.EndDate.ToString().Contains(SearchString)
+            || x.VoucherQuantity.ToString().Contains(SearchString) || x.Value.ToString().Contains(SearchString)).ToList();
         }
         else
         {
             vouchers = _voucherSvc.GetAllVoucher();
         }
     }
+
+    protected void SearchVoucherCategory(ChangeEventArgs args)
+    {
+        SearchCategory = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchCategory))
+        {
+            vouchers = _voucherSvc.GetAllVoucher().Where(x => x.CategoryDiscount.ToString() == SearchCategory).ToList();
+        }
+        else
+        {
+            vouchers = _voucherSvc.GetAllVoucher();
+        }
+    }
+
+    protected void SearchVoucherStatus(ChangeEventArgs args)
+    {
+        SearchStatus = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchStatus))
+        {
+            vouchers = _voucherSvc.GetAllVoucher().Where(x => x.Status.ToString() == SearchStatus).ToList();
+        }
+        else
+        {
+            vouchers = _voucherSvc.GetAllVoucher();
+        }
+    }
+
+    protected void VoucherSorting(string SortColumn)
+    {
+        vouchers = _voucherSvc.GetAllVoucher();
+        if (ids == 0)
+        {
+            ids = 1;
+            switch (SortColumn)
+            {
+                case "VoucherCode":
+                    vouchers = vouchers.OrderBy(x => x.VoucherCode).ToList();
+                    break;
+                case "StartDate":
+                    vouchers = vouchers.OrderBy(x => x.StartDate).ToList();
+                    break;
+                case "EndDate":
+                    vouchers = vouchers.OrderBy(x => x.EndDate).ToList();
+                    break;
+                case "Status":
+                    vouchers = vouchers.OrderBy(x => x.Status).ToList();
+                    break;
+                case "VoucherQuantity":
+                    vouchers = vouchers.OrderBy(x => x.VoucherQuantity).ToList();
+                    break;
+                case "CategoryDiscount":
+                    vouchers = vouchers.OrderBy(x => x.CategoryDiscount).ToList();
+                    break;
+                case "Value":
+                    vouchers = vouchers.OrderBy(x => x.Value).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "VoucherCode":
+                    vouchers = vouchers.OrderByDescending(x => x.VoucherCode).ToList();
+                    break;
+                case "StartDate":
+                    vouchers = vouchers.OrderByDescending(x => x.StartDate).ToList();
+                    break;
+                case "EndDate":
+                    vouchers = vouchers.OrderByDescending(x => x.EndDate).ToList();
+                    break;
+                case "Status":
+                    vouchers = vouchers.OrderByDescending(x => x.Status).ToList();
+                    break;
+                case "VoucherQuantity":
+                    vouchers = vouchers.OrderByDescending(x => x.VoucherQuantity).ToList();
+                    break;
+                case "CategoryDiscount":
+                    vouchers = vouchers.OrderByDescending(x => x.CategoryDiscount).ToList();
+                    break;
+                case "Value":
+                    vouchers = vouchers.OrderByDescending(x => x.Value).ToList();
+                    break;
+            }
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        vouchers = _voucherSvc.GetAllVoucher();
+    }
+    //protected override void OnParametersSet()
+    //{
+    //    if (!string.IsNullOrEmpty(SearchString))
+    //    {
+    //        vouchers = _voucherSvc.GetAllVoucher().Where(x => x.VoucherCode.ToUpper().Contains(SearchString.ToUpper())).ToList();
+    //    }
+    //    else
+    //    {
+    //        vouchers = _voucherSvc.GetAllVoucher();
+    //    }
+    //}
 
 
 #line default

@@ -1,29 +1,45 @@
-﻿<h3>Chi tiết đơn hàng</h3>
+﻿@page "/orderdetails/{id}"
+@using System.Net;
+@using Share.Models;
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@using Microsoft.AspNetCore.Components.Authorization
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@inject NavigationManager NavigationManager
+<h3>Chi tiết đơn hàng</h3>
 <div>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">Ngày đặt</dt>
+        <dt class="col-sm-2">Ngày đặt</dt>
         <dd class="col-sm-10">
-            20/10/2021
+            @model.OrderDate.ToString("dd/MM/yyyy")
         </dd>
 
         <dt class="col-sm-2">Tổng tiền</dt>
         <dd class="col-sm-10">
-            200000
+            @string.Format("{0:#,0}", model.Total)
         </dd>
 
         <dt class="col-sm-2">Trạng thái</dt>
         <dd class="col-sm-10">
-            Đã giao
+            @if (model.OrderStatus == OrderStatus.CurOrder)
+            {
+                <span>Mới đặt</span>
+            }
+            else if (model.OrderStatus == OrderStatus.Delivering)
+            {
+                <span>Đang giao</span>
+            }
+            else
+            {
+                <span>Đã giao</span>
+            }
         </dd>
 
         <dt class="col-sm-2">Ghi chú</dt>
         <dd class="col-sm-10">
-            ABC
-        </dd>
-        <dt class="col-sm-2">Địa chỉ</dt>
-        <dd class="col-sm-10">
-            SG
+            @model.Notes
         </dd>
     </dl>
     <table class="table">
@@ -37,32 +53,32 @@
             </tr>
         </thead>
         <tbody>
-            @*@foreach (var item in listDonhang)
+            @foreach (var item in listOrder)
             {
                 @if (item != null)
-                {*@
+                {
                     <tr>
                         <td>
-                            Balo
+                            @item.Product.ProductName
                         </td>
                         <td>
-                            @*@{
-                                temp = imgUrl + item.Dish.Image;
+                            @{
+                                temp = imgUrl + item.Product.Image;
                             }
-                            <img src="@temp" style="width:150px" />*@
+                            <img src="@temp" style="width:150px" />
                         </td>
                         <td>
-                           50
+                            @item.Quantity
                         </td>
                         <td>
-                            69696969
+                            @item.TotalAmount
                         </td>
                         <td>
-                            DEF
+                            @item.Notes
                         </td>
                     </tr>
-                @*}
-            }*@
+                }
+            }
         </tbody>
     </table>
 </div>
@@ -71,5 +87,50 @@
     <a class="btn" href="/History">Danh sách</a>
 </div>
 @code {
+    [Parameter]
+    public string id { get; set; }
+    private string Title = "";
+    protected string temp = "";
+    protected string imgUrl = "";
+    // Giống Bên ShipInfoPage
+    private string emailGoogle = "";
+    public Order model;
+    public List<Share.Models.OrderDetails> listOrder = new List<Share.Models.OrderDetails>();
+    // Giống Bên ShipInfoPage
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            NavigationManager.NavigateTo("/History", true); ;
+        }
+        else
+        {
+            // Giống Bên ShipInfoPage
+            emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            // Giống Bên ShipInfoPage
+            if (emailGoogle != null && emailGoogle != "")
+            {
+                accessToken = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
+            }
+            model = new Order();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var respone = await client.GetAsync("orderdetails/?id=" + id))
+                {
+                    string apiResponse = await respone.Content.ReadAsStringAsync();
+                    model = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(apiResponse)[0];
+                    listOrder = model.OrderDetails;
+                }
+
+            }
+        }
+    }
 }

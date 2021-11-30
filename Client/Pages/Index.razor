@@ -4,6 +4,7 @@
 @layout WebLayout
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject IToastService toastService
 @using Newtonsoft.Json
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime;
 @functions{
@@ -327,7 +328,7 @@
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("Product"))
+            using (var response = await client.GetAsync("FiveProducts"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
@@ -343,7 +344,7 @@
         {
             var product = products.Where(u => u.ProductId == id).FirstOrDefault();
             List<CartItem> listCart = new List<CartItem>()
-    {
+{
                     new CartItem
                     {
                         product = product,
@@ -351,7 +352,6 @@
                         Price = product.Price
                     }
             };
-
             Cart orderCart = new Cart()
             {
                 ListViewCart = listCart,
@@ -359,6 +359,7 @@
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            toastService.ShowSuccess("Lưu thành công!");
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -388,8 +389,10 @@
             orderCart.Total = Calculate(orderCart.ListViewCart);
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
 
+
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
+
     }
 
     private float Calculate(List<CartItem> listCart)
@@ -405,3 +408,4 @@
         return total;
     }
 }
+

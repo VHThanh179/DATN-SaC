@@ -118,6 +118,27 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 18 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
 using Share.Models;
 
@@ -132,7 +153,7 @@ using Share.Models.ViewModels;
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
+#line 8 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -148,7 +169,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 9 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
+#line 10 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
            
     protected async override Task OnAfterRenderAsync(bool fistRender)
     {
@@ -163,7 +184,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
 #nullable restore
-#line 313 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
+#line 314 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
       
 
     public List<Product> products;
@@ -181,7 +202,7 @@ using Newtonsoft.Json;
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("Product"))
+            using (var response = await client.GetAsync("FiveProducts"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
@@ -197,7 +218,7 @@ using Newtonsoft.Json;
         {
             var product = products.Where(u => u.ProductId == id).FirstOrDefault();
             List<CartItem> listCart = new List<CartItem>()
-    {
+{
                     new CartItem
                     {
                         product = product,
@@ -205,7 +226,6 @@ using Newtonsoft.Json;
                         Price = product.Price
                     }
             };
-
             Cart orderCart = new Cart()
             {
                 ListViewCart = listCart,
@@ -213,6 +233,7 @@ using Newtonsoft.Json;
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            toastService.ShowSuccess("Lưu thành công!");
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -242,8 +263,10 @@ using Newtonsoft.Json;
             orderCart.Total = Calculate(orderCart.ListViewCart);
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
 
+
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
+
     }
 
     private float Calculate(List<CartItem> listCart)
@@ -263,6 +286,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.JSInterop.IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }

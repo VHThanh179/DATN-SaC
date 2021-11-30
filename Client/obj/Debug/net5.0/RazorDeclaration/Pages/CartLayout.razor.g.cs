@@ -125,6 +125,27 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 18 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
 using System.Net;
 
@@ -152,6 +173,13 @@ using Share.Helpers;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/cart")]
     public partial class CartLayout : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -161,14 +189,11 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 205 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
+#line 231 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\CartLayout.razor"
        
     private string emailAddress;
     public Cart orderCart;
     protected string imgUrl = "";
-    public string vouchercode;
-    public Voucher voucher = new Voucher();
-    public List<Voucher> voucherlist;
 
     protected override void OnInitialized()
     {
@@ -183,23 +208,6 @@ using Share.Helpers;
             orderCart = JsonConvert.DeserializeObject<Cart>(cart);
         }
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        voucherlist = new List<Voucher>();
-
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("Voucher"))
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                voucherlist = JsonConvert.DeserializeObject<List<Voucher>>(apiResponse);
-            }
-        }
     }
 
     private void PlusQuantity(CartItem item)
@@ -228,30 +236,9 @@ using Share.Helpers;
 
     private void UpdateCart(CartItem item)
     {
-        double discount;
-        if (voucher.VoucherCode != null)
-        {
-            if (voucher.CategoryDiscount == CategoryDiscount.Percent)
-            {
-                discount = voucher.Value / 100;
-                item.Price = item.Quantity * item.product.Price;
-                orderCart.Total = Calculate(orderCart.ListViewCart) - (Calculate(orderCart.ListViewCart) * (float)discount);
-                sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-            }
-            else
-            {
-                discount = voucher.Value;
-                item.Price = item.Quantity * item.product.Price;
-                orderCart.Total = Calculate(orderCart.ListViewCart) - (float)discount;
-                sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-            }
-        }
-        else
-        {
-            item.Price = item.Quantity * item.product.Price;
-            orderCart.Total = Calculate(orderCart.ListViewCart);
-            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-        }
+        item.Price = item.Quantity * item.product.Price;
+        orderCart.Total = Calculate(orderCart.ListViewCart);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
     }
 
     private void DeleteCart(CartItem item)
@@ -303,20 +290,6 @@ using Share.Helpers;
         return total;
     }
 
-    private void CheckVoucher(Cart cart)
-    {
-        foreach (var item in voucherlist)
-        {
-            if (vouchercode == item.VoucherCode)
-            {
-                if (item.Status == true)
-                {
-                    voucher = item;
-                    UpdateCart(cart.ListViewCart.FirstOrDefault());
-                }
-            }
-        }
-    }
 
 #line default
 #line hidden

@@ -91,21 +91,42 @@ using Syncfusion.Blazor;
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
 using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -125,7 +146,14 @@ using System.ComponentModel.DataAnnotations;
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
+#line 4 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
            [AllowAnonymous]
 
 #line default
@@ -141,7 +169,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
+#line 67 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Login.razor"
       
     private string error;
 
@@ -178,6 +206,22 @@ using System.ComponentModel.DataAnnotations;
             NavigationManager.NavigateTo("CheckLogin?paramUsername=" + @Encode(@username)
                 + "&paramPassword=" + @Encode(@password), true);
         }
+        else
+        {
+            OpenDialog();
+        }
+    }
+
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsVisible = false;
     }
 
 #line default

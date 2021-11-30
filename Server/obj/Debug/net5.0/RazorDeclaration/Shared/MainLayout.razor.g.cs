@@ -91,21 +91,42 @@ using Syncfusion.Blazor;
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
 using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -113,6 +134,13 @@ using Blazored.Modal.Services;
 #nullable restore
 #line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
 using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
+using Blazored.Toast.Configuration;
 
 #line default
 #line hidden
@@ -125,7 +153,7 @@ using System.Security.Claims;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 115 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
+#line 124 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     protected async override Task OnInitializedAsync()

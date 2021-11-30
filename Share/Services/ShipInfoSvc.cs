@@ -72,10 +72,9 @@ namespace Share.Services
 
         public async Task<ShipInfo> GetShipInfoByOrderAsync(int orderId)
         {
-            var shipInfo = new ShipInfo();
+            ShipInfo shipInfo = null;
             return shipInfo = await _context.ShipInfos
-                .Where(x => x.OrderId == orderId)
-                .Include(x => x.Order).FirstOrDefaultAsync();
+                .Where(x => x.OrderId == orderId).FirstOrDefaultAsync();
         }
 
         //sync
@@ -86,7 +85,7 @@ namespace Share.Services
             try
             {
                 _context.Add(shipInfo);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
                 ret = shipInfo.ShipId;
             }
             catch
@@ -101,18 +100,9 @@ namespace Share.Services
             int value = 0;
             try
             {
-                //ShipInfo _shipInfo = null;
-                //_shipInfo = _context.ShipInfos.Find(id);
-                //_shipInfo.CusName = shipInfo.CusName;
-                //_shipInfo.Address = shipInfo.Address;
-                //_shipInfo.PhoneNumber = shipInfo.PhoneNumber;
-                //_shipInfo.Notes = shipInfo.Notes;
-                //_shipInfo.Price = shipInfo.Price;
                 _context.ShipInfos.Update(shipInfo);
                 value = shipInfo.ShipId;
-
-
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (Exception) { }
             return value;

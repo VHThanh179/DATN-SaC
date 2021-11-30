@@ -90,13 +90,6 @@ using Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
-using Share.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using BlazorAnimate;
 
@@ -131,6 +124,63 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\OrderDetails.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\OrderDetails.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\OrderDetails.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\OrderDetails.razor"
+using System.Text.Json.Serialization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\OrderDetails.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/orderdetails/{id}")]
     public partial class OrderDetails : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -138,6 +188,62 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 89 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\OrderDetails.razor"
+       
+    [Parameter]
+    public string id { get; set; }
+    private string Title = "";
+    protected string temp = "";
+    protected string imgUrl = "";
+    // Giống Bên ShipInfoPage
+    private string emailGoogle = "";
+    public Order model;
+    public List<Share.Models.OrderDetails> listOrder = new List<Share.Models.OrderDetails>();
+    // Giống Bên ShipInfoPage
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            NavigationManager.NavigateTo("/History", true); ;
+        }
+        else
+        {
+            // Giống Bên ShipInfoPage
+            emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            // Giống Bên ShipInfoPage
+            if (emailGoogle != null && emailGoogle != "")
+            {
+                accessToken = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
+            }
+            model = new Order();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var respone = await client.GetAsync("orderdetails/?id=" + id))
+                {
+                    string apiResponse = await respone.Content.ReadAsStringAsync();
+                    model = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(apiResponse)[0];
+                    listOrder = model.OrderDetails;
+                }
+
+            }
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
 }
 #pragma warning restore 1591

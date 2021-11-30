@@ -82,6 +82,8 @@ namespace API
             services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 , b => b.MigrationsAssembly("Server")));
 
+            services.Configure<TokenSettings>(Configuration.GetSection("Jwt"));
+
             services.AddTransient<IEncodeHelper, EncodeHelper>();
             //services.AddTransient<IUploadHelper, UploadHelper>();
 
@@ -96,6 +98,10 @@ namespace API
             services.AddTransient<IOrderSvc, OrderSvc>();
 
             services.AddTransient<IVoucherSvc, VoucherSvc>();
+
+            services.AddTransient<IShipInfoSvc, ShipInfoSvc>();
+
+            services.AddTransient<IAccountLogic, AccountLogic>();
 
             services.AddCors(options => options.AddPolicy(
                   "_mypolicy", builder => builder

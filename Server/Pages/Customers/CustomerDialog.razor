@@ -2,6 +2,8 @@
 @using Share.Models
 @inject Share.Interfaces.ICustomerSvc _customerSvc
 @inject NavigationManager navigation
+@inject IToastService toastService
+
 
 <div class="container">
     <div class="row">
@@ -45,7 +47,7 @@
                                 </label>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info">Lưu</button>
+                                <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
                                 <button type="submit" class="btn btn-primary" @onclick="@Cancel">Thoát</button>
                             </div>
                         </EditForm>

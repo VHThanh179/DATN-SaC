@@ -4,7 +4,27 @@
 @using Share.Helpers
 @inject Share.Interfaces.IOrderSvc _orderService
 @layout MainLayout
-<h1 class="font-weight-bold text-center">Danh sách đơn hàng</h1>
+
+<div class="row">
+    <h1 class="col-6 font-weight-bold text-left">
+        Danh sách đơn hàng
+    </h1>
+    <div class="col-6 text-right">
+        <br />
+        <select value="@SearchStatus" @onchange="SearchOrderStatus">
+            <option value="">Chọn trạng thái</option>
+            <option value="@OrderStatus.CurOrder">Mới đặt</option>
+            <option value="@OrderStatus.Delivering">Đang giao</option>
+            <option value="@OrderStatus.Delivered">Đã giao</option>
+        </select>
+        <input type="text" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
+        @*<button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>*@
+        <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+    </div>
+</div>
+<br />
+<br />
+
 @if (orders == null)
 {
     <p><em>Loading ...</em></p>
@@ -14,11 +34,11 @@ else
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
-                <th>Khách hàng</th>
-                <th>Địa chỉ</th>
-                <th>Ngày đặt</th>
-                <th>Tổng tiền</th>
-                <th>Trạng thái</th>
+                <th @onclick="@(()=>OrderSorting("Email"))">Khách hàng</th>
+                <th @onclick="@(()=>OrderSorting("Address"))">Địa chỉ</th>
+                <th @onclick="@(()=>OrderSorting("OrderDate"))">Ngày đặt</th>
+                <th @onclick="@(()=>OrderSorting("Total"))">Tổng tiền</th>
+                <th @onclick="@(()=>OrderSorting("OrderStatus"))">Trạng thái</th>
                 <th>Ghi chú</th>
                 <th></th>
             </tr>
@@ -34,7 +54,10 @@ else
                     <td>@item.OrderStatus.DisplayName()</td>
                     <td>@item.Notes</td>
                     <td>
-                        <a class="btn btn-info" href="/orderdialog/@item.OrderId">Sửa</a>
+                        @if (item.OrderStatus != OrderStatus.Delivered)
+                        {
+                            <a class="btn btn-info" href="/orderdialog/@item.OrderId">Sửa</a>
+                        }                        
                         <a class="btn" href="/orderdetail/@item.OrderId">Chi tiết</a>
                     </td>
                 </tr>
@@ -44,7 +67,89 @@ else
 }
 
 @code {
+    public string SearchString { get; set; }
+    public string SearchStatus { get; set; }
+    int ids = 0;
     public List<Order> orders;
+
+    protected void SearchInfo(ChangeEventArgs args)
+    {
+        SearchString = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            orders = _orderService.GetAllOrder().Where(x => x.Customer.Email.ToUpper().Contains(SearchString.ToUpper())
+            || (x.Customer.Address != null && x.Customer.Address.ToUpper().Contains(SearchString.ToUpper()))
+            || x.Total.ToString().Contains(SearchString) || x.OrderDate.ToString().Contains(SearchString)).ToList();
+        }
+        else
+        {
+            orders = _orderService.GetAllOrder();
+        }
+    }
+
+    protected void SearchOrderStatus(ChangeEventArgs args)
+    {
+        SearchStatus = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchStatus))
+        {
+            orders = _orderService.GetAllOrder().Where(x => x.OrderStatus.ToString() == SearchStatus).ToList();
+        }
+        else
+        {
+            orders = _orderService.GetAllOrder();
+        }
+    }
+
+    protected void OrderSorting(string SortColumn)
+    {
+        orders = _orderService.GetAllOrder();
+        if (ids == 0)
+        {
+            ids = 1;
+            switch (SortColumn)
+            {
+                case "Email":
+                    orders = orders.OrderBy(x => x.Customer.Email).ToList();
+                    break;
+                case "Address":
+                    orders = orders.OrderBy(x => x.Customer.Address).ToList();
+                    break;
+                case "OrderDate":
+                    orders = orders.OrderBy(x => x.OrderDate).ToList();
+                    break;
+                case "Total":
+                    orders = orders.OrderBy(x => x.Total).ToList();
+                    break;
+                case "OrderStatus":
+                    orders = orders.OrderBy(x => x.OrderStatus).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "Email":
+                    orders = orders.OrderByDescending(x => x.Customer.Email).ToList();
+                    break;
+                case "Address":
+                    orders = orders.OrderByDescending(x => x.Customer.Address).ToList();
+                    break;
+                case "OrderDate":
+                    orders = orders.OrderByDescending(x => x.OrderDate).ToList();
+                    break;
+                case "Total":
+                    orders = orders.OrderByDescending(x => x.Total).ToList();
+                    break;
+                case "OrderStatus":
+                    orders = orders.OrderByDescending(x => x.OrderStatus).ToList();
+                    break;
+            }
+        }
+    }
+
     protected override void OnInitialized()
     {
         orders = _orderService.GetAllOrder();

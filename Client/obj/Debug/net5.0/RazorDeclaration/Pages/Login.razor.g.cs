@@ -132,6 +132,20 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
+#line 19 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Login.razor"
 using System.Web;
 
@@ -159,6 +173,13 @@ using Share.Models.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Login.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(InnerPageLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
@@ -169,17 +190,14 @@ using Share.Models.ViewModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 167 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Login.razor"
+#line 198 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Login.razor"
        
     private bool loading;
     private string error;
     string email = "";
     string password = "";
     private string name;
-    protected override void OnInitialized()
-    {
 
-    }
     private string Encode(string param)
     {
         return HttpUtility.UrlEncode(param);
@@ -218,8 +236,7 @@ using Share.Models.ViewModels;
                 HttpResponseMessage response = await client.PostAsync(apiUrl + "Token", content);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    error += (error == "" ? "" : "<br/>") + "- Lỗi khi gọi API.";
-
+                    //error += (error == "" ? "" : "<br/>") + "- Lỗi khi gọi API.";                   
                 }
                 else
                 {
@@ -233,15 +250,30 @@ using Share.Models.ViewModels;
                         sessionStorage.SetItem("customerId", viewToken.customerID);
                         sessionStorage.SetItem("Email", email);
                         sessionStorage.SetItem("AccessToken", accessToken);
-                        //await JSRuntime.InvokeAsync<object>("refreshMenu", new { email = email });
                         NavigationManager.NavigateTo("/", true);
 
+                    }
+                    else
+                    {
+                        OpenDialog();
                     }
                 }
             }
         }
     }
 
+
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsVisible = false;
+    }
 
 #line default
 #line hidden

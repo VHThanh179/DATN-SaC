@@ -91,21 +91,42 @@ using Syncfusion.Blazor;
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
 using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -148,7 +169,7 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 113 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
+#line 119 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Products\ProductDialog.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 
@@ -156,6 +177,7 @@ using Syncfusion.Blazor.RichTextEditor;
     public string id { get; set; }
 
     private string status = null;
+    public bool isOverSized { get; set; }
 
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
@@ -214,27 +236,34 @@ using Syncfusion.Blazor.RichTextEditor;
             }
 
             var file = selectedFiles[0];
-            string filePath = dirPath + @"\" + file.Name;
+            if (file.Size < 1000000)
             {
-                Stream stream = file.OpenReadStream();
-                FileStream fs = File.Create(filePath);
-                await stream.CopyToAsync(fs);
-                stream.Close();
-                fs.Close();
+                string filePath = dirPath + @"\" + file.Name;
+                {
+                    Stream stream = file.OpenReadStream(1000000);
+                    FileStream fs = File.Create(filePath);
+                    await stream.CopyToAsync(fs);
+                    stream.Close();
+                    fs.Close();
+                }
+                product.Image = file.Name;
+                if (product.ProductId == 0)
+                {
+                    product.Status = bool.Parse(status);
+                    _productSvc.AddProduct(product);
+                }
+                else
+                {
+                    product.Status = bool.Parse(status);
+                    _productSvc.EditProduct(product.ProductId, product);
+                }
+                navigation.NavigateTo("productlist", true);
             }
-            product.Image = file.Name;
+            else
+            {
+                isOverSized = true;
+            }
         }
-        if (product.ProductId == 0)
-        {
-            product.Status = bool.Parse(status);
-            _productSvc.AddProduct(product);
-        }
-        else
-        {
-            product.Status = bool.Parse(status);
-            _productSvc.EditProduct(product.ProductId, product);
-        }
-        navigation.NavigateTo("productlist", true);
     }
     private void Cancel()
     {
@@ -251,6 +280,7 @@ using Syncfusion.Blazor.RichTextEditor;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }

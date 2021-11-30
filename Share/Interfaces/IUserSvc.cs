@@ -26,5 +26,6 @@ namespace Share.Interfaces
         User GetUserbyMail(string email);
         int EditUserbyMail(int id, User user);
         bool CheckEmail(string email);
+        bool CheckUserName(string userName);
     }
 }

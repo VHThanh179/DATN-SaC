@@ -91,21 +91,42 @@ using Syncfusion.Blazor;
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
 using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -124,6 +145,13 @@ using System.Security.Claims;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 8 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\ChangePassword.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/changepass")]
     public partial class ChangePassword : Microsoft.AspNetCore.Components.ComponentBase
@@ -134,7 +162,7 @@ using System.Security.Claims;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\ChangePassword.razor"
+#line 75 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\ChangePassword.razor"
        
     public string oldPass, newPass, confirmPass;
 
@@ -158,12 +186,52 @@ using System.Security.Claims;
                     user.Password = _encodeHelper.Encode(newPass);
                     user.ConfirmPass = user.Password;
                     _userService.EditUser(int.Parse(id), user);
-                    navigationManager.NavigateTo("/logout?returnUrl=/", true);
+                    dialogContent = "Đổi mật khẩu thành công ";
+                    reset = true;
+                    OpenDialog();
+                }
+                else
+                {
+                    dialogContent = "Mật khẩu mới và xác nhận mật khẩu mới không khớp";
+                    OpenDialog();
                 }
             }
+            else
+            {
+                dialogContent = "Mật khẩu cũ không đúng, vui lòng kiểm tra";
+                OpenDialog();
+            }
+        }
+        else
+        {
+            dialogContent = "Vui lòng kiểm tra lại";
+            OpenDialog();
         }
 
     }
+
+    private string dialogContent;
+    private bool IsVisible { get; set; }
+    private bool reset { get; set; } = false;
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void CloseDialog(bool navigate)
+    {
+        if (navigate)
+        {
+            IsVisible = false;
+            navigationManager.NavigateTo("/logout?returnUrl=/", true);
+        }
+        else
+        {
+            IsVisible = false;
+        }
+    }
+
 
 #line default
 #line hidden

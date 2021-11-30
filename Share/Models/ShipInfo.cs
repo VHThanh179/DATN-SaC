@@ -10,6 +10,8 @@ namespace Share.Models
 {
     public enum Partner
     {
+        [Display(Name = "Không có đơn vị")]
+        None = 0,
         [Display(Name = "Grab")]
         Grab = 1,
         [Display(Name = "Now")]
@@ -36,7 +38,8 @@ namespace Share.Models
 
         [Display(Name = "Số điện thoại")]
         [Column(TypeName = "varchar(20)"), MaxLength(20)]
-        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"), Required(ErrorMessage ="Số điện thoại không đúng")]
+        [RegularExpression(@"^\(?([0-9]{3})[-. ]?([0-9]{4})[-. ]?([0-9]{3})$", ErrorMessage = "Số điện thoại không đúng")]
+        [Required]
         public string PhoneNumber { get; set; }
 
 
@@ -52,7 +55,6 @@ namespace Share.Models
         public double Price { get; set; }
 
         [Display(Name = "Dịch vụ vận chuyển")]
-        [Required(ErrorMessage = "Mời chọn dịch vụ vận chuyển"), Range(1, int.MaxValue, ErrorMessage = "Vui lòng chọn dịch vụ")]
         public Partner Partner { get; set; }
 
         public Order Order { get; set; }

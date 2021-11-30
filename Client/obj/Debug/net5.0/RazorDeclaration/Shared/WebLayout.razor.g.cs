@@ -125,6 +125,27 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 18 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Shared\WebLayout.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -153,7 +174,7 @@ using Pages;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 138 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Shared\WebLayout.razor"
+#line 139 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Shared\WebLayout.razor"
       
     string emailAddress;
     string cusName;

@@ -91,21 +91,42 @@ using Syncfusion.Blazor;
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
 using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\_Imports.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -141,7 +162,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 81 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+#line 89 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -161,7 +182,7 @@ using Microsoft.AspNetCore.Hosting;
     }
 
     private void SubmitForm()
-    {   
+    {
         if (shipinfo.ShipId == 0)
         {
             _shipInfoSvc.AddShipInfo(shipinfo);
@@ -170,7 +191,7 @@ using Microsoft.AspNetCore.Hosting;
         {
             _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
         }
-        navigation.NavigateTo("shipinfolist");
+        navigation.NavigateTo("shipinfolist", true);
     }
     private void Cancel()
     {
@@ -181,6 +202,7 @@ using Microsoft.AspNetCore.Hosting;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IShipInfoSvc _shipInfoSvc { get; set; }

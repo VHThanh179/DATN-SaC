@@ -5,7 +5,38 @@
 @inject Share.Interfaces.IShipInfoSvc _shipinfoSvc;
 
 <div>
-    <h1 class="font-weight-bold text-center">Danh sách vận chuyển</h1>
+    <div class="row">
+        <h1 class="col-6 font-weight-bold text-left">
+            Danh sách vận chuyển
+        </h1>
+        <div class="col-6 text-right">
+            <br />
+            <select value="@SearchPartner" @onchange="SearchShipPartner">
+                <option value="">Chọn đơn vị giao hàng</option>
+                @foreach (Partner partner in Enum.GetValues(typeof(Partner)))
+                {
+                    if (partner == Partner.None)
+                    {
+                        <option value="@partner">Không có đơn vị</option>
+                    }
+                    else
+                    {
+                        <option value="@partner">@partner</option>
+                    }
+                }
+            </select>
+            <select value="@SearchShippingMethod" @onchange="SearchShipMethod">
+                <option value="">Chọn phương thức thanh toán</option>
+                <option value="True">Giao hàng tận nhà</option>
+                <option value="False">Lấy hàng trực tiếp</option>
+            </select>
+            <input type="text" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
+            @*<button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>*@
+            <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+        </div>
+    </div>
+    <br />
+    <br />
     @if (shipinfoes == null)
     {
         <p><em>Loading ...</em></p>
@@ -15,42 +46,42 @@
         <table class="table table-hover text-center">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Mã đơn hàng</th>
-                    <th scope="col">Tên khách hàng</th>
-                    <th scope="col">Địa chỉ giao</th>
-                    <th scope="col">Số điện thoại</th>
-                    <th scope="col">Phương thức thanh toán</th>
+                    <th scope="col" @onclick="@(()=>ShipInfoSorting("OrderId"))">Mã đơn hàng</th>
+                    <th scope="col" @onclick="@(()=>ShipInfoSorting("CusName"))">Tên khách hàng</th>
+                    <th scope="col" @onclick="@(()=>ShipInfoSorting("Address"))">Địa chỉ giao</th>
+                    <th scope="col" @onclick="@(()=>ShipInfoSorting("PhoneNumber"))">Số điện thoại</th>
+                    <th scope="col" @onclick="@(()=>ShipInfoSorting("ShippingMethod"))">Phương thức thanh toán</th>
                     <th scope="col">Ghi chú</th>
-                    <th scope="col">Giá vận chuyển</th>
-                    <th scope="col">Đối tác giao hàng</th>
+                    <th scope="col" @onclick="@(()=>ShipInfoSorting("Price"))">Giá vận chuyển</th>
+                    <th scope="col" @onclick="@(()=>ShipInfoSorting("Partner"))">Đối tác giao hàng</th>
                     <th scope="col">Chỉnh sửa</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in shipinfoes)
                 {
-                <tr>
-                    <td>@item.OrderId</td>
-                    <td>@item.CusName</td>
-                    <td>@item.Address</td>
-                    <td>@item.PhoneNumber</td>
-                    <td>
-                        @if (item.ShippingMethod)
-                        {
-                            <span>Giao hàng tận nhà</span>
-                        }
-                        else
-                        {
-                            <span>Lấy hàng trực tiếp</span>
-                        }
-                    </td>
-                    <td>@item.Notes</td>
-                    <td>@item.Price</td>
-                    <td>@item.Partner.DisplayName()</td>
-                    <td>
-                        <a class="btn btn-info" href="/shipinfodialog/@item.ShipId">Sửa</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@item.OrderId</td>
+                        <td>@item.CusName</td>
+                        <td>@item.Address</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>
+                            @if (item.ShippingMethod)
+                            {
+                                <span>Giao hàng tận nhà</span>
+                            }
+                            else
+                            {
+                                <span>Lấy hàng trực tiếp</span>
+                            }
+                        </td>
+                        <td>@item.Notes</td>
+                        <td>@item.Price</td>
+                        <td>@item.Partner.DisplayName()</td>
+                        <td>
+                            <a class="btn btn-info" href="/shipinfodialog/@item.ShipId">Sửa</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -58,20 +89,127 @@
 </div>
 
 @code {
-    [Parameter]
+    //[Parameter]
     public string SearchString { get; set; }
+    public string SearchPartner { get; set; }
+    public string SearchShippingMethod { get; set; }
+    int ids = 0;
 
     public List<ShipInfo> shipinfoes { get; set; }
 
-    protected override void OnParametersSet()
+    //protected override void OnParametersSet()
+    //{
+    //    if (!string.IsNullOrEmpty(SearchString))
+    //    {
+    //        shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+    //    }
+    //    else
+    //    {
+    //        shipinfoes = _shipinfoSvc.GetAllShipInfo();
+    //    }
+    //}
+
+    protected void SearchInfo(ChangeEventArgs args)
     {
+        SearchString = args.Value.ToString();
         if (!string.IsNullOrEmpty(SearchString))
         {
-            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.CusName.ToUpper().Contains(SearchString.ToUpper())
+            || x.Address.ToUpper().Contains(SearchString.ToUpper()) || x.PhoneNumber.Contains(SearchString)
+            || x.Price.ToString().Contains(SearchString) || x.OrderId.ToString().Contains(SearchString)).ToList();
         }
         else
         {
             shipinfoes = _shipinfoSvc.GetAllShipInfo();
+        }
+    }
+
+    protected void SearchShipPartner(ChangeEventArgs args)
+    {
+        SearchPartner = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchPartner))
+        {
+            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.Partner.ToString() == SearchPartner).ToList();
+        }
+        else
+        {
+            shipinfoes = _shipinfoSvc.GetAllShipInfo();
+        }
+    }
+
+    protected void SearchShipMethod(ChangeEventArgs args)
+    {
+        SearchShippingMethod = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchShippingMethod))
+        {
+            shipinfoes = _shipinfoSvc.GetAllShipInfo().Where(x => x.ShippingMethod.ToString() == SearchShippingMethod).ToList();
+        }
+        else
+        {
+            shipinfoes = _shipinfoSvc.GetAllShipInfo();
+        }
+    }
+
+    protected void ShipInfoSorting(string SortColumn)
+    {
+        shipinfoes = _shipinfoSvc.GetAllShipInfo();
+        if (ids == 0)
+        {
+            ids = 1;
+
+            switch (SortColumn)
+            {
+                case "OrderId":
+                    shipinfoes = shipinfoes.OrderBy(x => x.OrderId).ToList();
+                    break;
+                case "CusName":
+                    shipinfoes = shipinfoes.OrderBy(x => x.CusName).ToList();
+                    break;
+                case "Address":
+                    shipinfoes = shipinfoes.OrderBy(x => x.Address).ToList();
+                    break;
+                case "PhoneNumber":
+                    shipinfoes = shipinfoes.OrderBy(x => x.PhoneNumber).ToList();
+                    break;
+                case "ShippingMethod":
+                    shipinfoes = shipinfoes.OrderBy(x => x.ShippingMethod).ToList();
+                    break;
+                case "Price":
+                    shipinfoes = shipinfoes.OrderBy(x => x.Price).ToList();
+                    break;
+                case "Partner":
+                    shipinfoes = shipinfoes.OrderBy(x => x.Partner).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "OrderId":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.OrderId).ToList();
+                    break;
+                case "CusName":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.CusName).ToList();
+                    break;
+                case "Address":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.Address).ToList();
+                    break;
+                case "PhoneNumber":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.PhoneNumber).ToList();
+                    break;
+                case "ShippingMethod":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.ShippingMethod).ToList();
+                    break;
+                case "Price":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.Price).ToList();
+                    break;
+                case "Partner":
+                    shipinfoes = shipinfoes.OrderByDescending(x => x.Partner).ToList();
+                    break;
+            }
         }
     }
 

@@ -90,13 +90,6 @@ using Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
-using Share.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 13 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
 using BlazorAnimate;
 
@@ -131,6 +124,62 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\History.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\History.razor"
+using System.Text.Json.Serialization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\History.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\History.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\History.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/history")]
     public partial class History : Microsoft.AspNetCore.Components.ComponentBase
@@ -140,7 +189,78 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 88 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\History.razor"
+       
+    private string email;
+    // tao bien mail Goole
+    private string emailGoogle;
+    public List<Order> orders = new List<Order>();
+    public Share.Models.ViewModels.Cart giohang;
+    public Customer customer;
+    // tao bien State xac thuc
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    private double total = 0;
+    protected string imgUrl = "";
+    protected string temp = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        // gan = mail Goole
+        emailGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault();
+        email = sessionStorage.GetItem<string>("Email");
+        int customerId = sessionStorage.GetItem<int>("customerId");
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        orders = new List<Order>();
+        using (var client = new HttpClient())
+        {
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            client.DefaultRequestHeaders.Authorization = new
+            System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            // Tạo mới object Cusomer
+            customer = new Customer();
+            // neu maillGG không null va rỗng thì get customer bằng email rồi gán customerId = customer.customerId được get từ db
+            if (emailGoogle != null && emailGoogle != "")
+            {
+                using (var response = await client.GetAsync("Customer/GetCustomerbyMail/?email=" + emailGoogle))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    customer = Newtonsoft.Json.JsonConvert.DeserializeObject<Customer>(apiResponse);
+                }
+                customerId = customer.CustomerId;
+            }
+            using (var response = await client.GetAsync("Order/?id=" + customerId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                orders = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(apiResponse);
+            }
+        }
+    }
+    void ShowOrderDetail(int orderId)
+    {
+        var parameter = new ModalParameters();
+        parameter.Add(nameof(OrderDetails.id), orderId.ToString());
+        modal.Show<OrderDetails>("Chi tiết đơn hàng", parameter);
+    }
+    void ShowShipInfo(int orderId)
+    {
+        var parameterr = new ModalParameters();
+        parameterr.Add(nameof(ShipInfoPage.id), orderId.ToString());
+        modal.Show<ShipInfoPage>("Thông tin vận chuyển", parameterr);
+    }
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591
