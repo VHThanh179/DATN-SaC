@@ -1,9 +1,10 @@
 ﻿@page "/customerdialog/{id}"
 @using Share.Models
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @inject Share.Interfaces.ICustomerSvc _customerSvc
 @inject NavigationManager navigation
 @inject IToastService toastService
-
 
 <div class="container">
     <div class="row">
@@ -40,15 +41,22 @@
                                 <input @bind="customer.Address" class="form-control" readonly />
                                 <ValidationMessage For="@(()=>customer.Address)" />
                             </div>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" @bind="customer.Status" /> Trạng thái
-                                    <ValidationMessage For="@(()=>customer.Status)" />
-                                </label>
+                            @*<div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" @bind="customer.Status" /> Trạng thái
+                                        <ValidationMessage For="@(()=>customer.Status)" />
+                                    </label>
+                                </div>*@
+                            <div class="form-group">
+                                <label class="control-label">Trạng thái</label>
+                                <select @bind="status" class="form-control" required>
+                                    <option value="true">Đang hoạt động</option>
+                                    <option value="false">Dừng hoạt động</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
-                                <button type="submit" class="btn btn-primary" @onclick="@Cancel">Thoát</button>
+                                <button type="submit" class="btn btn-info">Lưu</button>
+                                <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
                             </div>
                         </EditForm>
                     </div>
@@ -62,17 +70,43 @@
     [Parameter]
     public string id { get; set; }
 
+    private string status = null;
+
+    private ToastParameters _toastParameters;
+
     private Share.Models.Customer customer { get; set; }
 
     protected override void OnInitialized()
     {
         customer = _customerSvc.GetCustomer(int.Parse(id));
+        if (customer.Status == true)
+        {
+            status = "true";
+        }
+        else
+        {
+            status = "false";
+        }
     }
 
     private void SubmitForm()
     {
-        _customerSvc.EditCustomer(customer.CustomerId, customer);
-        navigation.NavigateTo("customerlist", true);
+        _toastParameters = new ToastParameters();
+        customer.Status = bool.Parse(status);
+        int ret = _customerSvc.EditCustomer(customer.CustomerId, customer);
+        if (ret != 0)
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
+        else
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thất bại!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
+        navigation.NavigateTo("customerlist");
     }
 
     private void Cancel()

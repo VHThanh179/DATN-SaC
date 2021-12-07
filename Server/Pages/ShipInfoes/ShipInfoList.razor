@@ -9,9 +9,9 @@
         <h1 class="col-6 font-weight-bold text-left">
             Danh sách vận chuyển
         </h1>
-        <div class="col-6 text-right">
+        <div class="col-6 text-right row mt-3">
             <br />
-            <select value="@SearchPartner" @onchange="SearchShipPartner">
+            <select name="cars" class="custom-select col-3 mr-2" value="@SearchPartner" @onchange="SearchShipPartner">
                 <option value="">Chọn đơn vị giao hàng</option>
                 @foreach (Partner partner in Enum.GetValues(typeof(Partner)))
                 {
@@ -25,14 +25,13 @@
                     }
                 }
             </select>
-            <select value="@SearchShippingMethod" @onchange="SearchShipMethod">
+            <select name="cars" class="custom-select col-3 mr-2" value="@SearchShippingMethod" @onchange="SearchShipMethod">
                 <option value="">Chọn phương thức thanh toán</option>
                 <option value="True">Giao hàng tận nhà</option>
                 <option value="False">Lấy hàng trực tiếp</option>
             </select>
-            <input type="text" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
-            @*<button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>*@
-            <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+            <input type="text" class="form-control col-3 mr-2" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
+        <button class="btn btn-outline-primary col-2 form-control" @onclick="OnInitialized">Tìm kiếm</button>
         </div>
     </div>
     <br />
@@ -46,15 +45,15 @@
         <table class="table table-hover text-center">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col" @onclick="@(()=>ShipInfoSorting("OrderId"))">Mã đơn hàng</th>
-                    <th scope="col" @onclick="@(()=>ShipInfoSorting("CusName"))">Tên khách hàng</th>
-                    <th scope="col" @onclick="@(()=>ShipInfoSorting("Address"))">Địa chỉ giao</th>
-                    <th scope="col" @onclick="@(()=>ShipInfoSorting("PhoneNumber"))">Số điện thoại</th>
-                    <th scope="col" @onclick="@(()=>ShipInfoSorting("ShippingMethod"))">Phương thức thanh toán</th>
-                    <th scope="col">Ghi chú</th>
-                    <th scope="col" @onclick="@(()=>ShipInfoSorting("Price"))">Giá vận chuyển</th>
-                    <th scope="col" @onclick="@(()=>ShipInfoSorting("Partner"))">Đối tác giao hàng</th>
-                    <th scope="col">Chỉnh sửa</th>
+                    <th scope="col" style="cursor: pointer" @onclick="@(()=>ShipInfoSorting("OrderId"))">Mã đơn hàng</th>
+                    <th scope="col" style="cursor: pointer" @onclick="@(()=>ShipInfoSorting("CusName"))">Tên khách hàng</th>
+                    <th scope="col" style="cursor: pointer" @onclick="@(()=>ShipInfoSorting("Address"))">Địa chỉ giao</th>
+                    <th scope="col" style="cursor: pointer" @onclick="@(()=>ShipInfoSorting("PhoneNumber"))">Số điện thoại</th>
+                    <th scope="col" style="cursor: pointer" @onclick="@(()=>ShipInfoSorting("ShippingMethod"))">Phương thức thanh toán</th>
+                    <th scope="col" style="cursor: pointer">Ghi chú</th>
+                    <th scope="col" style="cursor: pointer" @onclick="@(()=>ShipInfoSorting("Price"))">Giá vận chuyển</th>
+                    <th scope="col" style="cursor: pointer" @onclick="@(()=>ShipInfoSorting("Partner"))">Đối tác giao hàng</th>
+                    <th scope="col" style="cursor: pointer">Chỉnh sửa</th>
                 </tr>
             </thead>
             <tbody>

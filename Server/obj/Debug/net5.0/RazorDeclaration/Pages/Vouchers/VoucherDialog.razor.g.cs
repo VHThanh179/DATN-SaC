@@ -98,35 +98,28 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
@@ -134,6 +127,20 @@ using Blazored.Toast.Services;
 #nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
 using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -147,11 +154,12 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 75 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
+#line 77 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
        
     [Parameter]
     public string id { get; set; }
     private Share.Models.Voucher voucher { get; set; }
+    private ToastParameters _toastParameters;
     private string Tilte = "";
     protected override void OnInitialized()
     {
@@ -168,13 +176,38 @@ using Share.Models;
     }
     private void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         if (voucher.VoucherId == 0)
         {
-            _voucherService.AddVoucher(voucher);
+            int ret = _voucherService.AddVoucher(voucher);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Thêm mã giảm giá thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Thêm mã giảm giá thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
         else
         {
-            _voucherService.EditVoucher(voucher.VoucherId, voucher);
+            int ret = _voucherService.EditVoucher(voucher.VoucherId, voucher);
+            if (ret == voucher.VoucherId)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa mã giảm giá thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa mã giảm giá thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
         navigation.NavigateTo("VoucherList");
     }

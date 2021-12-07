@@ -126,55 +126,50 @@
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title text-center fw-bold">ĐĂNG KÝ THÀNH VIÊN</h5>
-                                <EditForm Model="@customer" OnValidSubmit="@SubmitForm" class="form-signin">
-                                    <DataAnnotationsValidator />
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <div class="d-grid gap-2">
-                                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Đăng ký bằng Google</button>
-                                        <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Đăng ký bằng Facebook</button>
-                                    </div>
-                                    <hr class="my-4">
-                                    <h6 class="card-title text-center fw-bold">TẠO TÀI KHOẢN MỚI</h6>
-                                    <div class="form-label-group">
-                                        <input @bind="customer.Email" type="email" id="inputEmail" class="form-control" placeholder="Địa chỉ mail" required autofocus>
-                                        <label for="inputEmail">Địa chỉ mail</label>
-                                        <ValidationMessage For="@(() => customer.Email)" />
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input @bind="customer.FullName" type="text" id="inputFullname" class="form-control" placeholder="Họ tên" required>
-                                        <label for="inputFullname">Họ tên</label>
-                                        <ValidationMessage For="@(() => customer.FullName)" />
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input @bind="customer.DoB" type="date" id="dob" class="form-control" placeholder="Ngày sinh" required>
-                                        <label for="dob">Ngày sinh</label>
-                                        <ValidationMessage For="@(() => customer.DoB)" />
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input @bind="customer.Address" type="text" id="address" class="form-control" placeholder="Địa chỉ" required>
-                                        <label for="address">Địa chỉ</label>
-                                        <ValidationMessage For="@(() => customer.Address)" />
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input @bind="customer.PhoneNumber" type="tel" id="phone" class="form-control" placeholder="Số điện thoại" required>
-                                        <label for="phone">Số điện thoại</label>
-                                        <ValidationMessage For="@(() => customer.PhoneNumber)" />
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input @bind="customer.Password" type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required>
-                                        <label for="inputPassword">Mật khẩu</label>
-                                        <ValidationMessage For="@(() => customer.Password)" />
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input @bind="customer.ConfirmPassword" type="password" id="inputConfirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" required>
-                                        <label for="inputConfirmPassword">Xác nhận mật khẩu</label>
-                                        <ValidationMessage For="@(() => customer.ConfirmPassword)" />
-                                    </div>
-                                    <div class="d-grid">
-                                        <input value="Đăng ký" type="submit" class="btn btn-lg btn-dark btn-block text-uppercase" />
-                                    </div>
-                                </EditForm>
+                            <EditForm Model="@customer" OnValidSubmit="@SubmitForm" class="form-signin">
+                                <DataAnnotationsValidator />
+                                <h6 class="card-title text-center fw-bold">TẠO TÀI KHOẢN MỚI</h6>
+                                <hr class="my-4">
+                                <div class="form-label-group">
+                                    <input @bind="customer.Email" type="email" id="inputEmail" class="form-control" placeholder="Địa chỉ mail" required autofocus>
+                                    <label for="inputEmail">Địa chỉ mail</label>
+                                    <ValidationMessage For="@(() => customer.Email)" />
+                                </div>
+                                <div class="form-label-group">
+                                    <input @bind="customer.FullName" type="text" id="inputFullname" class="form-control" placeholder="Họ tên" required>
+                                    <label for="inputFullname">Họ tên</label>
+                                    <ValidationMessage For="@(() => customer.FullName)" />
+                                </div>
+                                <div class="form-label-group">
+                                    <input @bind="customer.DoB" type="date" id="dob" class="form-control" placeholder="Ngày sinh" required>
+                                    <label for="dob">Ngày sinh</label>
+                                    <ValidationMessage For="@(() => customer.DoB)" />
+                                </div>
+                                <div class="form-label-group">
+                                    <input @bind="customer.Address" type="text" id="address" class="form-control" placeholder="Địa chỉ" required>
+                                    <label for="address">Địa chỉ</label>
+                                    <ValidationMessage For="@(() => customer.Address)" />
+                                </div>
+                                <div class="form-label-group">
+                                    <input @bind="customer.PhoneNumber" type="tel" id="phone" class="form-control" placeholder="Số điện thoại" required>
+                                    <label for="phone">Số điện thoại</label>
+                                    <ValidationMessage For="@(() => customer.PhoneNumber)" />
+                                </div>
+                                <div class="form-label-group">
+                                    <input @bind="customer.Password" type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required>
+                                    <label for="inputPassword">Mật khẩu</label>
+                                    <ValidationMessage For="@(() => customer.Password)" />
+                                </div>
+                                <div class="form-label-group">
+                                    <input @bind="customer.ConfirmPassword" type="password" id="inputConfirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" required>
+                                    <label for="inputConfirmPassword">Xác nhận mật khẩu</label>
+                                    <ValidationMessage For="@(() => customer.ConfirmPassword)" />
+                                </div>
+                                <hr class="my-4">
+                                <div class="d-grid">
+                                    <input value="Đăng ký" type="submit" class="btn btn-lg btn-dark btn-block text-uppercase" />
+                                </div>
+                            </EditForm>
                         </div>
                     </div>
                 </div>

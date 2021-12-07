@@ -1,6 +1,8 @@
 ﻿@page "/orderdialog/{id}"
 @using Share.Models
 @using System.IO
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @using Microsoft.AspNetCore.Hosting
 @inject Share.Interfaces.IOrderSvc _orderService
 @inject NavigationManager navigation
@@ -62,7 +64,7 @@
                                 </div>
 
                                 <div class="form-label-group mt-4">
-                                    <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
+                                    <button type="submit" class="btn btn-info">Lưu</button>
                                     <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
                                 </div>
                             </EditForm>
@@ -77,6 +79,7 @@
 @code {
     [Parameter]
     public string id { get; set; }
+    private ToastParameters _toastParameters;
     private Share.Models.Order order { get; set; }
 
     protected override void OnInitialized()
@@ -92,7 +95,20 @@
     }
     private void SubmitForm()
     {
-        _orderService.EditOrder(order.OrderId, order);
+        _toastParameters = new ToastParameters();
+        int ret = _orderService.EditOrder(order.OrderId, order);
+        if (ret != 0)
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa đơn hàng thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
+        else
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa đơn hàng thất bại!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
         navigation.NavigateTo("Orderlist");
     }
     public void Cancel()

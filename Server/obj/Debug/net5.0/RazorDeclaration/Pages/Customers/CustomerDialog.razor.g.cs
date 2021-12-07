@@ -98,35 +98,28 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
@@ -134,6 +127,20 @@ using Blazored.Toast.Services;
 #nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerDialog.razor"
 using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerDialog.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerDialog.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -147,22 +154,48 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 61 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerDialog.razor"
+#line 69 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerDialog.razor"
        
     [Parameter]
     public string id { get; set; }
+
+    private string status = null;
+
+    private ToastParameters _toastParameters;
 
     private Share.Models.Customer customer { get; set; }
 
     protected override void OnInitialized()
     {
         customer = _customerSvc.GetCustomer(int.Parse(id));
+        if (customer.Status == true)
+        {
+            status = "true";
+        }
+        else
+        {
+            status = "false";
+        }
     }
 
     private void SubmitForm()
     {
-        _customerSvc.EditCustomer(customer.CustomerId, customer);
-        navigation.NavigateTo("customerlist", true);
+        _toastParameters = new ToastParameters();
+        customer.Status = bool.Parse(status);
+        int ret = _customerSvc.EditCustomer(customer.CustomerId, customer);
+        if (ret != 0)
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
+        else
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thất bại!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
+        navigation.NavigateTo("customerlist");
     }
 
     private void Cancel()

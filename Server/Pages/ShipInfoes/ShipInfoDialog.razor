@@ -1,6 +1,8 @@
 ﻿@page "/shipinfodialog/{id}"
 @using Share.Models
 @using System.IO;
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @using Microsoft.AspNetCore.Hosting
 @layout MainLayout
 @inject Share.Interfaces.IShipInfoSvc _shipInfoSvc
@@ -64,9 +66,9 @@
             <div class="form-label-group">
                 <label class="control-label">Đối tác vận chuyển</label>
                 <InputSelect @bind-Value="@shipinfo.Partner" class="form-control">
-                    @foreach (var partner in Enum.GetValues(typeof(Partner)))
+                    @foreach (Partner partner in Enum.GetValues(typeof(Partner)))
                     {
-                        if ((Partner)partner == Partner.None)
+                        if (partner == Partner.None)
                         {
                             <option value="@partner">Không có đơn vị</option>
                         }
@@ -79,7 +81,7 @@
             </div>
 
             <div class="form-group m-3">
-                <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
+                <button type="submit" class="btn btn-info">Lưu</button>
                 <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
             </div>
         </EditForm>
@@ -90,6 +92,7 @@
     [Parameter]
     public string id { get; set; }
 
+    private ToastParameters _toastParameters;
     private ShipInfo shipinfo { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
     protected override void OnInitialized()
@@ -106,15 +109,40 @@
 
     private void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         if (shipinfo.ShipId == 0)
         {
-            _shipInfoSvc.AddShipInfo(shipinfo);
+            int ret = _shipInfoSvc.AddShipInfo(shipinfo);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Thêm thông tin giao hàng thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Thêm thông tin giao hàng thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
         else
         {
-            _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
+            int ret = _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa thông tin giao hàng thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa thông tin giao hàng thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
-        navigation.NavigateTo("shipinfolist", true);
+        navigation.NavigateTo("shipinfolist");
     }
     private void Cancel()
     {

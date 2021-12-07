@@ -237,3 +237,7 @@ D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\ref\Server.dll
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.pdb
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Blazored.Toast.dll
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserInfo.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Users\UserInfo.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Notification.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Notification.razor.g.cs

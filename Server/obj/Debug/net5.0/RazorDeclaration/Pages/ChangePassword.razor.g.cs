@@ -98,56 +98,56 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 6 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
-using Share.Models;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
-using System.Security.Claims;
+using Share.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
-using Syncfusion.Blazor.Popups;
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 10 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -162,9 +162,10 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 75 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
+#line 118 "D:\DATN\Project\SaCBackpack\Server\Pages\ChangePassword.razor"
        
     public string oldPass, newPass, confirmPass;
+    private ToastParameters _toastParameters;
 
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     string id;
@@ -177,6 +178,7 @@ using Syncfusion.Blazor.Popups;
 
     public void ChangePass()
     {
+        _toastParameters = new ToastParameters();
         if (!string.IsNullOrEmpty(oldPass) || !string.IsNullOrEmpty(newPass) || !string.IsNullOrEmpty(confirmPass))
         {
             if (string.Equals(user.Password, _encodeHelper.Encode(oldPass)))
@@ -185,57 +187,56 @@ using Syncfusion.Blazor.Popups;
                 {
                     user.Password = _encodeHelper.Encode(newPass);
                     user.ConfirmPass = user.Password;
-                    _userService.EditUser(int.Parse(id), user);
-                    dialogContent = "Đổi mật khẩu thành công ";
-                    reset = true;
-                    OpenDialog();
+                    int ret = _userService.EditUser(int.Parse(id), user);
+                    if (ret == int.Parse(id))
+                    {
+                        //_toastParameters.Add(nameof(Notification.Title), "Đổi mật khẩu thành công, vui lòng đăng nhập lại!");
+                        //_toastParameters.Add(nameof(Notification.IsSuccess), true);
+                        //toastService.ShowToast<Notification>(_toastParameters);
+                        //navigationManager.NavigateTo("/logout?returnUrl=/", true);
+                        OpenDialog();
+                    }
+                    else
+                    {
+                        _toastParameters.Add(nameof(Notification.Title), "Đổi mật khẩu thất bại!");
+                        _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                        toastService.ShowToast<Notification>(_toastParameters);
+                    }
+
                 }
                 else
                 {
-                    dialogContent = "Mật khẩu mới và xác nhận mật khẩu mới không khớp";
-                    OpenDialog();
+                    _toastParameters.Add(nameof(Notification.Title), "Mật khẩu mới và xác nhận mật khẩu mới không khớp!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
                 }
             }
             else
             {
-                dialogContent = "Mật khẩu cũ không đúng, vui lòng kiểm tra";
-                OpenDialog();
+                _toastParameters.Add(nameof(Notification.Title), "Mật khẩu cũ không đúng!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
             }
-        }
-        else
-        {
-            dialogContent = "Vui lòng kiểm tra lại";
-            OpenDialog();
         }
 
     }
 
-    private string dialogContent;
     private bool IsVisible { get; set; }
-    private bool reset { get; set; } = false;
 
     private void OpenDialog()
     {
         IsVisible = true;
     }
 
-    private void CloseDialog(bool navigate)
+    private void Confirm()
     {
-        if (navigate)
-        {
-            IsVisible = false;
-            navigationManager.NavigateTo("/logout?returnUrl=/", true);
-        }
-        else
-        {
-            IsVisible = false;
-        }
+        navigationManager.NavigateTo("/logout?returnUrl=/", true);
     }
-
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IEncodeHelper _encodeHelper { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }

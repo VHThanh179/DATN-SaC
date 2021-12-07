@@ -98,34 +98,41 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
 using Blazored.Toast.Services;
 
 #line default
@@ -141,6 +148,13 @@ using Share.Models;
 #nullable restore
 #line 3 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserList.razor"
 using Share.Helpers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserList.razor"
+using System.Security.Claims;
 
 #line default
 #line hidden
@@ -161,37 +175,27 @@ using Share.Helpers;
     public string SearchString { get; set; }
     int ids = 0;
     public List<User> users;
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
 
-    //protected override void OnParametersSet()
-    //{
-    //    if (!string.IsNullOrEmpty(SearchString))
-    //    {
-    //        users = _userService.GetAllUser().Where(x => x.UserName.ToUpper().Contains(SearchString.ToUpper())).ToList();
-    //    }
-    //    else
-    //    {
-    //        users = _userService.GetAllUser();
-    //    }
-    //}
-
-    protected void SearchInfo(ChangeEventArgs args)
+    protected async void SearchInfo(ChangeEventArgs args)
     {
+        var user = (await AuthStat).User;
+        var userCurrent = _userService.GetAllUser().Where(x => x.UserId.ToString() == user.FindFirst(ClaimTypes.NameIdentifier).Value);
         SearchString = args.Value.ToString();
         if (!string.IsNullOrEmpty(SearchString))
         {
-            users = _userService.GetAllUser().Where(x => x.UserName.ToUpper().Contains(SearchString.ToUpper())
+            users = _userService.GetAllUser().Except(userCurrent).Where(x => x.UserName.ToUpper().Contains(SearchString.ToUpper())
             || x.FullName.ToUpper().Contains(SearchString.ToUpper()) || x.Email.ToUpper().Contains(SearchString.ToUpper())
             || x.DoB.ToString().Contains(SearchString)).ToList();
         }
         else
         {
-            users = _userService.GetAllUser();
+            users = _userService.GetAllUser().Except(userCurrent).ToList();
         }
     }
 
     protected void UserSorting(string SortColumn)
     {
-        users = _userService.GetAllUser();
         if (ids == 0)
         {
             ids = 1;
@@ -245,9 +249,11 @@ using Share.Helpers;
         }
     }
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-        users = _userService.GetAllUser();
+        var user = (await AuthStat).User;
+        var userCurrent = _userService.GetAllUser().Where(x => x.UserId.ToString() == user.FindFirst(ClaimTypes.NameIdentifier).Value);
+        users = _userService.GetAllUser().Except(userCurrent).ToList();
     }
 
 #line default

@@ -65,9 +65,9 @@ namespace Share.Services
             return list;
         }
 
-        public async Task<List<Product>> GetFiveBestSellingProductsAsync()
+        public async Task<List<Product>> GetTrendingProductsAsync()
         {
-            return await _context.Products.FromSqlRaw("FiveBestSellingProducts").ToListAsync();
+            return await _context.Products.FromSqlRaw("BestSellingProducts").ToListAsync();
         }
 
         public async Task<Product> GetProductAsync(int id)

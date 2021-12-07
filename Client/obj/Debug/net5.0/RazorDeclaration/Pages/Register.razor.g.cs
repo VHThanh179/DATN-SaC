@@ -169,7 +169,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 185 "D:\DATN\Project\SaCBackpack\Client\Pages\Register.razor"
+#line 180 "D:\DATN\Project\SaCBackpack\Client\Pages\Register.razor"
        
     Share.Models.Customer customer = new Share.Models.Customer();
     private string Tieude = "Đăng ký tài khoản";

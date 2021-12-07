@@ -98,35 +98,28 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
@@ -147,6 +140,20 @@ using System.IO;
 #nullable disable
 #nullable restore
 #line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
 using Microsoft.AspNetCore.Hosting;
 
 #line default
@@ -162,11 +169,12 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 89 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+#line 91 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
        
     [Parameter]
     public string id { get; set; }
 
+    private ToastParameters _toastParameters;
     private ShipInfo shipinfo { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
     protected override void OnInitialized()
@@ -183,15 +191,40 @@ using Microsoft.AspNetCore.Hosting;
 
     private void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         if (shipinfo.ShipId == 0)
         {
-            _shipInfoSvc.AddShipInfo(shipinfo);
+            int ret = _shipInfoSvc.AddShipInfo(shipinfo);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Thêm thông tin giao hàng thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Thêm thông tin giao hàng thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
         else
         {
-            _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
+            int ret = _shipInfoSvc.EditShipInfo(shipinfo.ShipId, shipinfo);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa thông tin giao hàng thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa thông tin giao hàng thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
-        navigation.NavigateTo("shipinfolist", true);
+        navigation.NavigateTo("shipinfolist");
     }
     private void Cancel()
     {

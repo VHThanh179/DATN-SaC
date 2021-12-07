@@ -97,36 +97,22 @@ using Syncfusion.Blazor.Charts;
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+#line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
 using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+#line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
@@ -147,13 +133,41 @@ using System.ComponentModel.DataAnnotations;
 #nullable disable
 #nullable restore
 #line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
-using Syncfusion.Blazor.Popups;
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
+using Share.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
+using Blazored.Toast;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
+using Syncfusion.Blazor.Popups;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
            [AllowAnonymous]
 
 #line default
@@ -169,9 +183,10 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 67 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
+#line 133 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
       
     private string error;
+    private ToastParameters _toastParameters;
 
     string username = "";
     string password = "";
@@ -192,23 +207,45 @@ using Syncfusion.Blazor.Popups;
     }
     private void CheckLogin()
     {
+        _toastParameters = new ToastParameters();
         error = "";
         if (username == "")
         {
             error = " Vui lòng nhập tài khoản";
+            _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập tài khoản!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
         }
         if (password == "")
         {
             error += (error == "" ? "" : "<br/>") + " Vui lòng nhập mật khẩu";
+            _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập mật khẩu!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
         }
         if (error == "")
         {
-            NavigationManager.NavigateTo("CheckLogin?paramUsername=" + @Encode(@username)
+            var viewLogin = new ViewLogin() { UserName = username, Password = password };
+            User user = _userService.Login(viewLogin);
+            if (user != null)
+            {
+                if (user.Status == false)
+                {
+                    OpenDialog();
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("CheckLogin?paramUsername=" + @Encode(@username)
                 + "&paramPassword=" + @Encode(@password), true);
-        }
-        else
-        {
-            OpenDialog();
+                }
+            }
+            else
+            {
+
+                _toastParameters.Add(nameof(Notification.Title), "Đăng nhập thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
     }
 
@@ -227,6 +264,8 @@ using Syncfusion.Blazor.Popups;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

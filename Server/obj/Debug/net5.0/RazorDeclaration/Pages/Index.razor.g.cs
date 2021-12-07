@@ -98,34 +98,41 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
 using Blazored.Toast.Services;
 
 #line default
@@ -147,13 +154,89 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 403 "D:\DATN\Project\SaCBackpack\Server\Pages\Index.razor"
+#line 205 "D:\DATN\Project\SaCBackpack\Server\Pages\Index.razor"
       
     public List<Statistical> statisticals { get; set; }
+    public List<TotalStatistical> totalStatistical { get; set; }
+    public string CategoryOption { get; set; }
+    public string StartDate { get; set; }
+    public string EndDate { get; set; }
+    int ids = 0;
 
     protected override void OnInitialized()
     {
+        StartDate = DateTime.Now.ToString();
+        EndDate = DateTime.Now.ToString();
         statisticals = _statisticalSvc.GetAllStatistical();
+        totalStatistical = _statisticalSvc.GetTotalStatistical();
+    }
+
+    protected void TypeofStatistical(ChangeEventArgs args)
+    {
+        CategoryOption = args.Value.ToString();
+        statisticals = _statisticalSvc.GetAllStatistical();
+    }
+
+    protected void SearchStatistical()
+    {
+        statisticals = _statisticalSvc.SearchStatistical(DateTime.Parse(StartDate), DateTime.Parse(EndDate));
+        CategoryOption = "SearchStatistical";
+    }
+
+    protected void StatisticalSorting(string SortColumn)
+    {
+        statisticals = _statisticalSvc.GetAllStatistical();
+        if (ids == 0)
+        {
+            ids = 1;
+            switch (SortColumn)
+            {
+                case "StatisticalMonth":
+                    statisticals = statisticals.OrderBy(x => x.StatisticalMonth).ToList();
+                    break;
+                case "QuantityRegister":
+                    statisticals = statisticals.OrderBy(x => x.QuantityRegister).ToList();
+                    break;
+                case "QuantityOrder":
+                    statisticals = statisticals.OrderBy(x => x.QuantityOrder).ToList();
+                    break;
+                case "Revenue":
+                    statisticals = statisticals.OrderBy(x => x.Revenue).ToList();
+                    break;
+                case "Transport":
+                    statisticals = statisticals.OrderBy(x => x.Transport).ToList();
+                    break;
+                case "TotalRevenue":
+                    statisticals = statisticals.OrderBy(x => x.TotalRevenue).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            ids = 0;
+
+            switch (SortColumn)
+            {
+                case "StatisticalMonth":
+                    statisticals = statisticals.OrderByDescending(x => x.StatisticalMonth).ToList();
+                    break;
+                case "QuantityRegister":
+                    statisticals = statisticals.OrderByDescending(x => x.QuantityRegister).ToList();
+                    break;
+                case "QuantityOrder":
+                    statisticals = statisticals.OrderByDescending(x => x.QuantityOrder).ToList();
+                    break;
+                case "Revenue":
+                    statisticals = statisticals.OrderByDescending(x => x.Revenue).ToList();
+                    break;
+                case "Transport":
+                    statisticals = statisticals.OrderByDescending(x => x.Transport).ToList();
+                    break;
+                case "TotalRevenue":
+                    statisticals = statisticals.OrderByDescending(x => x.TotalRevenue).ToList();
+                    break;
+            }
+        }
     }
 
 #line default

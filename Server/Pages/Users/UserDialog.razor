@@ -1,5 +1,7 @@
 ﻿@page "/userdialog/{id}"
 @using Share.Models
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @inject Share.Interfaces.IUserSvc _userService
 @inject NavigationManager navigation
 @inject IToastService toastService
@@ -70,25 +72,13 @@
                                     <ValidationMessage For="@(() => user.DoB)" />
                                 </div>
 
-                                @if (user.Roles == Role.Staff)
-                                {
-                                    <div class="form-label-group mt-3">
-                                        <label class="control-label">Chức vụ</label>
-                                        <InputSelect @bind-Value="@user.Roles" class="form-control" disabled>
-                                            <option value="@Role.Staff">Nhân viên</option>
-                                        </InputSelect>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="form-label-group mt-3">
-                                        <label class="control-label">Chức vụ</label>
-                                        <InputSelect @bind-Value="@user.Roles" class="form-control">
-                                            <option value="@Role.Manager">Quản lý</option>
-                                            <option value="@Role.Staff">Nhân viên</option>
-                                        </InputSelect>
-                                    </div>
-                                }
+                                <div class="form-label-group mt-3">
+                                    <label class="control-label">Chức vụ</label>
+                                    <InputSelect @bind-Value="@user.Roles" class="form-control">
+                                        <option value="@Role.Manager">Quản lý</option>
+                                        <option value="@Role.Staff">Nhân viên</option>
+                                    </InputSelect>
+                                </div>
 
                                 @if (id == "0")
                                 {
@@ -114,7 +104,7 @@
                                 }
 
                                 <div class="form-label-group mt-3">
-                                    <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
+                                    <button type="submit" class="btn btn-info">Lưu</button>
                                     <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
                                 </div>
                             </EditForm>
@@ -132,6 +122,7 @@
     public bool isUserNameExisted = false;
     public bool isEmailExisted = false;
     private Share.Models.User user { get; set; }
+    private ToastParameters _toastParameters;
     private string Tilte = "";
     protected override void OnInitialized()
     {
@@ -148,12 +139,25 @@
     }
     private void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         if (user.UserId == 0)
         {
             if (!_userService.CheckEmail(user.Email) && !_userService.CheckUserName(user.UserName))
             {
-                _userService.AddUser(user);
-                navigation.NavigateTo("UserList");
+                int ret = _userService.AddUser(user);
+                if (ret != 0)
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Thêm người dùng thành công!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                    navigation.NavigateTo("UserList");
+                }
+                else
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Thêm người dùng thất bại!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                }
             }
             else
             {
@@ -177,8 +181,20 @@
         }
         else
         {
-            _userService.EditUser(user.UserId, user);
-            navigation.NavigateTo("UserList");
+            int ret = _userService.EditUser(user.UserId, user);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+                navigation.NavigateTo("UserList");
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
     }
     private void Cancel()

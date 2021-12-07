@@ -203,24 +203,54 @@ namespace Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("AnnualRevenue")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("MonthlyRevenue")
-                        .HasColumnType("money");
-
                     b.Property<int>("QuantityOrder")
                         .HasColumnType("int");
 
                     b.Property<int>("QuantityRegister")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Revenue")
+                        .HasColumnType("money");
+
                     b.Property<int>("StatisticalMonth")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("TotalRevenue")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("Transport")
+                        .HasColumnType("money");
 
                     b.HasKey("StatisticalId");
 
                     b.ToTable("Statisticals");
+                });
+
+            modelBuilder.Entity("Share.Models.TotalStatistical", b =>
+                {
+                    b.Property<int>("TotalStatisticallId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("TotalAllRevenue")
+                        .HasColumnType("money");
+
+                    b.Property<int>("TotalQuantityOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalQuantityRegister")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalRevenue")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("TotalTransport")
+                        .HasColumnType("money");
+
+                    b.HasKey("TotalStatisticallId");
+
+                    b.ToTable("TotalAllStatistical");
                 });
 
             modelBuilder.Entity("Share.Models.User", b =>

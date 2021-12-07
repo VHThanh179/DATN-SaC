@@ -29,5 +29,6 @@ namespace Share.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<Statistical> Statisticals { get; set; }
+        public DbSet<TotalStatistical> TotalAllStatistical { get; set; }
     }
 }

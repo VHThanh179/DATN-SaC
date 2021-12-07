@@ -202,7 +202,7 @@ using Newtonsoft.Json;
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("FiveProducts"))
+            using (var response = await client.GetAsync("TrendingProducts"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);

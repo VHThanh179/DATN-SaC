@@ -98,34 +98,41 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
 using Blazored.Toast.Services;
 
 #line default
@@ -155,7 +162,7 @@ using Share.Helpers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 91 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
+#line 90 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoList.razor"
        
     //[Parameter]
     public string SearchString { get; set; }

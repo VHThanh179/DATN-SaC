@@ -98,48 +98,48 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 7 "D:\DATN\Project\SaCBackpack\Server\Pages\ForgotPassword.razor"
 using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\DATN\Project\SaCBackpack\Server\Pages\ForgotPassword.razor"
+#line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\ForgotPassword.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Server\Pages\ForgotPassword.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "D:\DATN\Project\SaCBackpack\Server\Pages\ForgotPassword.razor"
            [AllowAnonymous]
 
 #line default
@@ -155,16 +155,16 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 80 "D:\DATN\Project\SaCBackpack\Server\Pages\ForgotPassword.razor"
+#line 118 "D:\DATN\Project\SaCBackpack\Server\Pages\ForgotPassword.razor"
       
-    private string error;
     public string email = "";
     private Share.Models.User user { get; set; }
+    private ToastParameters _toastParameters;
 
     private void ForgotPass(string mail)
     {
+        _toastParameters = new ToastParameters();
         Random random = new Random();
-        error = "";
         if (mail != "")
         {
             if (_userSvc.CheckEmail(mail))
@@ -174,23 +174,20 @@ using Syncfusion.Blazor.Popups;
                 _mailSvc.SendEmailAsync(mail, pass);
                 user.Password = pass;
                 _userSvc.EditUserbyMail(user.UserId, user);
-                dialogContent = "Mật khẩu mới đã được gửi qua mail";
+                //_toastParameters.Add(nameof(Notification.Title), "Mật khẩu mới đã được gửi đến Email của bạn, vui lòng kiểm tra Email!");
+                //_toastParameters.Add(nameof(Notification.IsSuccess), true);
+                //toastService.ShowToast<Notification>(_toastParameters);
                 OpenDialog();
             }
             else
             {
-                dialogContent = "Email không tồn tại vui lòng thử lại";
-                OpenDialog();
+                _toastParameters.Add(nameof(Notification.Title), "Email không tồn tại vui lòng nhập lại email!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
             }
-        }
-        else
-        {
-            dialogContent = "Vui lòng nhập mail";
-            OpenDialog();
         }
     }
 
-    private string dialogContent;
     private bool IsVisible { get; set; }
 
     private void OpenDialog()
@@ -198,18 +195,19 @@ using Syncfusion.Blazor.Popups;
         IsVisible = true;
     }
 
-    private void CloseDialog()
+    private void Confirm()
     {
-        IsVisible = false;
+        NavigationManager.NavigateTo("/logout?returnUrl=/", true);
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IEncodeHelper _encodeHelper { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IMailSvc _mailSvc { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

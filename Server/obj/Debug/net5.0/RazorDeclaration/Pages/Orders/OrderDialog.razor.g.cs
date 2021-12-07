@@ -98,35 +98,28 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
@@ -147,6 +140,20 @@ using System.IO;
 #nullable disable
 #nullable restore
 #line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDialog.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDialog.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDialog.razor"
 using Microsoft.AspNetCore.Hosting;
 
 #line default
@@ -161,10 +168,11 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 77 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDialog.razor"
+#line 79 "D:\DATN\Project\SaCBackpack\Server\Pages\Orders\OrderDialog.razor"
        
     [Parameter]
     public string id { get; set; }
+    private ToastParameters _toastParameters;
     private Share.Models.Order order { get; set; }
 
     protected override void OnInitialized()
@@ -180,7 +188,20 @@ using Microsoft.AspNetCore.Hosting;
     }
     private void SubmitForm()
     {
-        _orderService.EditOrder(order.OrderId, order);
+        _toastParameters = new ToastParameters();
+        int ret = _orderService.EditOrder(order.OrderId, order);
+        if (ret != 0)
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa đơn hàng thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
+        else
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa đơn hàng thất bại!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
         navigation.NavigateTo("Orderlist");
     }
     public void Cancel()

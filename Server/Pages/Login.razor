@@ -1,11 +1,76 @@
 ﻿@page "/login"
 @using System.Web;
 @using System.ComponentModel.DataAnnotations;
+@using Share.Models;
+@using Share.Models.ViewModels;
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @using Syncfusion.Blazor.Popups
 @layout LoginLayout
 @inject NavigationManager NavigationManager
 @attribute [AllowAnonymous]
+@inject IToastService toastService
+@inject Share.Interfaces.IUserSvc _userService
 
+<style>
+    #button {
+        background-color: #E53935;
+        border: none;
+        border-radius: 5px;
+        font-weight: 700;
+        width: 60px;
+    }
+
+    .e-popup.e-popup-open.e-dialog {
+        border-radius: 20px;
+    }
+
+    .e-dialog .e-dlg-header-content {
+        background-color: #FF5252;
+        border-radius: 20px 20px 0px 0px;
+    }
+
+        .e-dialog .e-dlg-header-content + .e-dlg-content {
+            padding: 0;
+        }
+
+    .e-dialog .e-dlg-header {
+        position: relative;
+        font-size: 25px;
+        font-weight: bold;
+        color: linen;
+        margin-left: 10px;
+    }
+
+    .e-dialog .e-footer-content {
+        padding: 15px;
+        border-radius: 0px 0px 20px 20px;
+    }
+
+    .e-dialog .e-dlg-header-content {
+        padding: 6px;
+    }
+
+    .dialogText {
+        color: #D50000;
+        font-size: 20px;
+        margin: 44px 11px;
+        font-weight: 700;
+    }
+
+    .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
+        margin-right: 10px;
+    }
+
+    .e-dialog .e-dlg-header-content .e-icon-dlg-close {
+        color: #FFFFFF;
+        margin-top: 10px;
+    }
+
+    .e-dlg-header, .e-dlg-header * {
+        color: #FFFFFF;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-10 col-lg-12 col-md-9">
@@ -18,7 +83,7 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Đăng Nhập SaC Website</h1>
                                 </div>
-                                <form class="user">
+                                <form class="user" @onsubmit="CheckLogin">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user"
                                                id="username" @bind="@username" aria-describedby="emailHelp" placeholder="Tên đăng nhập"
@@ -34,7 +99,7 @@
                                             <label class="custom-control-label" for="customCheck">Ghi nhớ</label>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary btn-user btn-block" @onclick="CheckLogin">Đăng nhập</button>
+                                    <button class="btn btn-primary btn-user btn-block" type="submit">Đăng nhập</button>
                                     @if (!string.IsNullOrEmpty(error))
                                     {
                                         <div class="alert alert-danger mt-3 mb-3">@((MarkupString)error)</div>
@@ -52,20 +117,22 @@
         </div>
     </div>
 </div>
-
-<SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
+@*<BlazoredToasts Position="Blazored.Toast.Configuration.ToastPosition.TopRight" />*@
+<SfDialog Width="509px" Height="220px" IsModal="true" ShowCloseIcon="true" @bind-Visible="IsVisible">
     <DialogTemplates>
-        <Header><i class="fa fa-envelope-open" aria-hidden="true"></i> Thông báo !</Header>
-        <Content> Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin </Content>
+        <Header><i class="fa fa-exclamation-triangle"></i> Thông báo!</Header>
+        <Content>
+            <h1 class="dialogText">Đăng nhập thất bại! Tài khoản đã dừng hoạt động!</h1>
+        </Content>
+        <FooterTemplate>
+            <button id="button" @onclick="@CloseDialog" class="e-control e-btn" data-ripple="true">OK</button>
+        </FooterTemplate>
     </DialogTemplates>
     <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
-    <DialogButtons>
-        <DialogButton Content="OK" IsPrimary="true" OnClick="@CloseDialog" />
-    </DialogButtons>
 </SfDialog>
-
 @code{
     private string error;
+    private ToastParameters _toastParameters;
 
     string username = "";
     string password = "";
@@ -86,23 +153,45 @@
     }
     private void CheckLogin()
     {
+        _toastParameters = new ToastParameters();
         error = "";
         if (username == "")
         {
             error = " Vui lòng nhập tài khoản";
+            _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập tài khoản!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
         }
         if (password == "")
         {
             error += (error == "" ? "" : "<br/>") + " Vui lòng nhập mật khẩu";
+            _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập mật khẩu!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
         }
         if (error == "")
         {
-            NavigationManager.NavigateTo("CheckLogin?paramUsername=" + @Encode(@username)
+            var viewLogin = new ViewLogin() { UserName = username, Password = password };
+            User user = _userService.Login(viewLogin);
+            if (user != null)
+            {
+                if (user.Status == false)
+                {
+                    OpenDialog();
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("CheckLogin?paramUsername=" + @Encode(@username)
                 + "&paramPassword=" + @Encode(@password), true);
-        }
-        else
-        {
-            OpenDialog();
+                }
+            }
+            else
+            {
+
+                _toastParameters.Add(nameof(Notification.Title), "Đăng nhập thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
     }
 

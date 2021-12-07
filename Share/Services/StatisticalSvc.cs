@@ -1,4 +1,5 @@
-﻿using Share.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Share.Interfaces;
 using Share.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,15 @@ namespace Share.Services
         public List<Statistical> GetAllStatistical()
         {
             return _context.Statisticals.ToList();
+        }
+        public List<TotalStatistical> GetTotalStatistical()
+        {
+            return _context.TotalAllStatistical.ToList();
+        }
+
+        public List<Statistical> SearchStatistical(DateTime startDate, DateTime endDate)
+        {
+            return _context.Statisticals.FromSqlRaw("SearchStatistical {0}, {1}", startDate, endDate).ToList();
         }
     }
 }

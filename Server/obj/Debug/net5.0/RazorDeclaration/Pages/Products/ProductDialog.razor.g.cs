@@ -98,35 +98,28 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
@@ -147,13 +140,27 @@ using System.IO;
 #nullable disable
 #nullable restore
 #line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
-using Microsoft.AspNetCore.Hosting;
+using Blazored.Toast;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
+using Microsoft.AspNetCore.Hosting;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
 using Syncfusion.Blazor.RichTextEditor;
 
 #line default
@@ -169,7 +176,7 @@ using Syncfusion.Blazor.RichTextEditor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 119 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
+#line 122 "D:\DATN\Project\SaCBackpack\Server\Pages\Products\ProductDialog.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
 
@@ -179,6 +186,7 @@ using Syncfusion.Blazor.RichTextEditor;
     private string status = null;
     public bool isOverSized { get; set; }
 
+    private ToastParameters _toastParameters;
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
 
@@ -221,6 +229,7 @@ using Syncfusion.Blazor.RichTextEditor;
 
     private async void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         if (selectedFiles != null && selectedFiles.Count > 0)
         {
             var roothPath = $"{env.WebRootPath}\\images";
@@ -247,21 +256,59 @@ using Syncfusion.Blazor.RichTextEditor;
                     fs.Close();
                 }
                 product.Image = file.Name;
-                if (product.ProductId == 0)
-                {
-                    product.Status = bool.Parse(status);
-                    _productSvc.AddProduct(product);
-                }
-                else
-                {
-                    product.Status = bool.Parse(status);
-                    _productSvc.EditProduct(product.ProductId, product);
-                }
-                navigation.NavigateTo("productlist", true);
             }
             else
             {
                 isOverSized = true;
+            }
+        }
+
+        product.Status = bool.Parse(status);
+        int ret = 0;
+        if (product.ProductId == 0)
+        {
+            if (selectedFiles != null && selectedFiles.Count > 0)
+            {
+                ret = _productSvc.AddProduct(product);
+                if (ret != 0)
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                    navigation.NavigateTo("productlist");
+                    await JSRuntime.InvokeVoidAsync("RefeshProducts.refreshData");
+                }
+                else
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thất bại!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                }
+            }
+            else
+            {
+                //isChosen = true;
+                _toastParameters.Add(nameof(Notification.Title), "Vui lòng chọn hình ảnh!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
+        }
+        else
+        {
+            ret = _productSvc.EditProduct(product.ProductId, product);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa sản phẩm thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+                navigation.NavigateTo("productlist");
+                await JSRuntime.InvokeVoidAsync("RefeshProducts.refreshData");
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa sản phẩm thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
             }
         }
     }
@@ -280,6 +327,7 @@ using Syncfusion.Blazor.RichTextEditor;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
