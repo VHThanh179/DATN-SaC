@@ -183,9 +183,8 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 133 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
+#line 129 "D:\DATN\Project\SaCBackpack\Server\Pages\Login.razor"
       
-    private string error;
     private ToastParameters _toastParameters;
 
     string username = "";
@@ -195,35 +194,29 @@ using Syncfusion.Blazor.Popups;
     {
         return HttpUtility.UrlEncode(param);
     }
-    public void Enter(KeyboardEventArgs e)
-    {
-        if (e.Code == "Enter" || e.Code == "NumpadEnter")
-        {
-            if (password != "")
-            {
-                CheckLogin();
-            }
-        }
-    }
+    //public void Enter(KeyboardEventArgs e)
+    //{
+    //    if (e.Code == "Enter" || e.Code == "NumpadEnter")
+    //    {
+    //        CheckLogin();
+    //    }
+    //}
     private void CheckLogin()
     {
         _toastParameters = new ToastParameters();
-        error = "";
         if (username == "")
         {
-            error = " Vui lòng nhập tài khoản";
             _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập tài khoản!");
             _toastParameters.Add(nameof(Notification.IsSuccess), false);
             toastService.ShowToast<Notification>(_toastParameters);
         }
         if (password == "")
         {
-            error += (error == "" ? "" : "<br/>") + " Vui lòng nhập mật khẩu";
             _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập mật khẩu!");
             _toastParameters.Add(nameof(Notification.IsSuccess), false);
             toastService.ShowToast<Notification>(_toastParameters);
         }
-        if (error == "")
+        if (username != "" && password != "")
         {
             var viewLogin = new ViewLogin() { UserName = username, Password = password };
             User user = _userService.Login(viewLogin);
@@ -236,13 +229,13 @@ using Syncfusion.Blazor.Popups;
                 else
                 {
                     NavigationManager.NavigateTo("CheckLogin?paramUsername=" + @Encode(@username)
-                + "&paramPassword=" + @Encode(@password), true);
+                    + "&paramPassword=" + @Encode(@password), true);
                 }
             }
             else
             {
 
-                _toastParameters.Add(nameof(Notification.Title), "Đăng nhập thất bại!");
+                _toastParameters.Add(nameof(Notification.Title), "Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin");
                 _toastParameters.Add(nameof(Notification.IsSuccess), false);
                 toastService.ShowToast<Notification>(_toastParameters);
             }

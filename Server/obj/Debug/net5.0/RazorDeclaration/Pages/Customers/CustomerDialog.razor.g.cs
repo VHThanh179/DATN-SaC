@@ -154,49 +154,37 @@ using Blazored.Toast.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerDialog.razor"
+#line 64 "D:\DATN\Project\SaCBackpack\Server\Pages\Customers\CustomerDialog.razor"
        
     [Parameter]
     public string id { get; set; }
-
-    private string status = null;
-
-    private ToastParameters _toastParameters;
 
     private Share.Models.Customer customer { get; set; }
 
     protected override void OnInitialized()
     {
         customer = _customerSvc.GetCustomer(int.Parse(id));
-        if (customer.Status == true)
-        {
-            status = "true";
-        }
-        else
-        {
-            status = "false";
-        }
     }
 
-    private void SubmitForm()
-    {
-        _toastParameters = new ToastParameters();
-        customer.Status = bool.Parse(status);
-        int ret = _customerSvc.EditCustomer(customer.CustomerId, customer);
-        if (ret != 0)
-        {
-            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thành công!");
-            _toastParameters.Add(nameof(Notification.IsSuccess), true);
-            toastService.ShowToast<Notification>(_toastParameters);
-        }
-        else
-        {
-            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thất bại!");
-            _toastParameters.Add(nameof(Notification.IsSuccess), false);
-            toastService.ShowToast<Notification>(_toastParameters);
-        }
-        navigation.NavigateTo("customerlist");
-    }
+    //private void SubmitForm()
+    //{
+    //    _toastParameters = new ToastParameters();
+    //    customer.Status = bool.Parse(status);
+    //    int ret = _customerSvc.EditCustomer(customer.CustomerId, customer);
+    //    if (ret != 0)
+    //    {
+    //        _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thành công!");
+    //        _toastParameters.Add(nameof(Notification.IsSuccess), true);
+    //        toastService.ShowToast<Notification>(_toastParameters);
+    //    }
+    //    else
+    //    {
+    //        _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thất bại!");
+    //        _toastParameters.Add(nameof(Notification.IsSuccess), false);
+    //        toastService.ShowToast<Notification>(_toastParameters);
+    //    }
+    //    navigation.NavigateTo("customerlist");
+    //}
 
     private void Cancel()
     {

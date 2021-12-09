@@ -146,7 +146,7 @@ using System.Security.Claims;
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+#line 5 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
 using Blazored.Toast.Configuration;
 
 #line default
@@ -160,22 +160,31 @@ using Blazored.Toast.Configuration;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 118 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
-      
-    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
-    protected async override Task OnInitializedAsync()
-    {
-        base.OnInitialized();
-        var user = (await AuthStat).User;
-        if (!user.Identity.IsAuthenticated)
+#line 121 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+          
+        [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+        public string fullName { get; set; }
+
+        protected async override Task OnInitializedAsync()
         {
-            NavigationManager.NavigateTo($"Login?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}");
+            if (!string.IsNullOrEmpty(AuthStat.Result.User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            {
+                var userInfo = _userService.GetUser(int.Parse(AuthStat.Result.User.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+                fullName = userInfo.FullName;
+            }
+            base.OnInitialized();
+            var user = (await AuthStat).User;
+            if (!user.Identity.IsAuthenticated)
+            {
+                NavigationManager.NavigateTo($"Login?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}");
+            }
         }
-    }
+    
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

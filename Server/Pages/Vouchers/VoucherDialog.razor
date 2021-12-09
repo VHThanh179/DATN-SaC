@@ -50,15 +50,29 @@
                                         <option value="@CategoryDiscount.Cash">Tiền mặt</option>
                                         <option value="@CategoryDiscount.Percent">Phần trăm</option>
                                     </InputSelect>
+                                    <ValidationMessage For="@(() => voucher.CategoryDiscount)" />
                                 </div>
-                                <div class="form-label-group mt-3">
-                                    <label class="control-label">Giá trị</label>
-                                    <input type="number" min="0" @bind="voucher.Value" class="form-control" />
-                                    <ValidationMessage For="@(() => voucher.Value)" />
-                                </div>
+
+                                @if (voucher.CategoryDiscount == CategoryDiscount.Percent)
+                                {
+                                    <div class="form-label-group mt-3">
+                                        <label class="control-label">Giá trị</label>
+                                        <input type="number" min="0" max="100" @bind="voucher.Value" class="form-control" />
+                                        <ValidationMessage For="@(() => voucher.Value)" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-label-group mt-3">
+                                        <label class="control-label">Giá trị</label>
+                                        <input type="number" min="1000" @bind="voucher.Value" class="form-control" />
+                                        <ValidationMessage For="@(() => voucher.Value)" />
+                                    </div>
+                                }
+
                                 <div class="form-label-group mt-3">
                                     <label class="control-label">Số lượng mã</label>
-                                    <input type="number" @bind="voucher.VoucherQuantity" class="form-control" />
+                                    <input type="number" min="0" max="10000" @bind="voucher.VoucherQuantity" class="form-control" />
                                     <ValidationMessage For="@(() => voucher.VoucherQuantity)" />
                                 </div>
                                 <div class="form-label-group mt-3">
@@ -86,6 +100,8 @@
         {
             Tilte = "Thêm mã giảm giá";
             voucher = new Share.Models.Voucher();
+            voucher.StartDate = DateTime.Today;
+            voucher.EndDate = DateTime.Today.AddDays(1);
         }
         else
         {

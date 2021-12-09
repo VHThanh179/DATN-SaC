@@ -154,7 +154,7 @@ using Blazored.Toast.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 81 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserInfo.razor"
+#line 91 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserInfo.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -174,7 +174,7 @@ using Blazored.Toast.Services;
             _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
             _toastParameters.Add(nameof(Notification.IsSuccess), true);
             toastService.ShowToast<Notification>(_toastParameters);
-            navigation.NavigateTo("UserList");
+            navigation.NavigateTo("/", true);
         }
         else
         {

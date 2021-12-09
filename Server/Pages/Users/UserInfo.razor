@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xl-6 mx-auto">
+        <div class="col-xl-8 mx-auto">
             <div class="card card-signin flex-row shadow-lg card-signup">
                 <div class="card-body">
                     <h2 class="card-title text-center font-weight-bold text-uppercase">Thông tin</h2>
@@ -19,52 +19,62 @@
                                 <DataAnnotationsValidator />
                                 <input type="hidden" @bind="user.UserId" />
 
-                                <div class="form-label-group">
-                                    <label class="control-label">Tên đăng nhập</label>
-                                    <input @bind="user.UserName" class="form-control" disabled />
-                                    <ValidationMessage For="@(() => user.UserName)" />
+                                <div class="form-label-group row">
+                                    <label class="control-label col-5">Tên đăng nhập</label>
+                                    <span class="font-weight-bold col-7">@user.UserName</span>
+                                    @*<input @bind="user.UserName" class="form-control" disabled />
+                                    <ValidationMessage For="@(() => user.UserName)" />*@
                                 </div>
 
-                                <div class="form-label-group mt-3">
-                                    <label class="control-label">Họ tên</label>
-                                    <input @bind="user.FullName" class="form-control" />
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-label col-5">Họ tên</label>
+                                    <input @bind="user.FullName" class="form-control col-5" />
                                     <ValidationMessage For="@(() => user.FullName)" />
                                 </div>
 
-                                <div class="form-label-group mt-3">
-                                    <label class="control-label">Email</label>
-                                    <input @bind="user.Email" class="form-control" disabled />
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-label col-5">Email</label>                                  
+                                    <input @bind="user.Email" class="form-control col-5"/>
                                     <ValidationMessage For="@(() => user.Email)" />
                                 </div>
 
-                                <div class="form-label-group mt-3">
-                                    <label class="control-label">Ngày sinh</label>
-                                    <input type="date" @bind="user.DoB" class="form-control" />
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-label col-5">Ngày sinh</label>
+                                    <input type="date" @bind="user.DoB" class="form-control col-5" />
                                     <ValidationMessage For="@(() => user.DoB)" />
                                 </div>
 
                                 @if (user.Roles == Role.Staff)
                                 {
-                                    <div class="form-label-group mt-3">
-                                        <label class="control-label">Chức vụ: </label>
-                                        <span>Nhân viên</span>
+                                    <div class="form-label-group mt-3 row">
+                                        <label class="control-label col-5">Chức vụ: </label>
+                                        <span class="font-weight-bold col-7">Nhân viên</span>
                                     </div>
                                 }
                                 else
                                 {
-                                    <div class="form-label-group mt-3">
-                                        <label class="control-label">Chức vụ: </label>
-                                        <span>Quản lý</span>
+                                    <div class="form-label-group mt-3 row">
+                                        <label class="control-label col-5">Chức vụ: </label>
+                                        <span class="font-weight-bold col-7">Quản lý</span>
                                     </div>
                                 }
 
-                                <div class="form-label-group mt-3">
-                                    <label class="control-label">Trạng thái: </label>
-                                    @if (user.Status)
-                                    {
-                                        <span>Hoạt động</span>
-                                    }
-                                </div>
+
+                                @if (user.Status)
+                                {
+                                    <div class="form-label-group mt-3 row">
+                                        <label class="control-label col-5">Trạng thái: </label>
+                                        <span class="font-weight-bold col-7">Hoạt động</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-label-group mt-3 row">
+                                        <label class="control-label col-5">Trạng thái: </label>
+                                        <span class="font-weight-bold col-7">Không hoạt động</span>
+                                    </div>
+                                }
+
                                 <div class="form-label-group mt-3">
                                     <button type="submit" class="btn btn-info">Lưu</button>
                                     <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
@@ -97,7 +107,7 @@
             _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
             _toastParameters.Add(nameof(Notification.IsSuccess), true);
             toastService.ShowToast<Notification>(_toastParameters);
-            navigation.NavigateTo("UserList");
+            navigation.NavigateTo("/", true);
         }
         else
         {

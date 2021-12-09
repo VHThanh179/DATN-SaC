@@ -20,11 +20,13 @@ namespace API.Controllers
     {
         public ICustomerSvc _customerSvc;
         public IConfiguration _configuration;
+        public IActivity _activitySvc;
 
-        public TokenController(ICustomerSvc customerSvc, IConfiguration configuration)
+        public TokenController(ICustomerSvc customerSvc, IConfiguration configuration, IActivity activitySvc)
         {
             _customerSvc = customerSvc;
             _configuration = configuration;
+            _activitySvc = activitySvc;
         }
 
         [HttpPost]
@@ -36,7 +38,7 @@ namespace API.Controllers
                 var cus = await _customerSvc.LoginAsync(viewWebLogin);
                 if (cus != null)
                 {
-                    if (cus != null)
+                    if (cus.Status)
                     {
                         var claims = new[]
                         {
@@ -61,6 +63,7 @@ namespace API.Controllers
                         };
 
                         list.Add(viewToken);
+                        await _activitySvc.SaveLogAsync(cus.Email);
                         return list;
                     }
                     else

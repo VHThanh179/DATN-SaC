@@ -55,9 +55,9 @@ else
                     <td>
                         @if (item.OrderStatus != OrderStatus.Delivered)
                         {
-                            <a class="btn btn-info" href="/orderdialog/@item.OrderId">Sửa</a>
+                            <a class="btn btn-info m-1" href="/orderdialog/@item.OrderId">Sửa</a>
                         }                        
-                        <a class="btn" href="/orderdetail/@item.OrderId">Chi tiết</a>
+                        <a class="btn btn-info m-1" href="/orderdetail/@item.OrderId">Chi tiết</a>
                     </td>
                 </tr>
             }

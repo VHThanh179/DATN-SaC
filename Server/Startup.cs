@@ -40,10 +40,12 @@ namespace Server
             services.Configure<CookiePolicyOptions>(opt =>
             {
                 opt.CheckConsentNeeded = content => true;
-                opt.MinimumSameSitePolicy = SameSiteMode.None;
+                opt.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
             services.AddAuthentication(
-                CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+                CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt => {
+                    opt.ExpireTimeSpan = TimeSpan.FromHours(1);
+                });
             services.AddBlazoredToast();
             services.AddBlazoredModal();
             services.AddRazorPages();
@@ -62,6 +64,7 @@ namespace Server
             services.AddTransient<IOrderDetailsSvc, OrderDetailsSvc>();
             services.AddTransient<ICustomerSvc, CustomerSvc>();
             services.AddTransient<IStatisticalSvc, StatisticalSvc>();
+            services.AddTransient<IActivity, ActivitySvc>();
 
 
             services.AddHttpContextAccessor();
@@ -99,6 +102,7 @@ namespace Server
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();

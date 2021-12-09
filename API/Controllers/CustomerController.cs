@@ -18,11 +18,13 @@ namespace API.Controllers
         private readonly ICustomerSvc _customerSvc;
         private readonly IEncodeHelper _encodeSvc;
         private readonly IAccountLogic _accountLogicSvc;
-        public CustomerController(ICustomerSvc customerSvc, IEncodeHelper encodeSvc, IAccountLogic accountLogicSvc)
+        private readonly IActivity _activitySvc;
+        public CustomerController(ICustomerSvc customerSvc, IEncodeHelper encodeSvc, IAccountLogic accountLogicSvc, IActivity activitySvc)
         {
             _customerSvc = customerSvc;
             _encodeSvc = encodeSvc;
             _accountLogicSvc = accountLogicSvc;
+            _activitySvc = activitySvc;
         }
 
         // GET: api/GetCustomer/5
@@ -54,6 +56,7 @@ namespace API.Controllers
         public async Task<IActionResult> LoginGoogleCustomer(LoginGoogleCustomer googleCustomer)
         {
             var result = await _accountLogicSvc.LoginGoogleCustomer(googleCustomer);
+            await _activitySvc.SaveLogAsync(googleCustomer.Email);
             return Ok(result);
         }
 

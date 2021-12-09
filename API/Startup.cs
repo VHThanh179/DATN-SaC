@@ -103,6 +103,8 @@ namespace API
 
             services.AddTransient<IAccountLogic, AccountLogic>();
 
+            services.AddTransient<IActivity, ActivitySvc>();
+
             services.AddCors(options => options.AddPolicy(
                   "_mypolicy", builder => builder
                   .AllowAnyOrigin()

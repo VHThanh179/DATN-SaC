@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xl-6 mx-auto">
+        <div class="col-xl-8 mx-auto">
             <div class="card card-signin flex-row shadow-lg card-signup">
                 <div class="card-body">
                     <h2 class="card-title text-center font-weight-bold text-uppercase">Chỉnh sửa đơn hàng</h2>
@@ -20,47 +20,45 @@
                             <EditForm Model="@order" OnValidSubmit="@SubmitForm">
                                 <DataAnnotationsValidator />
                                 <input type="hidden" @bind="order.OrderId" />
-                                <div class="form-label-group">
-                                    <label class="control-lable">Khách hàng</label>
-                                    <input @bind="order.Customer.FullName" class="form-control" disabled="disabled" />
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-lable col-5">Khách hàng</label>
+                                    <span class="font-weight-bold col-7">@order.Customer.FullName</span>
                                     <input @bind="order.CustomerId" class="form-control" style="display:none" />
                                 </div>
 
-                                <div class="form-label-group">
-                                    <label class="control-lable">Email</label>
-                                    <input @bind="order.Customer.Email" class="form-control" disabled="disabled" />
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-lable col-5">Email</label>
+                                    <span class="font-weight-bold col-7">@order.Customer.Email</span>
                                 </div>
 
-                                <div class="form-label-group">
-                                    <label class="control-lable">Địa chỉ</label>
-                                    <input @bind="order.Customer.Address" class="form-control" disabled="disabled" />
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-lable col-5">Địa chỉ</label>
+                                    <span class="font-weight-bold col-7">@order.Customer.Address</span>
                                 </div>
 
-                                <div class="form-label-group mt-3">
-                                    <label class="control-lable">Ngày đặt</label>
-                                    <input type="date" @bind="order.OrderDate" class="form-control" disabled />
-                                    <span asp-validation-for="OrderDate" class="text-danger"></span>
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-lable col-5">Ngày đặt</label>
+                                    <span class="font-weight-bold col-7">@order.OrderDate.Date.ToString("dd/MM/yyyy")</span>
                                 </div>
 
-                                <div class="form-label-group mt-3">
-                                    <label class="control-lable">Tổng tiền</label>
-                                    <input type="number" @bind="order.Total" class="form-control" disabled />
-                                    <span asp-validation-for="Tongtien" class="text-danger"></span>
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-lable col-5">Tổng tiền</label>
+                                    <span class="font-weight-bold col-7">@order.Total</span>
                                 </div>
 
-                                <div class="form-label-group mt-3">
-                                    <label class="control-lable">Trạng thái</label>
-                                    <InputSelect @bind-Value="@order.OrderStatus" class="form-control">
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-lable col-5">Trạng thái</label>
+                                    <InputSelect @bind-Value="@order.OrderStatus" class="form-control col-5">
                                         <option value="@OrderStatus.CurOrder">Mới đặt</option>
                                         <option value="@OrderStatus.Delivering">Đang giao</option>
                                         <option value="@OrderStatus.Delivered">Đã giao</option>
                                     </InputSelect>
                                 </div>
 
-                                <div class="form-label-group mt-3">
-                                    <label class="control-lable">Ghi chú</label>
-                                    <input @bind="order.Notes" class="form-control" />
-                                    <span asp-validation-for="Note" class="text-danger"></span>
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-lable col-5">Ghi chú</label>
+                                    <textarea @bind="order.Notes" class="form-control col-5" rows="3"></textarea>
+                                    @*<input @bind="order.Notes" class="form-control" />*@
                                 </div>
 
                                 <div class="form-label-group mt-4">

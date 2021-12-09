@@ -182,7 +182,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 260 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
+#line 296 "D:\DATN\Project\SaCBackpack\Client\Pages\Checkout.razor"
        
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
@@ -234,7 +234,12 @@ using Microsoft.AspNetCore.Components.Authorization;
         else
         {
             orderCart = JsonConvert.DeserializeObject<Cart>(cart);
-            if (orderCart.Total <= 1000000)
+            if (orderCart.Total == 0)
+            {
+                shipInfo.Price = 0;
+
+            }
+            else if (orderCart.Total <= 1000000)
             {
                 shipInfo.Price = 30000;
             }
@@ -254,7 +259,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         customer = new Customer();
-        
+
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);

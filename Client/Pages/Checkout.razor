@@ -225,21 +225,57 @@
                     <div class="d-flex justify-content-between information">
                         <span>Tổng cộng</span>
                         <span>
-                            @if (vouchervalue != 0)
+                            @if (display != 0)
                             {
-                                if (vouchervalue <= 1)
+                                @if (vouchervalue != 0)
                                 {
-                                    total = (orderCart.Total + shipInfo.Price) - ((orderCart.Total + shipInfo.Price) * vouchervalue);
+                                    if (vouchervalue <= 1)
+                                    {
+                                        total = (orderCart.Total + shipInfo.Price) - ((orderCart.Total + shipInfo.Price) * vouchervalue);
+                                    }
+                                    else
+                                    {
+                                        if (orderCart.Total > 0)
+                                        {
+                                            total = (orderCart.Total + shipInfo.Price) - vouchervalue;
+                                        }
+                                        else
+                                        {
+                                            total = orderCart.Total;
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    total = (orderCart.Total + shipInfo.Price) - vouchervalue;
+                                    total = orderCart.Total + shipInfo.Price;
                                 }
                             }
                             else
                             {
-                                total = orderCart.Total + shipInfo.Price;
+                                @if (vouchervalue != 0)
+                                {
+                                    if (vouchervalue <= 1)
+                                    {
+                                        total = (orderCart.Total - (orderCart.Total * vouchervalue));
+                                    }
+                                    else
+                                    {
+                                        if (orderCart.Total > 0)
+                                        {
+                                            total = orderCart.Total - vouchervalue;
+                                        }
+                                        else
+                                        {
+                                            total = orderCart.Total;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    total = orderCart.Total;
+                                }
                             }
+
                             <span id="totalPrice" style="display:none">@total</span>
                             @string.Format("{0:#,0}", total) VNĐ
                         </span>
@@ -308,7 +344,12 @@
         else
         {
             orderCart = JsonConvert.DeserializeObject<Cart>(cart);
-            if (orderCart.Total <= 1000000)
+            if (orderCart.Total == 0)
+            {
+                shipInfo.Price = 0;
+
+            }
+            else if (orderCart.Total <= 1000000)
             {
                 shipInfo.Price = 30000;
             }
@@ -328,7 +369,7 @@
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         customer = new Customer();
-        
+
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);

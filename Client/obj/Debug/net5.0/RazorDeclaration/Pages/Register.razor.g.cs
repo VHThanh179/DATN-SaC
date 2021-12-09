@@ -172,7 +172,6 @@ using Newtonsoft.Json;
 #line 180 "D:\DATN\Project\SaCBackpack\Client\Pages\Register.razor"
        
     Share.Models.Customer customer = new Share.Models.Customer();
-    private string Tieude = "Đăng ký tài khoản";
     //Life cycle 
     protected override void OnInitialized()
     {

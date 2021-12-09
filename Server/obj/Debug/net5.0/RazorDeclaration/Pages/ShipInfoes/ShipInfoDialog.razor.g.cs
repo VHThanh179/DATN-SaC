@@ -169,7 +169,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 91 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
+#line 90 "D:\DATN\Project\SaCBackpack\Server\Pages\ShipInfoes\ShipInfoDialog.razor"
        
     [Parameter]
     public string id { get; set; }

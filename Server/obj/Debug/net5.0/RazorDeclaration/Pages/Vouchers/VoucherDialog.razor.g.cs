@@ -154,7 +154,7 @@ using Blazored.Toast.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 77 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
+#line 91 "D:\DATN\Project\SaCBackpack\Server\Pages\Vouchers\VoucherDialog.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -167,6 +167,8 @@ using Blazored.Toast.Services;
         {
             Tilte = "Thêm mã giảm giá";
             voucher = new Share.Models.Voucher();
+            voucher.StartDate = DateTime.Today;
+            voucher.EndDate = DateTime.Today.AddDays(1);
         }
         else
         {
