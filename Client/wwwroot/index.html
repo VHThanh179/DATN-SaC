@@ -37,6 +37,7 @@
 
     <!--Carousel-->
     <link href="carousel/css/style2.css" rel="stylesheet" />
+    <link href="carousel/css/lightslider.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -69,15 +70,6 @@
         window.initializeCarousel = () => {
             $("carouselExampleIndicators").carousel({ interval: 500 });
         }
-        window.productSlider2 = function () {
-            $('#autoWidth').lightSlider({
-                autoWidth: true,
-                loop: true,
-                onSliderLoad: function () {
-                    $('#autoWidth').removeClass('cS-hidden');
-                }
-            });
-        };
     </script>
 
 

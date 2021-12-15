@@ -31,7 +31,6 @@ a {
     align-items: center;
     padding: 10px 20px;
     box-sizing: border-box;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .type {
@@ -39,17 +38,17 @@ a {
     flex-direction: column;
 }
 
-    .type a {
-        color: #222222;
-        margin: 5px 0px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        padding-right: 8px;
-    }
+.type a {
+    color: #222222;
+    margin: 5px 0px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding-right: 8px;
+}
 
-    .type span {
-        color: rgba(26, 26, 26, 0.5);
-    }
+.type span {
+    color: rgba(26, 26, 26, 0.5);
+}
 
 .price {
     color: #333333;
