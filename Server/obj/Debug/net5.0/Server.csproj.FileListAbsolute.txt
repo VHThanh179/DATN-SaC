@@ -243,3 +243,5 @@ D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Notif
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Notification.razor.g.cs
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserLog.razor.g.cs
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Users\UserLog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\StatisticalPage.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\StatisticalPage.razor.g.cs

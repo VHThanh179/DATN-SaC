@@ -189,7 +189,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 231 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
+#line 221 "D:\DATN\Project\SaCBackpack\Client\Pages\CartLayout.razor"
        
     private string emailAddress;
     public Cart orderCart;
