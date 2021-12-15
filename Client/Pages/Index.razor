@@ -17,6 +17,7 @@
         }
     }
 }
+<link href="/assets/css/products.css" rel="stylesheet" />
 <style>
     .carousel-inner img {
         width: 100%;
@@ -125,72 +126,185 @@
         </a>
     </div>
 </Animate>
+<br /> <br />
+       <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
+           <!-- Start Product Area -->
+           <div class="product-area section">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-12">
+                           <div class="section-title">
+                               <h2>Sản Phẩm Bán Chạy</h2>
+                               <hr />
+                           </div>
+                       </div>
+                       <div class="col-12">
+                           <div class="product-info">
+                               <div class="tab-content" id="myTabContent">
+                                   <!-- Start Single Tab -->
+                                   <div class="tab-single">
+                                       <div class="row">
+                                           @foreach (var item in products)
+                                           {
+                                               <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                                                   <div class="single-product border border-2 rounded p-2">
+                                                       <div class="product-img">
+                                                           <a href="/detail/@item.ProductId">
+                                                               @{
+                                                                   temp = imgUrl + item.Image;
+                                                               }
+                                                               <img class="default-img" src="@temp" alt="#">
+                                                               <img class="hover-img" src="@temp" alt="#">
+                                                           </a>
+                                                           <div class="button-head">
+                                                               @*<div class="product-action">
+                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                </div>*@
+                                                               <div class="product-action-2">
+                                                                   <a style="cursor:pointer" @onclick="() => AddCart(item.ProductId)">Thêm vào giỏ hàng</a>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                       <div class="product-content">
+                                                           <h5><a style="cursor:pointer" href="/detail/@item.ProductId" class="text-dark">@item.ProductName</a></h5>
+                                                           <div class="product-price text-danger">
+                                                               <b>@string.Format("{0:#,0}", item.Price) VNĐ</b>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           }
+                                       </div>
 
-<Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
-    <!-- ======= Portfolio Section ======= -->
-    <section id="product" class="portfolio">
-        <div class="container">
+                                       <!--Product Slider-->
+                                       <ul id="autoWidth" class="cs-hidden">
+                                           @*Item*@
+                                           <li class="item-a">
+                                               <div class="box">
+                                                   <div class="slide-img">
+                                                       <img src="/img/BALO MINECRAFT.png" alt="1">
+                                                       <div class="overlay">
+                                                           <a href="#" class="buy-btn">MUA NGAY</a>
+                                                       </div>
+                                                   </div>
+                                                   <div class="detail-box">
+                                                       <div class="type">
+                                                           <a href="#">BALO MINECRAFT</a>
+                                                           <span>Balo</span>
+                                                       </div>
+                                                       <a href="#" class="price">430.000đ</a>
+                                                   </div>
+                                               </div>
+                                           </li>
+                                           @*End Item*@
+                                           @*Item*@
+                                           <li class="item-b">
+                                               <div class="box">
+                                                   <div class="slide-img">
+                                                       <img src="/img/Balo Mikkor The Grander.png" alt="1">
+                                                       <div class="overlay">
+                                                           <a href="#" class="buy-btn">MUA NGAY</a>
+                                                       </div>
+                                                   </div>
+                                                   <div class="detail-box">
+                                                       <div class="type">
+                                                           <a href="#">Balo Mikkor The Grander</a>
+                                                           <span>Balo</span>
+                                                       </div>
+                                                       <a href="#" class="price">630.000đ</a>
+                                                   </div>
+                                               </div>
+                                           </li>
+                                           @*End Item*@
+                                           @*Item*@
+                                           <li class="item-c">
+                                               <div class="box">
+                                                   <div class="slide-img">
+                                                       <img src="/img/Balo laptop Tigernu T-B3090 .png" alt="1">
+                                                       <div class="overlay">
+                                                           <a href="#" class="buy-btn">MUA NGAY</a>
+                                                       </div>
+                                                   </div>
+                                                   <div class="detail-box">
+                                                       <div class="type">
+                                                           <a href="#">Balo laptop Tigernu T-B3090</a>
+                                                           <span>Balo</span>
+                                                       </div>
+                                                       <a href="#" class="price">520.000đ</a>
+                                                   </div>
+                                               </div>
+                                           </li>
+                                           @*End Item*@
+                                           @*Item*@
+                                           <li class="item-d">
+                                               <div class="box">
+                                                   <div class="slide-img">
+                                                       <img src="/img/Groove X Compact.png" alt="1">
+                                                       <div class="overlay">
+                                                           <a href="#" class="buy-btn">MUA NGAY</a>
+                                                       </div>
+                                                   </div>
+                                                   <div class="detail-box">
+                                                       <div class="type">
+                                                           <a href="#">Groove X Compact</a>
+                                                           <span>Balo</span>
+                                                       </div>
+                                                       <a href="#" class="price">730.000đ</a>
+                                                   </div>
+                                               </div>
+                                           </li>
+                                           @*End Item*@
+                                           @*Item*@
+                                           <li class="item-e">
+                                               <div class="box">
+                                                   <div class="slide-img">
+                                                       <img src="/img/Groove X Compact.png" alt="1">
+                                                       <div class="overlay">
+                                                           <a href="#" class="buy-btn">MUA NGAY</a>
+                                                       </div>
+                                                   </div>
+                                                   <div class="detail-box">
+                                                       <div class="type">
+                                                           <a href="#">Groove X Compact</a>
+                                                           <span>Balo</span>
+                                                       </div>
+                                                       <a href="#" class="price">730.000đ</a>
+                                                   </div>
+                                               </div>
+                                           </li>
+                                           @*End Item*@
+                                           @*Item*@
+                                           <li class="item-f">
+                                               <div class="box">
+                                                   <div class="slide-img">
+                                                       <img src="/img/Groove X Compact.png" alt="1">
+                                                       <div class="overlay">
+                                                           <a href="#" class="buy-btn">MUA NGAY</a>
+                                                       </div>
+                                                   </div>
+                                                   <div class="detail-box">
+                                                       <div class="type">
+                                                           <a href="#">Groove X Compact</a>
+                                                           <span>Balo</span>
+                                                       </div>
+                                                       <a href="#" class="price">730.000đ</a>
+                                                   </div>
+                                               </div>
+                                           </li>
+                                           @*End Item*@
+                                       </ul>
+                                       <!--End Product Slider-->
 
-            <div class="section-title" data-aos="fade-up">
-                <h2>Sản phẩm</h2>
-            </div>
+                                   </div>
+                                   <!--/ End Single Tab -->
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
 
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                @foreach (var item in products)
-                {
-                    @*<div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                            <div class="portfolio-wrap">
-                                @{
-                                    temp = imgUrl + item.Image;
-                                }
-                                <img src="@temp" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>@item.ProductName</h4>
-                                    <p>@string.Format("{0:#,0}", item.Price) VNĐ</p>
-                                </div>
-                                <div class="portfolio-links">
-                                    <a href="@temp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="@item.ProductName"><i class="bx bx-plus"></i></a>
-                                    <a href="/detail/@item.ProductId" title="More Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>*@
-                    <div class=" col-3 filter-app">
-                        <div class="card ">
-                            <div class="image-container ">
-                                <div class="first">
-                                    <div class="d-flex justify-content-between align-items-center"> <span class="wishlist"><i class="fa fa-heart-o"></i></span> </div>
-                                </div>
-                                @{
-                                    temp = imgUrl + item.Image;
-                                }
-                                <img src="@temp" class="img-fluid rounded thumbnail-image">
-                                <a href="/detail/@item.ProductId" title="More Details"><i class="bx bx-link"></i></a>
-
-                            </div>
-                            <div class="product-detail-container p-2">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="dress-name text-center">@item.ProductName </h4>
-
-                                </div>
-                            </div>
-                            <div class="product-detail-container p-2">
-                                <div class="d-flex justify-content-between align-items-center pt-1">
-                                    <div class="d-flex flex-column mb-2"> <span class="new-price">@string.Format("{0:#,0}", item.Price) VNĐ</span></div>
-                                    <button class="btn btn-dark btn-sm text-right" @onclick="() => AddCart(item.ProductId)">THÊM VÀO GIỎ HÀNG +</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-
-
-            </div>
-
-        </div>
-    </section><!-- End Portfolio Section -->
-
-</Animate>
+       </Animate>
 <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
@@ -250,59 +364,29 @@
 
             <div class="row">
 
-                <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-right">
+                <div class="col-lg-12 d-flex align-items-stretch" data-aos="fade-right">
                     <div class="info">
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
                             <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <p>CVPM Quang Trung, Quận 12, TP HCM</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>info@example.com</p>
+                            <p>web.sacbackpack@gmail.com</p>
                         </div>
 
                         <div class="phone">
                             <i class="bi bi-phone"></i>
                             <h4>Call:</h4>
-                            <p>+1 5589 55488 55s</p>
+                            <p>0332780105</p>
                         </div>
-
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15673.776858806688!2d106.6283556!3d10.8537789!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175298945afff59%3A0xcf4afe79d65f5ddc!2zQ8O0bmcgdmnDqm4gcGjhuqduIG3hu4FtIFF1YW5nIFRydW5n!5e0!3m2!1svi!2s!4v1639199322451!5m2!1svi!2s" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
                     </div>
 
-                </div>
-
-                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-left">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="name">Your Name</label>
-                                <input type="text" name="name" class="form-control" id="name" required>
-                            </div>
-                            <div class="form-group col-md-6 mt-3 mt-md-0">
-                                <label for="name">Your Email</label>
-                                <input type="email" class="form-control" name="email" id="email" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <label for="name">Subject</label>
-                            <input type="text" class="form-control" name="subject" id="subject" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <label for="name">Message</label>
-                            <textarea class="form-control" name="message" rows="10" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-                </div>
+                </div>             
 
             </div>
 
@@ -332,8 +416,14 @@
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+                products.RemoveAt(4);
             }
         }
+        //await JSRuntime.InvokeVoidAsync("mostPopular");
+
+        await JSRuntime.InvokeVoidAsync("productSlider2");
+        //await JSRuntime.InvokeVoidAsync("jqueryScript");
+
     }
 
     private void AddCart(int id)

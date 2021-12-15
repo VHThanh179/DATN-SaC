@@ -139,7 +139,7 @@ using Blazored.Toast.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 73 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\NavMenu.razor"
+#line 74 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;

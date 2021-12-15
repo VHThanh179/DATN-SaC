@@ -184,7 +184,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
 #nullable restore
-#line 314 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
+#line 398 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
       
 
     public List<Product> products;
@@ -206,8 +206,14 @@ using Newtonsoft.Json;
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+                products.RemoveAt(4);
             }
         }
+        //await JSRuntime.InvokeVoidAsync("mostPopular");
+
+        await JSRuntime.InvokeVoidAsync("productSlider2");
+        //await JSRuntime.InvokeVoidAsync("jqueryScript");
+
     }
 
     private void AddCart(int id)

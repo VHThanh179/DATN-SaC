@@ -190,7 +190,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\History.razor"
+#line 89 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\History.razor"
        
     private string email;
     // tao bien mail Goole

@@ -147,7 +147,7 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 403 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Index.razor"
+#line 433 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Pages\Index.razor"
       
     public List<Statistical> statisticals { get; set; }
 

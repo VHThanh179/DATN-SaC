@@ -160,7 +160,7 @@ using Share.Models.ViewModels;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\ProductsPage.razor"
+#line 9 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\ProductsPage.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -176,12 +176,15 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 101 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\ProductsPage.razor"
+#line 127 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\ProductsPage.razor"
        
     public List<Product> products;
+    List<Product> backPack = new List<Product>();
+    List<Product> asscessories = new List<Product>();
     public ProductDTO productDTO;
     protected string imgUrl = "";
     protected string temp = "";
+
 
     int totalPages;
     int totalRecords;
@@ -190,16 +193,24 @@ using Newtonsoft.Json;
     int pageSize;
     int startPage;
     int endPage;
-
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("mostPopular");
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
         pagerSize = 4;
-        pageSize = 4;
+        pageSize = 8;
         curPage = 1;
+
 
         productDTO = new ProductDTO();
         products = new List<Product>();
         await LoadProduct();
+
     }
     public async Task LoadProduct()
     {
@@ -350,9 +361,9 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.JSInterop.IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
     }
 }
 #pragma warning restore 1591

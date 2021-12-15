@@ -153,7 +153,7 @@ using Blazored.Toast.Configuration;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 124 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
+#line 137 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Server\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     protected async override Task OnInitializedAsync()
