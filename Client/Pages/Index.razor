@@ -1,11 +1,13 @@
 ﻿@page "/"
 @using Share.Models
 @using Share.Models.ViewModels
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Newtonsoft.Json
 @layout WebLayout
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject IToastService toastService
-@using Newtonsoft.Json
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime;
 @functions{
     protected async override Task OnAfterRenderAsync(bool fistRender)
@@ -117,11 +119,11 @@
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">Trước</span>
         </a>
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">Sau</span>
         </a>
     </div>
 </Animate>
@@ -177,7 +179,7 @@
                             <div class="product-detail-container p-2">
                                 <div class="d-flex justify-content-between align-items-center pt-1">
                                     <div class="d-flex flex-column mb-2"> <span class="new-price">@string.Format("{0:#,0}", item.Price) VNĐ</span></div>
-                                    <button class="btn btn-dark btn-sm text-right" @onclick="() => AddCart(item.ProductId)">THÊM VÀO GIỎ HÀNG +</button>
+                                    <button class="btn btn-dark btn-sm text-right" @onclick="() => AddCart(item.ProductId)">THÊM VÀO GIỎ HÀNG</button>
                                 </div>
                             </div>
                         </div>
@@ -254,20 +256,20 @@
                     <div class="info">
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
-                            <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <h4>Địa chỉ:</h4>
+                            <p>CVPM Quang Trung, Q.12, HCM</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>info@example.com</p>
+                            <p>web.backpack@example.com</p>
                         </div>
 
                         <div class="phone">
                             <i class="bi bi-phone"></i>
-                            <h4>Call:</h4>
-                            <p>+1 5589 55488 55s</p>
+                            <h4>Điện thoại:</h4>
+                            <p>+84 989999999</p>
                         </div>
 
                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
@@ -279,28 +281,28 @@
                     <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="name">Your Name</label>
+                                <label for="name">Tên của bạn</label>
                                 <input type="text" name="name" class="form-control" id="name" required>
                             </div>
                             <div class="form-group col-md-6 mt-3 mt-md-0">
-                                <label for="name">Your Email</label>
+                                <label for="name">Email</label>
                                 <input type="email" class="form-control" name="email" id="email" required>
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <label for="name">Subject</label>
+                            <label for="name">Chủ đề</label>
                             <input type="text" class="form-control" name="subject" id="subject" required>
                         </div>
                         <div class="form-group mt-3">
-                            <label for="name">Message</label>
+                            <label for="name">Nội dung</label>
                             <textarea class="form-control" name="message" rows="10" required></textarea>
                         </div>
                         <div class="my-3">
-                            <div class="loading">Loading</div>
+                            <div class="loading">Đang tải</div>
                             <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                            <div class="sent-message">Tin nhắn của bạn đã gửi, cảm ơn bạn!</div>
                         </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
+                        <div class="text-center"><button type="submit">Gửi</button></div>
                     </form>
                 </div>
 
@@ -312,7 +314,7 @@
 
 
 @code{
-
+    private ToastParameters _toastParameters;
     public List<Product> products;
     protected string imgUrl = "";
     protected string temp = "";
@@ -338,6 +340,7 @@
 
     private void AddCart(int id)
     {
+        _toastParameters = new ToastParameters();
         //var cart = HttpContext.Session.GetString("cart");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
         if (cart == null)
@@ -359,7 +362,9 @@
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-            toastService.ShowSuccess("Lưu thành công!");
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -388,8 +393,9 @@
             }
             orderCart.Total = Calculate(orderCart.ListViewCart);
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-
-
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
 

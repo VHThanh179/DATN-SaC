@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Share.Models;
 using Share.Interfaces;
 using Share.Models.ViewModels;
+using API.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace API.Controllers
 {
@@ -20,9 +22,12 @@ namespace API.Controllers
         private readonly IOrderDetailsSvc _orderDetailsSvc;
         private readonly IShipInfoSvc _shipInfoSvc;
         private readonly IVoucherSvc _voucherSvc;
+        private readonly IHubContext<NotiHub> _hubContext;
 
-        public CartController(IOrderDetailsSvc orderDetailsSvc, IOrderSvc orderSvc, IShipInfoSvc shipInfoSvc, IVoucherSvc voucherSvc)
+        public CartController(IOrderDetailsSvc orderDetailsSvc, IOrderSvc orderSvc, IShipInfoSvc shipInfoSvc, IVoucherSvc voucherSvc, 
+            IHubContext<NotiHub> hubContext)
         {
+            _hubContext = hubContext;
             _orderDetailsSvc = orderDetailsSvc;
             _orderSvc = orderSvc;
             _shipInfoSvc = shipInfoSvc;
@@ -71,13 +76,20 @@ namespace API.Controllers
                     voucher.VoucherQuantity--;
                     await _voucherSvc.EditVoucherAsync(voucher);
                 }
-
             }
             catch
             {
                 return BadRequest(-1);
             }
             return Ok(1);
+        }
+
+        [Route("/api/NewNoti")]
+        [HttpPost]
+        public async Task<ActionResult> NotiContent([FromBody] Notifi notifi)
+        {
+            await _hubContext.Clients.All.SendAsync("Notification", notifi.Content);
+            return Ok("Notification has been sent successfully!");
         }
     }
 }

@@ -165,7 +165,7 @@ using Blazored.Toast.Services;
     {
         user = _userService.GetUser(int.Parse(id));
     }
-    private void SubmitForm()
+    private async void SubmitForm()
     {
         _toastParameters = new ToastParameters();
         int ret = _userService.EditUser(user.UserId, user);
@@ -174,7 +174,7 @@ using Blazored.Toast.Services;
             _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
             _toastParameters.Add(nameof(Notification.IsSuccess), true);
             toastService.ShowToast<Notification>(_toastParameters);
-            navigation.NavigateTo("/", true);
+            await JSRuntime.InvokeVoidAsync("RefeshUser.refreshData");
         }
         else
         {
@@ -193,6 +193,7 @@ using Blazored.Toast.Services;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }

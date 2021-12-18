@@ -28,12 +28,20 @@ namespace Share.Services
             {
                 // create new user and default roles
                 await CreateNewCustomer(googleCustomer, customer);
+                return new TokenResponseModel
+                {
+                    JwtToken = GetJWTAuthKey(),
+                    FirstLogin = true
+                };
             }
-
-            return new TokenResponseModel
+            else
             {
-                JwtToken = GetJWTAuthKey()
-            };
+                return new TokenResponseModel
+                {
+                    JwtToken = GetJWTAuthKey(),
+                    FirstLogin = false
+                };
+            }
         }
 
         public async Task CreateNewCustomer(LoginGoogleCustomer googleCustomer, Customer customer)

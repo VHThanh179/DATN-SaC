@@ -2,7 +2,10 @@
 @using System.Net;
 @using Share.Models;
 @using Newtonsoft.Json
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @inject IJSRuntime IJSRuntime
+@inject IToastService toastService
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject NavigationManager NavigationManager
@@ -113,6 +116,73 @@
         background-color: #3b5998;
     }
 
+    #button {
+        background-color: #009688;
+        border: none;
+        border-radius: 5px;
+        color: #FFFFFF;
+        font-weight: 700;
+        width: 60px;
+    }
+
+    #button-cancel {
+        background-color: #009688;
+        border: none;
+        border-radius: 5px;
+        color: #FFFFFF;
+        font-weight: 700;
+        width: 100px;
+    }
+
+    .e-popup.e-popup-open.e-dialog {
+        border-radius: 20px;
+    }
+
+    .e-dialog .e-dlg-header-content {
+        background-color: #689F38;
+        border-radius: 20px 20px 0px 0px;
+    }
+
+        .e-dialog .e-dlg-header-content + .e-dlg-content {
+            padding: 0;
+        }
+
+    .e-dialog .e-dlg-header {
+        position: relative;
+        font-size: 25px;
+        font-weight: bold;
+        color: linen;
+        margin-left: 10px;
+    }
+
+    .e-dialog .e-footer-content {
+        padding: 15px;
+        border-radius: 0px 0px 20px 20px;
+    }
+
+    .e-dialog .e-dlg-header-content {
+        padding: 6px;
+    }
+
+    .dialogText {
+        color: #33691E;
+        font-size: 20px;
+        margin: 32px;
+        font-weight: 700;
+    }
+
+    .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
+        margin-right: 10px;
+    }
+
+    .e-dialog .e-dlg-header-content .e-icon-dlg-close {
+        color: #FFFFFF;
+    }
+
+    .e-dlg-header, .e-dlg-header * {
+        color: #FFFFFF;
+    }
+
     /* Fallback for Edge
     -------------------------------------------------- */
 
@@ -167,7 +237,7 @@
                                 </div>
                                 <hr class="my-4">
                                 <div class="d-grid">
-                                    <input value="Đăng ký" type="submit" class="btn btn-lg btn-dark btn-block text-uppercase" />
+                                    <button value="Đăng ký" type="submit" class="btn btn-lg btn-dark btn-block text-uppercase" />
                                 </div>
                             </EditForm>
                         </div>
@@ -177,9 +247,27 @@
         </div>
     </div>
 </Animate>
+
+<SfDialog Width="509px" Height="220px" IsModal="true" ShowCloseIcon="true" @bind-Visible="IsVisible">
+    <DialogTemplates>
+        <Header><i class="fa fa-check"></i> Thông báo!</Header>
+        <Content>
+            <h1 class="dialogText">Đăng nhập để sử dụng nhiều dịch vụ hơn!</h1>
+        </Content>
+        <FooterTemplate>
+            <button id="button" @onclick="@NaviLogin" class="e-control e-btn" data-ripple="true">OK</button>
+            <button id="button-cancel" @onclick="@NaviHome" class="e-control e-btn" data-ripple="true">Trang chủ</button>
+        </FooterTemplate>
+    </DialogTemplates>
+    <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
+</SfDialog>
+
 @code {
     Share.Models.Customer customer = new Share.Models.Customer();
-    //Life cycle 
+    private ToastParameters _toastParameters;
+    private bool isEmailExisted = false;
+    private bool isPhoneNumberExisted = false;
+    //Life cycle
     protected override void OnInitialized()
     {
         customer.CreatedDate = DateTime.Now;
@@ -187,31 +275,88 @@
     }
     private async void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         using (var client = new HttpClient())
-        {            
-            StringContent content = new StringContent(JsonConvert.SerializeObject(customer), System.Text.Encoding.UTF8,
-                "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Alow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "customer", content);
-
-            if (response.StatusCode != HttpStatusCode.OK)
+        {
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var resEmail = await client.GetAsync("Customer/CheckMail/?email=" + customer.Email))
             {
-
+                var email = await resEmail.Content.ReadAsStringAsync();
+                isEmailExisted = bool.Parse(email);
             }
-            else
+            using (var resPhoneNumber = await client.GetAsync("Customer/CheckPhoneNumber/?phoneNumber=" + customer.PhoneNumber))
             {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse == "-1")
+                var phoneNumber = await resPhoneNumber.Content.ReadAsStringAsync();
+                isPhoneNumberExisted = bool.Parse(phoneNumber);
+            }
+            if (!isEmailExisted && !isPhoneNumberExisted)
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(customer), System.Text.Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync("customer", content);
+
+                if (response.StatusCode != HttpStatusCode.OK)
                 {
 
                 }
                 else
                 {
-                    NavigationManager.NavigateTo("/");
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse == "-1")
+                    {
+                        _toastParameters.Add(nameof(Notification.Title), "Đăng ký thành viên thất bại!");
+                        _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                        toastService.ShowToast<Notification>(_toastParameters);
+                    }
+                    else
+                    {
+                        OpenDialog();
+                    }
+                }
+            }
+            else
+            {
+                if (isEmailExisted && isPhoneNumberExisted)
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Địa chỉ email này đã tồn tại! Số điện thoại đã tồn tại!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                }
+                else
+                {
+                    if (isEmailExisted)
+                    {
+                        _toastParameters.Add(nameof(Notification.Title), "Địa chỉ email đã tồn tại!");
+                        _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                        toastService.ShowToast<Notification>(_toastParameters);
+                    }
+                    if (isPhoneNumberExisted)
+                    {
+                        _toastParameters.Add(nameof(Notification.Title), "Số điện thoại đã tồn tại!");
+                        _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                        toastService.ShowToast<Notification>(_toastParameters);
+                    }
                 }
             }
         }
+    }
+
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void NaviLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+
+    private void NaviHome()
+    {
+        NavigationManager.NavigateTo("/");
     }
 }

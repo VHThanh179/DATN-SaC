@@ -154,7 +154,7 @@ using Blazored.Toast.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 136 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+#line 137 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -177,7 +177,7 @@ using Blazored.Toast.Services;
             user = _userService.GetUser(int.Parse(id));
         }
     }
-    private void SubmitForm()
+    private async void SubmitForm()
     {
         _toastParameters = new ToastParameters();
         if (user.UserId == 0)
@@ -227,7 +227,7 @@ using Blazored.Toast.Services;
                 _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
                 _toastParameters.Add(nameof(Notification.IsSuccess), true);
                 toastService.ShowToast<Notification>(_toastParameters);
-                navigation.NavigateTo("/", true);
+                await JSRuntime.InvokeVoidAsync("RefeshUser.refreshData");
             }
             else
             {
@@ -247,6 +247,7 @@ using Blazored.Toast.Services;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }

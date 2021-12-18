@@ -5,6 +5,7 @@
 @inject Share.Interfaces.IUserSvc _userService
 @inject NavigationManager navigation
 @inject IToastService toastService
+@inject IJSRuntime JSRuntime
 
 
 <div class="container">
@@ -155,7 +156,7 @@
             user = _userService.GetUser(int.Parse(id));
         }
     }
-    private void SubmitForm()
+    private async void SubmitForm()
     {
         _toastParameters = new ToastParameters();
         if (user.UserId == 0)
@@ -205,7 +206,7 @@
                 _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
                 _toastParameters.Add(nameof(Notification.IsSuccess), true);
                 toastService.ShowToast<Notification>(_toastParameters);
-                navigation.NavigateTo("/", true);
+                await JSRuntime.InvokeVoidAsync("RefeshUser.refreshData");
             }
             else
             {

@@ -38,38 +38,31 @@ namespace API.Controllers
                 var cus = await _customerSvc.LoginAsync(viewWebLogin);
                 if (cus != null)
                 {
-                    if (cus.Status)
+                    var claims = new[]
                     {
-                        var claims = new[]
-                        {
-                             new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
-                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                             new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                            new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                            new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
 
-                             new Claim("Id", cus.CustomerId.ToString()),
-                             new Claim("FullName", cus.FullName),
-                             new Claim("Email", cus.Email)
-                        };
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-                        var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                        var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"],
-                            claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
+                            new Claim("Id", cus.CustomerId.ToString()),
+                            new Claim("FullName", cus.FullName),
+                            new Claim("Email", cus.Email)
+                    };
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                    var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                    var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"],
+                        claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
 
-                        ViewToken viewToken = new ViewToken()
-                        {
-                            Token = new JwtSecurityTokenHandler().WriteToken(token),
-                            customerID = cus.CustomerId,
-                            customerName = cus.FullName
-                        };
-
-                        list.Add(viewToken);
-                        await _activitySvc.SaveLogAsync(cus.Email);
-                        return list;
-                    }
-                    else
+                    ViewToken viewToken = new ViewToken()
                     {
-                        return list;
-                    }
+                        Token = new JwtSecurityTokenHandler().WriteToken(token),
+                        customerID = cus.CustomerId,
+                        customerName = cus.FullName
+                    };
+
+                    list.Add(viewToken);
+                    if (cus.Status) await _activitySvc.SaveLogAsync(cus.Email);
+                    return list;
                 }
                 else
                 {

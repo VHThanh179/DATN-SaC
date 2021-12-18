@@ -51,6 +51,20 @@ namespace API.Controllers
             return await _customerSvc.GetCustomerbyEmailAsync(email);
         }
 
+        [Route("CheckMail")]
+        [HttpGet]
+        public async Task<ActionResult<bool>> CheckMail([FromQuery] string email)
+        {
+            return await _customerSvc.CheckEmail(email);
+        }
+
+        [Route("CheckPhoneNumber")]
+        [HttpGet]
+        public async Task<ActionResult<bool>> CheckPhoneNumber([FromQuery] string phoneNumber)
+        {
+            return await _customerSvc.CheckPhoneNumber(phoneNumber);
+        }
+
         [HttpPost]
         [Route("login-google-customer")]
         public async Task<IActionResult> LoginGoogleCustomer(LoginGoogleCustomer googleCustomer)

@@ -17,6 +17,8 @@ namespace Share.Interfaces
         Task<int> AddCustomerAsync(Customer customer);
         Task<int> EditCustomerAsync(int id, Customer customer);
         Task<Customer> LoginAsync(ViewWebLogin login);
+        Task<bool> CheckEmail(string email);
+        Task<bool> CheckPhoneNumber(string phoneNumber);
 
         //sync 
         List<Customer> GetAllCustomer();
