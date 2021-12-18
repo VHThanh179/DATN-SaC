@@ -180,11 +180,13 @@ using Pages;
     string cusName;
     int customerId;
     public Customer cus;
-
+    protected async Task ChangeMenu()
+    {
+        await JSRuntime.InvokeVoidAsync("changeMenu");
+    }
     protected override async Task OnInitializedAsync()
     {
         await JSRuntime.InvokeVoidAsync("mainJS");
-
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
         if (customerId != 0)

@@ -179,8 +179,6 @@ using Newtonsoft.Json;
 #line 128 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\ProductsPage.razor"
        
     public List<Product> products;
-    List<Product> backPack = new List<Product>();
-    List<Product> asscessories = new List<Product>();
     public ProductDTO productDTO;
     protected string imgUrl = "";
     protected string temp = "";

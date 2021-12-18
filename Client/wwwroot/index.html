@@ -71,6 +71,15 @@
         window.initializeCarousel = () => {
             $("carouselExampleIndicators").carousel({ interval: 500 });
         }
+        changeMenu = function () {
+            document.getElementById("navbar").classList.add('navbar-mobile');
+            document.getElementById("navbar").classList.remove('navbar-mobile');
+
+            if (document.getElementById("navbar").classList.contains('navbar-mobile'))
+             document.getElementById("navbar").classList.toggle('navbar-mobile');
+           
+        }
+
     </script>
 
 
