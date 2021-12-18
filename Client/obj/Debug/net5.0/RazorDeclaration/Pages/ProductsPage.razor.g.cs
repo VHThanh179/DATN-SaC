@@ -176,7 +176,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 127 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\ProductsPage.razor"
+#line 128 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\ProductsPage.razor"
        
     public List<Product> products;
     List<Product> backPack = new List<Product>();
@@ -193,6 +193,7 @@ using Newtonsoft.Json;
     int pageSize;
     int startPage;
     int endPage;
+    public int publicCategory { get; set; }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -209,11 +210,12 @@ using Newtonsoft.Json;
 
         productDTO = new ProductDTO();
         products = new List<Product>();
-        await LoadProduct();
+        await LoadProduct(publicCategory);
 
     }
-    public async Task LoadProduct()
+    public async Task LoadProduct(int category)
     {
+        publicCategory = category;
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         using (var client = new HttpClient())
@@ -221,7 +223,7 @@ using Newtonsoft.Json;
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("paging?PageNumber=" + curPage + "&PageSize=" + pageSize))
+            using (var response = await client.GetAsync("paging?PageNumber=" + curPage + "&PageSize=" + pageSize + "&Category=" + category))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 productDTO = Newtonsoft.Json.JsonConvert.DeserializeObject<ProductDTO>(apiResponse);
@@ -265,7 +267,7 @@ using Newtonsoft.Json;
     public async Task RefreshRecord(int currentPage)
     {
         curPage = currentPage;
-        await LoadProduct();
+        await LoadProduct(publicCategory);
     }
     public void SetPagerSize(string direction)
     {

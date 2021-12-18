@@ -132,7 +132,8 @@ namespace Share.Services
         }
         public async Task<PagedList<Product>> GetPagingProducts(PagingParameter productParameters)
         {
-            var products = await _context.Products.ToListAsync();
+            var products = await _context.Products.Where(x => productParameters.Category == 0 || ((int)x.Category) == productParameters.Category).ToListAsync();
+            
             return PagedList<Product>
                 .ToPagedList(products, productParameters.PageNumber, productParameters.PageSize);
         }

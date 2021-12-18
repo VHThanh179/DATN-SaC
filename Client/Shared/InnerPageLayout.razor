@@ -1,5 +1,6 @@
 ﻿@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime;
 @inherits LayoutComponentBase
 <style>
     main {
@@ -17,7 +18,7 @@
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a class="nav-link " href="/">Trang chủ</a></li>
+                <li><a class="nav-link scrollto" href="/">Trang chủ</a></li>
                 <li class="dropdown">
                     <a style="cursor:pointer"><span>Tài khoản</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -60,21 +61,20 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>LỐI TẮT</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Trang chủ</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Đăng nhập</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/">Trang chủ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/login">Đăng nhập</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>DỊCH VỤ CỦA CHÚNG TÔI</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Sản phẩm</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Dịch vụ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/products">Sản phẩm</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 footer-newsletter">
                     <h4>LIÊN HỆ</h4>
-                    <strong>SĐT:</strong> +1 5589 55488 55<br>
-                    <strong>Email:</strong> info@example.com<br>
+                    <strong>SĐT:</strong> 033 278 0105<br>
+                    <strong>Email:</strong> web.sacbackpack@gmail.com<br
                 </div>
             </div>
         </div>
@@ -89,6 +89,11 @@
 </footer><!-- End Footer -->
 
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("mainJS");
+    }
+
     //string email;
     //int customerid;
     //protected override async Task OnInitializedAsync()

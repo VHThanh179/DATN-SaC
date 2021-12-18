@@ -160,7 +160,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Shared\WebLayout.razor"
+#line 10 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Shared\WebLayout.razor"
 using Pages;
 
 #line default
@@ -174,7 +174,7 @@ using Pages;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 139 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Shared\WebLayout.razor"
+#line 140 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Shared\WebLayout.razor"
       
     string emailAddress;
     string cusName;
@@ -183,6 +183,8 @@ using Pages;
 
     protected override async Task OnInitializedAsync()
     {
+        await JSRuntime.InvokeVoidAsync("mainJS");
+
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
         if (customerId != 0)
@@ -216,6 +218,7 @@ using Pages;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private SignOutSessionStateManager SignOutManager { get; set; }

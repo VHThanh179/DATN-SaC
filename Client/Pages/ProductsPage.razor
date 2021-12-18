@@ -55,8 +55,9 @@
                     <div class="nav-main">
                         <!-- Tab Nav -->
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#man" role="tab">BA LÔ</a></li>
-                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#accessories" role="tab">PHỤ KIỆN</a></li>
+                            <li class="nav-item"><a class="nav-link @(publicCategory==0?"active":"")" style="cursor:pointer" data-toggle="tab" role="tab" @onclick="async () => {curPage = 1; await LoadProduct(0); }">TẤT CẢ</a></li>
+                            <li class="nav-item"><a class="nav-link @(publicCategory==1?"active":"")" style="cursor:pointer" data-toggle="tab" role="tab" @onclick="async () => {curPage = 1; await LoadProduct(1); }">BA LÔ</a></li>
+                            <li class="nav-item"><a class="nav-link @(publicCategory==2?"active":"")" style="cursor:pointer" data-toggle="tab" role="tab" @onclick="async () => {curPage = 1; await LoadProduct(2); }">PHỤ KIỆN</a></li>
                         </ul>
                         <!--/ End Tab Nav -->
                     </div>
@@ -79,8 +80,8 @@
                                                     </a>
                                                     <div class="button-head">
                                                         @*<div class="product-action">
-                                                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                                            </div>*@
+                                            <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                        </div>*@
                                                         <div class="product-action-2">
                                                             <a style="cursor:pointer" @onclick="() => AddCart(item.ProductId)">Thêm vào giỏ hàng</a>
                                                         </div>
@@ -98,7 +99,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--/ End Single Tab -->
+                        <!--/ End Single Tab -->                      
                     </div>
                 </div>
             </div>
@@ -108,7 +109,7 @@
                 <button class="btn btn-outline-danger btn-custom" @onclick="@(async () => await NavigaToPage("prev"))">
                     <i class="fa fa-backward" aria-hidden="true"></i> Trước
                 </button>
-                @for (int i = startPage; i <= endPage; i++)
+                @for (int i = startPage; i <= totalPages; i++)
                 {
                     var currentPage = i;
                     <button class="btn btn-page pagebutton @(currentPage == curPage? "btn-danger":"")" @onclick="@(async() => await RefreshRecord(currentPage))">
@@ -140,6 +141,7 @@
     int pageSize;
     int startPage;
     int endPage;
+    public int publicCategory { get; set; }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -156,11 +158,12 @@
 
         productDTO = new ProductDTO();
         products = new List<Product>();
-        await LoadProduct();
+        await LoadProduct(publicCategory);
 
     }
-    public async Task LoadProduct()
+    public async Task LoadProduct(int category)
     {
+        publicCategory = category;
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         using (var client = new HttpClient())
@@ -168,7 +171,7 @@
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("paging?PageNumber=" + curPage + "&PageSize=" + pageSize))
+            using (var response = await client.GetAsync("paging?PageNumber=" + curPage + "&PageSize=" + pageSize + "&Category=" + category))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 productDTO = Newtonsoft.Json.JsonConvert.DeserializeObject<ProductDTO>(apiResponse);
@@ -212,7 +215,7 @@
     public async Task RefreshRecord(int currentPage)
     {
         curPage = currentPage;
-        await LoadProduct();
+        await LoadProduct(publicCategory);
     }
     public void SetPagerSize(string direction)
     {

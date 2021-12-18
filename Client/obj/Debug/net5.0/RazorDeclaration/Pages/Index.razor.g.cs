@@ -184,7 +184,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
 #nullable restore
-#line 284 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
+#line 289 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Pages\Index.razor"
       
 
     public List<Product> products;
@@ -211,7 +211,6 @@ using Newtonsoft.Json;
         await JSRuntime.InvokeVoidAsync("jqueryScript");
         await JSRuntime.InvokeVoidAsync("mostPopular");
         await JSRuntime.InvokeVoidAsync("productSlider");
-
     }
 
     private void AddCart(int id)

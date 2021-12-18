@@ -146,38 +146,43 @@
                                        <!--Product Slider-->
                                        <ul id="autoWidth" class="cs-hidden">
                                            @*Item*@
-                                           @foreach (var item in products.Select((value, i) => new { i, value }))
-                                           {
-                                               <li class="item-@item.i">
-                                                   <div class="box">
-                                                       <div class="slide-img">
-                                                           @{
-                                                               temp = imgUrl + item.value.Image;
-                                                           }
-                                                           <img src="@temp" alt="1">
-                                                           <div class="overlay">
-                                                               <a class="buy-btn" style="cursor:pointer" @onclick="() => AddCart(item.value.ProductId)">MUA NGAY</a>
+                                           @*.Select((value, i) => new { i, value })*@
+                                           @{var stt = 0;
+                                               foreach (var item in products)
+                                               {
+                                                   <li class="item-@stt.ToString()">
+                                                       <div class="box">
+                                                           <div class="slide-img">
+                                                               @{
+                                                                   temp = imgUrl + item.Image;
+                                                               }
+                                                               <img src="@temp" alt="1">
+                                                               <div class="overlay">
+                                                                   <a class="buy-btn" style="cursor:pointer" @onclick="() => AddCart(item.ProductId)">MUA NGAY</a>
+                                                               </div>
+                                                           </div>
+                                                           <div class="detail-box">
+                                                               <div class="type">
+                                                                   <a style="cursor:pointer" href="/detail/@item.ProductId">@item.ProductName</a>
+                                                                   @if (item.Category == Category.Backpack)
+                                                                   {
+                                                                       <span>Ba lô</span>
+                                                                   }
+                                                                   else
+                                                                   {
+                                                                       <span>Phụ kiện</span>
+                                                                   }
+                                                               </div>
+                                                               <a href="/detail/@item.ProductId" class="price">
+                                                                   <b>@string.Format("{0:#,0}", item.Price)đ</b>
+                                                               </a>
                                                            </div>
                                                        </div>
-                                                       <div class="detail-box">
-                                                           <div class="type">
-                                                               <a style="cursor:pointer" href="/detail/@item.value.ProductId">@item.value.ProductName</a>
-                                                               @if (item.value.Category == Category.Backpack)
-                                                               {
-                                                                   <span>Ba lô</span>
-                                                               }
-                                                               else
-                                                               {
-                                                                   <span>Phụ kiện</span>
-                                                               }
-                                                           </div>
-                                                           <a href="/detail/@item.value.ProductId" class="price">
-                                                               <b>@string.Format("{0:#,0}", item.value.Price)đ</b>
-                                                           </a>
-                                                       </div>
-                                                   </div>
-                                               </li>
+                                                   </li>
+                                                   stt++;
+                                               }
                                            }
+
                                        </ul>
                                        <!--End Product Slider-->
 
@@ -307,7 +312,6 @@
         await JSRuntime.InvokeVoidAsync("jqueryScript");
         await JSRuntime.InvokeVoidAsync("mostPopular");
         await JSRuntime.InvokeVoidAsync("productSlider");
-
     }
 
     private void AddCart(int id)

@@ -162,6 +162,11 @@ using Blazored.Toast.Services;
 #nullable restore
 #line 91 "C:\Users\Navteiv\Desktop\DATN\DATN-SaC\Client\Shared\InnerPageLayout.razor"
        
+    protected override async Task OnInitializedAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("mainJS");
+    }
+
     //string email;
     //int customerid;
     //protected override async Task OnInitializedAsync()
@@ -190,6 +195,7 @@ using Blazored.Toast.Services;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }
