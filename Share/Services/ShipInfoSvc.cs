@@ -40,13 +40,6 @@ namespace Share.Services
             int value = 0;
             try
             {
-                //ShipInfo _shipInfo = null;
-                //_shipInfo = _context.ShipInfos.Find(id);
-                //_shipInfo.CusName = shipInfo.CusName;
-                //_shipInfo.Address = shipInfo.Address;
-                //_shipInfo.PhoneNumber = shipInfo.PhoneNumber;
-                //_shipInfo.Notes = shipInfo.Notes;
-                //_shipInfo.Price = shipInfo.Price;
                 _context.ShipInfos.Update(shipInfo);
                 value = shipInfo.ShipId;
 

@@ -237,3 +237,10 @@ D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\ref\Server.dll
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.pdb
 D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Blazored.Toast.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Connections.Client.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Connections.Common.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Client.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Client.Core.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Common.dll
+D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
