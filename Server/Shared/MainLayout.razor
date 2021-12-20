@@ -1,11 +1,14 @@
-﻿@inherits LayoutComponentBase
+﻿@using Pages
+@using Share.Models
 @using System.Security.Claims
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Microsoft.AspNetCore.SignalR.Client;
+@inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
-@using Blazored.Toast.Configuration;
-@*<div class="page">*@
-@*<div class="sidebar">
+@inject Share.Interfaces.IUserSvc _userService
+@inject IToastService toastService
 
-    </div>*@
 <style>
     .blazored-modal {
         width: 960px;
@@ -23,6 +26,7 @@
         overflow-x: hidden; /* Disable horizontal scroll */
     }
 </style>
+
 <div>
     <div class="sidenav">
         <NavMenu />
@@ -60,7 +64,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@AuthStat.Result.User.Identity.Name</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@fullName</span>
                                 <img class="img-profile rounded-circle"
                                      src="img/undraw_profile.svg">
                             </a>
@@ -69,9 +73,18 @@
                                  aria-labelledby="userDropdown">
                                 <AuthorizeView>
                                     <Authorized>
-                                        <a class="dropdown-item" href="/userdialog/@context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value">
+                                        <a class="dropdown-item" href="/userinfo/@context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value">
                                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                             Thông tin cá nhân
+                                        </a>
+                                    </Authorized>
+                                </AuthorizeView>
+
+                                <AuthorizeView>
+                                    <Authorized>
+                                        <a class="dropdown-item" href="/userlog/@context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value">
+                                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Hoạt động đăng nhập
                                         </a>
                                     </Authorized>
                                 </AuthorizeView>
@@ -80,10 +93,7 @@
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đổi mật khẩu
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Hoạt động đăng nhập
-                                </a>
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -125,19 +135,48 @@
 </div>
 @*</div>*@
 
-<BlazoredToasts Position="ToastPosition.TopRight"
-                Timeout="10"
-                IconType="IconType.FontAwesome"
-                SuccessClass="success-toast-override"
-                SuccessIcon="fa fa-thumbs-up"
-                ErrorIcon="fa fa-bug" />
-
+<BlazoredToasts Position="Blazored.Toast.Configuration.ToastPosition.TopRight" Timeout="3" />
 <CascadingBlazoredModal />
 
 @code{
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    public string fullName { get; set; }
+    public Notifi notifi { get; set; }
+    private HubConnection hubConnection = null;
+    private ToastParameters _toastParameters;
+    private string content = "Closed";
+    private string contentNotification = "No content";
+    private bool IsConnected = false;
+
     protected async override Task OnInitializedAsync()
     {
+        if (!string.IsNullOrEmpty(AuthStat.Result.User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+        {
+            var userInfo = _userService.GetUser(int.Parse(AuthStat.Result.User.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+            fullName = userInfo.FullName;
+
+            // SignalR realtime
+            _toastParameters = new ToastParameters();
+            hubConnection = new HubConnectionBuilder().WithUrl("https://localhost:44370/api/NewNoti").Build();
+            await hubConnection.StartAsync();
+            IsConnected = true;
+            Console.WriteLine("Connected");
+            hubConnection.Closed += async (s) =>
+            {
+                IsConnected = false;
+                Console.WriteLine("Disconnected");
+                await hubConnection.StartAsync();
+                IsConnected = true;
+            };
+            hubConnection.On<string>("Notification", content =>
+            {
+                contentNotification = content;
+                _toastParameters.Add(nameof(Notification.Title), contentNotification);
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+                StateHasChanged();
+            });
+        }
         base.OnInitialized();
         var user = (await AuthStat).User;
         if (!user.Identity.IsAuthenticated)

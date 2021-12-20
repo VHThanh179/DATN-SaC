@@ -174,18 +174,21 @@ using Pages;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 140 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 244 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
       
     string emailAddress;
     string cusName;
     int customerId;
     public Customer cus;
+    private bool IsVisible { get; set; }
+
     protected async Task ChangeMenu()
     {
         await JSRuntime.InvokeVoidAsync("changeMenu");
     }
     protected override async Task OnInitializedAsync()
     {
+        IsVisible = true;
         await JSRuntime.InvokeVoidAsync("mainJS");
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
@@ -208,6 +211,12 @@ using Pages;
             }
         }
 
+    }
+
+    private void Confirm(string link)
+    {
+        navigationManager.NavigateTo("/info/" + link);
+        IsVisible = false;
     }
 
     private async Task BeginSignOut(MouseEventArgs args)

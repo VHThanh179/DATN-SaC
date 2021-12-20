@@ -41,6 +41,9 @@ namespace Client.Providers
                         new Claim("APIjwt", response.JwtToken)
                     );
 
+                    ((ClaimsIdentity)initialUser.Identity).AddClaim(
+                        new Claim("firstLogin", response.FirstLogin.ToString())
+                    );
                 }
             }
             catch

@@ -10,7 +10,7 @@ using Share.Models;
 namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211117074214_Create-Statistical")]
+    [Migration("20211207035838_Create-Statistical")]
     partial class CreateStatistical
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,6 @@ namespace Server.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -39,12 +38,10 @@ namespace Server.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Password")
@@ -52,7 +49,6 @@ namespace Server.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
@@ -209,24 +205,54 @@ namespace Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("AnnualRevenue")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("MonthlyRevenue")
-                        .HasColumnType("money");
-
                     b.Property<int>("QuantityOrder")
                         .HasColumnType("int");
 
                     b.Property<int>("QuantityRegister")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Revenue")
+                        .HasColumnType("money");
+
                     b.Property<int>("StatisticalMonth")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("TotalRevenue")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("Transport")
+                        .HasColumnType("money");
 
                     b.HasKey("StatisticalId");
 
                     b.ToTable("Statisticals");
+                });
+
+            modelBuilder.Entity("Share.Models.TotalStatistical", b =>
+                {
+                    b.Property<int>("TotalStatisticallId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("TotalAllRevenue")
+                        .HasColumnType("money");
+
+                    b.Property<int>("TotalQuantityOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalQuantityRegister")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalRevenue")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("TotalTransport")
+                        .HasColumnType("money");
+
+                    b.HasKey("TotalStatisticallId");
+
+                    b.ToTable("TotalAllStatistical");
                 });
 
             modelBuilder.Entity("Share.Models.User", b =>

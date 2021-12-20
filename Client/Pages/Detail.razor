@@ -2,12 +2,14 @@
 @using Share.Models.ViewModels
 @using Share.Models
 @using Newtonsoft.Json;
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @inject IJSRuntime JSRuntime
+@inject IToastService toastService
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject NavigationManager NavigationManager
 @layout WebLayout
-
 <!-- ======= Breadcrumbs ======= -->
 <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
@@ -69,12 +71,12 @@
                                 <span>Hết hàng</span>
                             }
                         </li>
-                        <li><button class="btn btn-dark text-right" @onclick="() => AddCart(product.ProductId)">THÊM VÀO GIỎ HÀNG </button></li> 
+                        <li><button class="btn btn-dark text-right" @onclick="() => AddCart(product.ProductId)">THÊM VÀO GIỎ HÀNG </button></li>
                     </ul>
                 </div>
                 <div class="portfolio-description">
-                    <h2>Mô tả sản phẩm</h2>                        
-                     @((MarkupString)product.Description)
+                    <h2>Mô tả sản phẩm</h2>
+                    @((MarkupString)product.Description)
                 </div>
             </div>
 
@@ -90,7 +92,8 @@
 
     protected string imgUrl = "";
     protected string temp = "";
-    public Product product ;
+    public Product product;
+    private ToastParameters _toastParameters;
 
     protected override async Task OnInitializedAsync()
     {
@@ -119,12 +122,13 @@
 
     private void AddCart(int id)
     {
+        _toastParameters = new ToastParameters();
         //var cart = HttpContext.Session.GetString("cart");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
         if (cart == null)
         {
             List<CartItem> listCart = new List<CartItem>()
-        {
+{
                     new CartItem
                     {
                         product = product,
@@ -140,6 +144,9 @@
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -168,6 +175,9 @@
             }
             orderCart.Total = Calculate(orderCart.ListViewCart);
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
 
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }

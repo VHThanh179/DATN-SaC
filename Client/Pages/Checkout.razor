@@ -3,9 +3,12 @@
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject NavigationManager navigationManager
+@inject IToastService toastService
 @using System.Net
 @using Share.Models
 @using Share.Models.ViewModels
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @using Microsoft.AspNetCore.Components.Authorization
 
 <style>
@@ -129,6 +132,65 @@
     .button:focus {
         outline: none;
     }
+
+    #button {
+        background-color: #009688;
+        border: none;
+        border-radius: 5px;
+        color: #FFFFFF;
+        font-weight: 700;
+        width: 60px;
+    }
+
+    .e-popup.e-popup-open.e-dialog {
+        border-radius: 20px;
+    }
+
+    .e-dialog .e-dlg-header-content {
+        background-color: #689F38;
+        border-radius: 20px 20px 0px 0px;
+    }
+
+        .e-dialog .e-dlg-header-content + .e-dlg-content {
+            padding: 0;
+        }
+
+    .e-dialog .e-dlg-header {
+        position: relative;
+        font-size: 25px;
+        font-weight: bold;
+        color: linen;
+        margin-left: 10px;
+    }
+
+    .e-dialog .e-footer-content {
+        padding: 15px;
+        border-radius: 0px 0px 20px 20px;
+    }
+
+    .e-dialog .e-dlg-header-content {
+        padding: 6px;
+    }
+
+    .dialogText {
+        color: #33691E;
+        font-size: 20px;
+        margin: 49px 72px 10px;
+        font-weight: 700;
+    }
+
+    .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
+        margin-right: 10px;
+    }
+
+    .e-dialog .e-dlg-header-content .e-icon-dlg-close {
+        color: #FFFFFF;
+        margin-top: 10px;
+    }
+
+    .e-dlg-header, .e-dlg-header * {
+        color: #FFFFFF;
+    }
 </style>
 
 <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
@@ -164,7 +226,6 @@
                                     <label class="control-label">Hình thức vận chuyển</label>
                                     <br />
                                     <select class="form-control" @bind="display" required>
-                                        <option value="Chọn phương thức" selected="selected">Chọn phương thức</option>
                                         <option value="0">Lấy hàng trực tiếp</option>
                                         <option value="1">Giao hàng tận nhà</option>
                                     </select>
@@ -213,7 +274,7 @@
                     <div class="d-flex justify-content-between information"><span>Tiền hàng</span><span>@string.Format("{0:#,0}", orderCart.Total) VNĐ</span></div>
                     <div class="d-flex justify-content-between information"><span>Giảm giá</span><span>@displayvalue</span></div>
                     <div class="d-flex justify-content-between information">
-                        <span>Shipping</span>
+                        <span>Tiền vận chuyển</span>
                         @if (display == 0)
                         {
                             <span></span>
@@ -226,21 +287,57 @@
                     <div class="d-flex justify-content-between information">
                         <span>Tổng cộng</span>
                         <span>
-                            @if (vouchervalue != 0)
+                            @if (display != 0)
                             {
-                                if (vouchervalue <= 1)
+                                @if (vouchervalue != 0)
                                 {
-                                    total = (orderCart.Total + shipInfo.Price) - ((orderCart.Total + shipInfo.Price) * vouchervalue);
+                                    if (vouchervalue <= 1)
+                                    {
+                                        total = (orderCart.Total + shipInfo.Price) - ((orderCart.Total + shipInfo.Price) * vouchervalue);
+                                    }
+                                    else
+                                    {
+                                        if (orderCart.Total > 0)
+                                        {
+                                            total = (orderCart.Total + shipInfo.Price) - vouchervalue;
+                                        }
+                                        else
+                                        {
+                                            total = orderCart.Total;
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    total = (orderCart.Total + shipInfo.Price) - vouchervalue;
+                                    total = orderCart.Total + shipInfo.Price;
                                 }
                             }
                             else
                             {
-                                total = orderCart.Total + shipInfo.Price;
+                                @if (vouchervalue != 0)
+                                {
+                                    if (vouchervalue <= 1)
+                                    {
+                                        total = (orderCart.Total - (orderCart.Total * vouchervalue));
+                                    }
+                                    else
+                                    {
+                                        if (orderCart.Total > 0)
+                                        {
+                                            total = orderCart.Total - vouchervalue;
+                                        }
+                                        else
+                                        {
+                                            total = orderCart.Total;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    total = orderCart.Total;
+                                }
                             }
+
                             <span id="totalPrice" style="display:none">@total</span>
                             @string.Format("{0:#,0}", total) VNĐ
                         </span>
@@ -252,19 +349,36 @@
             <div class="row">
                 <div class="col-12 text-end">
                     <input type="button" class="ml-2 btn btn-dark" @onclick="@Cancel" value="Quay lại" />
-
                 </div>
             </div>
 
         </div>
     </div>
 </Animate>
+
+<SfDialog Width="509px" Height="220px" IsModal="true" ShowCloseIcon="true" @bind-Visible="IsVisible">
+    <DialogTemplates>
+        <Header><i class="fa fa-check"></i> Thông báo</Header>
+        <Content>
+            <h1 class="dialogText">Thanh toán thành công!</h1>
+        </Content>
+        <FooterTemplate>
+            <button id="button" @onclick="@Finish" class="e-control e-btn" data-ripple="true">OK</button>
+        </FooterTemplate>
+    </DialogTemplates>
+    <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
+</SfDialog>
+
 @code {
     [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; }
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     public ShipInfo shipInfo { get; set; }
     public Customer customer { get; set; }
     public APICart apiCart { get; set; }
+    public Voucher voucher { get; set; }
+    public Notifi notifi { get; set; }
+    public List<Voucher> listvoucher;
+    private ToastParameters _toastParameters;
     public int cusId;
     public string emailAddress;
     public string emailGoogle;
@@ -274,8 +388,6 @@
     public double vouchervalue = 0;
     public string displayvalue = "";
     public string vouchercode { get; set; }
-    public Voucher voucher;
-    public List<Voucher> listvoucher;
     public double total = 0;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -310,7 +422,12 @@
         else
         {
             orderCart = JsonConvert.DeserializeObject<Cart>(cart);
-            if (orderCart.Total <= 1000000)
+            if (orderCart.Total == 0)
+            {
+                shipInfo.Price = 0;
+
+            }
+            else if (orderCart.Total <= 1000000)
             {
                 shipInfo.Price = 30000;
             }
@@ -330,13 +447,13 @@
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         customer = new Customer();
-        
+
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            if(emailAddress != null && emailAddress != "")
+            if (emailAddress != null && emailAddress != "")
             {
                 using (var response = await client.GetAsync("Customer/?id=" + cusId))
                 {
@@ -419,6 +536,8 @@
         apiCart.shipInfo = shipInfo;
         apiCart.voucherCode = vouchercode;
 
+        _toastParameters = new ToastParameters();
+
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
@@ -427,11 +546,17 @@
             HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
             if (response.StatusCode != HttpStatusCode.OK)
             {
-
+                _toastParameters.Add(nameof(Notification.Title), "Đặt hàng thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
             }
             else
             {
                 sessionStorage.RemoveItem("cart");
+                notifi = new Notifi();
+                notifi.Content = "Có đơn hàng mới!";
+                StringContent contentNoti = new StringContent(JsonConvert.SerializeObject(notifi), System.Text.Encoding.UTF8, "application/json");
+                HttpResponseMessage resNoti = await client.PostAsync(apiUrl + "NewNoti", contentNoti);
                 navigationManager.NavigateTo("/history");
             }
         }
@@ -444,6 +569,7 @@
 
     private void CheckVoucher()
     {
+        _toastParameters = new ToastParameters();
         voucher = new Voucher();
         foreach (var item in listvoucher)
         {
@@ -471,7 +597,9 @@
                 }
                 else
                 {
-                    Console.WriteLine("Voucher hết số lượng");
+                    _toastParameters.Add(nameof(Notification.Title), "Voucher hết số lượng!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
                 }
 
             }
@@ -479,15 +607,30 @@
             {
                 vouchervalue = 0;
                 displayvalue = "";
-                Console.WriteLine("Voucher hết hạn");
+                _toastParameters.Add(nameof(Notification.Title), "Voucher hết hạn!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
             }
         }
         else
         {
             vouchervalue = 0;
             displayvalue = "";
-            Console.WriteLine("Mã voucher sai");
+            _toastParameters.Add(nameof(Notification.Title), "Mã voucher sai!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
         }
+    }
 
+    private bool IsVisible { get; set; }
+
+    private void OpenDialog()
+    {
+        IsVisible = true;
+    }
+
+    private void Finish()
+    {
+        navigationManager.NavigateTo("/history");
     }
 }

@@ -22,12 +22,16 @@ namespace Share.Models
         [Display(Name = "Số lượng đơn hàng")]
         public int QuantityOrder { get; set; }
 
-        [Display(Name = "Doanh thu tháng")]
+        [Display(Name = "Doanh thu")]
         [Column(TypeName = "money")]
-        public float MonthlyRevenue { get; set; }
+        public float Revenue { get; set; }
 
-        [Display(Name = "Doanh thu năm")]
+        [Display(Name = "Vận chuyển")]
         [Column(TypeName = "money")]
-        public float AnnualRevenue { get; set; }
+        public float Transport { get; set; }
+
+        [Display(Name = "Tổng doanh thu")]
+        [Column(TypeName = "money")]
+        public float TotalRevenue { get; set; }
     }
 }

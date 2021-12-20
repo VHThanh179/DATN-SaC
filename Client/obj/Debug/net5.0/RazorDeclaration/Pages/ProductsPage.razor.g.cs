@@ -125,20 +125,6 @@ using Syncfusion.Blazor.Popups;
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 20 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Blazored.Toast.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
 using Share.Models;
 
@@ -154,13 +140,27 @@ using Share.Common;
 #nullable disable
 #nullable restore
 #line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
 using Share.Models.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
+#line 12 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -176,8 +176,9 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 128 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
+#line 131 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
        
+    private ToastParameters _toastParameters;
     public List<Product> products;
     public ProductDTO productDTO;
     protected string imgUrl = "";
@@ -290,6 +291,7 @@ using Newtonsoft.Json;
     }
     private void AddCart(int id)
     {
+        _toastParameters = new ToastParameters();
         //var cart = HttpContext.Session.GetString("cart");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
         if (cart == null)
@@ -312,6 +314,9 @@ using Newtonsoft.Json;
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -340,7 +345,9 @@ using Newtonsoft.Json;
             }
             orderCart.Total = Calculate(orderCart.ListViewCart);
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
     }
@@ -361,6 +368,7 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }

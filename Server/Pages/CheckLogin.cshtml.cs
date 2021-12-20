@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
-
+using Share.Interfaces;
 
 namespace Server.Pages
 {
@@ -19,11 +19,13 @@ namespace Server.Pages
     public class CheckLoginModel : PageModel
     {
         [Inject]
-        public Share.Interfaces.IUserSvc _userService { get; set; }
+        public IUserSvc _userService { get; set; }
+        public IActivity _activitySvc { get; set; }
         public static string role { get; set; }
-        public CheckLoginModel(Share.Interfaces.IUserSvc userSvc)
+        public CheckLoginModel(IUserSvc userSvc, IActivity activitySvc)
         {
             _userService = userSvc;
+            _activitySvc = activitySvc;
         }
         public string ReturnUrl { get; set; }
         public async Task<IActionResult> OnGetAsync(string paramUsername, string paramPassword)
@@ -53,7 +55,7 @@ namespace Server.Pages
                 var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var authProperties = new AuthenticationProperties
                 {
-                    IsPersistent = true,
+                    IsPersistent = false,
                     RedirectUri = this.Request.Host.Value
                 };
                 try
@@ -61,6 +63,7 @@ namespace Server.Pages
                     await HttpContext.SignInAsync(
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(claimIdentity), authProperties);
+                    _activitySvc.SaveLog(user.UserName);
                 }
                 catch (Exception e)
                 {

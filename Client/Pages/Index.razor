@@ -1,11 +1,13 @@
 ﻿@page "/"
 @using Share.Models
 @using Share.Models.ViewModels
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Newtonsoft.Json
 @layout WebLayout
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject IToastService toastService
-@using Newtonsoft.Json
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime;
 @functions{
     protected async override Task OnAfterRenderAsync(bool fistRender)
@@ -116,16 +118,17 @@
                 <img src="/assets/img/BANNER-BALO-3.jpg" class="d-block w-100" alt="Image3">
             </div>
         </div>
-        <a href="#carouselExampleIndicators" class="carousel-control-prev" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">Trước</span>
         </a>
-        <a href="#carouselExampleIndicators" class="carousel-control-next" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">Sau</span>
         </a>
     </div>
 </Animate>
+
 <br /> <br />
        <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
            <!-- Start Product Area -->
@@ -145,8 +148,6 @@
                                    <div class="tab-single">
                                        <!--Product Slider-->
                                        <ul id="autoWidth" class="cs-hidden">
-                                           @*Item*@
-                                           @*.Select((value, i) => new { i, value })*@
                                            @{var stt = 0;
                                                foreach (var item in products)
                                                {
@@ -185,15 +186,15 @@
 
                                        </ul>
                                        <!--End Product Slider-->
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
 
-                                   </div>
-                                   <!--/ End Single Tab -->
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
+            </div>
+        </div>
+        <!-- End Portfolio Section -->
 
        </Animate>
 <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
@@ -259,27 +260,28 @@
                     <div class="info">
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
-                            <h4>Location:</h4>
-                            <p>CVPM Quang Trung, Quận 12, TP HCM</p>
+                            <h4>Địa chỉ:</h4>
+                            <p>CVPM Quang Trung, Q.12, HCM</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>web.sacbackpack@gmail.com</p>
+                            <p>web.backpack@example.com</p>
                         </div>
 
                         <div class="phone">
                             <i class="bi bi-phone"></i>
-                            <h4>Call:</h4>
-                            <p>0332780105</p>
+                            <h4>Điện thoại:</h4>
+                            <p>+84 989999999</p>
                         </div>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15673.776858806688!2d106.6283556!3d10.8537789!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175298945afff59%3A0xcf4afe79d65f5ddc!2zQ8O0bmcgdmnDqm4gcGjhuqduIG3hu4FtIFF1YW5nIFRydW5n!5e0!3m2!1svi!2s!4v1639199322451!5m2!1svi!2s" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
                     </div>
 
-                </div>             
+                </div>
 
-            </div>
+                </div>             
 
         </div>
     </section><!-- End Contact Section -->
@@ -287,7 +289,7 @@
 
 
 @code{
-
+    private ToastParameters _toastParameters;
     public List<Product> products;
     protected string imgUrl = "";
     protected string temp = "";
@@ -303,7 +305,7 @@
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("FiveProducts"))
+            using (var response = await client.GetAsync("TrendingProducts"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
@@ -316,6 +318,7 @@
 
     private void AddCart(int id)
     {
+        _toastParameters = new ToastParameters();
         //var cart = HttpContext.Session.GetString("cart");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
         if (cart == null)
@@ -337,7 +340,9 @@
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-            toastService.ShowSuccess("Lưu thành công!");
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -366,8 +371,9 @@
             }
             orderCart.Total = Calculate(orderCart.ListViewCart);
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-
-
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
 

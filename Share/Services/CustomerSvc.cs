@@ -108,6 +108,28 @@ namespace Share.Services
             return acc;
         }
 
+        public async Task<bool> CheckEmail(string email)
+        {
+            Customer customer = new Customer();
+            customer = await _context.Customers.Where(e => e.Email == email).FirstOrDefaultAsync();
+            if (customer != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> CheckPhoneNumber(string phoneNumber)
+        {
+            Customer customer = new Customer();
+            customer = await _context.Customers.Where(e => e.PhoneNumber == phoneNumber).FirstOrDefaultAsync();
+            if (customer != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
         //sync
         public List<Customer> GetAllCustomer()
         {

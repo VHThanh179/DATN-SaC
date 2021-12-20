@@ -183,44 +183,34 @@
             <div class="col-6">
                 <span>&nbsp; Bạn đã thêm @orderCart.ListViewCart.Count sản phẩm vào giỏ hàng</span>
             </div>
-            <AuthorizeView>
-                <Authorized>
-                    @if (context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault() != null
-                     && context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault() != "")
-                    {
-                        <div class="col-6 text-end">
-                            <button class="btn btn-primary btn-block" @onclick="@(() => modal.Show<Checkout>("Thanh Toán"))" type="button"><span>Tiếp theo<i class="fa fa-long-arrow-right ml-1"></i></span></button>
-                        </div>
-                    }
-                </Authorized>
-                <NotAuthorized>
-                    @if (emailAddress != null && emailAddress != "")
-                    {
-                        <div class="col-6 text-end">
-                            <button class="btn btn-primary btn-block" @onclick="@(() => modal.Show<Checkout>("Thanh Toán"))" type="button"><span>Tiếp theo<i class="fa fa-long-arrow-right ml-1"></i></span></button>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-6 text-end">
-                            <a href="/login"><button class="btn btn-primary btn-block" type="button"><span>Đăng nhập</span></button></a>
-                        </div>
-                    }
-                </NotAuthorized>
-            </AuthorizeView>
-            @*@if (emailAddress != null && emailAddress != "")
-                    {
-                        <div class="col-6 text-end">
-                            <button class="btn btn-primary btn-block" @onclick="@(() => modal.Show<Checkout>("Thanh Toán"))" type="button"><span>Tiếp theo<i class="fa fa-long-arrow-right ml-1"></i></span></button>
-
-                        </div>
-                     }
-                    else
-                    {
-                <div class="col-6 text-end">
-                    <a href="/login"><button class="btn btn-primary btn-block" type="button"><span>Đăng nhập</span></button></a>
-                </div>
-                    }*@
+            @if (orderCart.ListViewCart.Count != 0)
+            {
+                <AuthorizeView>
+                    <Authorized>
+                        @if (context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault() != null
+                        && context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault() != "")
+                        {
+                            <div class="col-6 text-end">
+                                <button class="btn btn-primary btn-block" @onclick="@(() => modal.Show<Checkout>("Thanh Toán"))" type="button"><span>Tiếp theo<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+                            </div>
+                        }
+                    </Authorized>
+                    <NotAuthorized>
+                        @if (emailAddress != null && emailAddress != "")
+                        {
+                            <div class="col-6 text-end">
+                                <button class="btn btn-primary btn-block" @onclick="@(() => modal.Show<Checkout>("Thanh Toán"))" type="button"><span>Tiếp theo<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-6 text-end">
+                                <a href="/login"><button class="btn btn-primary btn-block" type="button"><span>Đăng nhập</span></button></a>
+                            </div>
+                        }
+                    </NotAuthorized>
+                </AuthorizeView>
+            }
 
         </div>
 
