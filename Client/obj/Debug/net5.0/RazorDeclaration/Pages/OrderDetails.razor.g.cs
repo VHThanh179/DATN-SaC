@@ -189,7 +189,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 89 "D:\DATN\Project\SaCBackpack\Client\Pages\OrderDetails.razor"
+#line 103 "D:\DATN\Project\SaCBackpack\Client\Pages\OrderDetails.razor"
        
     [Parameter]
     public string id { get; set; }

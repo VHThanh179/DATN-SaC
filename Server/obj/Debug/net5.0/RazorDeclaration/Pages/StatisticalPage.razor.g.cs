@@ -154,7 +154,7 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 204 "D:\DATN\Project\SaCBackpack\Server\Pages\StatisticalPage.razor"
+#line 191 "D:\DATN\Project\SaCBackpack\Server\Pages\StatisticalPage.razor"
       
     public List<Statistical> statisticals { get; set; }
     public List<TotalStatistical> totalStatistical { get; set; }

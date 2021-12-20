@@ -4,23 +4,14 @@
 @using Blazored.Toast
 @using Blazored.Toast.Services
 @using Share.Models.ViewModels
+@inject IJSRuntime JSRuntime;
 @layout WebLayout
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
 @inject IToastService toastService
 @using Newtonsoft.Json
-@inject Microsoft.JSInterop.IJSRuntime JSRuntime;
 
 <style>
-
-    .product-detail-container {
-        position: relative;
-    }
-
-    .thumbnail-image {
-        border-radius: 10px !important;
-    }
-
     .btn-page {
         color: black;
         padding: 8px 16px;
@@ -46,70 +37,104 @@
         display: inline-block;
     }
 </style>
-<br />
-<br />
-<br />
-<Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
-    <section id="product" class="portfolio">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Sản phẩm</h2>
-            </div>
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-                @foreach (var item in products)
-                {
-                    <div class=" col-3 filter-app">
-                        <div class="card ">
-                            <div class="image-container ">
-                                @{
-                                    temp = imgUrl + item.Image;
-                                }
-                                <img src="@temp" class="img-fluid rounded thumbnail-image">
-                                <a href="/detail/@item.ProductId" title="More Details"><i class="bx bx-link"></i></a>
+<link href="/assets/css/products.css" rel="stylesheet" />
 
-                            </div>
-                            <div class="product-detail-container p-2">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="dress-name text-center">@item.ProductName </h4>
-
-                                </div>
-                            </div>
-                            <div class="product-detail-container p-2">
-                                <div class="d-flex justify-content-between align-items-center pt-1">
-                                    <div class="d-flex flex-column mb-2"> <span class="new-price">@string.Format("{0:#,0}", item.Price) VNĐ</span></div>
-                                    <button class="btn btn-dark btn-sm text-right" @onclick="() => AddCart(item.ProductId)">THÊM VÀO GIỎ HÀNG +</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-            <div class="mt-3 pagintaion-bar">
-                <div class="pagination">
-                    <button class="btn btn-outline-danger btn-custom" @onclick="@(async () => await NavigaToPage("prev"))">
-                        <i class="fa fa-backward" aria-hidden="true"></i> Trước
-                    </button>
-                    @for (int i = startPage; i <= endPage; i++)
-                    {
-                        var currentPage = i;
-                        <button class="btn btn-page pagebutton @(currentPage == curPage? "btn-danger":"")" @onclick="@(async() => await RefreshRecord(currentPage))">
-                            @currentPage
-                        </button>
-                    }
-                    <button class="btn btn-outline-danger btn-custom" @onclick="@(async () => await NavigaToPage("next"))">
-                        <i class="fa fa-forward" aria-hidden="true"></i> Tiếp
-                    </button>
+<br />
+<br />
+<br />
+<!-- Start Product Area -->
+<div class="product-area section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Sản Phẩm</h2>
                 </div>
             </div>
         </div>
-    </section>
-</Animate>
+        <div class="row">
+            <div class="col-12">
+                <div class="product-info">
+                    <div class="nav-main">
+                        <!-- Tab Nav -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item"><a class="nav-link @(publicCategory==0?"active":"")" style="cursor:pointer" data-toggle="tab" role="tab" @onclick="async () => {curPage = 1; await LoadProduct(0); }">TẤT CẢ</a></li>
+                            <li class="nav-item"><a class="nav-link @(publicCategory==1?"active":"")" style="cursor:pointer" data-toggle="tab" role="tab" @onclick="async () => {curPage = 1; await LoadProduct(1); }">BA LÔ</a></li>
+                            <li class="nav-item"><a class="nav-link @(publicCategory==2?"active":"")" style="cursor:pointer" data-toggle="tab" role="tab" @onclick="async () => {curPage = 1; await LoadProduct(2); }">PHỤ KIỆN</a></li>
+                        </ul>
+                        <!--/ End Tab Nav -->
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <!-- Start Single Tab -->
+                        <div class="tab-pane fade show active" id="man" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+                                    @foreach (var item in products)
+                                    {
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                                            <div class="single-product border border-2 rounded p-2">
+                                                <div class="product-img">
+                                                    <a href="/detail/@item.ProductId">
+                                                        @{
+                                                            temp = imgUrl + item.Image;
+                                                        }
+                                                        <img class="default-img" src="@temp" alt="#">
+                                                        <img class="hover-img" src="@temp" alt="#">
+                                                    </a>
+                                                    <div class="button-head">
+                                                        @*<div class="product-action">
+                                            <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                        </div>*@
+                                                        <div class="product-action-2">
+                                                            <a style="cursor:pointer" @onclick="() => AddCart(item.ProductId)">Thêm vào giỏ hàng</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-content">
+                                                    <h5><a style="cursor:pointer" href="/detail/@item.ProductId" class="text-dark">@item.ProductName</a></h5>
+                                                    <div class="product-price text-danger">
+                                                        <b>@string.Format("{0:#,0}", item.Price) VNĐ</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ End Single Tab -->                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 pagintaion-bar">
+            <div class="pagination">
+                <button class="btn btn-outline-danger btn-custom" @onclick="@(async () => await NavigaToPage("prev"))">
+                    <i class="fa fa-backward" aria-hidden="true"></i> Trước
+                </button>
+                @for (int i = startPage; i <= totalPages; i++)
+                {
+                    var currentPage = i;
+                    <button class="btn btn-page pagebutton @(currentPage == curPage? "btn-danger":"")" @onclick="@(async() => await RefreshRecord(currentPage))">
+                        @currentPage
+                    </button>
+                }
+                <button class="btn btn-outline-danger btn-custom" @onclick="@(async () => await NavigaToPage("next"))">
+                    <i class="fa fa-forward" aria-hidden="true"></i> Tiếp
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Product Area -->
+
 @code {
     private ToastParameters _toastParameters;
     public List<Product> products;
     public ProductDTO productDTO;
     protected string imgUrl = "";
     protected string temp = "";
+
 
     int totalPages;
     int totalRecords;
@@ -118,19 +143,29 @@
     int pageSize;
     int startPage;
     int endPage;
-
+    public int publicCategory { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("mostPopular");
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
         pagerSize = 4;
-        pageSize = 4;
+        pageSize = 8;
         curPage = 1;
+
 
         productDTO = new ProductDTO();
         products = new List<Product>();
-        await LoadProduct();
+        await LoadProduct(publicCategory);
+
     }
-    public async Task LoadProduct()
+    public async Task LoadProduct(int category)
     {
+        publicCategory = category;
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         using (var client = new HttpClient())
@@ -138,7 +173,7 @@
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("paging?PageNumber=" + curPage + "&PageSize=" + pageSize))
+            using (var response = await client.GetAsync("paging?PageNumber=" + curPage + "&PageSize=" + pageSize + "&Category=" + category))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 productDTO = Newtonsoft.Json.JsonConvert.DeserializeObject<ProductDTO>(apiResponse);
@@ -182,7 +217,7 @@
     public async Task RefreshRecord(int currentPage)
     {
         curPage = currentPage;
-        await LoadProduct();
+        await LoadProduct(publicCategory);
     }
     public void SetPagerSize(string direction)
     {

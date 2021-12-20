@@ -23,11 +23,12 @@
     }
 
     .payment-info {
-        background: blue;
+        background: rgb(51, 51, 54);
         padding: 10px;
         border-radius: 6px;
         color: #fff;
-        font-weight: bold
+        font-weight: bold;
+        height: 400px;
     }
 
     .product-details {
@@ -225,24 +226,23 @@
                                     <label class="control-label">Hình thức vận chuyển</label>
                                     <br />
                                     <select class="form-control" @bind="display" required>
-                                        <option value="">Chọn phương thức</option>
                                         <option value="0">Lấy hàng trực tiếp</option>
                                         <option value="1">Giao hàng tận nhà</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="form-group col-8">
                                     <label class="control-label">Mã giảm giá</label>
                                     <input class="form-control" @bind="vouchercode" />
                                 </div>
                                 <div class="form-group col-4">
-                                    <input class="btn btn-outline-success mt-4" value="Áp dụng" @onclick="CheckVoucher" />
+                                    <input class="btn btn-outline-success mt-4 btn-md" style="width:150px;" value="Áp dụng" @onclick="CheckVoucher" />
                                 </div>
                             </div>
                             <div class="form-group mt-2">
                                 <label class="control-label">Ghi chú</label>
-                                <textarea class="form-control" cols="30" rows="6" maxlength="200" @bind="shipInfo.Notes"></textarea>
+                                <textarea class="form-control" cols="30" rows="3" maxlength="200" @bind="shipInfo.Notes"></textarea>
                             </div>
                             <div class="row mt-2" id="moreInfoShipping" style="visibility:hidden">
                                 <div class="form-group col-6">
@@ -254,7 +254,7 @@
                                     <label class="control-label">Đơn vị vận chuyển</label>
                                     <br />
                                     <select class="form-control" @bind="shipPartner" required>
-                                        <option value="">Chọn đơn vị</option>
+                                        <option value="0" selected="selected">Chọn đơn vị</option>
                                         <option value="1">Grab</option>
                                         <option value="2">Now</option>
                                         <option value="3">Gojek</option>
@@ -270,11 +270,11 @@
             </div>
             <div class="col-md-4">
                 <div class="payment-info">
-                    <hr class="line">
+                    <br /> <br /> <br />
                     <div class="d-flex justify-content-between information"><span>Tiền hàng</span><span>@string.Format("{0:#,0}", orderCart.Total) VNĐ</span></div>
                     <div class="d-flex justify-content-between information"><span>Giảm giá</span><span>@displayvalue</span></div>
                     <div class="d-flex justify-content-between information">
-                        <span>Shipping</span>
+                        <span>Tiền vận chuyển</span>
                         @if (display == 0)
                         {
                             <span></span>
@@ -342,13 +342,13 @@
                             @string.Format("{0:#,0}", total) VNĐ
                         </span>
                     </div>
+                    <br /> <br />
                     <div id="paypal-button-container"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 text-end">
                     <input type="button" class="ml-2 btn btn-dark" @onclick="@Cancel" value="Quay lại" />
-                    <button @onclick="OrderCart">Đặt hàng</button>
                 </div>
             </div>
 

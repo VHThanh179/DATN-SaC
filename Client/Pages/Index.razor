@@ -19,6 +19,7 @@
         }
     }
 }
+<link href="/assets/css/products.css" rel="stylesheet" />
 <style>
     .carousel-inner img {
         width: 100%;
@@ -108,13 +109,13 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/assets/img/banner1.jpg" class="d-block w-100" alt="Image1">
+                <img src="/assets/img/BANNER-BALO-2.jpg" class="d-block w-100" alt="Image1">
             </div>
             <div class="carousel-item">
-                <img src="/assets/img/banner2.png" class="d-block w-100" alt="Image2">
+                <img src="/assets/img/BANNER-BALO-8.jpg" class="d-block w-100" alt="Image2">
             </div>
             <div class="carousel-item">
-                <img src="/assets/img/banner3.png" class="d-block w-100" alt="Image3">
+                <img src="/assets/img/BANNER-BALO-3.jpg" class="d-block w-100" alt="Image3">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -128,71 +129,74 @@
     </div>
 </Animate>
 
-<Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
-    <!-- ======= Portfolio Section ======= -->
-    <section id="product" class="portfolio">
-        <div class="container">
+<br /> <br />
+       <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
+           <!-- Start Product Area -->
+           <div class="product-area section">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-12">
+                           <div class="section-title">
+                               <h2>Sản Phẩm Bán Chạy</h2>
+                               <hr />
+                           </div>
+                       </div>
+                       <div class="col-12">
+                           <div class="product-info">
+                               <div class="tab-content" id="myTabContent">
+                                   <!-- Start Single Tab -->
+                                   <div class="tab-single">
+                                       <!--Product Slider-->
+                                       <ul id="autoWidth" class="cs-hidden">
+                                           @{var stt = 0;
+                                               foreach (var item in products)
+                                               {
+                                                   <li class="item-@stt.ToString()">
+                                                       <div class="box">
+                                                           <div class="slide-img">
+                                                               @{
+                                                                   temp = imgUrl + item.Image;
+                                                               }
+                                                               <img src="@temp" alt="1">
+                                                               <div class="overlay">
+                                                                   <a class="buy-btn" style="cursor:pointer" @onclick="() => AddCart(item.ProductId)">MUA NGAY</a>
+                                                               </div>
+                                                           </div>
+                                                           <div class="detail-box">
+                                                               <div class="type">
+                                                                   <a style="cursor:pointer" href="/detail/@item.ProductId">@item.ProductName</a>
+                                                                   @if (item.Category == Category.Backpack)
+                                                                   {
+                                                                       <span>Ba lô</span>
+                                                                   }
+                                                                   else
+                                                                   {
+                                                                       <span>Phụ kiện</span>
+                                                                   }
+                                                               </div>
+                                                               <a href="/detail/@item.ProductId" class="price">
+                                                                   <b>@string.Format("{0:#,0}", item.Price)đ</b>
+                                                               </a>
+                                                           </div>
+                                                       </div>
+                                                   </li>
+                                                   stt++;
+                                               }
+                                           }
 
-            <div class="section-title" data-aos="fade-up">
-                <h2>Sản phẩm</h2>
-            </div>
-
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                @foreach (var item in products)
-                {
-                    @*<div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                            <div class="portfolio-wrap">
-                                @{
-                                    temp = imgUrl + item.Image;
-                                }
-                                <img src="@temp" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>@item.ProductName</h4>
-                                    <p>@string.Format("{0:#,0}", item.Price) VNĐ</p>
+                                       </ul>
+                                       <!--End Product Slider-->
                                 </div>
-                                <div class="portfolio-links">
-                                    <a href="@temp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="@item.ProductName"><i class="bx bx-plus"></i></a>
-                                    <a href="/detail/@item.ProductId" title="More Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>*@
-                    <div class=" col-3 filter-app">
-                        <div class="card ">
-                            <div class="image-container ">
-                                <div class="first">
-                                    <div class="d-flex justify-content-between align-items-center"> <span class="wishlist"><i class="fa fa-heart-o"></i></span> </div>
-                                </div>
-                                @{
-                                    temp = imgUrl + item.Image;
-                                }
-                                <img src="@temp" class="img-fluid rounded thumbnail-image">
-                                <a href="/detail/@item.ProductId" title="More Details"><i class="bx bx-link"></i></a>
-
-                            </div>
-                            <div class="product-detail-container p-2">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="dress-name text-center">@item.ProductName </h4>
-
-                                </div>
-                            </div>
-                            <div class="product-detail-container p-2">
-                                <div class="d-flex justify-content-between align-items-center pt-1">
-                                    <div class="d-flex flex-column mb-2"> <span class="new-price">@string.Format("{0:#,0}", item.Price) VNĐ</span></div>
-                                    <button class="btn btn-dark btn-sm text-right" @onclick="() => AddCart(item.ProductId)">THÊM VÀO GIỎ HÀNG</button>
-                                </div>
-                            </div>
+                            </div>                           
                         </div>
                     </div>
-                }
-
+                </div>
 
             </div>
-
         </div>
-    </section><!-- End Portfolio Section -->
+        <!-- End Portfolio Section -->
 
-</Animate>
+       </Animate>
 <Animate Animation="Animations.FadeUp" Duration="TimeSpan.FromSeconds(1)">
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
@@ -252,58 +256,28 @@
 
             <div class="row">
 
-                <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-right">
+                <div class="col-lg-12 d-flex align-items-stretch" data-aos="fade-right">
                     <div class="info">
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
                             <h4>Địa chỉ:</h4>
-                            <p>CVPM Quang Trung, Q.12, HCM</p>
+                            <p>CVPM Quang Trung, Quận 12, TP HCM</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>web.backpack@example.com</p>
+                            <p>web.sacbackpack@gmail.com</p>
                         </div>
 
                         <div class="phone">
                             <i class="bi bi-phone"></i>
-                            <h4>Điện thoại:</h4>
-                            <p>+84 989999999</p>
+                            <h4>Số điện thoại:</h4>
+                            <p>033 278 0105</p>
                         </div>
-
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15673.776858806688!2d106.6283556!3d10.8537789!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175298945afff59%3A0xcf4afe79d65f5ddc!2zQ8O0bmcgdmnDqm4gcGjhuqduIG3hu4FtIFF1YW5nIFRydW5n!5e0!3m2!1svi!2s!4v1639199322451!5m2!1svi!2s" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
                     </div>
 
-                </div>
-
-                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-left">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="name">Tên của bạn</label>
-                                <input type="text" name="name" class="form-control" id="name" required>
-                            </div>
-                            <div class="form-group col-md-6 mt-3 mt-md-0">
-                                <label for="name">Email</label>
-                                <input type="email" class="form-control" name="email" id="email" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <label for="name">Chủ đề</label>
-                            <input type="text" class="form-control" name="subject" id="subject" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <label for="name">Nội dung</label>
-                            <textarea class="form-control" name="message" rows="10" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Đang tải</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Tin nhắn của bạn đã gửi, cảm ơn bạn!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Gửi</button></div>
-                    </form>
                 </div>
 
             </div>
@@ -336,6 +310,9 @@
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
             }
         }
+        await JSRuntime.InvokeVoidAsync("jqueryScript");
+        await JSRuntime.InvokeVoidAsync("mostPopular");
+        await JSRuntime.InvokeVoidAsync("productSlider");
     }
 
     private void AddCart(int id)

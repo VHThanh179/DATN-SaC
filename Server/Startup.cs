@@ -81,7 +81,7 @@ namespace Server
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //Register Syncfusion license
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTI3NzMyQDMxMzkyZTMzMmUzMENjWmFkNktSdXQ0REpjVnRRUHJ5TUVNbXRBUGVDSzY2aWZvUXBmT05pVVE9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTUwNTg3QDMxMzkyZTMzMmUzME5oNkx0ZTVJQzVVSWNCdGlucStMaGszeERKN2w1b1JEM0dMYzRLYjhBWWc9");
 
             if (env.IsDevelopment())
             {

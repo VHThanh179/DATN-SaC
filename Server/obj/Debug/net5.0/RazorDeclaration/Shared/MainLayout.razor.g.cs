@@ -174,7 +174,7 @@ using Microsoft.AspNetCore.SignalR.Client;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 128 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+#line 141 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     public string fullName { get; set; }

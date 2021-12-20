@@ -6,6 +6,7 @@
 @inherits LayoutComponentBase
 @inject IModalService modal
 @inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject IJSRuntime JSRuntime
 @using Pages
 <AuthorizeView>
     <Authorized>
@@ -131,20 +132,20 @@
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a href="/" class="nav-link" style="cursor:pointer" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Trang chủ</a></li>
-                <li><a href="/products" class="nav-link" style="cursor:pointer">Sản phẩm</a></li>
-                <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Liên hệ</a></li>
+                <li><a href="/" class="nav-link scrollto" style="cursor:pointer" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Trang chủ</a></li>
+
+                <li><a href="/products" class="nav-link scrollto" style="cursor:pointer">Sản phẩm</a></li>
                 <li>
-                    <a class="nav-link" style="cursor:pointer" @onclick="@(() => modal.Show<CartLayout>("Thông tin giỏ hàng"))">Giỏ hàng</a>
+                    <a class="nav-link scrollto" style="cursor:pointer" @onclick="@(() => modal.Show<CartLayout>("Thông tin giỏ hàng"))">Giỏ hàng</a>
                 </li>
                 <AuthorizeView>
                     <Authorized>
                         <li class="dropdown">
                             <a style="cursor:pointer"><span>@context.User.Identity.Name</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a class="nav-link " href="/info/@context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault()">Thông tin cá nhân</a></li>
-                                <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
-                                <li><a class="nav-link " style="cursor:pointer" @onclick="BeginSignOut">Đăng xuất</a></li>
+                                <li><a class="nav-link scrollto" href="/info/@context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault()">Thông tin cá nhân</a></li>
+                                <li><a class="nav-link scrollto" href="/history">Lịch sử đặt hàng</a></li>
+                                <li><a class="nav-link scrollto" style="cursor:pointer" @onclick="BeginSignOut">Đăng xuất</a></li>
                             </ul>
                         </li>
                     </Authorized>
@@ -154,10 +155,10 @@
                             <li class="dropdown">
                                 <a style="cursor:pointer"><span>@cusName</span> <i class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a class="nav-link " href="/info/@customerId">Thông tin cá nhân</a></li>
-                                    <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
-                                    <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
-                                    <li><a class="nav-link " href="/logout">Đăng xuất</a></li>
+                                    <li><a class="nav-link scrollto" href="/info/@customerId">Thông tin cá nhân</a></li>
+                                    <li><a class="nav-link scrollto" href="/history">Lịch sử đặt hàng</a></li>
+                                    <li><a class="nav-link scrollto" href="/changepass">Đổi mật khẩu</a></li>
+                                    <li><a class="nav-link scrollto" href="/logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                         }
@@ -166,8 +167,8 @@
                             <li class="dropdown">
                                 <a style="cursor:pointer"><span>Tài khoản</span> <i class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a class="nav-link " href="/login">Đăng nhập</a></li>
-                                    <li><a class="nav-link " href="/register">Đăng ký</a></li>
+                                    <li><a class="nav-link" href="/login">Đăng nhập</a></li>
+                                    <li><a class="nav-link" href="/register">Đăng ký</a></li>
                                 </ul>
                             </li>
                         }
@@ -175,8 +176,9 @@
                 </AuthorizeView>
 
             </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
+            <i class="bi bi-list mobile-nav-toggle" @onclick="@(async () => await ChangeMenu())"></i>
+
+        </nav><!-- .navbar -->
     </div>
 </header><!-- End Header -->
 
@@ -205,20 +207,19 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>LỐI TẮT</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Trang chủ</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Đăng nhập</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/">Trang chủ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/login">Đăng nhập</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>DỊCH VỤ CỦA CHÚNG TÔI</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Sản phẩm</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Dịch vụ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/products">Sản phẩm</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 footer-newsletter">
                     <h4>LIÊN HỆ</h4>
-                    <strong>SĐT:</strong> 0332780105<br>
+                    <strong>SĐT:</strong> 033 278 0105<br>
                     <strong>Email:</strong> web.sacbackpack@gmail.com<br>
                 </div>
             </div>
@@ -241,9 +242,14 @@
     public Customer cus;
     private bool IsVisible { get; set; }
 
+    protected async Task ChangeMenu()
+    {
+        await JSRuntime.InvokeVoidAsync("changeMenu");
+    }
     protected override async Task OnInitializedAsync()
     {
         IsVisible = true;
+        await JSRuntime.InvokeVoidAsync("mainJS");
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
         if (customerId != 0)

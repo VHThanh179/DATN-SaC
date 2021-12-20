@@ -160,7 +160,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 10 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
 using Pages;
 
 #line default
@@ -174,7 +174,7 @@ using Pages;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 237 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
+#line 238 "D:\DATN\Project\SaCBackpack\Client\Shared\WebLayout.razor"
       
     string emailAddress;
     string cusName;
@@ -182,9 +182,14 @@ using Pages;
     public Customer cus;
     private bool IsVisible { get; set; }
 
+    protected async Task ChangeMenu()
+    {
+        await JSRuntime.InvokeVoidAsync("changeMenu");
+    }
     protected override async Task OnInitializedAsync()
     {
         IsVisible = true;
+        await JSRuntime.InvokeVoidAsync("mainJS");
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
         if (customerId != 0)
@@ -224,6 +229,7 @@ using Pages;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private SignOutSessionStateManager SignOutManager { get; set; }

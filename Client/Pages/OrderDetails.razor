@@ -7,6 +7,18 @@
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject NavigationManager NavigationManager
+
+<style>
+    .my-custom-scrollbar {
+        position: relative;
+        height: 300px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+</style>
 <h3>Chi tiết đơn hàng</h3>
 <div>
     <hr />
@@ -42,45 +54,47 @@
             @model.Notes
         </dd>
     </dl>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Sản phẩm</th>
-                <th>Hình</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-                <th>Ghi chú</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in listOrder)
-            {
-                @if (item != null)
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Hình</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Ghi chú</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in listOrder)
                 {
-                    <tr>
-                        <td>
-                            @item.Product.ProductName
-                        </td>
-                        <td>
-                            @{
-                                temp = imgUrl + item.Product.Image;
-                            }
-                            <img src="@temp" style="width:150px" />
-                        </td>
-                        <td>
-                            @item.Quantity
-                        </td>
-                        <td>
-                            @item.TotalAmount
-                        </td>
-                        <td>
-                            @item.Notes
-                        </td>
-                    </tr>
+                    @if (item != null)
+                    {
+                        <tr>
+                            <td>
+                                @item.Product.ProductName
+                            </td>
+                            <td>
+                                @{
+                                    temp = imgUrl + item.Product.Image;
+                                }
+                                <img src="@temp" style="width:150px" />
+                            </td>
+                            <td>
+                                @item.Quantity
+                            </td>
+                            <td>
+                                @item.TotalAmount
+                            </td>
+                            <td>
+                                @item.Notes
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div>
     <a class="btn btn-info" href="/">Trang chủ</a> |

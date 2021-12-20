@@ -154,7 +154,7 @@ using Blazored.Toast.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 32 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserLog.razor"
+#line 31 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserLog.razor"
            
         [Parameter]
         public string id { get; set; }

@@ -227,7 +227,7 @@ using Blazored.Toast.Services;
                 _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
                 _toastParameters.Add(nameof(Notification.IsSuccess), true);
                 toastService.ShowToast<Notification>(_toastParameters);
-                await JSRuntime.InvokeVoidAsync("RefeshUser.refreshData");
+                await JSRuntime.InvokeVoidAsync("RefreshUser.refreshData");
             }
             else
             {

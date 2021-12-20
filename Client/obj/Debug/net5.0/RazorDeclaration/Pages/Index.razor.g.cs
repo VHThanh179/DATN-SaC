@@ -184,7 +184,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
 #nullable restore
-#line 316 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+#line 290 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
       
     private ToastParameters _toastParameters;
     public List<Product> products;
@@ -208,6 +208,9 @@ using Newtonsoft.Json;
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
             }
         }
+        await JSRuntime.InvokeVoidAsync("jqueryScript");
+        await JSRuntime.InvokeVoidAsync("mostPopular");
+        await JSRuntime.InvokeVoidAsync("productSlider");
     }
 
     private void AddCart(int id)
