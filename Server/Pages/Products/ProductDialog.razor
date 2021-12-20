@@ -1,6 +1,8 @@
 ﻿@page "/productdialog/{id}"
 @using Share.Models
 @using System.IO;
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @using Microsoft.AspNetCore.Hosting
 @using Syncfusion.Blazor.RichTextEditor
 @layout MainLayout
@@ -9,6 +11,7 @@
 @inject IWebHostEnvironment env
 @inject IModalService modal
 @inject IToastService toastService
+@inject IJSRuntime JSRuntime
 
 <style>
     .my-custom-scrollbar {
@@ -72,10 +75,10 @@
             <div class="row">
                 <div class="form-group col-6">
                     <label class="control-label">Chọn hình</label>
-                    <InputFile class="form-control" OnChange="OnInputFileChange" />
+                    <InputFile class="form-control" OnChange="OnInputFileChange" accept=".png,.jpeg,.jpg" />
                     @if (isOverSized)
                     {
-                        <span class="text-danger">Kích thước ảnh phải nhỏ hơn 1MB</span>
+                        <span class="text-danger">Kích thước ảnh phải nhỏ hơn 1 MB</span>
                     }
                 </div>
                 @if (product.Image != null)
@@ -105,7 +108,7 @@
                 }
                 else
                 {
-                    <button type="submit" class="btn btn-info"  @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Cập nhật</button>
+                    <button type="submit" class="btn btn-info">Cập nhật</button>
                 }
                 <input type="button" class="ml-2 btn btn-primary" @onclick="@Cancel" value="Thoát" />
             </div>
@@ -125,6 +128,7 @@
     private string status = null;
     public bool isOverSized { get; set; }
 
+    private ToastParameters _toastParameters;
     private Product product { get; set; }
     IReadOnlyList<IBrowserFile> selectedFiles;
 
@@ -167,6 +171,7 @@
 
     private async void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         if (selectedFiles != null && selectedFiles.Count > 0)
         {
             var roothPath = $"{env.WebRootPath}\\images";
@@ -193,21 +198,59 @@
                     fs.Close();
                 }
                 product.Image = file.Name;
-                if (product.ProductId == 0)
-                {
-                    product.Status = bool.Parse(status);
-                    _productSvc.AddProduct(product);
-                }
-                else
-                {
-                    product.Status = bool.Parse(status);
-                    _productSvc.EditProduct(product.ProductId, product);
-                }
-                navigation.NavigateTo("productlist", true);
             }
             else
             {
                 isOverSized = true;
+            }
+        }
+
+        product.Status = bool.Parse(status);
+        int ret = 0;
+        if (product.ProductId == 0)
+        {
+            if (selectedFiles != null && selectedFiles.Count > 0)
+            {
+                ret = _productSvc.AddProduct(product);
+                if (ret != 0)
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                    navigation.NavigateTo("productlist");
+                    await JSRuntime.InvokeVoidAsync("RefeshProducts.refreshData");
+                }
+                else
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thất bại!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                }
+            }
+            else
+            {
+                //isChosen = true;
+                _toastParameters.Add(nameof(Notification.Title), "Vui lòng chọn hình ảnh!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
+        }
+        else
+        {
+            ret = _productSvc.EditProduct(product.ProductId, product);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa sản phẩm thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+                navigation.NavigateTo("productlist");
+                await JSRuntime.InvokeVoidAsync("RefeshProducts.refreshData");
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa sản phẩm thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
             }
         }
     }

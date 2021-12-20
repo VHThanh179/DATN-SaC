@@ -22,5 +22,6 @@ namespace Share.Common
                 _pageSize = (value > maxPageSize) ? maxPageSize : value;
             }
         }
+        public int Category { get; set; }
     }
 }

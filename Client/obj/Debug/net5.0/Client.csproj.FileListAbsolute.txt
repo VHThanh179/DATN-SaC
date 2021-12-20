@@ -499,9 +499,7 @@ D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Authe
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\CartLayout.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ChangePassword.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Checkout.razor.g.cs
-D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Detail.razor.g.cs
-D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\History.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Info.razor.g.cs
@@ -527,9 +525,7 @@ D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Authentication.r
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\CartLayout.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\ChangePassword.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Checkout.razor.g.cs
-D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Detail.razor.g.cs
-D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\History.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Info.razor.g.cs
@@ -796,3 +792,5 @@ D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Client.csproj.CopyComplete
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Client.dll
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\ref\Client.dll
 D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Client.pdb
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Notification.razor.g.cs
+D:\DATN\Project\SaCBackpack\Client\obj\Debug\net5.0\Razor\Pages\Notification.razor.g.cs

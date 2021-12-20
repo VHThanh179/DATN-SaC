@@ -48,7 +48,7 @@ namespace Client
             .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount, CustomAccountFactory>();
 
             builder.Services.AddSyncfusionBlazor();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTI3NzMyQDMxMzkyZTMzMmUzMENjWmFkNktSdXQ0REpjVnRRUHJ5TUVNbXRBUGVDSzY2aWZvUXBmT05pVVE9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTUwNTg3QDMxMzkyZTMzMmUzME5oNkx0ZTVJQzVVSWNCdGlucStMaGszeERKN2w1b1JEM0dMYzRLYjhBWWc9");
 
             builder.Services.AddBlazoredSessionStorage();
 

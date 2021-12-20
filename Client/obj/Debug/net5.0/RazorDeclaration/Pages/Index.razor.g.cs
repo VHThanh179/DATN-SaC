@@ -125,20 +125,6 @@ using Syncfusion.Blazor.Popups;
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 20 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Blazored.Toast.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
 using Share.Models;
 
@@ -153,7 +139,21 @@ using Share.Models.ViewModels;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+#line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -169,7 +169,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 10 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+#line 12 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
            
     protected async override Task OnAfterRenderAsync(bool fistRender)
     {
@@ -184,9 +184,9 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
 #nullable restore
-#line 314 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
+#line 290 "D:\DATN\Project\SaCBackpack\Client\Pages\Index.razor"
       
-
+    private ToastParameters _toastParameters;
     public List<Product> products;
     protected string imgUrl = "";
     protected string temp = "";
@@ -202,16 +202,20 @@ using Newtonsoft.Json;
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("FiveProducts"))
+            using (var response = await client.GetAsync("TrendingProducts"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(apiResponse);
             }
         }
+        await JSRuntime.InvokeVoidAsync("jqueryScript");
+        await JSRuntime.InvokeVoidAsync("mostPopular");
+        await JSRuntime.InvokeVoidAsync("productSlider");
     }
 
     private void AddCart(int id)
     {
+        _toastParameters = new ToastParameters();
         //var cart = HttpContext.Session.GetString("cart");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
         if (cart == null)
@@ -233,7 +237,9 @@ using Newtonsoft.Json;
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-            toastService.ShowSuccess("Lưu thành công!");
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -262,8 +268,9 @@ using Newtonsoft.Json;
             }
             orderCart.Total = Calculate(orderCart.ListViewCart);
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-
-
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
 

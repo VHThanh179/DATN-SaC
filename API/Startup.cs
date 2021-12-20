@@ -1,3 +1,4 @@
+using API.Hubs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,8 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
+
             //fix loi Json loop
             services.AddControllers()
                 .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
@@ -103,6 +106,8 @@ namespace API
 
             services.AddTransient<IAccountLogic, AccountLogic>();
 
+            services.AddTransient<IActivity, ActivitySvc>();
+
             services.AddCors(options => options.AddPolicy(
                   "_mypolicy", builder => builder
                   .AllowAnyOrigin()
@@ -134,6 +139,7 @@ namespace API
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<NotiHub>("/api/NewNoti");
                 endpoints.MapControllers();
             });
         }

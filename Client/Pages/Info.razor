@@ -1,12 +1,16 @@
 ﻿@page "/info/{id}"
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @using System.Net;
 @using Newtonsoft.Json;
 @using Share.Models;
 @using Microsoft.AspNetCore.Components.Authorization;
 @using Syncfusion.Blazor.Popups
 @layout WebLayout
+@inject IJSRuntime JSRuntime
+@inject IToastService toastService
 @inject NavigationManager NavigationManager
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config
@@ -112,7 +116,7 @@
         font-size: 18px;
     }
 
-    .e-dlg-content {
+    /*.e-dlg-content {
         display: flex !important;
         align-items: center !important;
         justify-content: space-around !important;
@@ -125,7 +129,7 @@
     .e-footer-content,
     .e-dlg-header-content {
         background: transparent;
-    }
+    }*/
     /* Fallback for Edge
         -------------------------------------------------- */
 
@@ -164,7 +168,7 @@
                                             <ValidationMessage For="@(() => cus.FullName)" />
                                         </div>
                                     </NotAuthorized>
-                                </AuthorizeView>                           
+                                </AuthorizeView>
 
                                 <div class="form-label-group">
                                     <input type="date" id="inputEmail" @bind="cus.DoB" class="form-control">
@@ -197,21 +201,23 @@
     </div>
 </Animate>
 
-<SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
-    <DialogTemplates>
-        <Header><i class="fa fa-envelope-open" aria-hidden="true"></i> Thông báo !</Header>
-        <Content><div class="ds"> Lưu thông tin thành công</div> </Content>
-    </DialogTemplates>
-    <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
-    <DialogButtons>
-        <DialogButton Content="OK" IsPrimary="true" OnClick="@CloseDialog" />
-    </DialogButtons>
-</SfDialog>
+@*<SfDialog Width="500px" Height="250px" IsModal="true" @bind-Visible="IsVisible">
+        <DialogTemplates>
+            <Header><i class="fa fa-envelope-open" aria-hidden="true"></i> Thông báo !</Header>
+            <Content><div class="ds"> Lưu thông tin thành công</div> </Content>
+        </DialogTemplates>
+        <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
+        <DialogButtons>
+            <DialogButton Content="OK" IsPrimary="true" OnClick="@CloseDialog" />
+        </DialogButtons>
+    </SfDialog>*@
 
 @code {
     [Parameter]
     public string id { get; set; }
+    private bool isPhoneNumberExisted = false;
     public Customer cus;
+    private ToastParameters _toastParameters;
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -253,6 +259,7 @@
 
     private async void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         var accessTokenGoogle = AuthStat.Result.User.Claims.Where(_ => _.Type == "APIjwt").Select(_ => _.Value).FirstOrDefault();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
@@ -268,45 +275,90 @@
                 customerId = cus.CustomerId;
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessTokenGoogle);
             }
-            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(cus), System.Text.Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            HttpResponseMessage response = await client.PutAsync("customer/?id=" + customerId, content);
-
-            if (response.StatusCode != HttpStatusCode.OK)
+            using (var resPhoneNumber = await client.GetAsync("Customer/CheckPhoneNumber/?phoneNumber=" + cus.PhoneNumber))
             {
-
+                var phoneNumber = await resPhoneNumber.Content.ReadAsStringAsync();
+                isPhoneNumberExisted = bool.Parse(phoneNumber);
             }
-            else
+            if (!string.IsNullOrEmpty(cus.Address) && !string.IsNullOrEmpty(cus.PhoneNumber))
             {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse == "-1")
+                if (isPhoneNumberExisted)
                 {
-
+                    _toastParameters.Add(nameof(Notification.Title), "Số điện thoại đã tồn tại!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
                 }
                 else
                 {
-                    OpenDialog();
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(cus), System.Text.Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PutAsync("customer/?id=" + customerId, content);
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+
+                    }
+                    else
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        if (apiResponse == "-1")
+                        {
+                            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa thất bại!");
+                            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                            toastService.ShowToast<Notification>(_toastParameters);
+                        }
+                        else
+                        {
+                            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa thành công!");
+                            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                            toastService.ShowToast<Notification>(_toastParameters);
+                            await JSRuntime.InvokeVoidAsync("RefreshCustomer.refreshData");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(cus.Address) && string.IsNullOrEmpty(cus.PhoneNumber))
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập địa chỉ và số điện thoại!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(cus.Address))
+                    {
+                        _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập địa chỉ!");
+                        _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                        toastService.ShowToast<Notification>(_toastParameters);
+                    }
+                    if (string.IsNullOrEmpty(cus.PhoneNumber))
+                    {
+                        _toastParameters.Add(nameof(Notification.Title), "Vui lòng nhập số điện thoại!");
+                        _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                        toastService.ShowToast<Notification>(_toastParameters);
+                    }
                 }
             }
         }
     }
+
     private void Cancel()
     {
         NavigationManager.NavigateTo("/", true);
     }
 
-    private bool IsVisible { get; set; }
+    //private bool IsVisible { get; set; }
 
-    private void OpenDialog()
-    {
-        IsVisible = true;
-    }
+    //private void OpenDialog()
+    //{
+    //    IsVisible = true;
+    //}
 
-    private void CloseDialog()
-    {
-        IsVisible = false;
-        NavigationManager.NavigateTo("/", true);
-    }
+    //private void CloseDialog()
+    //{
+    //    IsVisible = false;
+    //    NavigationManager.NavigateTo("/", true);
+    //}
 }

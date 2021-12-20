@@ -6,7 +6,86 @@
 @inherits LayoutComponentBase
 @inject IModalService modal
 @inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject IJSRuntime JSRuntime
 @using Pages
+<AuthorizeView>
+    <Authorized>
+        @if (bool.Parse(context.User.Claims.Where(_ => _.Type == "firstLogin").Select(_ => _.Value).FirstOrDefault()))
+        {
+            <style>
+                .blazored-modal {
+                    width: 960px;
+                }
+
+                main {
+                    min-height: 500px;
+                }
+
+                .blazored-toast-container {
+                    z-index: 200;
+                }
+
+                #button {
+                    background-color: #E53935;
+                    border: none;
+                    border-radius: 5px;
+                    color: #FFFFFF;
+                    font-weight: 700;
+                    width: 60px;
+                }
+
+                .e-popup.e-popup-open.e-dialog {
+                    border-radius: 20px;
+                }
+
+                .e-dialog .e-dlg-header-content {
+                    background-color: #FF5252;
+                    border-radius: 20px 20px 0px 0px;
+                }
+
+                    .e-dialog .e-dlg-header-content + .e-dlg-content {
+                        padding: 0;
+                    }
+
+                .e-dialog .e-dlg-header {
+                    position: relative;
+                    font-size: 25px;
+                    font-weight: bold;
+                    color: linen;
+                    margin-left: 10px;
+                }
+
+                .e-dialog .e-footer-content {
+                    padding: 15px;
+                    border-radius: 0px 0px 20px 20px;
+                }
+
+                .e-dialog .e-dlg-header-content {
+                    padding: 6px;
+                }
+
+                .dialogText {
+                    color: #D50000;
+                    font-size: 22px;
+                    margin: 51px 26px 20px;
+                    font-weight: 700;
+                }
+
+                .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
+                    margin-right: 10px;
+                }
+
+                .e-dialog .e-dlg-header-content .e-icon-dlg-close {
+                    color: #FFFFFF;
+                }
+
+                .e-dlg-header, .e-dlg-header * {
+                    color: #FFFFFF;
+                }
+            </style>
+        }
+    </Authorized>
+</AuthorizeView>
 <style>
     .blazored-modal {
         width: 960px;
@@ -15,7 +94,32 @@
     main {
         min-height: 500px;
     }
+
+    .blazored-toast-container {
+        z-index: 200;
+    }
 </style>
+
+<AuthorizeView>
+    <Authorized>
+        @if (bool.Parse(context.User.Claims.Where(_ => _.Type == "firstLogin").Select(_ => _.Value).FirstOrDefault()))
+        {
+
+            <SfDialog Width="509px" Height="220px" IsModal="true" @bind-Visible="IsVisible">
+                <DialogTemplates>
+                    <Header><i class="fa fa-exclamation-triangle"></i> Thông báo</Header>
+                    <Content>
+                        <h1 class="dialogText">Vui lòng cập nhật đầy đủ thông tin cá nhân!</h1>
+                    </Content>
+                    <FooterTemplate>
+                        <button id="button" @onclick="@(() => Confirm(context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault()))" class="e-control e-btn" data-ripple="true">OK</button>
+                    </FooterTemplate>
+                </DialogTemplates>
+                <DialogAnimationSettings Effect="DialogEffect.FlipXDown" Duration=600 />
+            </SfDialog>
+        }
+    </Authorized>
+</AuthorizeView>
 
 <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -28,20 +132,20 @@
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a href="/" class="nav-link" style="cursor:pointer" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Trang chủ</a></li>
+                <li><a href="/" class="nav-link scrollto" style="cursor:pointer" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Trang chủ</a></li>
+
+                <li><a href="/products" class="nav-link scrollto" style="cursor:pointer">Sản phẩm</a></li>
                 <li>
-                    <a class="nav-link" style="cursor:pointer" @onclick="@(() => modal.Show<CartLayout>("Thông tin giỏ hàng"))">Giỏ hàng</a>
+                    <a class="nav-link scrollto" style="cursor:pointer" @onclick="@(() => modal.Show<CartLayout>("Thông tin giỏ hàng"))">Giỏ hàng</a>
                 </li>
-                <li><a href="/products" class="nav-link" style="cursor:pointer" >Sản phẩm</a></li>
-                <li><a class="nav-link" style="cursor:pointer" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Liên hệ</a></li>
                 <AuthorizeView>
                     <Authorized>
                         <li class="dropdown">
                             <a style="cursor:pointer"><span>@context.User.Identity.Name</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a class="nav-link " href="/info/@context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault()">Thông tin cá nhân</a></li>
-                                <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
-                                <li><a class="nav-link " style="cursor:pointer" @onclick="BeginSignOut">Đăng xuất</a></li>
+                                <li><a class="nav-link scrollto" href="/info/@context.User.Claims.Where(_ => _.Type == "email").Select(_ => _.Value).FirstOrDefault()">Thông tin cá nhân</a></li>
+                                <li><a class="nav-link scrollto" href="/history">Lịch sử đặt hàng</a></li>
+                                <li><a class="nav-link scrollto" style="cursor:pointer" @onclick="BeginSignOut">Đăng xuất</a></li>
                             </ul>
                         </li>
                     </Authorized>
@@ -51,10 +155,10 @@
                             <li class="dropdown">
                                 <a style="cursor:pointer"><span>@cusName</span> <i class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a class="nav-link " href="/info/@customerId">Thông tin cá nhân</a></li>
-                                    <li><a class="nav-link " href="/history">Lịch sử đặt hàng</a></li>
-                                    <li><a class="nav-link " href="/changepass">Đổi mật khẩu</a></li>
-                                    <li><a class="nav-link " href="/logout">Đăng xuất</a></li>
+                                    <li><a class="nav-link scrollto" href="/info/@customerId">Thông tin cá nhân</a></li>
+                                    <li><a class="nav-link scrollto" href="/history">Lịch sử đặt hàng</a></li>
+                                    <li><a class="nav-link scrollto" href="/changepass">Đổi mật khẩu</a></li>
+                                    <li><a class="nav-link scrollto" href="/logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                         }
@@ -63,8 +167,8 @@
                             <li class="dropdown">
                                 <a style="cursor:pointer"><span>Tài khoản</span> <i class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a class="nav-link " href="/login">Đăng nhập</a></li>
-                                    <li><a class="nav-link " href="/register">Đăng ký</a></li>
+                                    <li><a class="nav-link" href="/login">Đăng nhập</a></li>
+                                    <li><a class="nav-link" href="/register">Đăng ký</a></li>
                                 </ul>
                             </li>
                         }
@@ -72,14 +176,9 @@
                 </AuthorizeView>
 
             </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
+            <i class="bi bi-list mobile-nav-toggle" @onclick="@(async () => await ChangeMenu())"></i>
+
         </nav><!-- .navbar -->
-        @*<div class="header-social-links d-flex align-items-center">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>*@
     </div>
 </header><!-- End Header -->
 
@@ -87,6 +186,7 @@
     @Body
 </main>
 <CascadingBlazoredModal HideHeader="true" />
+<BlazoredToasts Position="Blazored.Toast.Configuration.ToastPosition.TopRight" Timeout="2" />
 <!-- ======= Footer ======= -->
 <footer id="footer">
     <div class="footer-top">
@@ -107,21 +207,20 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>LỐI TẮT</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Trang chủ</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Đăng nhập</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/">Trang chủ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/login">Đăng nhập</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>DỊCH VỤ CỦA CHÚNG TÔI</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Sản phẩm</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Dịch vụ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/products">Sản phẩm</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 footer-newsletter">
                     <h4>LIÊN HỆ</h4>
-                    <strong>SĐT:</strong> +1 5589 55488 55<br>
-                    <strong>Email:</strong> info@example.com<br>
+                    <strong>SĐT:</strong> 033 278 0105<br>
+                    <strong>Email:</strong> web.sacbackpack@gmail.com<br>
                 </div>
             </div>
         </div>
@@ -141,9 +240,16 @@
     string cusName;
     int customerId;
     public Customer cus;
+    private bool IsVisible { get; set; }
 
+    protected async Task ChangeMenu()
+    {
+        await JSRuntime.InvokeVoidAsync("changeMenu");
+    }
     protected override async Task OnInitializedAsync()
     {
+        IsVisible = true;
+        await JSRuntime.InvokeVoidAsync("mainJS");
         emailAddress = sessionStorage.GetItem<string>("Email");
         customerId = sessionStorage.GetItem<int>("customerId");
         if (customerId != 0)
@@ -165,6 +271,12 @@
             }
         }
 
+    }
+
+    private void Confirm(string link)
+    {
+        navigationManager.NavigateTo("/info/" + link);
+        IsVisible = false;
     }
 
     private async Task BeginSignOut(MouseEventArgs args)

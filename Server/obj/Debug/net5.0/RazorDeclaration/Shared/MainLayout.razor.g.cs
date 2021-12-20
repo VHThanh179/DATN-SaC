@@ -98,41 +98,48 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
+#line 1 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+using Pages;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
 using System.Security.Claims;
 
 #line default
@@ -140,7 +147,21 @@ using System.Security.Claims;
 #nullable disable
 #nullable restore
 #line 4 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
-using Blazored.Toast.Configuration;
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+using Microsoft.AspNetCore.SignalR.Client;
 
 #line default
 #line hidden
@@ -153,11 +174,46 @@ using Blazored.Toast.Configuration;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 124 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
+#line 141 "D:\DATN\Project\SaCBackpack\Server\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    public string fullName { get; set; }
+    public Notifi notifi { get; set; }
+    private HubConnection hubConnection = null;
+    private ToastParameters _toastParameters;
+    private string content = "Closed";
+    private string contentNotification = "No content";
+    private bool IsConnected = false;
+
     protected async override Task OnInitializedAsync()
     {
+        if (!string.IsNullOrEmpty(AuthStat.Result.User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+        {
+            var userInfo = _userService.GetUser(int.Parse(AuthStat.Result.User.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+            fullName = userInfo.FullName;
+
+            // SignalR realtime
+            _toastParameters = new ToastParameters();
+            hubConnection = new HubConnectionBuilder().WithUrl("https://localhost:44370/api/NewNoti").Build();
+            await hubConnection.StartAsync();
+            IsConnected = true;
+            Console.WriteLine("Connected");
+            hubConnection.Closed += async (s) =>
+            {
+                IsConnected = false;
+                Console.WriteLine("Disconnected");
+                await hubConnection.StartAsync();
+                IsConnected = true;
+            };
+            hubConnection.On<string>("Notification", content =>
+            {
+                contentNotification = content;
+                _toastParameters.Add(nameof(Notification.Title), contentNotification);
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+                StateHasChanged();
+            });
+        }
         base.OnInitialized();
         var user = (await AuthStat).User;
         if (!user.Identity.IsAuthenticated)
@@ -169,6 +225,8 @@ using Blazored.Toast.Configuration;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
