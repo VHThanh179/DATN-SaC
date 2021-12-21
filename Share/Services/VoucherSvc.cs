@@ -83,6 +83,22 @@ namespace Share.Services
             int value = 0;
             try
             {
+                if (voucher.VoucherQuantity <= 0)
+                {
+                    voucher.Status = false;
+                }
+                else
+                {
+                    voucher.Status = true;
+                }
+                if (voucher.EndDate < DateTime.Today)
+                {
+                    voucher.Status = false;
+                }
+                else
+                {
+                    voucher.Status = true;
+                }
                 _context.Update(voucher);
                 _context.SaveChanges();
                 value = voucher.VoucherId;

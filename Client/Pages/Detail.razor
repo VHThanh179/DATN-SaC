@@ -64,15 +64,15 @@
                             <strong>Tình trạng</strong>:
                             @if (product.Status)
                             {
-                                <span>Còn hàng</span>
+                                <span>Còn hàng</span> <br />
+                                <button class="btn btn-dark text-right mt-3" @onclick="() => AddCart(product.ProductId)">THÊM VÀO GIỎ HÀNG </button>
                             }
                             else
                             {
                                 <span>Hết hàng</span>
                             }
-                        </li>
-                        <li><button class="btn btn-dark text-right" @onclick="() => AddCart(product.ProductId)">THÊM VÀO GIỎ HÀNG </button></li>
-                    </ul>
+                            </li>
+                        </ul>
                 </div>
                 <div class="portfolio-description">
                     <h2>Mô tả sản phẩm</h2>

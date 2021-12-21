@@ -202,7 +202,7 @@ using Newtonsoft.Json;
     }
     protected override async Task OnInitializedAsync()
     {
-        pagerSize = 4;
+        pagerSize = 8;
         pageSize = 8;
         curPage = 1;
 

@@ -217,7 +217,6 @@ using Microsoft.AspNetCore.Components.Authorization;
         orders = new List<Order>();
         using (var client = new HttpClient())
         {
-            Dictionary<string, string> query = new Dictionary<string, string>();
             client.DefaultRequestHeaders.Authorization = new
             System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
