@@ -9,21 +9,21 @@ namespace Share.Models
         public int TotalStatisticallId { get; set; }
 
         [Display(Name = "Số lượng đăng ký")]
-        public int TotalQuantityRegister { get; set; }
+        public int? TotalQuantityRegister { get; set; }
 
         [Display(Name = "Số lượng đơn hàng")]
-        public int TotalQuantityOrder { get; set; }
+        public int? TotalQuantityOrder { get; set; }
 
         [Display(Name = "Doanh thu")]
         [Column(TypeName = "money")]
-        public float TotalRevenue { get; set; }
+        public float? TotalRevenue { get; set; }
 
         [Display(Name = "Vận chuyển")]
         [Column(TypeName = "money")]
-        public float TotalTransport { get; set; }
+        public float? TotalTransport { get; set; }
 
         [Display(Name = "Tổng doanh thu")]
         [Column(TypeName = "money")]
-        public float TotalAllRevenue { get; set; }
+        public float? TotalAllRevenue { get; set; }
     }
 }

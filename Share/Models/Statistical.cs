@@ -14,24 +14,24 @@ namespace Share.Models
         public int StatisticalId { get; set; }
 
         [Display(Name = "Tháng")]
-        public int StatisticalMonth { get; set; }
+        public int? StatisticalMonth { get; set; }
 
         [Display(Name = "Số lượng đăng ký")]
-        public int QuantityRegister { get; set; }
+        public int? QuantityRegister { get; set; }
 
         [Display(Name = "Số lượng đơn hàng")]
-        public int QuantityOrder { get; set; }
+        public int? QuantityOrder { get; set; }
 
         [Display(Name = "Doanh thu")]
         [Column(TypeName = "money")]
-        public float Revenue { get; set; }
+        public float? Revenue { get; set; }
 
         [Display(Name = "Vận chuyển")]
         [Column(TypeName = "money")]
-        public float Transport { get; set; }
+        public float? Transport { get; set; }
 
         [Display(Name = "Tổng doanh thu")]
         [Column(TypeName = "money")]
-        public float TotalRevenue { get; set; }
+        public float? TotalRevenue { get; set; }
     }
 }

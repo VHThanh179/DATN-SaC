@@ -18,7 +18,7 @@ namespace Share.Services
         }
         public List<Statistical> GetAllStatistical()
         {
-            return _context.Statisticals.ToList();
+            return _context.Statisticals.OrderBy(m => m.StatisticalMonth).ToList();
         }
         public List<TotalStatistical> GetTotalStatistical()
         {
@@ -27,7 +27,7 @@ namespace Share.Services
 
         public List<Statistical> SearchStatistical(DateTime startDate, DateTime endDate)
         {
-            return _context.Statisticals.FromSqlRaw("SearchStatistical {0}, {1}", startDate, endDate).ToList();
+            return _context.Statisticals.FromSqlRaw("SearchStatistical {0}, {1}", startDate, endDate).AsEnumerable().OrderBy(m => m.StatisticalMonth).ToList();
         }
     }
 }

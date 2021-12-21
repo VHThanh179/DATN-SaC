@@ -244,3 +244,11 @@ D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Client.Core.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Common.dll
 D:\DATN\Project\SaCBackpack\Server\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Notification.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\StatisticalPage.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserInfo.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Users\UserLog.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Notification.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\StatisticalPage.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Users\UserInfo.razor.g.cs
+D:\DATN\Project\SaCBackpack\Server\obj\Debug\net5.0\Razor\Pages\Users\UserLog.razor.g.cs

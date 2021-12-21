@@ -203,41 +203,41 @@
                                 <div class="form-label-group">
                                     <input @bind="customer.Email" type="email" id="inputEmail" class="form-control" placeholder="Địa chỉ mail" required autofocus>
                                     <label for="inputEmail">Địa chỉ mail</label>
-                                    <ValidationMessage For="@(() => customer.Email)" />
+                                    <span class="text-danger font-weight-bold text-center"><ValidationMessage For="@(() => customer.Email)" /></span>
                                 </div>
                                 <div class="form-label-group">
                                     <input @bind="customer.FullName" type="text" id="inputFullname" class="form-control" placeholder="Họ tên" required>
                                     <label for="inputFullname">Họ tên</label>
-                                    <ValidationMessage For="@(() => customer.FullName)" />
+                                    <span class="text-danger font-weight-bold text-center"><ValidationMessage For="@(() => customer.FullName)" /></span>
                                 </div>
                                 <div class="form-label-group">
                                     <input @bind="customer.DoB" type="date" id="dob" class="form-control" placeholder="Ngày sinh" required>
                                     <label for="dob">Ngày sinh</label>
-                                    <ValidationMessage For="@(() => customer.DoB)" />
+                                    <span class="text-danger font-weight-bold text-center"><ValidationMessage For="@(() => customer.DoB)" /></span>
                                 </div>
                                 <div class="form-label-group">
                                     <input @bind="customer.Address" type="text" id="address" class="form-control" placeholder="Địa chỉ" required>
                                     <label for="address">Địa chỉ</label>
-                                    <ValidationMessage For="@(() => customer.Address)" />
+                                    <span class="text-danger font-weight-bold text-center"><ValidationMessage For="@(() => customer.Address)" /></span>
                                 </div>
                                 <div class="form-label-group">
                                     <input @bind="customer.PhoneNumber" type="tel" id="phone" class="form-control" placeholder="Số điện thoại" required>
                                     <label for="phone">Số điện thoại</label>
-                                    <ValidationMessage For="@(() => customer.PhoneNumber)" />
+                                    <span class="text-danger font-weight-bold text-center"><ValidationMessage For="@(() => customer.PhoneNumber)" /></span>                                  
                                 </div>
                                 <div class="form-label-group">
                                     <input @bind="customer.Password" type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required>
                                     <label for="inputPassword">Mật khẩu</label>
-                                    <ValidationMessage For="@(() => customer.Password)" />
+                                    <span class="text-danger font-weight-bold text-center"><ValidationMessage For="@(() => customer.Password)" /></span>
                                 </div>
                                 <div class="form-label-group">
                                     <input @bind="customer.ConfirmPassword" type="password" id="inputConfirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" required>
                                     <label for="inputConfirmPassword">Xác nhận mật khẩu</label>
-                                    <ValidationMessage For="@(() => customer.ConfirmPassword)" />
+                                    <span class="text-danger font-weight-bold text-center"><ValidationMessage For="@(() => customer.ConfirmPassword)" /></span>
                                 </div>
                                 <hr class="my-4">
                                 <div class="d-grid">
-                                    <button value="Đăng ký" type="submit" class="btn btn-lg btn-dark btn-block text-uppercase" />
+                                    <button type="submit" class="btn btn-lg btn-dark btn-block text-uppercase">Đăng ký</button>
                                 </div>
                             </EditForm>
                         </div>

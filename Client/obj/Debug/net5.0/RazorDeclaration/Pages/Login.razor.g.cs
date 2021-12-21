@@ -190,7 +190,7 @@ using Syncfusion.Blazor.Popups;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 273 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
+#line 267 "D:\DATN\Project\SaCBackpack\Client\Pages\Login.razor"
        
     private bool loading;
     string email = "";
