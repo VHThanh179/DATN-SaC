@@ -40,10 +40,12 @@ namespace Server
             services.Configure<CookiePolicyOptions>(opt =>
             {
                 opt.CheckConsentNeeded = content => true;
-                opt.MinimumSameSitePolicy = SameSiteMode.None;
+                opt.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
             services.AddAuthentication(
-                CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+                CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt => {
+                    opt.ExpireTimeSpan = TimeSpan.FromHours(1);
+                });
             services.AddBlazoredToast();
             services.AddBlazoredModal();
             services.AddRazorPages();
@@ -62,6 +64,7 @@ namespace Server
             services.AddTransient<IOrderDetailsSvc, OrderDetailsSvc>();
             services.AddTransient<ICustomerSvc, CustomerSvc>();
             services.AddTransient<IStatisticalSvc, StatisticalSvc>();
+            services.AddTransient<IActivity, ActivitySvc>();
 
 
             services.AddHttpContextAccessor();
@@ -78,7 +81,7 @@ namespace Server
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //Register Syncfusion license
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTI3NzMyQDMxMzkyZTMzMmUzMENjWmFkNktSdXQ0REpjVnRRUHJ5TUVNbXRBUGVDSzY2aWZvUXBmT05pVVE9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTUwNTg3QDMxMzkyZTMzMmUzME5oNkx0ZTVJQzVVSWNCdGlucStMaGszeERKN2w1b1JEM0dMYzRLYjhBWWc9");
 
             if (env.IsDevelopment())
             {
@@ -99,6 +102,7 @@ namespace Server
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();

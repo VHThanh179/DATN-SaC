@@ -1,54 +1,57 @@
 ﻿@page "/customerdialog/{id}"
 @using Share.Models
+@using Blazored.Toast
+@using Blazored.Toast.Services
 @inject Share.Interfaces.ICustomerSvc _customerSvc
 @inject NavigationManager navigation
 @inject IToastService toastService
 
-
 <div class="container">
     <div class="row">
-        <div class="col-xl-6 mx-auto">
+        <div class="col-xl-8 mx-auto">
             <div class="card card-signin flex-row shadow-lg card-signup">
                 <div class="card-body">
                     <h2 class="card-title text-center font-weight-bold text-uppercase">Thông tin khách hàng</h2>
                     <div class="col-md-12">
-                        <EditForm Model="@customer" OnValidSubmit="@SubmitForm">
-                            <DataAnnotationsValidator />
+                        <EditForm Model="@customer">
                             <input type="hidden" @bind="customer.CustomerId" />
-                            <div class="form-group">
-                                <label class="control-label">Họ và tên</label>
-                                <input @bind="customer.FullName" class="form-control" readonly />
-                                <ValidationMessage For="@(()=>customer.FullName)" />
+                            <div class="form-group row">
+                                <label class="control-label col-5">Họ và tên</label>
+                                <span class="font-weight-bold col-7">@customer.FullName</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-5">Ngày sinh</label>
+                                <span class="font-weight-bold col-7">@customer.DoB.Date.ToString("dd/MM/yyyy")</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-5">Số điện thoại</label>
+                                <span class="font-weight-bold col-7">@customer.PhoneNumber</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-5">Email</label>
+                                <span class="font-weight-bold col-7">@customer.Email</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-5">Địa chỉ</label>
+                                <span class="font-weight-bold col-7">@customer.Address</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-5">Trạng thái</label>
+                                @if (customer.Status)
+                                {
+                                    <span class="font-weight-bold col-7">Đang hoạt động</span>
+                                }
+                                else
+                                {
+                                    <span class="font-weight-bold col-7">Dừng hoạt động</span>
+                                }
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-5">Ngày tạo</label>
+                                <span class="font-weight-bold col-7">@customer.CreatedDate.Date.ToString("dd/MM/yyyy")</span>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Ngày sinh</label>
-                                <input type="date" @bind="customer.CreatedDate" class="form-control" readonly />
-                                <ValidationMessage For="@(()=>customer.CreatedDate)" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Số điện thoại</label>
-                                <input type="number" @bind="customer.PhoneNumber" class="form-control" readonly />
-                                <ValidationMessage For="@(()=>customer.PhoneNumber)" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Email</label>
-                                <input @bind="customer.Email" class="form-control" readonly />
-                                <ValidationMessage For="@(()=>customer.Email)" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Địa chỉ</label>
-                                <input @bind="customer.Address" class="form-control" readonly />
-                                <ValidationMessage For="@(()=>customer.Address)" />
-                            </div>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" @bind="customer.Status" /> Trạng thái
-                                    <ValidationMessage For="@(()=>customer.Status)" />
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-info" @onclick="@(() => toastService.ShowSuccess("Lưu thành công!"))">Lưu</button>
-                                <button type="submit" class="btn btn-primary" @onclick="@Cancel">Thoát</button>
+                                <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
                             </div>
                         </EditForm>
                     </div>
@@ -69,11 +72,25 @@
         customer = _customerSvc.GetCustomer(int.Parse(id));
     }
 
-    private void SubmitForm()
-    {
-        _customerSvc.EditCustomer(customer.CustomerId, customer);
-        navigation.NavigateTo("customerlist", true);
-    }
+    //private void SubmitForm()
+    //{
+    //    _toastParameters = new ToastParameters();
+    //    customer.Status = bool.Parse(status);
+    //    int ret = _customerSvc.EditCustomer(customer.CustomerId, customer);
+    //    if (ret != 0)
+    //    {
+    //        _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thành công!");
+    //        _toastParameters.Add(nameof(Notification.IsSuccess), true);
+    //        toastService.ShowToast<Notification>(_toastParameters);
+    //    }
+    //    else
+    //    {
+    //        _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa khách hàng thất bại!");
+    //        _toastParameters.Add(nameof(Notification.IsSuccess), false);
+    //        toastService.ShowToast<Notification>(_toastParameters);
+    //    }
+    //    navigation.NavigateTo("customerlist");
+    //}
 
     private void Cancel()
     {

@@ -1,0 +1,70 @@
+﻿@page "/notification"
+
+<style>
+    .noti-container {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        z-index: 10;
+    }
+
+    .size-icon {
+        margin-top: -1px;
+    }
+
+    .highLight {
+        font-weight: 700;
+    }
+
+    .top-space {
+        border-radius: 10px;
+        /*margin-top: 2.5rem;*/
+    }
+
+    .right-space {
+        margin-right: 20px;
+    }
+</style>
+
+@if (IsSuccess)
+{
+    if (string.IsNullOrWhiteSpace(Title))
+    {
+        <div class="text-white p-3 bg-success top-space noti-container">
+            <i class="fa fa-check size-icon fa-2x right-space"></i>
+            <h3 class="mb-0 highLight ml-1 col-10">Thông báo</h3>
+        </div>
+    }
+    else
+    {
+        <div class="text-white p-3 bg-success top-space noti-container">
+            <i class="fa fa-check size-icon fa-2x right-space"></i>
+            <h3 class="mb-0 highLight ml-1">@Title</h3>
+        </div>
+    }
+}
+else
+{
+    if (string.IsNullOrWhiteSpace(Title))
+    {
+        <div class="text-white p-3 bg-danger top-space noti-container">
+            <i class="fa fa-exclamation-triangle size-icon right-space fa-2x"></i>
+            <h3 class="mb-0 highLight ml-1 col-10">Thông báo</h3>
+        </div>
+    }
+    else
+    {
+        <div class="text-white p-3 bg-danger top-space noti-container">
+            <i class="fa fa-exclamation-triangle size-icon right-space fa-2x"></i>
+            <h3 class="mb-0 highLight ml-1">@Title</h3>
+        </div>
+    }
+}
+
+@code{
+    [CascadingParameter] private BlazoredToast ToastInstance { get; set; }
+
+    [Parameter] public string Title { get; set; }
+
+    [Parameter] public bool IsSuccess { get; set; }
+}

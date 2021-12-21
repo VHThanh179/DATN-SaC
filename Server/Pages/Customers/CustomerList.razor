@@ -7,11 +7,15 @@
     <h1 class="col-6 font-weight-bold text-left">
         Danh sách khách hàng
     </h1>
-    <div class="col-6 text-right">
+    <div class="col-6 text-right row mt-3">
         <br />
-        <input type="text" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
-        @*<button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>*@
-        <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+        <select name="cars" class="custom-select col-4 mr-2" value="@SearchStatus" @onchange="SearchCustomerStatus">
+            <option value="">Chọn trạng thái</option>
+            <option value="True">Đang hoạt động</option>
+            <option value="False">Dừng hoạt động</option>
+        </select>
+        <input type="text" class="form-control col-5 mr-2" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
+        <button class="btn btn-outline-primary form-control col-2" @onclick="OnInitialized">Tìm kiếm</button>
     </div>
 </div>
 <br />
@@ -26,12 +30,12 @@ else
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
-                <th @onclick="@(()=>CustomerSorting("FullName"))">Họ và tên</th>
-                <th @onclick="@(()=>CustomerSorting("CreatedDate"))">Ngày sinh</th>
-                <th @onclick="@(()=>CustomerSorting("PhoneNumber"))">Số điện thoại</th>
-                <th @onclick="@(()=>CustomerSorting("Email"))">Email</th>
-                <th @onclick="@(()=>CustomerSorting("Address"))">Địa chỉ</th>
-                <th @onclick="@(()=>CustomerSorting("Status"))">Trạng thái</th>
+                <th style="cursor: pointer" @onclick="@(()=>CustomerSorting("FullName"))">Họ và tên</th>
+                <th style="cursor: pointer" @onclick="@(()=>CustomerSorting("CreatedDate"))">Ngày sinh</th>
+                <th style="cursor: pointer" @onclick="@(()=>CustomerSorting("PhoneNumber"))">Số điện thoại</th>
+                <th style="cursor: pointer" @onclick="@(()=>CustomerSorting("Email"))">Email</th>
+                <th style="cursor: pointer" @onclick="@(()=>CustomerSorting("Address"))">Địa chỉ</th>
+                <th style="cursor: pointer" @onclick="@(()=>CustomerSorting("Status"))">Trạng thái</th>
                 <th></th>
             </tr>
         </thead>
@@ -55,7 +59,7 @@ else
                         }
                     </td>
                     <td>
-                        <a class="btn btn-info font-weight-bold" href="/customerDialog/@item.CustomerId">Sửa</a>
+                        <a class="btn btn-info font-weight-bold" href="/customerDialog/@item.CustomerId">Chi tiết</a>
                     </td>
                 </tr>
             }
@@ -66,6 +70,7 @@ else
 @code {
     //[Parameter]
     public string SearchString { get; set; }
+    public string SearchStatus { get; set; }
     int ids = 0;
     public List<Customer> customers;
 
@@ -78,6 +83,19 @@ else
             || x.Email.ToUpper().Contains(SearchString.ToUpper()) || (x.Address != null && x.Address.ToUpper().Contains(SearchString.ToUpper()))
             || (x.PhoneNumber != null && x.PhoneNumber.Contains(SearchString)) || x.DoB.ToString().Contains(SearchString)
             || x.CreatedDate.ToString().Contains(SearchString)).ToList();
+        }
+        else
+        {
+            customers = _customerSvc.GetAllCustomer();
+        }
+    }
+
+    protected void SearchCustomerStatus(ChangeEventArgs args)
+    {
+        SearchStatus = args.Value.ToString();
+        if (!string.IsNullOrEmpty(SearchStatus))
+        {
+            customers = _customerSvc.GetAllCustomer().Where(x => x.Status.ToString() == SearchStatus).ToList();
         }
         else
         {

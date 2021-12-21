@@ -1,0 +1,42 @@
+﻿@page "/userlog/{id}"
+@using Share.Models
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@inject Share.Interfaces.IUserSvc _userService
+@inject Share.Interfaces.IActivity _activityService
+@inject NavigationManager navigation
+
+<div class="row col-12 m-auto">
+    <table class="table table-hover text-center m-auto">
+        <thead class="thead-dark">
+            <tr>
+                <th style="cursor: pointer">Tài khoản</th>
+                <th style="cursor: pointer">Thời gian đăng nhập</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in activities)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.LoginTime</td>
+                </tr>
+             }
+        </tbody>
+    </table>
+</div>
+
+
+    @code {
+        [Parameter]
+        public string id { get; set; }
+        private User user { get; set; }
+        private List<Activity> activities { get; set; }
+
+        protected override void OnInitialized()
+        {
+            user = _userService.GetUser(int.Parse(id));
+            activities = _activityService.GetUserLog(user.UserName);
+        }
+    }

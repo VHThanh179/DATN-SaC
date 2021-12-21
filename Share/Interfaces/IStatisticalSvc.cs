@@ -10,5 +10,7 @@ namespace Share.Interfaces
     public interface IStatisticalSvc
     {
         List<Statistical> GetAllStatistical();
+        List<TotalStatistical> GetTotalStatistical();
+        List<Statistical> SearchStatistical(DateTime startDate, DateTime endDate);
     }
 }

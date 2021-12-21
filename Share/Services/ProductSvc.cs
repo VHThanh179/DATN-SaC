@@ -65,9 +65,9 @@ namespace Share.Services
             return list;
         }
 
-        public async Task<List<Product>> GetFiveBestSellingProductsAsync()
+        public async Task<List<Product>> GetTrendingProductsAsync()
         {
-            return await _context.Products.FromSqlRaw("FiveBestSellingProducts").ToListAsync();
+            return await _context.Products.FromSqlRaw("BestSellingProducts").ToListAsync();
         }
 
         public async Task<Product> GetProductAsync(int id)
@@ -132,7 +132,8 @@ namespace Share.Services
         }
         public async Task<PagedList<Product>> GetPagingProducts(PagingParameter productParameters)
         {
-            var products = await _context.Products.ToListAsync();
+            var products = await _context.Products.Where(x => productParameters.Category == 0 || ((int)x.Category) == productParameters.Category).ToListAsync();
+            
             return PagedList<Product>
                 .ToPagedList(products, productParameters.PageNumber, productParameters.PageSize);
         }

@@ -1,0 +1,125 @@
+﻿@page "/userinfo/{id}"
+@using Share.Models
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@inject Share.Interfaces.IUserSvc _userService
+@inject NavigationManager navigation
+@inject IToastService toastService
+@inject IJSRuntime JSRuntime
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8 mx-auto">
+            <div class="card card-signin flex-row shadow-lg card-signup">
+                <div class="card-body">
+                    <h2 class="card-title text-center font-weight-bold text-uppercase">Thông tin</h2>
+                    <div class="col-md-12">
+                        <form asp-action="Create" class="form-signin">
+                            <EditForm Model="@user" OnValidSubmit="@SubmitForm">
+                                <DataAnnotationsValidator />
+                                <input type="hidden" @bind="user.UserId" />
+
+                                <div class="form-label-group row">
+                                    <label class="control-label col-5">Tên đăng nhập</label>
+                                    <span class="font-weight-bold col-7">@user.UserName</span>
+                                    @*<input @bind="user.UserName" class="form-control" disabled />
+                                        <ValidationMessage For="@(() => user.UserName)" />*@
+                                </div>
+
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-label col-5">Họ tên</label>
+                                    <input @bind="user.FullName" class="form-control col-5" />
+                                    <ValidationMessage For="@(() => user.FullName)" />
+                                </div>
+
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-label col-5">Email</label>
+                                    <input @bind="user.Email" class="form-control col-5" />
+                                    <ValidationMessage For="@(() => user.Email)" />
+                                </div>
+
+                                <div class="form-label-group mt-3 row">
+                                    <label class="control-label col-5">Ngày sinh</label>
+                                    <input type="date" @bind="user.DoB" class="form-control col-5" />
+                                    <ValidationMessage For="@(() => user.DoB)" />
+                                </div>
+
+                                @if (user.Roles == Role.Staff)
+                                {
+                                    <div class="form-label-group mt-3 row">
+                                        <label class="control-label col-5">Chức vụ: </label>
+                                        <span class="font-weight-bold col-7">Nhân viên</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-label-group mt-3 row">
+                                        <label class="control-label col-5">Chức vụ: </label>
+                                        <span class="font-weight-bold col-7">Quản lý</span>
+                                    </div>
+                                }
+
+
+                                @if (user.Status)
+                                {
+                                    <div class="form-label-group mt-3 row">
+                                        <label class="control-label col-5">Trạng thái: </label>
+                                        <span class="font-weight-bold col-7">Hoạt động</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-label-group mt-3 row">
+                                        <label class="control-label col-5">Trạng thái: </label>
+                                        <span class="font-weight-bold col-7">Không hoạt động</span>
+                                    </div>
+                                }
+
+                                <div class="form-label-group mt-3">
+                                    <button type="submit" class="btn btn-info">Lưu</button>
+                                    <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Thoát" />
+                                </div>
+                            </EditForm>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+    private Share.Models.User user { get; set; }
+    private ToastParameters _toastParameters;
+
+    protected override void OnInitialized()
+    {
+        user = _userService.GetUser(int.Parse(id));
+    }
+    private async void SubmitForm()
+    {
+        _toastParameters = new ToastParameters();
+        int ret = _userService.EditUser(user.UserId, user);
+        if (ret != 0)
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
+            await JSRuntime.InvokeVoidAsync("RefreshUser.refreshData");
+        }
+        else
+        {
+            _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thất bại!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), false);
+            toastService.ShowToast<Notification>(_toastParameters);
+        }
+    }
+    private void Cancel()
+    {
+        navigation.NavigateTo("UserList", true);
+
+    }
+
+}

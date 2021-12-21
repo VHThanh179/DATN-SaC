@@ -9,5 +9,6 @@ namespace Share.Models
     public class TokenResponseModel
     {
         public string JwtToken { get; set; }
+        public bool FirstLogin { get; set; }
     }
 }

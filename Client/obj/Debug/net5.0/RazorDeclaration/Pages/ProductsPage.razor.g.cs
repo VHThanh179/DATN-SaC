@@ -125,20 +125,6 @@ using Syncfusion.Blazor.Popups;
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 20 "D:\DATN\Project\SaCBackpack\Client\_Imports.razor"
-using Blazored.Toast.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
 using Share.Models;
 
@@ -154,13 +140,27 @@ using Share.Common;
 #nullable disable
 #nullable restore
 #line 4 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
 using Share.Models.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
+#line 12 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -176,12 +176,14 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 101 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
+#line 131 "D:\DATN\Project\SaCBackpack\Client\Pages\ProductsPage.razor"
        
+    private ToastParameters _toastParameters;
     public List<Product> products;
     public ProductDTO productDTO;
     protected string imgUrl = "";
     protected string temp = "";
+
 
     int totalPages;
     int totalRecords;
@@ -190,19 +192,29 @@ using Newtonsoft.Json;
     int pageSize;
     int startPage;
     int endPage;
-
+    public int publicCategory { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("mostPopular");
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
         pagerSize = 4;
-        pageSize = 4;
+        pageSize = 8;
         curPage = 1;
+
 
         productDTO = new ProductDTO();
         products = new List<Product>();
-        await LoadProduct();
+        await LoadProduct(publicCategory);
+
     }
-    public async Task LoadProduct()
+    public async Task LoadProduct(int category)
     {
+        publicCategory = category;
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         using (var client = new HttpClient())
@@ -210,7 +222,7 @@ using Newtonsoft.Json;
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("paging?PageNumber=" + curPage + "&PageSize=" + pageSize))
+            using (var response = await client.GetAsync("paging?PageNumber=" + curPage + "&PageSize=" + pageSize + "&Category=" + category))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 productDTO = Newtonsoft.Json.JsonConvert.DeserializeObject<ProductDTO>(apiResponse);
@@ -254,7 +266,7 @@ using Newtonsoft.Json;
     public async Task RefreshRecord(int currentPage)
     {
         curPage = currentPage;
-        await LoadProduct();
+        await LoadProduct(publicCategory);
     }
     public void SetPagerSize(string direction)
     {
@@ -279,6 +291,7 @@ using Newtonsoft.Json;
     }
     private void AddCart(int id)
     {
+        _toastParameters = new ToastParameters();
         //var cart = HttpContext.Session.GetString("cart");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
         if (cart == null)
@@ -301,6 +314,9 @@ using Newtonsoft.Json;
             };
 
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
@@ -329,7 +345,9 @@ using Newtonsoft.Json;
             }
             orderCart.Total = Calculate(orderCart.ListViewCart);
             sessionStorage.SetItem("cart", JsonConvert.SerializeObject(orderCart));
-
+            _toastParameters.Add(nameof(Notification.Title), "Thêm sản phẩm thành công!");
+            _toastParameters.Add(nameof(Notification.IsSuccess), true);
+            toastService.ShowToast<Notification>(_toastParameters);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
     }
@@ -350,9 +368,10 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.JSInterop.IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
     }
 }
 #pragma warning restore 1591

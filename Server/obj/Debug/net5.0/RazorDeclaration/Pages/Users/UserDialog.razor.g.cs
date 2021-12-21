@@ -98,35 +98,28 @@ using Syncfusion.Blazor.Charts;
 #nullable disable
 #nullable restore
 #line 13 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored;
+using Syncfusion.Blazor.Popups;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal;
+using Blazored;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Modal.Services;
+using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "D:\DATN\Project\SaCBackpack\Server\_Imports.razor"
-using Blazored.Toast.Services;
+using Blazored.Modal.Services;
 
 #line default
 #line hidden
@@ -134,6 +127,20 @@ using Blazored.Toast.Services;
 #nullable restore
 #line 2 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
 using Share.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+using Blazored.Toast.Services;
 
 #line default
 #line hidden
@@ -147,13 +154,14 @@ using Share.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 129 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
+#line 137 "D:\DATN\Project\SaCBackpack\Server\Pages\Users\UserDialog.razor"
        
     [Parameter]
     public string id { get; set; }
     public bool isUserNameExisted = false;
     public bool isEmailExisted = false;
     private Share.Models.User user { get; set; }
+    private ToastParameters _toastParameters;
     private string Tilte = "";
     protected override void OnInitialized()
     {
@@ -161,6 +169,7 @@ using Share.Models;
         {
             Tilte = "Thêm người dùng";
             user = new Share.Models.User();
+            user.DoB = new DateTime(1970, 01, 01);
         }
         else
         {
@@ -168,14 +177,27 @@ using Share.Models;
             user = _userService.GetUser(int.Parse(id));
         }
     }
-    private void SubmitForm()
+    private async void SubmitForm()
     {
+        _toastParameters = new ToastParameters();
         if (user.UserId == 0)
         {
             if (!_userService.CheckEmail(user.Email) && !_userService.CheckUserName(user.UserName))
             {
-                _userService.AddUser(user);
-                navigation.NavigateTo("UserList");
+                int ret = _userService.AddUser(user);
+                if (ret != 0)
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Thêm người dùng thành công!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                    navigation.NavigateTo("UserList");
+                }
+                else
+                {
+                    _toastParameters.Add(nameof(Notification.Title), "Thêm người dùng thất bại!");
+                    _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                    toastService.ShowToast<Notification>(_toastParameters);
+                }
             }
             else
             {
@@ -199,8 +221,20 @@ using Share.Models;
         }
         else
         {
-            _userService.EditUser(user.UserId, user);
-            navigation.NavigateTo("UserList");
+            int ret = _userService.EditUser(user.UserId, user);
+            if (ret != 0)
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thành công!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), true);
+                toastService.ShowToast<Notification>(_toastParameters);
+                await JSRuntime.InvokeVoidAsync("RefreshUser.refreshData");
+            }
+            else
+            {
+                _toastParameters.Add(nameof(Notification.Title), "Chỉnh sửa người dùng thất bại!");
+                _toastParameters.Add(nameof(Notification.IsSuccess), false);
+                toastService.ShowToast<Notification>(_toastParameters);
+            }
         }
     }
     private void Cancel()
@@ -213,6 +247,7 @@ using Share.Models;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Share.Interfaces.IUserSvc _userService { get; set; }

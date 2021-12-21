@@ -17,24 +17,23 @@ else
         </a>
     </div>
     <div class="row">
-        <h1 class="col-6 font-weight-bold text-left">
+        <h1 class="col-4 font-weight-bold text-left">
             Danh sách sản phẩm
         </h1>
-        <div class="col-6 text-right">
+        <div class="col-8 text-right mt-3 row">
             <br />
-            <select value="@SearchCategory" @onchange="SearchProductCategory">
-                <option value="">Chọn thể lọai</option>
+            <select name="cars" class="custom-select col-2 mr-2" value="@SearchCategory" @onchange="SearchProductCategory">
+                <option value="">Tất cả</option>
                 <option value="@Category.Backpack">Ba lô</option>
                 <option value="@Category.Accessories">Phụ kiện</option>
             </select>
-            <select value="@SearchStatus" @onchange="SearchProductStatus">
+            <select name="cars" class="custom-select col-3 mr-2" value="@SearchStatus" @onchange="SearchProductStatus">
                 <option value="">Chọn trạng thái</option>
                 <option value="True">Còn hàng</option>
                 <option value="False">Hết hàng</option>
             </select>
-            <input type="text" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
-            @*<button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>*@
-            <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+            <input type="text" class="form-control col-4 mr-2" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
+        <button class="btn btn-outline-primary form-control col-2" @onclick="OnInitialized">Tìm kiếm</button>
         </div>
     </div>
     <br />
@@ -42,9 +41,9 @@ else
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" @onclick="@(()=>ProductSorting("ProductName"))">Tên</th>
-                <th scope="col" @onclick="@(()=>ProductSorting("Price"))">Giá</th>
-                <th scope="col" @onclick="@(()=>ProductSorting("Category"))">Phân loại</th>
+                <th scope="col" style="cursor: pointer" @onclick="@(()=>ProductSorting("ProductName"))">Tên</th>
+                <th scope="col" style="cursor: pointer" @onclick="@(()=>ProductSorting("Price"))">Giá</th>
+                <th scope="col" style="cursor: pointer" @onclick="@(()=>ProductSorting("Category"))">Phân loại</th>
                 <th scope="col" style="width:20%">Hình</th>
                 <th scope="col">Trạng thái</th>
                 @*<th scope="col" style="width:30%">Thông tin</th>*@

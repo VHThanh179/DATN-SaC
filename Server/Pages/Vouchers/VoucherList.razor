@@ -16,20 +16,19 @@ else
     </a>
     <br />
     <br />
-    <div class="">
-        <select value="@SearchCategory" @onchange="SearchVoucherCategory">
-            <option value="">Chọn thể lọai</option>
+    <div class="d-flex justify-content-end">
+        <select name="cars" class="custom-select col-2 mr-2" value="@SearchCategory" @onchange="SearchVoucherCategory">
+            <option value="">Chọn thể loại</option>
             <option value="@CategoryDiscount.Percent">Phần trăm</option>
             <option value="@CategoryDiscount.Cash">Tiền mặt</option>
         </select>
-        <select value="@SearchStatus" @onchange="SearchVoucherStatus">
+        <select name="cars" class="custom-selec col-2 mr-2" value="@SearchStatus" @onchange="SearchVoucherStatus">
             <option value="">Chọn trạng thái</option>
             <option value="True">Còn hiệu lực</option>
             <option value="False">Hết hiệu lực</option>
         </select>
-        <input type="text" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
-        @*<button class="btn btn-outline-success" @onclick="OnParametersSet"><i class="fa fa-search"></i></button>*@
-        <button class="btn btn-outline-primary" @onclick="OnInitialized">Danh sách</button>
+        <input type="text" class="form-control col-2 mr-2" @bind-value=@SearchString @oninput="SearchInfo" placeholder="Nhập thông tin tìm kiếm..." />
+    <button class="btn btn-outline-primary form-control col-1" @onclick="OnInitialized">Tìm kiếm</button>
     </div>
     <br />
     <br />
@@ -38,13 +37,13 @@ else
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
-                <th @onclick="@(()=>VoucherSorting("VoucherCode"))">Mã voucher</th>
-                <th @onclick="@(()=>VoucherSorting("StartDate"))">Ngày hiệu lực</th>
-                <th @onclick="@(()=>VoucherSorting("EndDate"))">Ngày kết thúc</th>
-                <th @onclick="@(()=>VoucherSorting("Status"))">Trạng thái</th>
-                <th @onclick="@(()=>VoucherSorting("VoucherQuantity"))">Số lượng</th>
-                <th @onclick="@(()=>VoucherSorting("CategoryDiscount"))">Loại giảm giá</th>
-                <th @onclick="@(()=>VoucherSorting("Value"))">Giá trị</th>
+                <th style="cursor: pointer" @onclick="@(()=>VoucherSorting("VoucherCode"))">Mã voucher</th>
+                <th style="cursor: pointer" @onclick="@(()=>VoucherSorting("StartDate"))">Ngày hiệu lực</th>
+                <th style="cursor: pointer" @onclick="@(()=>VoucherSorting("EndDate"))">Ngày kết thúc</th>
+                <th style="cursor: pointer" @onclick="@(()=>VoucherSorting("Status"))">Trạng thái</th>
+                <th style="cursor: pointer" @onclick="@(()=>VoucherSorting("VoucherQuantity"))">Số lượng</th>
+                <th style="cursor: pointer" @onclick="@(()=>VoucherSorting("CategoryDiscount"))">Loại giảm giá</th>
+                <th style="cursor: pointer" @onclick="@(()=>VoucherSorting("Value"))">Giá trị</th>
                 <th></th>
             </tr>
         </thead>

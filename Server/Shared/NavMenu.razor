@@ -1,17 +1,11 @@
-﻿<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+﻿
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion d-flex flex-column" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fab fa-battle-net"></i>
         </div>
         <div class="sidebar-brand-text mx-3">SaC</div>
     </a>
-    <hr class="sidebar-divider my-0">
-    <li class="nav-item">
-        <a class="nav-link" href="" Match="NavLinkMatch.All">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Bảng điều khiển</span>
-        </a>
-    </li>
     <hr class="sidebar-divider">
     <li class="nav-item">
         <a class="nav-link" href="/productlist">
@@ -53,7 +47,7 @@
             @if (context.User.IsInRole("Manager"))
             {
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="/statistical">
                         <i class="fas fa-fw fa-clipboard-list"></i>
                         <span>Thống kê</span>
                     </a>

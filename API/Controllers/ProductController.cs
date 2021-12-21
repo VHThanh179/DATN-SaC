@@ -29,10 +29,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/FiveProducts")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetFiveBestSellingProducts()
+        [Route("/api/TrendingProducts")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetTrendingProducts()
         {
-            return await _productSvc.GetFiveBestSellingProductsAsync();
+            return await _productSvc.GetTrendingProductsAsync();
         }
 
         [HttpGet]
